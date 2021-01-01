@@ -126,7 +126,7 @@ public abstract class Talisman implements Listener, Watcher {
      * This can be overridden but may lead to unexpected behavior.
      */
     public void update() {
-        name = StringUtils.translate(config.getString("name"));
+        name = StringUtils.translate("&f" + config.getString("name"));
         description = StringUtils.translate(config.getString("description"));
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
         disabledWorldNames.clear();
@@ -134,7 +134,7 @@ public abstract class Talisman implements Listener, Watcher {
         disabledWorlds.clear();
 
         formattedDescription = Arrays.stream(WordUtils.wrap(description, Configs.CONFIG.getInt("description.wrap"), "\n", false).split("\\r?\\n"))
-                .map(s -> TalismanDisplay.PREFIX + s).collect(Collectors.toList());
+                .map(s -> TalismanDisplay.PREFIX + StringUtils.translate(Configs.LANG.getString("description-color") + s)).collect(Collectors.toList());
 
         List<String> worldNames = Bukkit.getWorlds().stream().map(World::getName).map(String::toLowerCase).collect(Collectors.toList());
         List<String> disabledExistingWorldNames = disabledWorldNames.stream().filter(s -> worldNames.contains(s.toLowerCase())).collect(Collectors.toList());
