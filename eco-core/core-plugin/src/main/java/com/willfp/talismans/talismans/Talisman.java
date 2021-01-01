@@ -150,7 +150,9 @@ public abstract class Talisman implements Listener, Watcher {
         container.set(this.getKey(), PersistentDataType.INTEGER, 1);
         out.setItemMeta(outMeta);
 
-        ShapedRecipe recipe = new ShapedRecipe(out);
+        Bukkit.getServer().removeRecipe(this.getKey());
+
+        ShapedRecipe recipe = new ShapedRecipe(this.getKey(), out);
 
         List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
