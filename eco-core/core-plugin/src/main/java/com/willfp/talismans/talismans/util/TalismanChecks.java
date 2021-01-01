@@ -94,4 +94,16 @@ public class TalismanChecks {
 
         return found;
     }
+
+    /**
+     * Get if a player has a specific talisman active.
+     *
+     * @param player   The player to query.
+     * @param talisman The talisman to search for.
+     * @return A set of all found talismans.
+     */
+    public static boolean hasTalisman(@NotNull final Player player,
+                                      @NotNull final Talisman talisman) {
+        return getTalismansOnPlayer(player).contains(talisman);
+    }
 }
