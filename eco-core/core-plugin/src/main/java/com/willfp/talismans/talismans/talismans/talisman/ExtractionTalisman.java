@@ -3,6 +3,7 @@ package com.willfp.talismans.talismans.talismans.talisman;
 import com.willfp.eco.util.drops.DropQueue;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ExtractionTalisman extends Talisman {
     public ExtractionTalisman() {
-        super("extraction_talisman");
+        super("extraction_talisman", TalismanStrength.TALISMAN);
     }
 
     @Override

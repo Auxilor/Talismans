@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Illager;
 import org.bukkit.entity.LivingEntity;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class RaidTalisman extends Talisman {
     public RaidTalisman() {
-        super("raid_talisman");
+        super("raid_talisman", TalismanStrength.TALISMAN);
     }
 
     @Override

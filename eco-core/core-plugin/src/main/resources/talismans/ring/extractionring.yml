@@ -1,0 +1,28 @@
+name: "Extraction Ring"
+description: Chance to get xp while mining.
+enabled: true
+
+obtaining:
+  # Recipes are left-right, top-bottom
+  # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+  recipe:
+    - emerald
+    - emerald_block
+    - emerald
+
+    - emerald_block
+    - heart_of_the_sea
+    - emerald_block
+
+    - emerald
+    - emerald_block
+    - emerald
+
+general-config:
+  disabled-in-worlds: []
+  # Texture is base64, https://minecraft-heads.com has a list of skulls.
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmQxZWUyYjYwYTlkODFlYTgyZWIyNTBjNzEyYjNhNmJhYmVkMDNkMjFkNmY4MTg3MDBjNzBlNDM4OGU2YTUxOCJ9fX0=
+
+config:
+  chance: 5
+  xp-amount: 20

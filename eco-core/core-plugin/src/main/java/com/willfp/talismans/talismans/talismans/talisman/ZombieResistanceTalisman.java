@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
@@ -10,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ZombieResistanceTalisman extends Talisman {
     public ZombieResistanceTalisman() {
-        super("zombie_resistance_talisman");
+        super("zombie_resistance_talisman", TalismanStrength.TALISMAN);
     }
 
     @Override

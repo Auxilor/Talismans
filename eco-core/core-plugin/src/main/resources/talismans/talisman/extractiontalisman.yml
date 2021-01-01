@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - cobblestone
-    - stone
-    - cobblestone
+    - emerald
+    - emerald
+    - emerald
 
-    - stone
-    - gold_block
-    - stone
+    - emerald
+    - eye_of_ender
+    - emerald
 
-    - cobblestone
-    - stone
-    - cooblestone
+    - emerald
+    - emerald
+    - emerald
 
 general-config:
   disabled-in-worlds: []

@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.LivingEntity;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CreeperTalisman extends Talisman {
     public CreeperTalisman() {
-        super("creeper_talisman");
+        super("creeper_talisman", TalismanStrength.TALISMAN);
     }
 
     @Override

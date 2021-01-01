@@ -1,0 +1,27 @@
+name: "Sharpness Ring"
+description: Deal 25% more melee damage.
+enabled: true
+
+obtaining:
+  # Recipes are left-right, top-bottom
+  # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+  recipe:
+    - iron_sword
+    - diamond_sword
+    - iron_sword
+
+    - iron_sword
+    - heart_of_the_sea
+    - iron_sword
+
+    - diamond_sword
+    - iron_sword
+    - diamond_sword
+
+general-config:
+  disabled-in-worlds: []
+  # Texture is base64, https://minecraft-heads.com has a list of skulls.
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjg4MWI1ZTkxZjliNGVlMGQ0YzUzMzk2MmJiNjhmYTczY2VkYjc1ZWNkMjY4ZWNiZGQ0NGNhMGY0MDkxNDhjMiJ9fX0=
+
+config:
+  percent-more-damage: 10

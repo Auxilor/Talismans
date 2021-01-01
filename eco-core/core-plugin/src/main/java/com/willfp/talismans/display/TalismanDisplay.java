@@ -91,7 +91,7 @@ public class TalismanDisplay {
 
         ProxyUtils.getProxy(SkullProxy.class).setTalismanTexture(meta, talisman.getSkullBase64());
 
-        meta.setDisplayName(talisman.getName());
+        meta.setDisplayName(talisman.getFormattedName());
 
         List<String> lore = new ArrayList<>();
 

@@ -52,7 +52,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
         this.getLog().info("");
 
         this.getLog().info(Talismans.values().size() + " Talismans Loaded:");
-        this.getLog().info(Talismans.values().stream().map(Talisman::getName).collect(Collectors.joining(", ")));
+        this.getLog().info(Talismans.values().stream().map(Talisman::getFormattedName).collect(Collectors.joining(", ")));
     }
 
     /**

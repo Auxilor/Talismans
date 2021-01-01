@@ -7,15 +7,15 @@ obtaining:
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
     - rotten_flesh
-    - rotten_flesh
-    - rotten_flesh
-
-    - rotten_flesh
     - shield
     - rotten_flesh
 
+    - shield
+    - eye_of_ender
+    - shield
+
     - rotten_flesh
-    - rotten_flesh
+    - shield
     - rotten_flesh
 
 general-config:

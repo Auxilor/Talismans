@@ -2,13 +2,14 @@ package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class FeatherTalisman extends Talisman {
     public FeatherTalisman() {
-        super("feather_talisman");
+        super("feather_talisman", TalismanStrength.TALISMAN);
     }
 
     @Override

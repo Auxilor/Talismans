@@ -138,7 +138,7 @@ public abstract class Talisman implements Listener, Watcher {
      * This can be overridden but may lead to unexpected behavior.
      */
     public void update() {
-        name = StringUtils.translate("&e" + config.getString("name"));
+        name = StringUtils.translate(config.getString("name"));
         description = StringUtils.translate(config.getString("description"));
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
         disabledWorldNames.clear();
@@ -181,6 +181,15 @@ public abstract class Talisman implements Listener, Watcher {
 
     protected void postUpdate() {
         // Unused as some talismans may have postUpdate tasks, however most won't.
+    }
+
+    /**
+     * Get the name of the talisman, formatted with color.
+     *
+     * @return The name.
+     */
+    public String getFormattedName() {
+        return this.getStrength().getColor() + this.getName();
     }
 
     @Override

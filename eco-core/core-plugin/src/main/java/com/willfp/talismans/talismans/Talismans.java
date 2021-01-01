@@ -5,6 +5,28 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.talismans.talismans.talismans.relic.ArcheryRelic;
+import com.willfp.talismans.talismans.talismans.relic.EndRelic;
+import com.willfp.talismans.talismans.talismans.relic.ExperienceRelic;
+import com.willfp.talismans.talismans.talismans.relic.ExtractionRelic;
+import com.willfp.talismans.talismans.talismans.relic.FeatherRelic;
+import com.willfp.talismans.talismans.talismans.relic.FlameRelic;
+import com.willfp.talismans.talismans.talismans.relic.NetherRelic;
+import com.willfp.talismans.talismans.talismans.relic.PoseidonRelic;
+import com.willfp.talismans.talismans.talismans.relic.ResistanceRelic;
+import com.willfp.talismans.talismans.talismans.relic.SharpnessRelic;
+import com.willfp.talismans.talismans.talismans.relic.StrengthRelic;
+import com.willfp.talismans.talismans.talismans.ring.ArcheryRing;
+import com.willfp.talismans.talismans.talismans.ring.EndRing;
+import com.willfp.talismans.talismans.talismans.ring.ExperienceRing;
+import com.willfp.talismans.talismans.talismans.ring.ExtractionRing;
+import com.willfp.talismans.talismans.talismans.ring.FeatherRing;
+import com.willfp.talismans.talismans.talismans.ring.FlameRing;
+import com.willfp.talismans.talismans.talismans.ring.NetherRing;
+import com.willfp.talismans.talismans.talismans.ring.PoseidonRing;
+import com.willfp.talismans.talismans.talismans.ring.ResistanceRing;
+import com.willfp.talismans.talismans.talismans.ring.SharpnessRing;
+import com.willfp.talismans.talismans.talismans.ring.StrengthRing;
 import com.willfp.talismans.talismans.talismans.talisman.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.EndTalisman;
@@ -59,6 +81,29 @@ public class Talismans {
     public static final Talisman SPIDER_RESISTANCE_TALISMAN = new SpiderResistanceTalisman();
     public static final Talisman RESISTANCE_TALISMAN = new ResistanceTalisman();
     public static final Talisman STRENGTH_TALISMAN = new StrengthTalisman();
+    public static final Talisman ARCHERY_RING = new ArcheryRing();
+    public static final Talisman END_RING = new EndRing();
+    public static final Talisman EXPERIENCE_RING = new ExperienceRing();
+    public static final Talisman EXTRACTION_RING = new ExtractionRing();
+    public static final Talisman FEATHER_RING = new FeatherRing();
+    public static final Talisman FLAME_RING = new FlameRing();
+    public static final Talisman NETHER_RING = new NetherRing();
+    public static final Talisman POSEIDON_RING = new PoseidonRing();
+    public static final Talisman RESISTANCE_RING = new ResistanceRing();
+    public static final Talisman SHARPNESS_RING = new SharpnessRing();
+    public static final Talisman STRENGTH_RING = new StrengthRing();
+    public static final Talisman ARCHERY_RELIC = new ArcheryRelic();
+    public static final Talisman END_RELIC = new EndRelic();
+    public static final Talisman EXPERIENCE_RELIC = new ExperienceRelic();
+    public static final Talisman EXTRACTION_RELIC = new ExtractionRelic();
+    public static final Talisman FEATHER_RELIC = new FeatherRelic();
+    public static final Talisman FLAME_RELIC = new FlameRelic();
+    public static final Talisman NETHER_RELIC = new NetherRelic();
+    public static final Talisman POSEIDON_RELIC = new PoseidonRelic();
+    public static final Talisman RESISTANCE_RELIC = new ResistanceRelic();
+    public static final Talisman SHARPNESS_RELIC = new SharpnessRelic();
+    public static final Talisman STRENGTH_RELIC = new StrengthRelic();
+
 
     /**
      * Get all registered {@link Talisman}s.

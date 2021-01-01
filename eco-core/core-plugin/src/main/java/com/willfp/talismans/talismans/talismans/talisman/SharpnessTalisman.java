@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -9,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SharpnessTalisman extends Talisman {
     public SharpnessTalisman() {
-        super("sharpness_talisman");
+        super("sharpness_talisman", TalismanStrength.TALISMAN);
     }
 
     @Override

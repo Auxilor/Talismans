@@ -7,15 +7,15 @@ obtaining:
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
     - string
-    - string
-    - string
-
-    - string
     - shield
     - string
 
+    - shield
+    - eye_of_ender
+    - shield
+
     - string
-    - string
+    - shield
     - string
 
 general-config:

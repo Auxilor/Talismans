@@ -3,6 +3,7 @@ package com.willfp.talismans.talismans.talismans.talisman;
 import com.willfp.eco.util.events.naturalexpgainevent.NaturalExpGainEvent;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ExperienceTalisman extends Talisman {
     public ExperienceTalisman() {
-        super("experience_talisman");
+        super("experience_talisman", TalismanStrength.TALISMAN);
     }
 
     @EventHandler
