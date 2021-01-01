@@ -8,6 +8,7 @@ import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import com.willfp.talismans.display.TalismanDisplay;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.Watcher;
 import lombok.AccessLevel;
@@ -71,6 +72,14 @@ public abstract class Talisman implements Listener, Watcher {
     private final String configName;
 
     /**
+     * The strength of the talisman
+     * <p>
+     * Talisman is weakest, then ring, then relic.
+     */
+    @Getter
+    private final TalismanStrength strength;
+
+    /**
      * The talisman's config.
      */
     @Getter
@@ -103,14 +112,17 @@ public abstract class Talisman implements Listener, Watcher {
     /**
      * Create a new Talisman.
      *
-     * @param key           The key name of the talisman
-     * @param prerequisites Optional {@link Prerequisite}s that must be met
+     * @param key           The key name of the talisman.
+     * @param strength      The strength of the talisman.
+     * @param prerequisites Optional {@link Prerequisite}s that must be met.
      */
     protected Talisman(@NotNull final String key,
+                       @NotNull final TalismanStrength strength,
                        @NotNull final Prerequisite... prerequisites) {
+        this.strength = strength;
         this.key = this.getPlugin().getNamespacedKeyFactory().create(key);
         this.configName = key.replace("_", "");
-        TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.getClass()));
+        TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
         this.config = TalismansConfigs.getTalismanConfig(this.configName);
 
         if (!Prerequisite.areMet(prerequisites)) {

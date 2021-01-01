@@ -3,6 +3,7 @@ package com.willfp.talismans.config;
 import com.willfp.eco.util.config.ValueGetter;
 import com.willfp.eco.util.internal.PluginDependent;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.talismans.talismans.meta.TalismanStrength;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -49,23 +50,36 @@ public abstract class TalismanYamlConfig extends PluginDependent implements Valu
     private final Class<?> source;
 
     /**
+     * The talisman strength.
+     */
+    private final TalismanStrength strength;
+
+    /**
      * Create new talisman config yml.
      *
-     * @param name   The config name.
-     * @param source The class of the main class of source or extension.
+     * @param name     The config name.
+     * @param strength The talisman strength.
+     * @param source   The class of the main class of source or extension.
      */
     protected TalismanYamlConfig(@NotNull final String name,
+                                 @NotNull final TalismanStrength strength,
                                  @NotNull final Class<?> source) {
         super(AbstractEcoPlugin.getInstance());
         this.name = name;
         this.source = source;
+        this.strength = strength;
 
         File basedir = new File(this.getPlugin().getDataFolder(), "talismans/");
         if (!basedir.exists()) {
             basedir.mkdirs();
         }
 
-        this.directory = basedir;
+        File dir = new File(basedir, strength.name().toLowerCase() + "/");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        this.directory = dir;
 
         if (!new File(directory, name + ".yml").exists()) {
             createFile();
@@ -78,7 +92,7 @@ public abstract class TalismanYamlConfig extends PluginDependent implements Valu
     }
 
     private void saveResource() {
-        String resourcePath = "/talismans/" + name + ".yml";
+        String resourcePath = "/talismans/" + strength.name().toLowerCase() + "/" + name + ".yml";
 
         InputStream in = source.getResourceAsStream(resourcePath);
 
@@ -116,7 +130,7 @@ public abstract class TalismanYamlConfig extends PluginDependent implements Valu
         try {
             config.load(configFile);
 
-            String resourcePath = "/talismans/" + name + ".yml";
+            String resourcePath = "/talismans/" + strength.name().toLowerCase() + "/" + name + ".yml";
             InputStream newIn = source.getResourceAsStream(resourcePath);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(newIn, StandardCharsets.UTF_8));
