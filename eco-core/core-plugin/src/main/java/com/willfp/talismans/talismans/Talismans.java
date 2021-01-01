@@ -18,6 +18,7 @@ import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
+import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
 import lombok.experimental.UtilityClass;
 import org.bukkit.NamespacedKey;
@@ -51,6 +52,7 @@ public class Talismans {
     public static final Talisman EXPERIENCE_TALISMAN = new ExperienceTalisman();
     public static final Talisman EXTRACTION_TALISMAN = new ExtractionTalisman();
     public static final Talisman SHARPNESS_TALISMAN = new SharpnessTalisman();
+    public static final Talisman ZOMBIE_RESISTANCE_TALISMAN = new ZombieResistanceTalisman();
 
     /**
      * Get all registered {@link Talisman}s.

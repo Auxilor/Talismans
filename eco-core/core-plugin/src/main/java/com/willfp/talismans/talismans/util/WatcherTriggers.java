@@ -499,6 +499,40 @@ public class WatcherTriggers extends PluginDependent implements Listener {
     }
 
     /**
+     * Called when an entity takes damage wearing armor.
+     *
+     * @param event The event to listen for.
+     */
+    @EventHandler(ignoreCancelled = true)
+    public void onDamageByEntity(@NotNull final EntityDamageByEntityEvent event) {
+        if (McmmoManager.isFake(event)) {
+            return;
+        }
+
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player victim = (Player) event.getEntity();
+
+        TalismanChecks.getTalismansOnPlayer(victim).forEach(talisman -> {
+            if (event.isCancelled()) {
+                return;
+            }
+
+            if (!talisman.isEnabled()) {
+                return;
+            }
+
+            if (talisman.getDisabledWorlds().contains(victim.getWorld())) {
+                return;
+            }
+
+            talisman.onDamageByEntity(victim, event.getDamager(), event);
+        });
+    }
+
+    /**
      * Called when a player damages a block.
      *
      * @param event The event to listen for.

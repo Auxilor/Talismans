@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.util;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Trident;
@@ -137,6 +138,19 @@ public interface Watcher {
      */
     default void onDamage(@NotNull final Player victim,
                           @NotNull final EntityDamageEvent event) {
+        // Empty default as talismans only override required watchers.
+    }
+
+    /**
+     * Called when a player takes damage from another entity.
+     *
+     * @param victim   The player that took damage.
+     * @param attacker The entity that damaged the player.
+     * @param event    The event that called this watcher.
+     */
+    default void onDamageByEntity(@NotNull final Player victim,
+                                  @NotNull final Entity attacker,
+                                  @NotNull final EntityDamageByEntityEvent event) {
         // Empty default as talismans only override required watchers.
     }
 
