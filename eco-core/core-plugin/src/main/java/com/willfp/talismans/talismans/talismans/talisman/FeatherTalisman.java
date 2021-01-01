@@ -1,4 +1,4 @@
-package com.willfp.talismans.talismans.talismans;
+package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;

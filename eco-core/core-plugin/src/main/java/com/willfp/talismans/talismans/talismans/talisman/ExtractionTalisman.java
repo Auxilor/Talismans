@@ -1,4 +1,4 @@
-package com.willfp.talismans.talismans.talismans;
+package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.eco.util.drops.DropQueue;
 import com.willfp.talismans.talismans.Talisman;

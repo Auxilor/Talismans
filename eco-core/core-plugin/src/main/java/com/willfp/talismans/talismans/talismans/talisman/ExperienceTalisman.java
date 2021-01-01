@@ -1,4 +1,4 @@
-package com.willfp.talismans.talismans.talismans;
+package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.eco.util.events.naturalexpgainevent.NaturalExpGainEvent;
 import com.willfp.talismans.talismans.Talisman;

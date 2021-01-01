@@ -1,25 +1,25 @@
-package com.willfp.talismans.talismans.talismans;
+package com.willfp.talismans.talismans.talismans.talisman;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Illager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Spider;
 import org.bukkit.entity.Trident;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class RaidTalisman extends Talisman {
-    public RaidTalisman() {
-        super("raid_talisman");
+public class SpiderTalisman extends Talisman {
+    public SpiderTalisman() {
+        super("spider_talisman");
     }
 
     @Override
     public void onMeleeAttack(@NotNull final Player attacker,
                               @NotNull final LivingEntity victim,
                               @NotNull final EntityDamageByEntityEvent event) {
-        if (!(victim instanceof Illager)) {
+        if (!(victim instanceof Spider)) {
             return;
         }
 
@@ -31,7 +31,7 @@ public class RaidTalisman extends Talisman {
                               @NotNull final LivingEntity victim,
                               @NotNull final Arrow arrow,
                               @NotNull final EntityDamageByEntityEvent event) {
-        if (!(victim instanceof Illager)) {
+        if (!(victim instanceof Spider)) {
             return;
         }
 
@@ -43,7 +43,7 @@ public class RaidTalisman extends Talisman {
                                 @NotNull final LivingEntity victim,
                                 @NotNull final Trident trident,
                                 @NotNull final EntityDamageByEntityEvent event) {
-        if (!(victim instanceof Illager)) {
+        if (!(victim instanceof Spider)) {
             return;
         }
 

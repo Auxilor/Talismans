@@ -5,22 +5,23 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
-import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
-import com.willfp.talismans.talismans.talismans.CreeperTalisman;
-import com.willfp.talismans.talismans.talismans.EndTalisman;
-import com.willfp.talismans.talismans.talismans.ExperienceTalisman;
-import com.willfp.talismans.talismans.talismans.ExtractionTalisman;
-import com.willfp.talismans.talismans.talismans.FeatherTalisman;
-import com.willfp.talismans.talismans.talismans.FlameTalisman;
-import com.willfp.talismans.talismans.talismans.NetherTalisman;
-import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
-import com.willfp.talismans.talismans.talismans.RaidTalisman;
-import com.willfp.talismans.talismans.talismans.SharpnessTalisman;
-import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
-import com.willfp.talismans.talismans.talismans.SpiderResistanceTalisman;
-import com.willfp.talismans.talismans.talismans.SpiderTalisman;
-import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
-import com.willfp.talismans.talismans.talismans.ZombieTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ArcheryTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.CreeperTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.EndTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ExperienceTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ExtractionTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.FeatherTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.FlameTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.NetherTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.PoseidonTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.RaidTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ResistanceTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.SharpnessTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.SkeletonTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.SpiderResistanceTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.SpiderTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ZombieResistanceTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ZombieTalisman;
 import lombok.experimental.UtilityClass;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
@@ -55,6 +56,7 @@ public class Talismans {
     public static final Talisman SHARPNESS_TALISMAN = new SharpnessTalisman();
     public static final Talisman ZOMBIE_RESISTANCE_TALISMAN = new ZombieResistanceTalisman();
     public static final Talisman SPIDER_RESISTANCE_TALISMAN = new SpiderResistanceTalisman();
+    public static final Talisman RESISTANCE_TALISMAN = new ResistanceTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
