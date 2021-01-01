@@ -10,13 +10,13 @@ obtaining:
     - diamond_sword
     - iron_sword
 
-    - iron_sword
+    - diamond_sword
     - heart_of_the_sea
-    - iron_sword
+    - diamond_sword
 
-    - diamond_sword
     - iron_sword
     - diamond_sword
+    - iron_sword
 
 general-config:
   disabled-in-worlds: []

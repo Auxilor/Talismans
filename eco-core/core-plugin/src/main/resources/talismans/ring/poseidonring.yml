@@ -14,9 +14,9 @@ obtaining:
     - heart_of_the_sea
     - trident
 
-    - diamond_block
+    - nautilus_shell
     - trident
-    - diamond_block
+    - nautilus_shell
 
 general-config:
   disabled-in-worlds: []
