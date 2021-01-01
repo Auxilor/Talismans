@@ -11,6 +11,7 @@ import com.willfp.talismans.talismans.talismans.EndTalisman;
 import com.willfp.talismans.talismans.talismans.FeatherTalisman;
 import com.willfp.talismans.talismans.talismans.FlameTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
+import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
 import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
@@ -43,6 +44,7 @@ public class Talismans {
     public static final Talisman FEATHER_TALISMAN = new FeatherTalisman();
     public static final Talisman FLAME_TALISMAN = new FlameTalisman();
     public static final Talisman ARCHERY_TALISMAN = new ArcheryTalisman();
+    public static final Talisman POSEIDON_TALISMAN = new PoseidonTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
