@@ -5,6 +5,12 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.talismans.talismans.talismans.CreeperTalisman;
+import com.willfp.talismans.talismans.talismans.EndTalisman;
+import com.willfp.talismans.talismans.talismans.NetherTalisman;
+import com.willfp.talismans.talismans.talismans.RaidTalisman;
+import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
+import com.willfp.talismans.talismans.talismans.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
 import lombok.experimental.UtilityClass;
 import org.bukkit.NamespacedKey;
@@ -25,6 +31,12 @@ public class Talismans {
     private static final BiMap<NamespacedKey, Talisman> BY_KEY = HashBiMap.create();
 
     public static final Talisman ZOMBIE_TALISMAN = new ZombieTalisman();
+    public static final Talisman SKELETON_TALISMAN = new SkeletonTalisman();
+    public static final Talisman CREEPER_TALISMAN = new CreeperTalisman();
+    public static final Talisman SPIDER_TALISMAN = new SpiderTalisman();
+    public static final Talisman RAID_TALISMAN = new RaidTalisman();
+    public static final Talisman NETHER_TALISMAN = new NetherTalisman();
+    public static final Talisman END_TALISMAN = new EndTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
