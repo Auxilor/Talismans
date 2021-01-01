@@ -8,6 +8,7 @@ import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
 import com.willfp.talismans.talismans.talismans.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.EndTalisman;
 import com.willfp.talismans.talismans.talismans.FeatherTalisman;
+import com.willfp.talismans.talismans.talismans.FlameTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
 import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
@@ -39,6 +40,7 @@ public class Talismans {
     public static final Talisman NETHER_TALISMAN = new NetherTalisman();
     public static final Talisman END_TALISMAN = new EndTalisman();
     public static final Talisman FEATHER_TALISMAN = new FeatherTalisman();
+    public static final Talisman FLAME_TALISMAN = new FlameTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
