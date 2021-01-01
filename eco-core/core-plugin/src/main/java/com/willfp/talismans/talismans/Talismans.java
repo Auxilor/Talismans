@@ -20,6 +20,7 @@ import com.willfp.talismans.talismans.talismans.talisman.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SkeletonTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SpiderResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SpiderTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.StrengthTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ZombieTalisman;
 import lombok.experimental.UtilityClass;
@@ -57,6 +58,7 @@ public class Talismans {
     public static final Talisman ZOMBIE_RESISTANCE_TALISMAN = new ZombieResistanceTalisman();
     public static final Talisman SPIDER_RESISTANCE_TALISMAN = new SpiderResistanceTalisman();
     public static final Talisman RESISTANCE_TALISMAN = new ResistanceTalisman();
+    public static final Talisman STRENGTH_TALISMAN = new StrengthTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
