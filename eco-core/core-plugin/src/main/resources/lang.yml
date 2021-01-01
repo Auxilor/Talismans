@@ -1,0 +1,7 @@
+messages:
+  prefix: "&c&lTalismans&r &8» "
+  no-permission: "&cYou don't have permission to do this!"
+  not-player: "&cThis command must be run by a player"
+  reloaded: "Reloaded!"
+
+description-color: "&8"
