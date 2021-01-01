@@ -5,6 +5,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.EndTalisman;
 import com.willfp.talismans.talismans.talismans.FeatherTalisman;
@@ -41,6 +42,7 @@ public class Talismans {
     public static final Talisman END_TALISMAN = new EndTalisman();
     public static final Talisman FEATHER_TALISMAN = new FeatherTalisman();
     public static final Talisman FLAME_TALISMAN = new FlameTalisman();
+    public static final Talisman ARCHERY_TALISMAN = new ArcheryTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
