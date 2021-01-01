@@ -17,6 +17,7 @@ import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
 import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
+import com.willfp.talismans.talismans.talismans.SpiderResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
@@ -53,6 +54,7 @@ public class Talismans {
     public static final Talisman EXTRACTION_TALISMAN = new ExtractionTalisman();
     public static final Talisman SHARPNESS_TALISMAN = new SharpnessTalisman();
     public static final Talisman ZOMBIE_RESISTANCE_TALISMAN = new ZombieResistanceTalisman();
+    public static final Talisman SPIDER_RESISTANCE_TALISMAN = new SpiderResistanceTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
