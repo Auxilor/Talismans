@@ -15,6 +15,7 @@ import com.willfp.talismans.talismans.talismans.FlameTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
 import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
 import com.willfp.talismans.talismans.talismans.RaidTalisman;
+import com.willfp.talismans.talismans.talismans.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
@@ -49,6 +50,7 @@ public class Talismans {
     public static final Talisman POSEIDON_TALISMAN = new PoseidonTalisman();
     public static final Talisman EXPERIENCE_TALISMAN = new ExperienceTalisman();
     public static final Talisman EXTRACTION_TALISMAN = new ExtractionTalisman();
+    public static final Talisman SHARPNESS_TALISMAN = new SharpnessTalisman();
 
     /**
      * Get all registered {@link Talisman}s.

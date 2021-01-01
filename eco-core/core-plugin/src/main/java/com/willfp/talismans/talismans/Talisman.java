@@ -126,7 +126,7 @@ public abstract class Talisman implements Listener, Watcher {
      * This can be overridden but may lead to unexpected behavior.
      */
     public void update() {
-        name = StringUtils.translate("&f" + config.getString("name"));
+        name = StringUtils.translate("&e" + config.getString("name"));
         description = StringUtils.translate(config.getString("description"));
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
         disabledWorldNames.clear();
