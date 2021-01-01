@@ -8,7 +8,6 @@ import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.commands.CommandTaldebug;
 import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.config.TalismansConfigs;
-import com.willfp.talismans.display.TalismanDisplay;
 import com.willfp.talismans.display.packets.PacketChat;
 import com.willfp.talismans.display.packets.PacketOpenWindowMerchant;
 import com.willfp.talismans.display.packets.PacketSetCreativeSlot;
@@ -156,8 +155,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
     public List<Class<?>> getUpdatableClasses() {
         return Arrays.asList(
                 TalismansConfigs.class,
-                Talismans.class,
-                TalismanDisplay.class
+                Talismans.class
         );
     }
 }
