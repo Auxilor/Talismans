@@ -19,7 +19,7 @@ public class TalismanUtils {
      * @return If the talisman should then be executed.
      */
     public static boolean passedChance(@NotNull final Talisman talisman) {
-        return NumberUtils.randFloat(0, 1) < (talisman.getConfig().getDouble(Talismans.CONFIG_LOCATION + "chance-per-level") / 100);
+        return NumberUtils.randFloat(0, 1) < (talisman.getConfig().getDouble(Talismans.CONFIG_LOCATION + "chance") / 100);
     }
 
     /**

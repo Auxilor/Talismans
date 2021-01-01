@@ -9,6 +9,7 @@ import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.EndTalisman;
 import com.willfp.talismans.talismans.talismans.ExperienceTalisman;
+import com.willfp.talismans.talismans.talismans.ExtractionTalisman;
 import com.willfp.talismans.talismans.talismans.FeatherTalisman;
 import com.willfp.talismans.talismans.talismans.FlameTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
@@ -47,6 +48,7 @@ public class Talismans {
     public static final Talisman ARCHERY_TALISMAN = new ArcheryTalisman();
     public static final Talisman POSEIDON_TALISMAN = new PoseidonTalisman();
     public static final Talisman EXPERIENCE_TALISMAN = new ExperienceTalisman();
+    public static final Talisman EXTRACTION_TALISMAN = new ExtractionTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
