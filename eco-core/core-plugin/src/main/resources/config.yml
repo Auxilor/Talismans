@@ -10,13 +10,10 @@ description:
 strengths:
   talisman:
     color: "&e"
-    shine: false
   ring:
     color: "&c"
-    shine: false
   relic:
     color: "&d"
-    shine: true
 
 drops:
   ### ADVANCED OPTIONS
