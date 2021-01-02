@@ -2,7 +2,7 @@ name: Talismans
 version: ${projectVersion}
 main: com.willfp.talismans.TalismansPlugin
 api-version: 1.15
-authors: [Auxilor]
+authors: [ Auxilor ]
 website: willfp.com
 load: STARTUP
 depend:
@@ -28,6 +28,9 @@ commands:
   taldebug:
     description: Debug information
     permission: talismans.taldebug
+  talismans:
+    description: Shows talisman inventory
+    permission: talismans.inventory
 
 permissions:
   talismans.*:
@@ -36,6 +39,7 @@ permissions:
     children:
       talismans.reload: true
       talismans.taldebug: true
+      talismans.talismans: true
       talismans.fromtable.*: true
 
   talismans.reload:
@@ -44,6 +48,9 @@ permissions:
   talismans.taldebug:
     description: Allows the use of /taldebug to print verbose debug information to console
     default: op
+  talismans.inventory:
+    description: Allows the use of /talismans to show the player's talisman inventory.
+    default: true
   talismans.fromtable.*:
     description: Allows crafting all talismans
     default: true

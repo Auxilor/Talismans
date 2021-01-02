@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.willfp.talismans.config.TalismansConfigs;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +30,8 @@ public final class PlayerData {
      * The player's talisman inventory.
      */
     @Getter
-    private final Map<Integer, ItemStack> inventory = new HashMap<>();
+    @Setter
+    private Map<Integer, ItemStack> inventory = new HashMap<>();
 
     private PlayerData(@NotNull final UUID uuid) {
         this.uuid = uuid;
@@ -76,6 +78,7 @@ public final class PlayerData {
             return data;
         }
 
-        return new PlayerData(player.getUniqueId());
+        PLAYER_DATA.put(player.getUniqueId(), new PlayerData(player.getUniqueId()));
+        return get(player);
     }
 }

@@ -9,10 +9,15 @@ public class Data extends BaseConfig {
      * data.yml.
      */
     public Data() {
-        super("data.yml", false);
+        super("data", false);
     }
 
+    /**
+     * Get the config file.
+     *
+     * @return The file.
+     */
     public File getFile() {
-        return super.configFile;
+        return this.getConfigFile();
     }
 }
