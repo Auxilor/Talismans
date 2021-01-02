@@ -206,6 +206,7 @@ public abstract class Talisman implements Listener, Watcher {
             recipe.shape("012", "345", "678");
 
             for (int i = 0; i < 9; i++) {
+                recipeTalismanOverlay[i] = null;
                 char ingredientChar = String.valueOf(i).toCharArray()[0];
                 Material material;
                 if (recipeStrings.get(i).startsWith("talisman:")) {
@@ -219,7 +220,6 @@ public abstract class Talisman implements Listener, Watcher {
                 recipe.setIngredient(ingredientChar, material);
             }
 
-            this.recipe = recipe;
             Bukkit.getServer().addRecipe(recipe);
         }
 
