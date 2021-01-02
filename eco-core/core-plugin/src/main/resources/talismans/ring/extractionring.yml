@@ -1,5 +1,5 @@
 name: "Extraction Ring"
-description: Chance to get xp while mining.
+description: 5% chance to get xp randomly while mining.
 enabled: true
 
 obtaining:

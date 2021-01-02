@@ -1,5 +1,5 @@
 name: "Extraction Relic"
-description: Chance to get xp while mining.
+description: 10% chance to get xp randomly while mining.
 enabled: true
 
 obtaining:

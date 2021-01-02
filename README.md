@@ -27,7 +27,7 @@
 
 [![Title](https://i.imgur.com/hyPlV1m.png)]()
 [![Features](https://i.imgur.com/Tqcu1o2.png)]()
-[![Docs](https://i.imgur.com/TRDDt5W.png)](https://talismans.willfp.com/enchantments/all-enchantments)
+[![Docs](https://i.imgur.com/TRDDt5W.png)](https://auxilor.gitbook.io/talismans/talismans/all-talismans)
 [![Compatibility](https://i.imgur.com/mlAGlKn.png)]()
 
 ## License
