@@ -27,7 +27,7 @@
 
 [![Title](https://i.imgur.com/S3BUbGA.png)]()
 [![Features](https://i.imgur.com/mtvbxli.png)]()
-[![Docs](https://i.imgur.com/LoEuV4j.png)](https://auxilor.gitbook.io/talismans/talismans-1/all-talismans)
+[![Docs](https://i.imgur.com/LoEuV4j.png)](https://auxilor.gitbook.io/talismans/talismans/all-talismans)
 [![Compatibility](https://i.imgur.com/hjmbGHF.png)]()
 
 ## License
