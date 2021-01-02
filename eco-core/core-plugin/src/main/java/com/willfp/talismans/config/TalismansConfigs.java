@@ -1,7 +1,6 @@
 package com.willfp.talismans.config;
 
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
-import com.willfp.talismans.config.configs.Data;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
@@ -13,11 +12,6 @@ import java.util.Set;
 @UtilityClass
 public class TalismansConfigs {
     /**
-     * data.yml.
-     */
-    public static final Data DATA = new Data();
-
-    /**
      * All talisman-specific configs.
      */
     @Getter
@@ -28,7 +22,6 @@ public class TalismansConfigs {
      */
     @ConfigUpdater
     public void updateConfigs() {
-        DATA.update();
         TALISMAN_CONFIGS.forEach(TalismanYamlConfig::update);
     }
 
