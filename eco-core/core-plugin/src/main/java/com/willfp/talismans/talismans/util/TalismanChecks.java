@@ -1,6 +1,8 @@
 package com.willfp.talismans.talismans.util;
 
 
+import com.willfp.eco.util.config.Configs;
+import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
@@ -19,6 +21,8 @@ import java.util.Set;
 
 @UtilityClass
 public class TalismanChecks {
+    private static boolean readEnderChest = true;
+
     /**
      * Does the specified ItemStack have a certain Talisman present?
      *
@@ -93,6 +97,17 @@ public class TalismanChecks {
             found.add(talisman);
         }
 
+        if (readEnderChest) {
+            for (ItemStack itemStack : player.getEnderChest()) {
+                Talisman talisman = getTalismanOnItem(itemStack);
+                if (talisman == null) {
+                    continue;
+                }
+
+                found.add(talisman);
+            }
+        }
+
         return found;
     }
 
@@ -106,5 +121,10 @@ public class TalismanChecks {
     public static boolean hasTalisman(@NotNull final Player player,
                                       @NotNull final Talisman talisman) {
         return getTalismansOnPlayer(player).contains(talisman);
+    }
+
+    @ConfigUpdater
+    public static void reload() {
+        readEnderChest = Configs.CONFIG.getBool("read-enderchest");
     }
 }
