@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - diamond_sword
-    - diamond_sword
-    - diamond_sword
+    - talisman:sharpness_ring
+    - talisman:sharpness_ring
+    - talisman:sharpness_ring
 
-    - diamond_sword
+    - talisman:sharpness_ring
     - nether_star
-    - diamond_sword
+    - talisman:sharpness_ring
 
-    - diamond_sword
-    - diamond_sword
-    - diamond_sword
+    - talisman:sharpness_ring
+    - talisman:sharpness_ring
+    - talisman:sharpness_ring
 
 general-config:
   disabled-in-worlds: []

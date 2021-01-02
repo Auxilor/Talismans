@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - end_stone
-    - shulker_shell
-    - end_stone
+    - talisman:end_talisman
+    - talisman:end_talisman
+    - talisman:end_talisman
 
-    - shulker_shell
+    - talisman:end_talisman
     - heart_of_the_sea
-    - shulker_shell
+    - talisman:end_talisman
 
-    - end_stone
-    - shulker_shell
-    - end_stone
+    - talisman:end_talisman
+    - talisman:end_talisman
+    - talisman:end_talisman
 
 general-config:
   disabled-in-worlds: []

@@ -7,15 +7,15 @@ obtaining:
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
     - nautilus_shell
-    - nautilus_shell
+    - trident
     - nautilus_shell
 
-    - nautilus_shell
+    - trident
     - ender_eye
-    - nautilus_shell
+    - trident
 
     - nautilus_shell
-    - nautilus_shell
+    - trident
     - nautilus_shell
 
 general-config:

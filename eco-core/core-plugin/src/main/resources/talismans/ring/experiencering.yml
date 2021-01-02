@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - diamond
-    - diamond_block
-    - diamond
+    - talisman:experience_ring
+    - talisman:experience_ring
+    - talisman:experience_ring
 
-    - diamond_block
+    - talisman:experience_ring
     - heart_of_the_sea
-    - diamond_block
+    - talisman:experience_ring
 
-    - diamond
-    - diamond_block
-    - diamond
+    - talisman:experience_ring
+    - talisman:experience_ring
+    - talisman:experience_ring
 
 general-config:
   disabled-in-worlds: []

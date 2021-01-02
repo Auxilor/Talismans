@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - iron_block
-    - shield
-    - iron_block
+    - obsidian
+    - obsidian
+    - obsidian
 
-    - shield
+    - obsidian
     - ender_eye
-    - shield
+    - obsidian
 
-    - iron_block
-    - shield
-    - iron_block
+    - obsidian
+    - obsidian
+    - obsidian
 
 general-config:
   disabled-in-worlds: []

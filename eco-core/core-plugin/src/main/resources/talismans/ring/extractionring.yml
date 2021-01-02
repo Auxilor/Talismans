@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - emerald
-    - emerald_block
-    - emerald
+    - talisman:extraction_talisman
+    - talisman:extraction_talisman
+    - talisman:extraction_talisman
 
-    - emerald_block
+    - talisman:extraction_talisman
     - heart_of_the_sea
-    - emerald_block
+    - talisman:extraction_talisman
 
-    - emerald
-    - emerald_block
-    - emerald
+    - talisman:extraction_talisman
+    - talisman:extraction_talisman
+    - talisman:extraction_talisman
 
 general-config:
   disabled-in-worlds: []

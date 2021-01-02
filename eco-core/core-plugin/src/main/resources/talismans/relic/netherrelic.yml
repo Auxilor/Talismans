@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - wither_skeleton_skull
-    - wither_skeleton_skull
-    - wither_skeleton_skull
+    - talisman:nether_ring
+    - talisman:nether_ring
+    - talisman:nether_ring
 
-    - wither_skeleton_skull
+    - talisman:nether_ring
     - nether_star
-    - wither_skeleton_skull
+    - talisman:nether_ring
 
-    - wither_skeleton_skull
-    - wither_skeleton_skull
-    - wither_skeleton_skull
+    - talisman:nether_ring
+    - talisman:nether_ring
+    - talisman:nether_ring
 
 general-config:
   disabled-in-worlds: []

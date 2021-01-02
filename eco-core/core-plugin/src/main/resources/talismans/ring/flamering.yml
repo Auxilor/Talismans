@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - blaze_powder
-    - blaze_rod
-    - blaze_powder
+    - talisman:flame_talisman
+    - talisman:flame_talisman
+    - talisman:flame_talisman
 
-    - blaze_rod
+    - talisman:flame_talisman
     - heart_of_the_sea
-    - blaze_rod
+    - talisman:flame_talisman
 
-    - blaze_powder
-    - blaze_rod
-    - blaze_powder
+    - talisman:flame_talisman
+    - talisman:flame_talisman
+    - talisman:flame_talisman
 
 general-config:
   disabled-in-worlds: []

@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - feather
-    - feather
-    - feather
+    - talisman:feather_talisman
+    - talisman:feather_talisman
+    - talisman:feather_talisman
 
-    - feather
+    - talisman:feather_talisman
     - heart_of_the_sea
-    - feather
+    - talisman:feather_talisman
 
-    - feather
-    - feather
-    - feather
+    - talisman:feather_talisman
+    - talisman:feather_talisman
+    - talisman:feather_talisman
 
 general-config:
   disabled-in-worlds: []

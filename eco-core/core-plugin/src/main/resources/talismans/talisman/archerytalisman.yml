@@ -7,15 +7,15 @@ obtaining:
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
     - bow
-    - bow
+    - crossbow
     - bow
 
-    - bow
+    - crossbow
     - ender_eye
-    - bow
+    - crossbow
 
     - bow
-    - bow
+    - crossbow
     - bow
 
 general-config:

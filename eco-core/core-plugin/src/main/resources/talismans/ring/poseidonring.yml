@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - nautilus_shell
-    - trident
-    - nautilus_shell
+    - talisman:poseidon_talisman
+    - talisman:poseidon_talisman
+    - talisman:poseidon_talisman
 
-    - trident
+    - talisman:poseidon_talisman
     - heart_of_the_sea
-    - trident
+    - talisman:poseidon_talisman
 
-    - nautilus_shell
-    - trident
-    - nautilus_shell
+    - talisman:poseidon_talisman
+    - talisman:poseidon_talisman
+    - talisman:poseidon_talisman
 
 general-config:
   disabled-in-worlds: []

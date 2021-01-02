@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - diamond
-    - diamond
-    - diamond
+    - diamond_block
+    - diamond_block
+    - diamond_block
 
-    - diamond
+    - diamond_block
     - ender_eye
-    - diamond
+    - diamond_block
 
-    - diamond
-    - diamond
-    - diamond
+    - diamond_block
+    - diamond_block
+    - diamond_block
 
 general-config:
   disabled-in-worlds: []

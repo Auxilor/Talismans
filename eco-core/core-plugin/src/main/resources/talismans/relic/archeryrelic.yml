@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - crossbow
-    - crossbow
-    - crossbow
+    - talisman:archery_ring
+    - talisman:archery_ring
+    - talisman:archery_ring
 
-    - crossbow
+    - talisman:archery_ring
     - nether_star
-    - crossbow
+    - talisman:archery_ring
 
-    - crossbow
-    - crossbow
-    - crossbow
+    - talisman:archery_ring
+    - talisman:archery_ring
+    - talisman:archery_ring
 
 general-config:
   disabled-in-worlds: []
