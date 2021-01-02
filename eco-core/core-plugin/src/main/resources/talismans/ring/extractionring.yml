@@ -25,4 +25,4 @@ general-config:
 
 config:
   chance: 5
-  xp-amount: 20
+  xp-amount: 10

@@ -1,5 +1,5 @@
 name: "Experience Relic"
-description: Gain 40% more experience.
+description: Gain 25% more experience.
 enabled: true
 
 obtaining:
@@ -24,4 +24,4 @@ general-config:
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDQzNGY0MDA0OGI0YTM1ZGExYTA2YmRmMDVlZjJlZDJlMWRhOGRjZTNmOWRlYTg5NGM3ZDFlYjMzODIzMmJkMiJ9fX0=
 
 config:
-  percentage-bonus: 40
+  percentage-bonus: 25

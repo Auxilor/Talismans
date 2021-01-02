@@ -1,5 +1,5 @@
 name: "Strength Talisman"
-description: Deal 5% more damage.
+description: Deal 2.5% more damage.
 enabled: true
 
 obtaining:
@@ -24,4 +24,4 @@ general-config:
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQ4NTlkMGFkZmM5M2JlMTliYjQ0MWU2ZWRmZDQzZjZiZmU2OTEyNzIzMDMzZjk2M2QwMDlhMTFjNDgyNDUxMCJ9fX0=
 
 config:
-  percent-more-damage: 5
+  percent-more-damage: 2.5
