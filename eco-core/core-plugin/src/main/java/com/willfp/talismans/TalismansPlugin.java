@@ -32,7 +32,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
-        super("Talismans", 0, 9865, "com.willfp.talismans.proxy", "&c");
+        super("Talismans", 87377, 9865, "com.willfp.talismans.proxy", "&c");
     }
 
     /**
