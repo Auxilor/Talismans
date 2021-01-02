@@ -18,6 +18,7 @@ import com.willfp.talismans.integrations.mcmmo.plugins.McmmoIntegrationImpl;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.BlockPlaceListener;
+import com.willfp.talismans.talismans.util.TalismanCraftListener;
 import com.willfp.talismans.talismans.util.WatcherTriggers;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -149,7 +150,8 @@ public class TalismansPlugin extends AbstractEcoPlugin {
     public List<Listener> getListeners() {
         return Arrays.asList(
                 new WatcherTriggers(this),
-                new BlockPlaceListener()
+                new BlockPlaceListener(),
+                new TalismanCraftListener()
         );
     }
 

@@ -22,6 +22,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -125,12 +128,22 @@ public abstract class Talisman implements Listener, Watcher {
         TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
         this.config = TalismansConfigs.getTalismanConfig(this.configName);
 
+        if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + configName) == null) {
+            Permission permission = new Permission(
+                    "talismans.fromtable." + configName,
+                    "Allows getting " + configName + " from a Crafting Table",
+                    PermissionDefault.TRUE
+            );
+            permission.addParent(Objects.requireNonNull(Bukkit.getPluginManager().getPermission("talismans.fromtable.*")), true);
+            Bukkit.getPluginManager().addPermission(permission);
+        }
+
         if (!Prerequisite.areMet(prerequisites)) {
             return;
         }
 
-        this.update();
         Talismans.addNewTalisman(this);
+        this.update();
     }
 
     /**
@@ -164,17 +177,21 @@ public abstract class Talisman implements Listener, Watcher {
 
         Bukkit.getServer().removeRecipe(this.getKey());
 
-        ShapedRecipe recipe = new ShapedRecipe(this.getKey(), out);
+        if (this.isEnabled()) {
+            TalismanDisplay.displayTalisman(out);
 
-        List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
+            ShapedRecipe recipe = new ShapedRecipe(this.getKey(), out);
 
-        recipe.shape("012", "345", "678");
+            List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
-        for (int i = 0; i < 9; i++) {
-            recipe.setIngredient(String.valueOf(i).toCharArray()[0], Material.valueOf(recipeStrings.get(i).toUpperCase()));
+            recipe.shape("012", "345", "678");
+
+            for (int i = 0; i < 9; i++) {
+                recipe.setIngredient(String.valueOf(i).toCharArray()[0], Material.valueOf(recipeStrings.get(i).toUpperCase()));
+            }
+
+            Bukkit.getServer().addRecipe(recipe);
         }
-
-        Bukkit.getServer().addRecipe(recipe);
 
         postUpdate();
     }

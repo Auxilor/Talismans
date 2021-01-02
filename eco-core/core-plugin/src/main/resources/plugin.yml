@@ -36,6 +36,7 @@ permissions:
     children:
       talismans.reload: true
       talismans.taldebug: true
+      talismans.fromtable.*: true
 
   talismans.reload:
     description: Allows reloading the config
@@ -43,3 +44,6 @@ permissions:
   talismans.taldebug:
     description: Allows the use of /taldebug to print verbose debug information to console
     default: op
+  talismans.fromtable.*:
+    description: Allows crafting all talismans
+    default: true

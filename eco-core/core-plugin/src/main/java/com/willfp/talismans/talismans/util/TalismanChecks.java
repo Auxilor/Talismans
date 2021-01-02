@@ -71,6 +71,7 @@ public class TalismanChecks {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
+
         return Talismans.getByKey(talismanKey);
     }
 

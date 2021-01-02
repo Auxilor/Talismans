@@ -22,6 +22,7 @@ public class CommandTalreload extends AbstractCommand {
     public void onExecute(@NotNull final CommandSender sender,
                           @NotNull final List<String> args) {
         this.getPlugin().reload();
+        this.getPlugin().reload(); // Aids
         sender.sendMessage(Configs.LANG.getMessage("reloaded"));
     }
 }
