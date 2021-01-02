@@ -1,11 +1,14 @@
 package com.willfp.talismans.display;
 
 import com.willfp.eco.util.ProxyUtils;
+import com.willfp.eco.util.config.Configs;
 import com.willfp.talismans.proxy.proxies.SkullProxy;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -47,6 +50,11 @@ public class TalismanDisplay {
 
         itemLore.removeIf(s -> s.startsWith(PREFIX));
 
+        if (meta.hasEnchant(Enchantment.DURABILITY)) {
+            meta.removeEnchant(Enchantment.DURABILITY);
+            meta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+
         meta.setLore(itemLore);
         item.setItemMeta(meta);
 
@@ -87,6 +95,11 @@ public class TalismanDisplay {
             item.setType(Material.AIR);
             item.setAmount(0);
             return item;
+        }
+
+        if (Configs.CONFIG.getBool("strengths." + talisman.getStrength().name().toLowerCase() + ".shine")) {
+            meta.addEnchant(Enchantment.DURABILITY, 0, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
 
         ProxyUtils.getProxy(SkullProxy.class).setTalismanTexture(meta, talisman.getSkullBase64());
