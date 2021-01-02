@@ -89,6 +89,24 @@ public abstract class Talisman implements Listener, Watcher {
     private final TalismanConfig config;
 
     /**
+     * The talisman item.
+     */
+    @Getter
+    private ItemStack itemStack;
+
+    /**
+     * The talisman recipe.
+     */
+    @Getter
+    private ShapedRecipe recipe = null;
+
+    /**
+     * The talisman recipe overlay.
+     */
+    @Getter
+    private final Talisman[] recipeTalismanOverlay = new Talisman[9];
+
+    /**
      * The base64 skull texture.
      */
     @Getter
@@ -174,12 +192,13 @@ public abstract class Talisman implements Listener, Watcher {
         PersistentDataContainer container = outMeta.getPersistentDataContainer();
         container.set(this.getKey(), PersistentDataType.INTEGER, 1);
         out.setItemMeta(outMeta);
+        TalismanDisplay.displayTalisman(out);
+
+        this.itemStack = out;
 
         Bukkit.getServer().removeRecipe(this.getKey());
 
         if (this.isEnabled()) {
-            TalismanDisplay.displayTalisman(out);
-
             ShapedRecipe recipe = new ShapedRecipe(this.getKey(), out);
 
             List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
@@ -187,9 +206,20 @@ public abstract class Talisman implements Listener, Watcher {
             recipe.shape("012", "345", "678");
 
             for (int i = 0; i < 9; i++) {
-                recipe.setIngredient(String.valueOf(i).toCharArray()[0], Material.valueOf(recipeStrings.get(i).toUpperCase()));
+                char ingredientChar = String.valueOf(i).toCharArray()[0];
+                Material material;
+                if (recipeStrings.get(i).startsWith("talisman:")) {
+                    material = Material.PLAYER_HEAD;
+                    String talismanKey = recipeStrings.get(i).split(":")[1];
+                    NamespacedKey talismanNamespacedKey = new NamespacedKey(this.getPlugin(), talismanKey);
+                    recipeTalismanOverlay[i] = Talismans.getByKey(talismanNamespacedKey);
+                } else {
+                    material = Material.valueOf(recipeStrings.get(i).toUpperCase());
+                }
+                recipe.setIngredient(ingredientChar, material);
             }
 
+            this.recipe = recipe;
             Bukkit.getServer().addRecipe(recipe);
         }
 
