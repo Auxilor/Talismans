@@ -2,7 +2,6 @@ package com.willfp.talismans.talismans.util;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class TalismanCraftListener implements Listener {
@@ -88,10 +86,6 @@ public class TalismanCraftListener implements Listener {
 
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = event.getInventory().getMatrix()[i];
-
-            Bukkit.getLogger().info("===============");
-            Bukkit.getLogger().info(Arrays.toString(event.getInventory().getMatrix()));
-            Bukkit.getLogger().info(Arrays.toString(talisman.getRecipeTalismanOverlay()));
 
             if (itemStack == null) {
                 continue;

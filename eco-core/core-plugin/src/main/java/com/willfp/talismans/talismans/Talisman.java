@@ -13,6 +13,7 @@ import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.Watcher;
 import lombok.AccessLevel;
 import lombok.Getter;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -20,6 +21,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
@@ -208,16 +210,17 @@ public abstract class Talisman implements Listener, Watcher {
             for (int i = 0; i < 9; i++) {
                 recipeTalismanOverlay[i] = null;
                 char ingredientChar = String.valueOf(i).toCharArray()[0];
-                Material material;
                 if (recipeStrings.get(i).startsWith("talisman:")) {
-                    material = Material.PLAYER_HEAD;
                     String talismanKey = recipeStrings.get(i).split(":")[1];
                     NamespacedKey talismanNamespacedKey = new NamespacedKey(this.getPlugin(), talismanKey);
+                    Talisman talisman = Talismans.getByKey(talismanNamespacedKey);
+                    Validate.notNull(talisman, "Talisman specified in " + this.getConfigName() + ".yml's recipe is invalid!");
                     recipeTalismanOverlay[i] = Talismans.getByKey(talismanNamespacedKey);
+                    RecipeChoice.ExactChoice recipeChoice = new RecipeChoice.ExactChoice(talisman.getItemStack());
+                    recipe.setIngredient(ingredientChar, recipeChoice);
                 } else {
-                    material = Material.valueOf(recipeStrings.get(i).toUpperCase());
+                    recipe.setIngredient(ingredientChar, Material.valueOf(recipeStrings.get(i).toUpperCase()));
                 }
-                recipe.setIngredient(ingredientChar, material);
             }
 
             Bukkit.getServer().addRecipe(recipe);
