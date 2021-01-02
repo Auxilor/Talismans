@@ -11,12 +11,12 @@
         <img alt="spigot" src="https://img.shields.io/badge/spigot-talismans-brightgreen?style=for-the-badge"/>
     </a>
     <a href="https://bstats.org/plugin/bukkit/Talismans" alt="bstats servers">
-        <img src="https://img.shields.io/bstats/servers/7666?color=brightgreen&style=for-the-badge"/>
+        <img src="https://img.shields.io/bstats/servers/9865?color=brightgreen&style=for-the-badge"/>
     </a>
     <a href="https://bstats.org/plugin/bukkit/Talismans" alt="bstats players">
-        <img src="https://img.shields.io/bstats/players/7666?color=brightgreen&style=for-the-badge"/>
+        <img src="https://img.shields.io/bstats/players/9865?color=brightgreen&style=for-the-badge"/>
     </a>
-    <a href="https://talismans.willfp.com/" alt="Docs (gitbook)">
+    <a href="https://auxilor.gitbook.io/talismans" alt="Docs (gitbook)">
         <img src="https://img.shields.io/badge/docs-gitbook-brightgreen?style=for-the-badge&logo=appveyor"/>
     </a>
     <a href="https://discord.gg/ZcwpSsE/" alt="Discord">
