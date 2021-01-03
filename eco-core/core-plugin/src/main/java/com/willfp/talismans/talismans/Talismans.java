@@ -39,6 +39,7 @@ import com.willfp.talismans.talismans.talismans.talisman.ExperienceTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ExtractionTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FeatherTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FlameTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.ImmunityTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.NetherTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.PoseidonTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.RaidTalisman;
@@ -113,6 +114,7 @@ public class Talismans {
     public static final Talisman ALCHEMY_TALISMAN = new AlchemyTalisman();
     public static final Talisman ALCHEMY_RING = new AlchemyRing();
     public static final Talisman ALCHEMY_RELIC = new AlchemyRelic();
+    public static final Talisman IMMUNITY_TALISMAN = new ImmunityTalisman();
 
 
     /**
