@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - talisman:strength_relic
-    - talisman:strength_relic
-    - talisman:strength_relic
+    - talisman:strength_ring
+    - talisman:strength_ring
+    - talisman:strength_ring
 
-    - talisman:strength_relic
+    - talisman:strength_ring
     - nether_star
-    - talisman:strength_relic
+    - talisman:strength_ring
 
-    - talisman:strength_relic
-    - talisman:strength_relic
-    - talisman:strength_relic
+    - talisman:strength_ring
+    - talisman:strength_ring
+    - talisman:strength_ring
 
 general-config:
   disabled-in-worlds: []
