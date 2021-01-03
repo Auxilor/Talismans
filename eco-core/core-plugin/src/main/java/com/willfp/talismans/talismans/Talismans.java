@@ -5,6 +5,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.talismans.talismans.talismans.relic.AlchemyRelic;
 import com.willfp.talismans.talismans.talismans.relic.ArcheryRelic;
 import com.willfp.talismans.talismans.talismans.relic.EndRelic;
 import com.willfp.talismans.talismans.talismans.relic.ExperienceRelic;
@@ -17,6 +18,7 @@ import com.willfp.talismans.talismans.talismans.relic.RaidRelic;
 import com.willfp.talismans.talismans.talismans.relic.ResistanceRelic;
 import com.willfp.talismans.talismans.talismans.relic.SharpnessRelic;
 import com.willfp.talismans.talismans.talismans.relic.StrengthRelic;
+import com.willfp.talismans.talismans.talismans.ring.AlchemyRing;
 import com.willfp.talismans.talismans.talismans.ring.ArcheryRing;
 import com.willfp.talismans.talismans.talismans.ring.EndRing;
 import com.willfp.talismans.talismans.talismans.ring.ExperienceRing;
@@ -29,6 +31,7 @@ import com.willfp.talismans.talismans.talismans.ring.RaidRing;
 import com.willfp.talismans.talismans.talismans.ring.ResistanceRing;
 import com.willfp.talismans.talismans.talismans.ring.SharpnessRing;
 import com.willfp.talismans.talismans.talismans.ring.StrengthRing;
+import com.willfp.talismans.talismans.talismans.talisman.AlchemyTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.EndTalisman;
@@ -107,6 +110,9 @@ public class Talismans {
     public static final Talisman STRENGTH_RELIC = new StrengthRelic();
     public static final Talisman RAID_RING = new RaidRing();
     public static final Talisman RAID_RELIC = new RaidRelic();
+    public static final Talisman ALCHEMY_TALISMAN = new AlchemyTalisman();
+    public static final Talisman ALCHEMY_RING = new AlchemyRing();
+    public static final Talisman ALCHEMY_RELIC = new AlchemyRelic();
 
 
     /**
