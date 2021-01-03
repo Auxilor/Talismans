@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.UUID;
 
 @UtilityClass
 public class TalismanChecks {
-    private static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = new HashMap<>();
+    private static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
     private static boolean readEnderChest = true;
     private static boolean readShulkerBoxes = true;
     private static final AbstractEcoPlugin PLUGIN = AbstractEcoPlugin.getInstance();
@@ -114,6 +115,9 @@ public class TalismanChecks {
         }
 
         for (ItemStack rawContent : rawContents) {
+            if (rawContent == null) {
+                continue;
+            }
             if (readShulkerBoxes) {
                 ItemMeta meta = rawContent.getItemMeta();
                 if (meta instanceof BlockStateMeta) {

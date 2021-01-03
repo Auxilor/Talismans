@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
+import java.util.Arrays;
 
 public class TalismanCraftListener implements Listener {
     @EventHandler
@@ -74,9 +74,7 @@ public class TalismanCraftListener implements Listener {
 
         ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
 
-        Talisman talisman = Talismans.getByKey(recipe.getKey());
-
-        if (talisman == null) {
+        if (!recipe.getKey().getNamespace().equals("talismans")) {
             return;
         }
 
@@ -84,8 +82,11 @@ public class TalismanCraftListener implements Listener {
             return;
         }
 
+        Talisman[] overlay = new Talisman[9];
+
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = event.getInventory().getMatrix()[i];
+
 
             if (itemStack == null) {
                 continue;
@@ -97,29 +98,51 @@ public class TalismanCraftListener implements Listener {
 
             Talisman matchedTalisman = TalismanChecks.getTalismanOnItem(itemStack);
 
-            if (matchedTalisman == null || !Objects.equals(matchedTalisman, talisman.getRecipeTalismanOverlay()[i])) {
-                event.getInventory().setResult(new ItemStack(Material.AIR));
+            if (matchedTalisman == null) {
+                continue;
             }
+
+            overlay[i] = matchedTalisman;
+        }
+
+        boolean empty = true;
+        for (Talisman overlayTalisman : overlay) {
+            if (overlayTalisman != null) {
+                empty = false;
+                break;
+            }
+        }
+
+        if (empty) {
+            return;
+        }
+
+        Talisman talisman = Talismans.values().stream().filter(talisman1 -> Arrays.equals(overlay, talisman1.getRecipeTalismanOverlay())).findFirst().orElse(null);
+
+        if (talisman == null) {
+            event.getInventory().setResult(new ItemStack(Material.AIR));
+        } else {
+            event.getInventory().setResult(talisman.getItemStack());
         }
     }
 
     @EventHandler
-    public void craftTalismanListener(@NotNull final CraftItemEvent event) {
+    public void prepareCraftTalismanListener(@NotNull final CraftItemEvent event) {
         if (!(event.getRecipe() instanceof ShapedRecipe)) {
             return;
         }
 
         ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
 
-        Talisman talisman = Talismans.getByKey(recipe.getKey());
-
-        if (talisman == null) {
+        if (!recipe.getKey().getNamespace().equals("talismans")) {
             return;
         }
 
         if (event.getViewers().isEmpty()) {
             return;
         }
+
+        Talisman[] overlay = new Talisman[9];
 
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = event.getInventory().getMatrix()[i];
@@ -134,10 +157,32 @@ public class TalismanCraftListener implements Listener {
 
             Talisman matchedTalisman = TalismanChecks.getTalismanOnItem(itemStack);
 
-            if (matchedTalisman == null || !Objects.equals(matchedTalisman, talisman.getRecipeTalismanOverlay()[i])) {
-                event.getInventory().setResult(new ItemStack(Material.AIR));
-                event.setCancelled(true);
+            if (matchedTalisman == null) {
+                continue;
             }
+
+            overlay[i] = matchedTalisman;
+        }
+
+        boolean empty = true;
+        for (Talisman overlayTalisman : overlay) {
+            if (overlayTalisman != null) {
+                empty = false;
+                break;
+            }
+        }
+
+        if (empty) {
+            return;
+        }
+
+        Talisman talisman = Talismans.values().stream().filter(talisman1 -> Arrays.equals(overlay, talisman1.getRecipeTalismanOverlay())).findFirst().orElse(null);
+
+        if (talisman == null) {
+            event.getInventory().setResult(new ItemStack(Material.AIR));
+            event.setCancelled(true);
+        } else {
+            event.getInventory().setResult(talisman.getItemStack());
         }
     }
 }

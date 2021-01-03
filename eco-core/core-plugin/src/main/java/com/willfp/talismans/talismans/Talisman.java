@@ -21,7 +21,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
@@ -216,8 +215,7 @@ public abstract class Talisman implements Listener, Watcher {
                     Talisman talisman = Talismans.getByKey(talismanNamespacedKey);
                     Validate.notNull(talisman, "Talisman specified in " + this.getConfigName() + ".yml's recipe is invalid!");
                     recipeTalismanOverlay[i] = Talismans.getByKey(talismanNamespacedKey);
-                    RecipeChoice.ExactChoice recipeChoice = new RecipeChoice.ExactChoice(talisman.getItemStack());
-                    recipe.setIngredient(ingredientChar, recipeChoice);
+                    recipe.setIngredient(ingredientChar, Material.PLAYER_HEAD);
                 } else {
                     recipe.setIngredient(ingredientChar, Material.valueOf(recipeStrings.get(i).toUpperCase()));
                 }
