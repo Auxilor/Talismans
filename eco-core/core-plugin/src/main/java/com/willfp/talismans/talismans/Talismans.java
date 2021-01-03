@@ -13,6 +13,7 @@ import com.willfp.talismans.talismans.talismans.relic.FeatherRelic;
 import com.willfp.talismans.talismans.talismans.relic.FlameRelic;
 import com.willfp.talismans.talismans.talismans.relic.NetherRelic;
 import com.willfp.talismans.talismans.talismans.relic.PoseidonRelic;
+import com.willfp.talismans.talismans.talismans.relic.RaidRelic;
 import com.willfp.talismans.talismans.talismans.relic.ResistanceRelic;
 import com.willfp.talismans.talismans.talismans.relic.SharpnessRelic;
 import com.willfp.talismans.talismans.talismans.relic.StrengthRelic;
@@ -24,6 +25,7 @@ import com.willfp.talismans.talismans.talismans.ring.FeatherRing;
 import com.willfp.talismans.talismans.talismans.ring.FlameRing;
 import com.willfp.talismans.talismans.talismans.ring.NetherRing;
 import com.willfp.talismans.talismans.talismans.ring.PoseidonRing;
+import com.willfp.talismans.talismans.talismans.ring.RaidRing;
 import com.willfp.talismans.talismans.talismans.ring.ResistanceRing;
 import com.willfp.talismans.talismans.talismans.ring.SharpnessRing;
 import com.willfp.talismans.talismans.talismans.ring.StrengthRing;
@@ -103,6 +105,8 @@ public class Talismans {
     public static final Talisman RESISTANCE_RELIC = new ResistanceRelic();
     public static final Talisman SHARPNESS_RELIC = new SharpnessRelic();
     public static final Talisman STRENGTH_RELIC = new StrengthRelic();
+    public static final Talisman RAID_RING = new RaidRing();
+    public static final Talisman RAID_RELIC = new RaidRelic();
 
 
     /**
