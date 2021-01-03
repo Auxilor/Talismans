@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AlchemyRing extends Talisman {
     public AlchemyRing() {
-        super("alchemy_ring", TalismanStrength.TALISMAN);
+        super("alchemy_ring", TalismanStrength.RING);
     }
 
     @EventHandler

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class RaidRelic extends Talisman {
     public RaidRelic() {
-        super("raid_relic", TalismanStrength.TALISMAN);
+        super("raid_relic", TalismanStrength.RELIC);
     }
 
     @Override

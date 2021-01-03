@@ -1,0 +1,28 @@
+name: "Flux Relic"
+description: Nearby players deal 10% more melee damage.
+enabled: true
+
+obtaining:
+  # Recipes are left-right, top-bottom
+  # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+  recipe:
+    - talisman:flux_ring
+    - talisman:flux_ring
+    - talisman:flux_ring
+
+    - talisman:flux_ring
+    - nether_star
+    - talisman:flux_ring
+
+    - talisman:flux_ring
+    - talisman:flux_ring
+    - talisman:flux_ring
+
+general-config:
+  disabled-in-worlds: []
+  # Texture is base64, https://minecraft-heads.com has a list of skulls.
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODNlZDRjZTIzOTMzZTY2ZTA0ZGYxNjA3MDY0NGY3NTk5ZWViNTUzMDdmN2VhZmU4ZDkyZjQwZmIzNTIwODYzYyJ9fX0=
+
+config:
+  distance: 5 # How close other players have to be
+  percent-more-damage: 10

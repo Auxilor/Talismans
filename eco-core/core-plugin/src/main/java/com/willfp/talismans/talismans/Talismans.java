@@ -12,6 +12,7 @@ import com.willfp.talismans.talismans.talismans.relic.ExperienceRelic;
 import com.willfp.talismans.talismans.talismans.relic.ExtractionRelic;
 import com.willfp.talismans.talismans.talismans.relic.FeatherRelic;
 import com.willfp.talismans.talismans.talismans.relic.FlameRelic;
+import com.willfp.talismans.talismans.talismans.relic.FluxRelic;
 import com.willfp.talismans.talismans.talismans.relic.NetherRelic;
 import com.willfp.talismans.talismans.talismans.relic.PoseidonRelic;
 import com.willfp.talismans.talismans.talismans.relic.RaidRelic;
@@ -25,6 +26,7 @@ import com.willfp.talismans.talismans.talismans.ring.ExperienceRing;
 import com.willfp.talismans.talismans.talismans.ring.ExtractionRing;
 import com.willfp.talismans.talismans.talismans.ring.FeatherRing;
 import com.willfp.talismans.talismans.talismans.ring.FlameRing;
+import com.willfp.talismans.talismans.talismans.ring.FluxRing;
 import com.willfp.talismans.talismans.talismans.ring.NetherRing;
 import com.willfp.talismans.talismans.talismans.ring.PoseidonRing;
 import com.willfp.talismans.talismans.talismans.ring.RaidRing;
@@ -39,6 +41,7 @@ import com.willfp.talismans.talismans.talismans.talisman.ExperienceTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ExtractionTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FeatherTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FlameTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.FluxTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ImmunityTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.NetherTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.PoseidonTalisman;
@@ -115,6 +118,9 @@ public class Talismans {
     public static final Talisman ALCHEMY_RING = new AlchemyRing();
     public static final Talisman ALCHEMY_RELIC = new AlchemyRelic();
     public static final Talisman IMMUNITY_TALISMAN = new ImmunityTalisman();
+    public static final Talisman FLUX_TALISMAN = new FluxTalisman();
+    public static final Talisman FLUX_RING = new FluxRing();
+    public static final Talisman FLUX_RELIC = new FluxRelic();
 
 
     /**
