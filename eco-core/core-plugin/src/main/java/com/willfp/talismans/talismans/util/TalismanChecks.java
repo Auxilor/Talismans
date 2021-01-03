@@ -3,25 +3,38 @@ package com.willfp.talismans.talismans.util;
 
 import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 @UtilityClass
 public class TalismanChecks {
+    private static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = new HashMap<>();
     private static boolean readEnderChest = true;
+    private static boolean readShulkerBoxes = true;
+    private static final AbstractEcoPlugin PLUGIN = AbstractEcoPlugin.getInstance();
 
     /**
      * Does the specified ItemStack have a certain Talisman present?
@@ -86,9 +99,35 @@ public class TalismanChecks {
      * @return A set of all found talismans.
      */
     public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player) {
+        Set<Talisman> cached = CACHED_TALISMANS.get(player.getUniqueId());
+        if (cached != null) {
+            return cached;
+        }
+
+        List<ItemStack> contents = new ArrayList<>();
         Set<Talisman> found = new HashSet<>();
 
-        for (ItemStack itemStack : player.getInventory()) {
+        List<ItemStack> rawContents = new ArrayList<>(Arrays.asList(player.getInventory().getContents()));
+
+        if (readEnderChest) {
+            rawContents.addAll(Arrays.asList(player.getEnderChest().getContents()));
+        }
+
+        for (ItemStack rawContent : rawContents) {
+            if (readShulkerBoxes) {
+                ItemMeta meta = rawContent.getItemMeta();
+                if (meta instanceof BlockStateMeta) {
+                    BlockStateMeta shulkerMeta = (BlockStateMeta) meta;
+                    BlockState state = shulkerMeta.getBlockState();
+                    if (state instanceof ShulkerBox) {
+                        ShulkerBox shulkerBox = (ShulkerBox) state;
+                        contents.addAll(Arrays.asList(shulkerBox.getInventory().getContents()));
+                    }
+                }
+            }
+        }
+
+        for (ItemStack itemStack : contents) {
             Talisman talisman = getTalismanOnItem(itemStack);
             if (talisman == null) {
                 continue;
@@ -97,16 +136,8 @@ public class TalismanChecks {
             found.add(talisman);
         }
 
-        if (readEnderChest) {
-            for (ItemStack itemStack : player.getEnderChest()) {
-                Talisman talisman = getTalismanOnItem(itemStack);
-                if (talisman == null) {
-                    continue;
-                }
-
-                found.add(talisman);
-            }
-        }
+        CACHED_TALISMANS.put(player.getUniqueId(), found);
+        PLUGIN.getScheduler().runLater(() -> CACHED_TALISMANS.remove(player.getUniqueId()), 40);
 
         return found;
     }
@@ -126,5 +157,6 @@ public class TalismanChecks {
     @ConfigUpdater
     public static void reload() {
         readEnderChest = Configs.CONFIG.getBool("read-enderchest");
+        readShulkerBoxes = Configs.CONFIG.getBool("read-shulkerboxes");
     }
 }
