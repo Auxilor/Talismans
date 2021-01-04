@@ -83,9 +83,7 @@ public class TalismanDisplay {
 
         Talisman talisman = TalismanChecks.getTalismanOnItem(item);
 
-        if (talisman == null || !talisman.isEnabled()) {
-            item.setType(Material.AIR);
-            item.setAmount(0);
+        if (talisman == null) {
             return item;
         }
 
