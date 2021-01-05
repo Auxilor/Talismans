@@ -15,7 +15,6 @@ import com.willfp.talismans.display.packets.PacketSetSlot;
 import com.willfp.talismans.display.packets.PacketWindowItems;
 import com.willfp.talismans.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.integrations.mcmmo.plugins.McmmoIntegrationImpl;
-import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.BlockPlaceListener;
 import com.willfp.talismans.talismans.util.TalismanChecks;
@@ -26,7 +25,6 @@ import org.bukkit.event.Listener;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class TalismansPlugin extends AbstractEcoPlugin {
@@ -34,7 +32,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
-        super("Talismans", 87377, 9865, "com.willfp.talismans.proxy", "&c");
+        super("Talismans", 87377, 9865, "com.willfp.talismans.proxy", "&6");
     }
 
     /**
@@ -51,10 +49,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
             this.getExtensionLoader().getLoadedExtensions().forEach(extension -> this.getLog().info("- " + extension.getName() + " v" + extension.getVersion()));
         }
 
-        this.getLog().info("");
-
-        this.getLog().info(Talismans.values().size() + " Talismans Loaded:");
-        this.getLog().info(Talismans.values().stream().map(Talisman::getFormattedName).collect(Collectors.joining(", ")));
+        this.getLog().info(Talismans.values().size() + " Talismans Loaded");
     }
 
     /**
