@@ -25,4 +25,4 @@ general-config:
 
 config:
   distance: 5 # How close other players have to be
-  percent-more-damage: 10
+  percent-more-damage: 25
