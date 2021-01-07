@@ -1,5 +1,5 @@
 name: "Flux Relic"
-description: Nearby players deal 10% more melee damage.
+description: Nearby players deal 25% more melee damage.
 enabled: true
 
 obtaining:

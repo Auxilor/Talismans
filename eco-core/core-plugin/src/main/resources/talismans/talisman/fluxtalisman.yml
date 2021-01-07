@@ -1,5 +1,5 @@
 name: "Flux Talisman"
-description: Nearby players deal 2.5% more melee damage.
+description: Nearby players deal 5% more melee damage.
 enabled: true
 
 obtaining:
@@ -25,4 +25,4 @@ general-config:
 
 config:
   distance: 5 # How close other players have to be
-  percent-more-damage: 2.5
+  percent-more-damage: 5

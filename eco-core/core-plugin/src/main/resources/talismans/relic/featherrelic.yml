@@ -1,5 +1,5 @@
 name: "Feather Relic"
-description: Take 25% less fall damage.
+description: Take 40% less fall damage.
 enabled: true
 
 obtaining:
@@ -24,4 +24,4 @@ general-config:
   texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzVmZjI1MzIwYTg0MjUwOWI3ZWU1YTIzNjczZjY4NTI5MWM0NjcyYjgzNGQ5YjU3N2U4NjJhOTIwOTgzYzEwYiJ9fX0=
 
 config:
-  multiplier: 0.75
+  multiplier: 0.6
