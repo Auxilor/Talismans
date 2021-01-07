@@ -96,7 +96,12 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         refreshPlayer((Player) event.getWhoClicked());
     }
 
-    private void refresh() {
+    /**
+     * Force refresh all online players.
+     * <p>
+     * This is a very expensive method.
+     */
+    public void refresh() {
         this.getPlugin().getServer().getOnlinePlayers().forEach(this::refreshPlayer);
     }
 
