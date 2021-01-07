@@ -6,6 +6,10 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockPlaceListener implements Listener {
+    /**
+     * Called on block place.
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onAttemptTalismanPlace(@NotNull final BlockPlaceEvent event) {
         if (TalismanChecks.getTalismanOnItem(event.getItemInHand()) != null) {

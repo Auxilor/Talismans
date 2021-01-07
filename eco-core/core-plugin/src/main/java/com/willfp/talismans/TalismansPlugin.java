@@ -158,6 +158,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
         return Arrays.asList(
                 TalismansConfigs.class,
                 TalismanChecks.class,
+                TalismanChecks.class,
                 Talismans.class
         );
     }

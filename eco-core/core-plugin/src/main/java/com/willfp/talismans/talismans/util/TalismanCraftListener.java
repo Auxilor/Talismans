@@ -15,6 +15,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 public class TalismanCraftListener implements Listener {
+    /**
+     * Called on item craft.
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onCraft(@NotNull final PrepareItemCraftEvent event) {
         if (!(event.getRecipe() instanceof ShapedRecipe)) {
@@ -40,6 +44,10 @@ public class TalismanCraftListener implements Listener {
         }
     }
 
+    /**
+     * Called on item craft.
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onCraft(@NotNull final CraftItemEvent event) {
         if (!(event.getRecipe() instanceof ShapedRecipe)) {
@@ -66,6 +74,10 @@ public class TalismanCraftListener implements Listener {
         }
     }
 
+    /**
+     * Called on item craft.
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void prepareCraftTalismanListener(@NotNull final PrepareItemCraftEvent event) {
         if (!(event.getRecipe() instanceof ShapedRecipe)) {
@@ -126,6 +138,10 @@ public class TalismanCraftListener implements Listener {
         }
     }
 
+    /**
+     * Called on item craft.
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void prepareCraftTalismanListener(@NotNull final CraftItemEvent event) {
         if (!(event.getRecipe() instanceof ShapedRecipe)) {

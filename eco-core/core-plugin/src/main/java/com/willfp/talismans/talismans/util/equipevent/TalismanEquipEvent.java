@@ -8,6 +8,9 @@ import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class TalismanEquipEvent extends PlayerEvent {
+    /**
+     * Handler list.
+     */
     private static final HandlerList HANDLER_LIST = new HandlerList();
 
     /**

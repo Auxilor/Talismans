@@ -32,9 +32,24 @@ import java.util.UUID;
 
 @UtilityClass
 public class TalismanChecks {
+    /**
+     * Cached talismans.
+     */
     public static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
+
+    /**
+     * If ender chests should be checked.
+     */
     private static boolean readEnderChest = true;
+
+    /**
+     * If shulker boxes should be read.
+     */
     private static boolean readShulkerBoxes = true;
+
+    /**
+     * The associated plugin instance.
+     */
     private static final AbstractEcoPlugin PLUGIN = AbstractEcoPlugin.getInstance();
 
     /**

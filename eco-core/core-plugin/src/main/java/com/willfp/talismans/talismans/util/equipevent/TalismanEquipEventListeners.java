@@ -21,10 +21,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TalismanEquipEventListeners extends PluginDependent implements Listener {
+    /**
+     * Initialize new listeners and link them to a plugin.
+     *
+     * @param plugin The plugin to link to.
+     */
     public TalismanEquipEventListeners(@NotNull final AbstractEcoPlugin plugin) {
         super(plugin);
     }
 
+    /**
+     * Called on item pickup.
+     *
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onItemPickup(@NotNull final EntityPickupItemEvent event) {
         if (!(event.getEntity() instanceof Player)) {
@@ -38,16 +48,31 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         refreshPlayer((Player) event.getEntity());
     }
 
+    /**
+     * Called on player join.
+     *
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onPlayerJoin(@NotNull final PlayerJoinEvent event) {
         refresh();
     }
 
+    /**
+     * Called on player leave.
+     *
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onPlayerLeave(@NotNull final PlayerQuitEvent event) {
         refresh();
     }
 
+    /**
+     * Called on item drop.
+     *
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onInventoryDrop(@NotNull final EntityDropItemEvent event) {
         if (!(event.getEntity() instanceof Player)) {
@@ -61,6 +86,11 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         refreshPlayer((Player) event.getEntity());
     }
 
+    /**
+     * Called on inventory click.
+     *
+     * @param event The event to listen for.
+     */
     @EventHandler
     public void onInventoryClick(@NotNull final InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player)) {
