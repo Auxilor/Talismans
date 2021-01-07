@@ -8,6 +8,7 @@ import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.commands.CommandTaldebug;
 import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.config.TalismansConfigs;
+import com.willfp.talismans.display.packets.PacketAutoRecipe;
 import com.willfp.talismans.display.packets.PacketChat;
 import com.willfp.talismans.display.packets.PacketOpenWindowMerchant;
 import com.willfp.talismans.display.packets.PacketSetCreativeSlot;
@@ -17,6 +18,7 @@ import com.willfp.talismans.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.integrations.mcmmo.plugins.McmmoIntegrationImpl;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.BlockPlaceListener;
+import com.willfp.talismans.talismans.util.DiscoverRecipeListener;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanCraftListener;
 import com.willfp.talismans.talismans.util.WatcherTriggers;
@@ -136,7 +138,8 @@ public class TalismansPlugin extends AbstractEcoPlugin {
                 new PacketOpenWindowMerchant(this),
                 new PacketSetCreativeSlot(this),
                 new PacketSetSlot(this),
-                new PacketWindowItems(this)
+                new PacketWindowItems(this),
+                new PacketAutoRecipe(this)
         );
     }
 
@@ -151,7 +154,8 @@ public class TalismansPlugin extends AbstractEcoPlugin {
                 new WatcherTriggers(this),
                 new BlockPlaceListener(),
                 new TalismanCraftListener(),
-                new TalismanEquipEventListeners(this)
+                new TalismanEquipEventListeners(this),
+                new DiscoverRecipeListener()
         );
     }
 

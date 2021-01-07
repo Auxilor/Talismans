@@ -134,7 +134,6 @@ public class Talismans {
     public static final Talisman SPEED_RING = new SpeedRing();
     public static final Talisman SPEED_RELIC = new SpeedRelic();
 
-
     /**
      * Get all registered {@link Talisman}s.
      *
@@ -142,6 +141,15 @@ public class Talismans {
      */
     public static List<Talisman> values() {
         return ImmutableList.copyOf(BY_KEY.values());
+    }
+
+    /**
+     * Get {@link NamespacedKey}s for all registered {@link Talisman}s.
+     *
+     * @return A list of all {@link Talisman}s.
+     */
+    public static List<NamespacedKey> keySet() {
+        return ImmutableList.copyOf(BY_KEY.keySet());
     }
 
     /**
