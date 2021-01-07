@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class SpeedRelic extends Talisman {
-    private static final UUID MODIFIER_UUID = UUID.randomUUID();
+    private static final UUID MODIFIER_UUID = UUID.nameUUIDFromBytes("speed_relic".getBytes());
     private static AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_relic", 0.05, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
 
     public SpeedRelic() {

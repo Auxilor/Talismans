@@ -20,6 +20,7 @@ import com.willfp.talismans.talismans.util.BlockPlaceListener;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanCraftListener;
 import com.willfp.talismans.talismans.util.WatcherTriggers;
+import com.willfp.talismans.talismans.util.equipevent.SyncTalismanEquipEventTask;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEventListeners;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -29,13 +30,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class TalismansPlugin extends AbstractEcoPlugin {
-    /**
-     * Listeners to call {@link com.willfp.talismans.talismans.util.equipevent.TalismanEquipEvent}.
-     * <p>
-     * Instance stored to reschedule timer.
-     */
-    private final TalismanEquipEventListeners talismanEquipEventListeners = new TalismanEquipEventListeners(this);
-
     /**
      * Internal constructor called by bukkit on plugin load.
      */
@@ -94,8 +88,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
                 }
             }, 1);
         });
-
-        talismanEquipEventListeners.scheduleAutocheck();
+        SyncTalismanEquipEventTask.scheduleAutocheck(this);
     }
 
     /**
@@ -158,7 +151,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
                 new WatcherTriggers(this),
                 new BlockPlaceListener(),
                 new TalismanCraftListener(),
-                talismanEquipEventListeners
+                new TalismanEquipEventListeners(this)
         );
     }
 

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class SpeedRing extends Talisman {
-    private static final UUID MODIFIER_UUID = UUID.randomUUID();
+    private static final UUID MODIFIER_UUID = UUID.nameUUIDFromBytes("speed_ring".getBytes());
     private static AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_ring", 0.05, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
 
     public SpeedRing() {

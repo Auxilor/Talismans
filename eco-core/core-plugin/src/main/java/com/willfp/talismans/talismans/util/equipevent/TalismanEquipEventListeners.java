@@ -18,16 +18,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 public class TalismanEquipEventListeners extends PluginDependent implements Listener {
-    private final Map<UUID, Set<Talisman>> syncCache = Collections.synchronizedMap(new HashMap<>());
-
     /**
      * Initialize new listeners and link them to a plugin.
      *
@@ -117,9 +111,17 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         Set<Talisman> inCache = TalismanChecks.getTalismansOnPlayer(player, false, extra);
 
         this.getPlugin().getScheduler().runLater(() -> {
-            Set<Talisman> newSet = TalismanChecks.getTalismansOnPlayer(player, false, extra);
+            Set<Talisman> newSet = TalismanChecks.getTalismansOnPlayer(player, false);
+
+            for (Talisman talisman : new HashSet<>(newSet)) {
+                if (inCache.contains(talisman)) {
+                    newSet.remove(talisman);
+                    inCache.remove(talisman);
+                }
+            }
 
             newSet.removeAll(inCache);
+
             for (Talisman talisman : newSet) {
                 Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
             }
@@ -129,35 +131,5 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
                 Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.UNEQUIP));
             }
         }, 1);
-    }
-
-    /**
-     * Schedule sync repeating updater task.
-     */
-    public void scheduleAutocheck() {
-        this.getPlugin().getScheduler().syncRepeating(() -> {
-            for (Player player : this.getPlugin().getServer().getOnlinePlayers()) {
-                UUID uuid = player.getUniqueId();
-
-                Set<Talisman> before = syncCache.get(uuid);
-                if (before == null) {
-                    before = new HashSet<>();
-                }
-
-                Set<Talisman> after = TalismanChecks.getTalismansOnPlayer(player);
-
-                syncCache.put(uuid, after);
-
-                after.removeAll(before);
-                for (Talisman talisman : after) {
-                    Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
-                }
-
-                before.removeAll(after);
-                for (Talisman talisman : before) {
-                    Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.UNEQUIP));
-                }
-            }
-        }, 80, 80);
     }
 }
