@@ -52,6 +52,7 @@ import com.willfp.talismans.talismans.talismans.talisman.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SkeletonTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.SpeedTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SpiderResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.StrengthTalisman;
@@ -127,6 +128,7 @@ public class Talismans {
     public static final Talisman HEALING_TALISMAN = new HealingTalisman();
     public static final Talisman HEALING_RING = new HealingRing();
     public static final Talisman HEALING_RELIC = new HealingRelic();
+    public static final Talisman SPEED_TALISMAN = new SpeedTalisman();
 
 
     /**

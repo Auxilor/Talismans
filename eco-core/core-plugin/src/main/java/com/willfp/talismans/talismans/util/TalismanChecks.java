@@ -123,10 +123,12 @@ public class TalismanChecks {
      *
      * @param player   The player to query.
      * @param useCache If the cache should be checked.
+     * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
     public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player,
-                                                     final boolean useCache) {
+                                                     final boolean useCache,
+                                                     @NotNull final ItemStack... extra) {
         if (useCache) {
             Set<Talisman> cached = CACHED_TALISMANS.get(player.getUniqueId());
             if (cached != null) {
@@ -143,6 +145,8 @@ public class TalismanChecks {
             rawContents.addAll(Arrays.asList(player.getEnderChest().getContents()));
         }
 
+        rawContents.addAll(Arrays.asList(extra));
+
         for (ItemStack rawContent : rawContents) {
             if (rawContent == null) {
                 continue;
@@ -155,9 +159,11 @@ public class TalismanChecks {
                     if (state instanceof ShulkerBox) {
                         ShulkerBox shulkerBox = (ShulkerBox) state;
                         contents.addAll(Arrays.asList(shulkerBox.getInventory().getContents()));
+                        continue;
                     }
                 }
             }
+            contents.add(rawContent);
         }
 
         for (ItemStack itemStack : contents) {

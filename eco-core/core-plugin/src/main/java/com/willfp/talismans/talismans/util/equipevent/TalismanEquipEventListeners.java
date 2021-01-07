@@ -10,14 +10,14 @@ import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class TalismanEquipEventListeners extends PluginDependent implements Listener {
@@ -74,16 +74,12 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
      * @param event The event to listen for.
      */
     @EventHandler
-    public void onInventoryDrop(@NotNull final EntityDropItemEvent event) {
-        if (!(event.getEntity() instanceof Player)) {
-            return;
-        }
-
+    public void onInventoryDrop(@NotNull final PlayerDropItemEvent event) {
         if (event.getItemDrop().getItemStack().getType() != Material.PLAYER_HEAD && !Tag.SHULKER_BOXES.isTagged(event.getItemDrop().getItemStack().getType())) {
             return;
         }
 
-        refreshPlayer((Player) event.getEntity());
+        refreshPlayer(event.getPlayer(), event.getItemDrop().getItemStack());
     }
 
     /**
@@ -101,25 +97,25 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
     }
 
     private void refresh() {
-        this.getPlugin().getScheduler().runLater(() -> this.getPlugin().getServer().getOnlinePlayers().forEach(this::refreshPlayer), 1);
+        this.getPlugin().getServer().getOnlinePlayers().forEach(this::refreshPlayer);
     }
 
-    private void refreshPlayer(@NotNull final Player player) {
-        Set<Talisman> inCache = TalismanChecks.CACHED_TALISMANS.get(player.getUniqueId());
-        if (inCache == null) {
-            inCache = new HashSet<>();
-        }
+    private void refreshPlayer(@NotNull final Player player,
+                               @NotNull final ItemStack... extra) {
+        Set<Talisman> inCache = TalismanChecks.getTalismansOnPlayer(player, false, extra);
 
-        Set<Talisman> newSet = TalismanChecks.getTalismansOnPlayer(player);
+        this.getPlugin().getScheduler().runLater(() -> {
+            Set<Talisman> newSet = TalismanChecks.getTalismansOnPlayer(player, false, extra);
 
-        newSet.removeAll(inCache);
-        for (Talisman talisman : newSet) {
-            Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
-        }
+            newSet.removeAll(inCache);
+            for (Talisman talisman : newSet) {
+                Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
+            }
 
-        inCache.removeAll(newSet);
-        for (Talisman talisman : inCache) {
-            Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.UNEQUIP));
-        }
+            inCache.removeAll(newSet);
+            for (Talisman talisman : inCache) {
+                Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.UNEQUIP));
+            }
+        }, 1);
     }
 }
