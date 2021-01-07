@@ -6,6 +6,7 @@ import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,7 +31,7 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
             return;
         }
 
-        if (event.getItem().getItemStack().getType() != Material.PLAYER_HEAD) {
+        if (event.getItem().getItemStack().getType() != Material.PLAYER_HEAD && !Tag.SHULKER_BOXES.isTagged(event.getItem().getItemStack().getType())) {
             return;
         }
 
@@ -53,7 +54,7 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
             return;
         }
 
-        if (event.getItemDrop().getItemStack().getType() != Material.PLAYER_HEAD) {
+        if (event.getItemDrop().getItemStack().getType() != Material.PLAYER_HEAD && !Tag.SHULKER_BOXES.isTagged(event.getItemDrop().getItemStack().getType())) {
             return;
         }
 
