@@ -32,7 +32,7 @@ import java.util.UUID;
 
 @UtilityClass
 public class TalismanChecks {
-    private static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
+    public static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
     private static boolean readEnderChest = true;
     private static boolean readShulkerBoxes = true;
     private static final AbstractEcoPlugin PLUGIN = AbstractEcoPlugin.getInstance();
@@ -100,9 +100,23 @@ public class TalismanChecks {
      * @return A set of all found talismans.
      */
     public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player) {
-        Set<Talisman> cached = CACHED_TALISMANS.get(player.getUniqueId());
-        if (cached != null) {
-            return cached;
+        return getTalismansOnPlayer(player, true);
+    }
+
+    /**
+     * Get all talismans that a player has active.
+     *
+     * @param player   The player to query.
+     * @param useCache If the cache should be checked.
+     * @return A set of all found talismans.
+     */
+    public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player,
+                                                     final boolean useCache) {
+        if (useCache) {
+            Set<Talisman> cached = CACHED_TALISMANS.get(player.getUniqueId());
+            if (cached != null) {
+                return cached;
+            }
         }
 
         List<ItemStack> contents = new ArrayList<>();
@@ -140,8 +154,10 @@ public class TalismanChecks {
             found.add(talisman);
         }
 
-        CACHED_TALISMANS.put(player.getUniqueId(), found);
-        PLUGIN.getScheduler().runLater(() -> CACHED_TALISMANS.remove(player.getUniqueId()), 40);
+        if (useCache) {
+            CACHED_TALISMANS.put(player.getUniqueId(), found);
+            PLUGIN.getScheduler().runLater(() -> CACHED_TALISMANS.remove(player.getUniqueId()), 40);
+        }
 
         return found;
     }

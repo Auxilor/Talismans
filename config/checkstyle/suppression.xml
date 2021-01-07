@@ -6,8 +6,8 @@
 
 <suppressions>
     <!-- Talismans don't need javadoc. -->
-    <suppress files="[\\/]talismans[\\/]talismans[\\/]" checks="MissingJavadocMethod"/>
-    <suppress files="[\\/]talismans[\\/]talismans[\\/]" checks="JavadocVariable"/>
+    <suppress files="[\\/]talismans[\\/]talismans[\\/]talismans[\\/]" checks="MissingJavadocMethod"/>
+    <suppress files="[\\/]talismans[\\/]talismans[\\/]talismans[\\/]" checks="JavadocVariable"/>
 
     <!-- Extensions don't need javadoc. -->
     <suppress files="[\\/]eco-extensions[\\/]" checks="MissingJavadocMethod"/>

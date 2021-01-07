@@ -20,6 +20,7 @@ import com.willfp.talismans.talismans.util.BlockPlaceListener;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanCraftListener;
 import com.willfp.talismans.talismans.util.WatcherTriggers;
+import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEventListeners;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -147,7 +148,8 @@ public class TalismansPlugin extends AbstractEcoPlugin {
         return Arrays.asList(
                 new WatcherTriggers(this),
                 new BlockPlaceListener(),
-                new TalismanCraftListener()
+                new TalismanCraftListener(),
+                new TalismanEquipEventListeners(this)
         );
     }
 

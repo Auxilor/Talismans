@@ -373,7 +373,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
 
         Player shooter = (Player) event.getEntity().getShooter();
 
-        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman-> {
+        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman -> {
             if (!talisman.isEnabled()) {
                 return;
             }
