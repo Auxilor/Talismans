@@ -1,4 +1,4 @@
-package com.willfp.talismans.talismans.talismans.talisman;
+package com.willfp.talismans.talismans.talismans.relic;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
@@ -14,17 +14,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class SpeedTalisman extends Talisman {
+public class SpeedRelic extends Talisman {
     private static final UUID MODIFIER_UUID = UUID.randomUUID();
-    private static AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_talisman", 0.05, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
+    private static AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_relic", 0.05, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
 
-    public SpeedTalisman() {
-        super("speed_talisman", TalismanStrength.TALISMAN);
+    public SpeedRelic() {
+        super("speed_relic", TalismanStrength.RELIC);
     }
 
     @Override
     protected void postUpdate() {
-        MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_talisman", this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
+        MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_relic", this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
     }
 
     @EventHandler

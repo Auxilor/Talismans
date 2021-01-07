@@ -19,6 +19,7 @@ import com.willfp.talismans.talismans.talismans.relic.PoseidonRelic;
 import com.willfp.talismans.talismans.talismans.relic.RaidRelic;
 import com.willfp.talismans.talismans.talismans.relic.ResistanceRelic;
 import com.willfp.talismans.talismans.talismans.relic.SharpnessRelic;
+import com.willfp.talismans.talismans.talismans.relic.SpeedRelic;
 import com.willfp.talismans.talismans.talismans.relic.StrengthRelic;
 import com.willfp.talismans.talismans.talismans.ring.AlchemyRing;
 import com.willfp.talismans.talismans.talismans.ring.ArcheryRing;
@@ -34,6 +35,7 @@ import com.willfp.talismans.talismans.talismans.ring.PoseidonRing;
 import com.willfp.talismans.talismans.talismans.ring.RaidRing;
 import com.willfp.talismans.talismans.talismans.ring.ResistanceRing;
 import com.willfp.talismans.talismans.talismans.ring.SharpnessRing;
+import com.willfp.talismans.talismans.talismans.ring.SpeedRing;
 import com.willfp.talismans.talismans.talismans.ring.StrengthRing;
 import com.willfp.talismans.talismans.talismans.talisman.AlchemyTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ArcheryTalisman;
@@ -129,6 +131,8 @@ public class Talismans {
     public static final Talisman HEALING_RING = new HealingRing();
     public static final Talisman HEALING_RELIC = new HealingRelic();
     public static final Talisman SPEED_TALISMAN = new SpeedTalisman();
+    public static final Talisman SPEED_RING = new SpeedRing();
+    public static final Talisman SPEED_RELIC = new SpeedRelic();
 
 
     /**
