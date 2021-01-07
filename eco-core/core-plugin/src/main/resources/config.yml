@@ -15,6 +15,9 @@ strengths:
   relic:
     color: "&d"
 
+crafting:
+  discover: true # If players should automatically have recipes added to their crafting table.
+
 read-enderchest: true # If a player's ender chest should be checked for talismans
 read-shulkerboxes: true # If a player's shulker boxes should be checked for talismans
 

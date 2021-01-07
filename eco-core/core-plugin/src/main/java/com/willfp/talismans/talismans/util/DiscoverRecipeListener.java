@@ -1,5 +1,6 @@
 package com.willfp.talismans.talismans.util;
 
+import com.willfp.eco.util.config.Configs;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.entity.Player;
@@ -18,6 +19,8 @@ public class DiscoverRecipeListener implements Listener {
     public void onJoin(@NotNull final PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        Talismans.values().stream().filter(Talisman::isEnabled).map(Talisman::getKey).forEach(player::discoverRecipe);
+        if (Configs.CONFIG.getBool("crafting.discover")) {
+            Talismans.values().stream().filter(Talisman::isEnabled).map(Talisman::getKey).forEach(player::discoverRecipe);
+        }
     }
 }
