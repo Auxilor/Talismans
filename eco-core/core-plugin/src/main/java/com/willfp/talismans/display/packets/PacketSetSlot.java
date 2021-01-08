@@ -5,6 +5,7 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.display.TalismanDisplay;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class PacketSetSlot extends AbstractPacketAdapter {
@@ -18,7 +19,8 @@ public class PacketSetSlot extends AbstractPacketAdapter {
     }
 
     @Override
-    public void onSend(@NotNull final PacketContainer packet) {
+    public void onSend(@NotNull final PacketContainer packet,
+                       @NotNull final Player player) {
         packet.getItemModifier().modify(0, TalismanDisplay::displayTalisman);
     }
 }

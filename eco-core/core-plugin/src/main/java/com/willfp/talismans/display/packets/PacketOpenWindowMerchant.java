@@ -7,6 +7,7 @@ import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.proxy.proxies.VillagerTradeProxy;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.MerchantRecipe;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +25,8 @@ public class PacketOpenWindowMerchant extends AbstractPacketAdapter {
     }
 
     @Override
-    public void onSend(@NotNull final PacketContainer packet) {
+    public void onSend(@NotNull final PacketContainer packet,
+                       @NotNull final Player player) {
         List<MerchantRecipe> recipes = packet.getMerchantRecipeLists().readSafely(0);
 
         recipes = recipes.stream().peek(merchantRecipe -> {

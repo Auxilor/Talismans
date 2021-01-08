@@ -7,7 +7,7 @@ import com.willfp.eco.util.ProxyUtils;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.proxy.proxies.AutoCraftProxy;
-import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +23,8 @@ public class PacketAutoRecipe extends AbstractPacketAdapter {
     }
 
     @Override
-    public void onSend(@NotNull final PacketContainer packet) {
+    public void onSend(@NotNull final PacketContainer packet,
+                       @NotNull final Player player) {
         if (!packet.getMinecraftKeys().getValues().get(0).getFullKey().split(":")[0].equals("talismans")) {
             return;
         }
@@ -42,7 +43,7 @@ public class PacketAutoRecipe extends AbstractPacketAdapter {
         newAutoRecipe.getMinecraftKeys().write(0, packet.getMinecraftKeys().read(0));
 
         try {
-            ProtocolLibrary.getProtocolManager().sendServerPacket(Bukkit.getServer().getPlayer("Auxilor"), newAutoRecipe);
+            ProtocolLibrary.getProtocolManager().sendServerPacket(player, newAutoRecipe);
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
