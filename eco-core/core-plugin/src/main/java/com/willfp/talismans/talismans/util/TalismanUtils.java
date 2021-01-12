@@ -8,6 +8,8 @@ import com.willfp.eco.util.integrations.placeholder.PlaceholderManager;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.jetbrains.annotations.NotNull;
 
 @UtilityClass
@@ -70,5 +72,23 @@ public class TalismanUtils {
                     )
             );
         }
+    }
+
+    /**
+     * Get limit for talisman reading.
+     *
+     * @param player The player to check.
+     * @return The limit.
+     */
+    public static int getLimit(@NotNull final Player player) {
+        String prefix = "talismans.limit.";
+        for (PermissionAttachmentInfo permissionAttachmentInfo : player.getEffectivePermissions()) {
+            String permission = permissionAttachmentInfo.getPermission();
+            if (permission.startsWith(prefix)) {
+                return Integer.parseInt(permission.substring(permission.lastIndexOf(".") + 1));
+            }
+        }
+
+        return 100000;
     }
 }

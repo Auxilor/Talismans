@@ -172,6 +172,10 @@ public class TalismanChecks {
                 continue;
             }
 
+            if (found.size() >= TalismanUtils.getLimit(player)) {
+                break;
+            }
+
             found.add(talisman);
         }
 
