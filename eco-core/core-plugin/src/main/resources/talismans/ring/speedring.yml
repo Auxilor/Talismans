@@ -1,5 +1,5 @@
 name: "Speed Ring"
-description: Move 10 faster.
+description: Move 10% faster.
 enabled: true
 
 obtaining:
