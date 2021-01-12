@@ -20,10 +20,3 @@ crafting:
 
 read-enderchest: true # If a player's ender chest should be checked for talismans
 read-shulkerboxes: true # If a player's shulker boxes should be checked for talismans
-
-drops:
-  ### ADVANCED OPTIONS
-  collate: false
-  # Instead of directly dropping all drops and xp, some intensive talismans will push to a collated queue.
-  # At the end of each tick, the queue will be pushed rather than pushing on every drop creation
-  # This will massively improve mining performance on servers, however it is experimental and may not function correctly.
