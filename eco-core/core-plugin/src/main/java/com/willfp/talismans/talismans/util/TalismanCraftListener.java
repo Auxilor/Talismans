@@ -125,7 +125,16 @@ public class TalismanCraftListener implements Listener {
             }
         }
 
-        if (empty) {
+        boolean needsHeads = false;
+        for (ItemStack itemStack : recipe.getIngredientMap().values()) {
+            if (itemStack.getType() == Material.PLAYER_HEAD) {
+                needsHeads = true;
+                break;
+            }
+        }
+
+        if (empty && needsHeads) {
+            event.getInventory().setResult(new ItemStack(Material.AIR));
             return;
         }
 
@@ -188,7 +197,16 @@ public class TalismanCraftListener implements Listener {
             }
         }
 
-        if (empty) {
+        boolean needsHeads = false;
+        for (ItemStack itemStack : recipe.getIngredientMap().values()) {
+            if (itemStack.getType() == Material.PLAYER_HEAD) {
+                needsHeads = true;
+                break;
+            }
+        }
+
+        if (empty && needsHeads) {
+            event.getInventory().setResult(new ItemStack(Material.AIR));
             return;
         }
 
