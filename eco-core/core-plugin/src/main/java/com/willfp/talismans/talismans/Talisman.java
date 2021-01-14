@@ -206,7 +206,7 @@ public abstract class Talisman implements Listener, Watcher {
                     NamespacedKey talismanNamespacedKey = new NamespacedKey(this.getPlugin(), talismanKey);
                     Talisman talisman = Talismans.getByKey(talismanNamespacedKey);
                     Validate.notNull(talisman, "Talisman specified in " + this.getConfigName() + ".yml has an invalid recipe!");
-                    builder.setRecipePart(i, new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), new ItemStack(Material.PLAYER_HEAD)));
+                    builder.setRecipePart(i, new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out));
                 } else {
                     builder.setRecipePart(i, new SimpleRecipePart(Material.valueOf(recipeStrings.get(i).toUpperCase())));
                 }
