@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - talisman:sharpness_talisman
-    - talisman:sharpness_talisman
-    - talisman:sharpness_talisman
+    - talismans:sharpness_talisman
+    - talismans:sharpness_talisman
+    - talismans:sharpness_talisman
 
-    - talisman:sharpness_talisman
+    - talismans:sharpness_talisman
     - heart_of_the_sea
-    - talisman:sharpness_talisman
+    - talismans:sharpness_talisman
 
-    - talisman:sharpness_talisman
-    - talisman:sharpness_talisman
-    - talisman:sharpness_talisman
+    - talismans:sharpness_talisman
+    - talismans:sharpness_talisman
+    - talismans:sharpness_talisman
 
 general-config:
   disabled-in-worlds: []

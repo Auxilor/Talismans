@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - talisman:flux_ring
-    - talisman:flux_ring
-    - talisman:flux_ring
+    - talismans:flux_ring
+    - talismans:flux_ring
+    - talismans:flux_ring
 
-    - talisman:flux_ring
+    - talismans:flux_ring
     - nether_star
-    - talisman:flux_ring
+    - talismans:flux_ring
 
-    - talisman:flux_ring
-    - talisman:flux_ring
-    - talisman:flux_ring
+    - talismans:flux_ring
+    - talismans:flux_ring
+    - talismans:flux_ring
 
 general-config:
   disabled-in-worlds: []

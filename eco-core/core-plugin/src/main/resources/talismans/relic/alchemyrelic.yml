@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - talisman:alchemy_ring
-    - talisman:alchemy_ring
-    - talisman:alchemy_ring
+    - talismans:alchemy_ring
+    - talismans:alchemy_ring
+    - talismans:alchemy_ring
 
-    - talisman:alchemy_ring
+    - talismans:alchemy_ring
     - nether_star
-    - talisman:alchemy_ring
+    - talismans:alchemy_ring
 
-    - talisman:alchemy_ring
-    - talisman:alchemy_ring
-    - talisman:alchemy_ring
+    - talismans:alchemy_ring
+    - talismans:alchemy_ring
+    - talismans:alchemy_ring
 
 general-config:
   disabled-in-worlds: []

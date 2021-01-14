@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - talisman:poseidon_ring
-    - talisman:poseidon_ring
-    - talisman:poseidon_ring
+    - talismans:poseidon_ring
+    - talismans:poseidon_ring
+    - talismans:poseidon_ring
 
-    - talisman:poseidon_ring
+    - talismans:poseidon_ring
     - nether_star
-    - talisman:poseidon_ring
+    - talismans:poseidon_ring
 
-    - talisman:poseidon_ring
-    - talisman:poseidon_ring
-    - talisman:poseidon_ring
+    - talismans:poseidon_ring
+    - talismans:poseidon_ring
+    - talismans:poseidon_ring
 
 general-config:
   disabled-in-worlds: []

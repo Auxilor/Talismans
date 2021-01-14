@@ -6,17 +6,17 @@ obtaining:
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
-    - talisman:speed_talisman
-    - talisman:speed_talisman
-    - talisman:speed_talisman
+    - talismans:speed_talisman
+    - talismans:speed_talisman
+    - talismans:speed_talisman
 
-    - talisman:speed_talisman
+    - talismans:speed_talisman
     - heart_of_the_sea
-    - talisman:speed_talisman
+    - talismans:speed_talisman
 
-    - talisman:speed_talisman
-    - talisman:speed_talisman
-    - talisman:speed_talisman
+    - talismans:speed_talisman
+    - talismans:speed_talisman
+    - talismans:speed_talisman
 
 general-config:
   disabled-in-worlds: []

@@ -193,7 +193,7 @@ public abstract class Talisman implements Listener, Watcher {
 
         this.itemStack = out;
 
-        RecipePartUtils.registerLookup("talisman:" + this.getKey().getKey(), s -> {
+        RecipePartUtils.registerLookup(this.getKey().toString(), s -> {
             Talisman talisman = Talismans.getByKey(this.getPlugin().getNamespacedKeyFactory().create(s.split(":")[1]));
             return new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out);
         });
