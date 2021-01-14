@@ -85,7 +85,7 @@ clean.doLast {
 shadowJar {
     relocate('org.apache.maven', 'com.willfp.talismans.eco.shaded.maven')
     relocate('org.bstats', 'com.willfp.talismans.eco.shaded.bstats')
-    relocate('com.willfp.eco.', 'com.willfp.talismans.eco.') // Dot is to prevent plugin being shaded into itself
+    relocate('com.willfp.eco.util', 'com.willfp.talismans.eco.util') // Dot is to prevent plugin being shaded into itself
     archiveFileName = findProperty("plugin-name") + " v" + findProperty("version") + ".jar"
 }
 

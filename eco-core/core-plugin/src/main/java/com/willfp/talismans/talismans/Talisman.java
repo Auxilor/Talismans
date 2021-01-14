@@ -1,13 +1,13 @@
 package com.willfp.talismans.talismans;
 
 
+import com.willfp.eco.common.recipes.lookup.RecipePartUtils;
+import com.willfp.eco.common.recipes.parts.ComplexRecipePart;
 import com.willfp.eco.util.StringUtils;
 import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.optional.Prerequisite;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
-import com.willfp.eco.util.recipes.EcoShapedRecipe;
-import com.willfp.eco.util.recipes.lookup.RecipePartUtils;
-import com.willfp.eco.util.recipes.parts.ComplexRecipePart;
+import com.willfp.eco.util.recipe.EcoShapedRecipe;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import com.willfp.talismans.display.TalismanDisplay;
