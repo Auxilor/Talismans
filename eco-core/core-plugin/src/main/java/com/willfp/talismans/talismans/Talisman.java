@@ -6,8 +6,8 @@ import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.optional.Prerequisite;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.recipes.EcoShapedRecipe;
+import com.willfp.eco.util.recipes.lookup.RecipePartUtils;
 import com.willfp.eco.util.recipes.parts.ComplexRecipePart;
-import com.willfp.eco.util.recipes.parts.SimpleRecipePart;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import com.willfp.talismans.display.TalismanDisplay;
@@ -17,7 +17,6 @@ import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.Watcher;
 import lombok.AccessLevel;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -194,6 +193,11 @@ public abstract class Talisman implements Listener, Watcher {
 
         this.itemStack = out;
 
+        RecipePartUtils.registerLookup("talisman:" + this.getKey().getKey(), s -> {
+            Talisman talisman = Talismans.getByKey(this.getPlugin().getNamespacedKeyFactory().create(s.split(":")[1]));
+            return new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out);
+        });
+
         if (this.isEnabled()) {
             EcoShapedRecipe.Builder builder = EcoShapedRecipe.builder(this.getPlugin(), this.getKey().getKey())
                     .setOutput(out);
@@ -201,15 +205,7 @@ public abstract class Talisman implements Listener, Watcher {
             List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
             for (int i = 0; i < 9; i++) {
-                if (recipeStrings.get(i).startsWith("talisman:")) {
-                    String talismanKey = recipeStrings.get(i).split(":")[1];
-                    NamespacedKey talismanNamespacedKey = new NamespacedKey(this.getPlugin(), talismanKey);
-                    Talisman talisman = Talismans.getByKey(talismanNamespacedKey);
-                    Validate.notNull(talisman, "Talisman specified in " + this.getConfigName() + ".yml has an invalid recipe!");
-                    builder.setRecipePart(i, new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out));
-                } else {
-                    builder.setRecipePart(i, new SimpleRecipePart(Material.valueOf(recipeStrings.get(i).toUpperCase())));
-                }
+                builder.setRecipePart(i, RecipePartUtils.lookup(recipeStrings.get(i)));
             }
 
             this.recipe = builder.build();
