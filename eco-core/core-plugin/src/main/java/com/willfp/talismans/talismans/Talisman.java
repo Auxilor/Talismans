@@ -5,10 +5,14 @@ import com.willfp.eco.util.StringUtils;
 import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.optional.Prerequisite;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.util.recipes.EcoShapedRecipe;
+import com.willfp.eco.util.recipes.parts.ComplexRecipePart;
+import com.willfp.eco.util.recipes.parts.SimpleRecipePart;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import com.willfp.talismans.display.TalismanDisplay;
 import com.willfp.talismans.talismans.meta.TalismanStrength;
+import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.Watcher;
 import lombok.AccessLevel;
@@ -21,8 +25,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
@@ -100,19 +102,7 @@ public abstract class Talisman implements Listener, Watcher {
      * The talisman recipe.
      */
     @Getter
-    private ShapedRecipe recipe = null;
-
-    /**
-     * The talisman displayed recipe.
-     */
-    @Getter
-    private ShapedRecipe displayedRecipe = null;
-
-    /**
-     * The talisman recipe overlay.
-     */
-    @Getter
-    private final Talisman[] recipeTalismanOverlay = new Talisman[9];
+    private EcoShapedRecipe recipe = null;
 
     /**
      * The base64 skull texture.
@@ -204,38 +194,26 @@ public abstract class Talisman implements Listener, Watcher {
 
         this.itemStack = out;
 
-        Bukkit.getServer().removeRecipe(this.getKey());
-        Bukkit.getServer().removeRecipe(new NamespacedKey(this.getPlugin(), this.getKey().getKey() + "_displayed"));
-
         if (this.isEnabled()) {
-            ShapedRecipe recipe = new ShapedRecipe(this.getKey(), out);
-            ShapedRecipe displayedRecipe = new ShapedRecipe(new NamespacedKey(this.getPlugin(), this.getKey().getKey() + "_displayed"), out);
+            EcoShapedRecipe.Builder builder = EcoShapedRecipe.builder(this.getPlugin(), this.getKey().getKey())
+                    .setOutput(out);
 
             List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
-            recipe.shape("012", "345", "678");
-            displayedRecipe.shape("012", "345", "678");
-
             for (int i = 0; i < 9; i++) {
-                recipeTalismanOverlay[i] = null;
-                char ingredientChar = String.valueOf(i).toCharArray()[0];
                 if (recipeStrings.get(i).startsWith("talisman:")) {
                     String talismanKey = recipeStrings.get(i).split(":")[1];
                     NamespacedKey talismanNamespacedKey = new NamespacedKey(this.getPlugin(), talismanKey);
                     Talisman talisman = Talismans.getByKey(talismanNamespacedKey);
-                    Validate.notNull(talisman, "Talisman specified in " + this.getConfigName() + ".yml's recipe is invalid!");
-                    recipeTalismanOverlay[i] = Talismans.getByKey(talismanNamespacedKey);
-                    recipe.setIngredient(ingredientChar, Material.PLAYER_HEAD);
-                    displayedRecipe.setIngredient(ingredientChar, new RecipeChoice.ExactChoice(talisman.getItemStack()));
+                    Validate.notNull(talisman, "Talisman specified in " + this.getConfigName() + ".yml has an invalid recipe!");
+                    builder.setRecipePart(i, new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), new ItemStack(Material.PLAYER_HEAD)));
                 } else {
-                    recipe.setIngredient(ingredientChar, Material.valueOf(recipeStrings.get(i).toUpperCase()));
-                    displayedRecipe.setIngredient(ingredientChar, Material.valueOf(recipeStrings.get(i).toUpperCase()));
+                    builder.setRecipePart(i, new SimpleRecipePart(Material.valueOf(recipeStrings.get(i).toUpperCase())));
                 }
             }
 
-            Bukkit.getServer().addRecipe(recipe);
-            Bukkit.getServer().addRecipe(displayedRecipe);
-            this.displayedRecipe = displayedRecipe;
+            this.recipe = builder.build();
+            this.recipe.register();
         }
 
         postUpdate();
@@ -252,6 +230,25 @@ public abstract class Talisman implements Listener, Watcher {
      */
     public String getFormattedName() {
         return this.getStrength().getColor() + this.getName();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Talisman)) {
+            return false;
+        }
+
+        Talisman talisman = (Talisman) o;
+        return this.getKey().equals(talisman.getKey());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getKey());
     }
 
     @Override
