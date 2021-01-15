@@ -3,6 +3,7 @@ package com.willfp.talismans.talismans.util.equipevent;
 import com.willfp.eco.util.internal.PluginDependent;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -67,6 +68,12 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
     @EventHandler
     public void onPlayerLeave(@NotNull final PlayerQuitEvent event) {
         refresh();
+
+        Player player = event.getPlayer();
+
+        for (Talisman talisman : Talismans.values()) {
+            Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.UNEQUIP));
+        }
     }
 
     /**
@@ -123,7 +130,9 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
             newSet.removeAll(inCache);
 
             for (Talisman talisman : newSet) {
-                Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
+                if (talisman.isEnabled()) {
+                    Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
+                }
             }
 
             inCache.removeAll(newSet);

@@ -28,7 +28,7 @@ public class SpeedTalisman extends Talisman {
     }
 
     @EventHandler
-    public void onExpChange(@NotNull final TalismanEquipEvent event) {
+    public void listener(@NotNull final TalismanEquipEvent event) {
         Player player = event.getPlayer();
 
         if (!event.getTalisman().equals(this)) {

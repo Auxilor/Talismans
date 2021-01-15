@@ -50,7 +50,9 @@ public class SyncTalismanEquipEventTask {
 
                 after.removeAll(before);
                 for (Talisman talisman : after) {
-                    Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
+                    if (talisman.isEnabled()) {
+                        Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
+                    }
                 }
 
                 before.removeAll(after);
