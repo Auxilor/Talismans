@@ -14,6 +14,7 @@ import com.willfp.talismans.talismans.talismans.relic.ExtractionRelic;
 import com.willfp.talismans.talismans.talismans.relic.FeatherRelic;
 import com.willfp.talismans.talismans.talismans.relic.FlameRelic;
 import com.willfp.talismans.talismans.talismans.relic.FluxRelic;
+import com.willfp.talismans.talismans.talismans.relic.GravityRelic;
 import com.willfp.talismans.talismans.talismans.relic.HealingRelic;
 import com.willfp.talismans.talismans.talismans.relic.NetherRelic;
 import com.willfp.talismans.talismans.talismans.relic.PoseidonRelic;
@@ -31,6 +32,7 @@ import com.willfp.talismans.talismans.talismans.ring.ExtractionRing;
 import com.willfp.talismans.talismans.talismans.ring.FeatherRing;
 import com.willfp.talismans.talismans.talismans.ring.FlameRing;
 import com.willfp.talismans.talismans.talismans.ring.FluxRing;
+import com.willfp.talismans.talismans.talismans.ring.GravityRing;
 import com.willfp.talismans.talismans.talismans.ring.HealingRing;
 import com.willfp.talismans.talismans.talismans.ring.NetherRing;
 import com.willfp.talismans.talismans.talismans.ring.PoseidonRing;
@@ -49,6 +51,7 @@ import com.willfp.talismans.talismans.talismans.talisman.ExtractionTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FeatherTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FlameTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.FluxTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.GravityTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.HealingTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ImmunityTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.NetherTalisman;
@@ -139,6 +142,9 @@ public class Talismans {
     public static final Talisman BOSS_TALISMAN = new BossTalisman();
     public static final Talisman BOSS_RING = new BossRing();
     public static final Talisman BOSS_RELIC = new BossRelic();
+    public static final Talisman GRAVITY_TALISMAN = new GravityTalisman();
+    public static final Talisman GRAVITY_RING = new GravityRing();
+    public static final Talisman GRAVITY_RELIC = new GravityRelic();
 
     /**
      * Get all registered {@link Talisman}s.

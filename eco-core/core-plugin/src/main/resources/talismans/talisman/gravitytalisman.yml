@@ -1,0 +1,31 @@
+name: "Gravity Talisman"
+description: Take less damage lower down you are, up to 2x less.
+enabled: true
+
+obtaining:
+  # Recipes are left-right, top-bottom
+  # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+  recipe:
+    - stone
+    - obsidian
+    - stone
+
+    - obsidian
+    - ender_eye
+    - obsidian
+
+    - stone
+    - obsidian
+    - stone
+
+general-config:
+  disabled-in-worlds: []
+  # Texture is base64, https://minecraft-heads.com has a list of skulls.
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWIzYTk0ZGZmYTU5MDk5MGRiMDAzZmUyNjg0NDJmNzkyYmVjNjE0ZWNlNWZiMThkOTkwNmU3NmU1NDE4N2ZiMSJ9fX0=
+
+config:
+  # Formula is ((distance below y = 64)/64) * multiplier + 1 times less
+  # So if multiplier is 2, and you're at y = 1:
+  # distance below y = 63
+  # 63/64 * multiplier is roughly 2, +1 = 3x less
+  height-multiplier: 1
