@@ -1,5 +1,5 @@
 name: "Gravity Talisman"
-description: Take less damage lower down you are, up to 2x less.
+description: Take less damage the lower down you are, up to 2x less.
 enabled: true
 
 obtaining:
