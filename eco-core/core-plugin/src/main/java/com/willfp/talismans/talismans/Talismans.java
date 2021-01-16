@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableList;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
 import com.willfp.talismans.talismans.talismans.relic.AlchemyRelic;
 import com.willfp.talismans.talismans.talismans.relic.ArcheryRelic;
+import com.willfp.talismans.talismans.talismans.relic.BossRelic;
 import com.willfp.talismans.talismans.talismans.relic.EndRelic;
 import com.willfp.talismans.talismans.talismans.relic.ExperienceRelic;
 import com.willfp.talismans.talismans.talismans.relic.ExtractionRelic;
@@ -23,6 +24,7 @@ import com.willfp.talismans.talismans.talismans.relic.SpeedRelic;
 import com.willfp.talismans.talismans.talismans.relic.StrengthRelic;
 import com.willfp.talismans.talismans.talismans.ring.AlchemyRing;
 import com.willfp.talismans.talismans.talismans.ring.ArcheryRing;
+import com.willfp.talismans.talismans.talismans.ring.BossRing;
 import com.willfp.talismans.talismans.talismans.ring.EndRing;
 import com.willfp.talismans.talismans.talismans.ring.ExperienceRing;
 import com.willfp.talismans.talismans.talismans.ring.ExtractionRing;
@@ -39,6 +41,7 @@ import com.willfp.talismans.talismans.talismans.ring.SpeedRing;
 import com.willfp.talismans.talismans.talismans.ring.StrengthRing;
 import com.willfp.talismans.talismans.talismans.talisman.AlchemyTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ArcheryTalisman;
+import com.willfp.talismans.talismans.talismans.talisman.BossTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.EndTalisman;
 import com.willfp.talismans.talismans.talismans.talisman.ExperienceTalisman;
@@ -133,6 +136,9 @@ public class Talismans {
     public static final Talisman SPEED_TALISMAN = new SpeedTalisman();
     public static final Talisman SPEED_RING = new SpeedRing();
     public static final Talisman SPEED_RELIC = new SpeedRelic();
+    public static final Talisman BOSS_TALISMAN = new BossTalisman();
+    public static final Talisman BOSS_RING = new BossRing();
+    public static final Talisman BOSS_RELIC = new BossRelic();
 
     /**
      * Get all registered {@link Talisman}s.
