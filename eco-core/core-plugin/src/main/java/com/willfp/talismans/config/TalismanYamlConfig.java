@@ -3,6 +3,7 @@ package com.willfp.talismans.config;
 import com.willfp.eco.util.config.ValueGetter;
 import com.willfp.eco.util.internal.PluginDependent;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.meta.TalismanStrength;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -64,7 +65,7 @@ public abstract class TalismanYamlConfig extends PluginDependent implements Valu
     protected TalismanYamlConfig(@NotNull final String name,
                                  @NotNull final TalismanStrength strength,
                                  @NotNull final Class<?> source) {
-        super(AbstractEcoPlugin.getInstance());
+        super(TalismansPlugin.getInstance());
         this.name = name;
         this.source = source;
         this.strength = strength;

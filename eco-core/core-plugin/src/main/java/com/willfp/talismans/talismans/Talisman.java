@@ -1,13 +1,13 @@
 package com.willfp.talismans.talismans;
 
 
-import com.willfp.eco.common.recipes.lookup.RecipePartUtils;
-import com.willfp.eco.common.recipes.parts.ComplexRecipePart;
 import com.willfp.eco.util.StringUtils;
-import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.optional.Prerequisite;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.recipe.EcoShapedRecipe;
+import com.willfp.eco.util.recipe.lookup.RecipePartUtils;
+import com.willfp.eco.util.recipe.parts.ComplexRecipePart;
+import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import com.willfp.talismans.display.TalismanDisplay;
@@ -45,7 +45,7 @@ public abstract class Talisman implements Listener, Watcher {
      * Instance of Talismans for talismans to be able to access.
      */
     @Getter(AccessLevel.PROTECTED)
-    private final AbstractEcoPlugin plugin = AbstractEcoPlugin.getInstance();
+    private final AbstractEcoPlugin plugin = TalismansPlugin.getInstance();
 
     /**
      * The key to store talismans in meta.
@@ -173,8 +173,8 @@ public abstract class Talisman implements Listener, Watcher {
         disabledWorldNames.addAll(config.getStrings(Talismans.GENERAL_LOCATION + "disabled-in-worlds"));
         disabledWorlds.clear();
 
-        formattedDescription = Arrays.stream(WordUtils.wrap(description, Configs.CONFIG.getInt("description.wrap"), "\n", false).split("\\r?\\n"))
-                .map(s -> TalismanDisplay.PREFIX + StringUtils.translate(Configs.LANG.getString("description-color") + s)).collect(Collectors.toList());
+        formattedDescription = Arrays.stream(WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false).split("\\r?\\n"))
+                .map(s -> TalismanDisplay.PREFIX + StringUtils.translate(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
 
         List<String> worldNames = Bukkit.getWorlds().stream().map(World::getName).map(String::toLowerCase).collect(Collectors.toList());
         List<String> disabledExistingWorldNames = disabledWorldNames.stream().filter(s -> worldNames.contains(s.toLowerCase())).collect(Collectors.toList());

@@ -1,7 +1,6 @@
 package com.willfp.talismans.commands;
 
 import com.willfp.eco.util.command.AbstractCommand;
-import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +22,6 @@ public class CommandTalreload extends AbstractCommand {
                           @NotNull final List<String> args) {
         this.getPlugin().reload();
         this.getPlugin().reload(); // Aids
-        sender.sendMessage(Configs.LANG.getMessage("reloaded"));
+        sender.sendMessage(this.getPlugin().getLangYml().getMessage("reloaded"));
     }
 }

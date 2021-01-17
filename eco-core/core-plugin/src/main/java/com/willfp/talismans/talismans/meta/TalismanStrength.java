@@ -1,27 +1,29 @@
 package com.willfp.talismans.talismans.meta;
 
-import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.talismans.TalismansPlugin;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 public enum TalismanStrength {
+
     /**
      * Weakest.
      */
-    TALISMAN(() -> Configs.CONFIG.getString("strengths.talisman.color")),
+    TALISMAN(() ->  TalismansPlugin.getInstance().getConfigYml().getString("strengths.talisman.color")),
 
     /**
      * Middle.
      */
-    RING(() -> Configs.CONFIG.getString("strengths.ring.color")),
+    RING(() -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.ring.color")),
 
     /**
      * Strongest.
      */
-    RELIC(() -> Configs.CONFIG.getString("strengths.relic.color"));
+    RELIC(() -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.relic.color"));
 
     /**
      * The color.

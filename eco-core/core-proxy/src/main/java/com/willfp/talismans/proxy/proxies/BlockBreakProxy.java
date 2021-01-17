@@ -1,6 +1,5 @@
 package com.willfp.talismans.proxy.proxies;
 
-
 import com.willfp.eco.util.proxy.AbstractProxy;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

@@ -1,9 +1,10 @@
 package com.willfp.talismans.display;
 
-import com.willfp.eco.util.ProxyUtils;
+import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.proxy.proxies.SkullProxy;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
+import com.willfp.talismans.util.ProxyUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -16,6 +17,11 @@ import java.util.List;
 
 @UtilityClass
 public class TalismanDisplay {
+    /**
+     * Instance of Talismans.
+     */
+    private static final TalismansPlugin PLUGIN = TalismansPlugin.getInstance();
+
     /**
      * The prefix for all talisman lines to have in lore.
      */

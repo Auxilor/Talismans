@@ -25,6 +25,7 @@ import com.willfp.talismans.talismans.util.TalismanCraftListener;
 import com.willfp.talismans.talismans.util.WatcherTriggers;
 import com.willfp.talismans.talismans.util.equipevent.SyncTalismanEquipEventTask;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEventListeners;
+import lombok.Getter;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -34,10 +35,17 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class TalismansPlugin extends AbstractEcoPlugin {
     /**
+     * Instance of the plugin.
+     */
+    @Getter
+    private static TalismansPlugin instance;
+
+    /**
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
         super("Talismans", 87377, 9865, "com.willfp.talismans.proxy", "&6");
+        instance = this;
     }
 
     /**

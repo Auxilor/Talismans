@@ -3,10 +3,10 @@ package com.willfp.talismans.display.packets;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
-import com.willfp.eco.util.ProxyUtils;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.proxy.proxies.AutoCraftProxy;
+import com.willfp.talismans.util.ProxyUtils;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 

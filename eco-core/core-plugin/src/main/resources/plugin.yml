@@ -51,7 +51,7 @@ permissions:
     default: op
   talismans.give:
     description: Allows the use of /talgive.
-    default: true
+    default: op
   talismans.fromtable.*:
     description: Allows crafting all talismans
     default: true

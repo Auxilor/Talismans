@@ -1,9 +1,8 @@
 package com.willfp.talismans.talismans.util;
 
-
-import com.willfp.eco.util.config.Configs;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
@@ -50,7 +49,7 @@ public class TalismanChecks {
     /**
      * The associated plugin instance.
      */
-    private static final AbstractEcoPlugin PLUGIN = AbstractEcoPlugin.getInstance();
+    private static final AbstractEcoPlugin PLUGIN = TalismansPlugin.getInstance();
 
     /**
      * Does the specified ItemStack have a certain Talisman present?
@@ -201,7 +200,7 @@ public class TalismanChecks {
 
     @ConfigUpdater
     public static void reload() {
-        readEnderChest = Configs.CONFIG.getBool("read-enderchest");
-        readShulkerBoxes = Configs.CONFIG.getBool("read-shulkerboxes");
+        readEnderChest = PLUGIN.getConfigYml().getBool("read-enderchest");
+        readShulkerBoxes = PLUGIN.getConfigYml().getBool("read-shulkerboxes");
     }
 }

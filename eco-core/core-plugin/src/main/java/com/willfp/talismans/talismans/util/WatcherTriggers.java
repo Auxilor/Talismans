@@ -1,12 +1,12 @@
 package com.willfp.talismans.talismans.util;
 
 import com.google.common.collect.Sets;
-import com.willfp.eco.util.ProxyUtils;
 import com.willfp.eco.util.integrations.antigrief.AntigriefManager;
 import com.willfp.eco.util.internal.PluginDependent;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.proxy.proxies.TridentStackProxy;
+import com.willfp.talismans.util.ProxyUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
