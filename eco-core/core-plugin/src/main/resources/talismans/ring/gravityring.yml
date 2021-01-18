@@ -1,5 +1,5 @@
 name: "Gravity Ring"
-description: Take less damage the lower down you are, up to 3x less.
+description: Take less damage the lower down you are, up to 30% less.
 enabled: true
 
 obtaining:
@@ -28,4 +28,4 @@ config:
   # So if multiplier is 2, and you're at y = 1:
   # distance below y = 63
   # 63/64 * multiplier is roughly 2, +1 = 3x less
-  height-multiplier: 2
+  height-multiplier: 0.3
