@@ -1,6 +1,8 @@
 package com.willfp.talismans;
 
 import com.willfp.eco.util.command.AbstractCommand;
+import com.willfp.eco.util.display.Display;
+import com.willfp.eco.util.display.DisplayModule;
 import com.willfp.eco.util.integrations.IntegrationLoader;
 import com.willfp.eco.util.interfaces.EcoRunnable;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
@@ -10,12 +12,7 @@ import com.willfp.talismans.commands.CommandTalgive;
 import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.commands.TabcompleterTalgive;
 import com.willfp.talismans.config.TalismansConfigs;
-import com.willfp.talismans.display.packets.PacketAutoRecipe;
-import com.willfp.talismans.display.packets.PacketChat;
-import com.willfp.talismans.display.packets.PacketOpenWindowMerchant;
-import com.willfp.talismans.display.packets.PacketSetCreativeSlot;
-import com.willfp.talismans.display.packets.PacketSetSlot;
-import com.willfp.talismans.display.packets.PacketWindowItems;
+import com.willfp.talismans.display.TalismanDisplay;
 import com.willfp.talismans.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.integrations.mcmmo.plugins.McmmoIntegrationImpl;
 import com.willfp.talismans.talismans.Talismans;
@@ -29,6 +26,7 @@ import lombok.Getter;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,6 +51,9 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      */
     @Override
     public void enable() {
+        Display.registerDisplayModule(new DisplayModule(TalismanDisplay::displayTalisman, 1, this.getPluginName()));
+        Display.registerRevertModule(TalismanDisplay::revertDisplay);
+
         this.getExtensionLoader().loadExtensions();
 
         if (this.getExtensionLoader().getLoadedExtensions().isEmpty()) {
@@ -143,14 +144,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      */
     @Override
     public List<AbstractPacketAdapter> getPacketAdapters() {
-        return Arrays.asList(
-                new PacketChat(this),
-                new PacketOpenWindowMerchant(this),
-                new PacketSetCreativeSlot(this),
-                new PacketSetSlot(this),
-                new PacketWindowItems(this),
-                new PacketAutoRecipe(this)
-        );
+        return new ArrayList<>();
     }
 
     /**

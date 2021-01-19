@@ -1,6 +1,5 @@
 package com.willfp.talismans.display;
 
-import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.proxy.proxies.SkullProxy;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
@@ -17,11 +16,6 @@ import java.util.List;
 
 @UtilityClass
 public class TalismanDisplay {
-    /**
-     * Instance of Talismans.
-     */
-    private static final TalismansPlugin PLUGIN = TalismansPlugin.getInstance();
-
     /**
      * The prefix for all talisman lines to have in lore.
      */
