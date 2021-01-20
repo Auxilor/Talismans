@@ -3,7 +3,7 @@ package com.willfp.talismans.display;
 import com.willfp.talismans.proxy.proxies.SkullProxy;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
-import com.willfp.talismans.util.ProxyUtils;
+import com.willfp.talismans.talismans.util.ProxyUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

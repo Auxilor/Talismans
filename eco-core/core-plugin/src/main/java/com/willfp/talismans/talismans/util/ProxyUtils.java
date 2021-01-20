@@ -1,4 +1,4 @@
-package com.willfp.talismans.util;
+package com.willfp.talismans.talismans.util;
 
 import com.willfp.eco.util.proxy.AbstractProxy;
 import com.willfp.talismans.TalismansPlugin;
