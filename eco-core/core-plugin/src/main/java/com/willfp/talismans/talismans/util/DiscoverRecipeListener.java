@@ -30,7 +30,11 @@ public class DiscoverRecipeListener extends PluginDependent implements Listener 
         Player player = event.getPlayer();
 
         if (this.getPlugin().getConfigYml().getBool("crafting.discover")) {
-            Talismans.values().stream().filter(Talisman::isEnabled).map(Talisman::getKey).forEach(player::discoverRecipe);
+            for (Talisman talisman : Talismans.values()) {
+                if (talisman.isEnabled()) {
+                    player.discoverRecipe(talisman.getKey());
+                }
+            }
         }
     }
 }

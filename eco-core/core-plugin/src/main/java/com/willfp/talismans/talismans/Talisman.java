@@ -138,7 +138,7 @@ public abstract class Talisman implements Listener, Watcher {
                        @NotNull final TalismanStrength strength,
                        @NotNull final Prerequisite... prerequisites) {
         this.strength = strength;
-        this.key = this.getPlugin().getNamespacedKeyFactory().create(key);
+        this.key = this.getPlugin().getNamespacedKeyFactory().create(key + "_" + strength.name().toLowerCase());
         this.configName = key.replace("_", "");
         TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
         this.config = TalismansConfigs.getTalismanConfig(this.configName);
