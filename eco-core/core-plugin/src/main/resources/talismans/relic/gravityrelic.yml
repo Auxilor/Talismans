@@ -1,5 +1,5 @@
 name: "Gravity Relic"
-description: Take less damage the lower down you are, up to 40%x less.
+description: Take less damage the lower down you are, up to 40% less.
 enabled: true
 
 obtaining:
