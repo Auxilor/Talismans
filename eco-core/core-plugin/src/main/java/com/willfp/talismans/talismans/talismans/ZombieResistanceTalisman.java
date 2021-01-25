@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ZombieResistanceTalisman extends Talisman {
     public ZombieResistanceTalisman(@NotNull final TalismanStrength strength) {
-        super("zombie_resistance_talisman", strength);
+        super("zombie_resistance", strength);
     }
 
     @Override

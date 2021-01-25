@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FluxTalisman extends Talisman {
     public FluxTalisman(@NotNull final TalismanStrength strength) {
-        super("flux_talisman", strength);
+        super("flux", strength);
     }
 
     @EventHandler

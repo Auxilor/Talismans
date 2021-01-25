@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HealingTalisman extends Talisman {
     public HealingTalisman(@NotNull final TalismanStrength strength) {
-        super("healing_talisman", strength);
+        super("healing", strength);
     }
 
     @EventHandler

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class PoseidonTalisman extends Talisman {
     public PoseidonTalisman(@NotNull final TalismanStrength strength) {
-        super("poseidon_talisman", strength);
+        super("poseidon", strength);
     }
 
     @Override

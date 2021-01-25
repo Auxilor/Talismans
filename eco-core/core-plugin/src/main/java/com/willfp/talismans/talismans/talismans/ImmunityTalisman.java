@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ImmunityTalisman extends Talisman {
     public ImmunityTalisman(@NotNull final TalismanStrength strength) {
-        super("immunity_talisman", strength);
+        super("immunity", strength);
     }
 
     @Override

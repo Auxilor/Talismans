@@ -19,7 +19,7 @@ public class SpeedTalisman extends Talisman {
     private static AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_talisman", 0.05, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
 
     public SpeedTalisman(@NotNull final TalismanStrength strength) {
-        super("speed_talisman", strength);
+        super("speed", strength);
     }
 
     @Override

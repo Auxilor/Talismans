@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class GravityTalisman extends Talisman {
     public GravityTalisman(@NotNull final TalismanStrength strength) {
-        super("gravity_talisman", strength);
+        super("gravity", strength);
     }
 
     @Override

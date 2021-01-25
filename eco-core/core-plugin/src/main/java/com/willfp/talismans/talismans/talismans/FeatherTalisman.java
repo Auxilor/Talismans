@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FeatherTalisman extends Talisman {
     public FeatherTalisman(@NotNull final TalismanStrength strength) {
-        super("feather_talisman", strength);
+        super("feather", strength);
     }
 
     @Override

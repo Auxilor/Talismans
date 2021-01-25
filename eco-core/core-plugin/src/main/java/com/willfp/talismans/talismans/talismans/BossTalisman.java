@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BossTalisman extends Talisman {
     public BossTalisman(@NotNull final TalismanStrength strength) {
-        super("boss_talisman", strength);
+        super("boss", strength);
     }
 
     @Override

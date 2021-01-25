@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ExperienceTalisman extends Talisman {
     public ExperienceTalisman(@NotNull final TalismanStrength strength) {
-        super("experience_talisman", strength);
+        super("experience", strength);
     }
 
     @EventHandler

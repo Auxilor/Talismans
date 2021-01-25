@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ArcheryTalisman extends Talisman {
     public ArcheryTalisman(@NotNull final TalismanStrength strength) {
-        super("archery_talisman", strength);
+        super("archery", strength);
     }
     @Override
     public void onArrowDamage(@NotNull final Player attacker,

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class EndTalisman extends Talisman {
     public EndTalisman(@NotNull final TalismanStrength strength) {
-        super("end_talisman", strength);
+        super("end", strength);
     }
 
     @Override

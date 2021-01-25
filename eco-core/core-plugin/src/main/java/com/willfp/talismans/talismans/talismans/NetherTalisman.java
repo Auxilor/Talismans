@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class NetherTalisman extends Talisman {
     public NetherTalisman(@NotNull final TalismanStrength strength) {
-        super("nether_talisman", strength);
+        super("nether", strength);
     }
 
     @Override
