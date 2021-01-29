@@ -1,6 +1,6 @@
 package com.willfp.talismans.talismans.talismans;
 
-import com.willfp.talismans.integrations.mcmmo.McmmoManager;
+import com.willfp.eco.util.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.meta.TalismanStrength;

@@ -4,7 +4,7 @@ import com.google.common.collect.Sets;
 import com.willfp.eco.util.integrations.antigrief.AntigriefManager;
 import com.willfp.eco.util.internal.PluginDependent;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
-import com.willfp.talismans.integrations.mcmmo.McmmoManager;
+import com.willfp.eco.util.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.proxy.proxies.TridentStackProxy;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

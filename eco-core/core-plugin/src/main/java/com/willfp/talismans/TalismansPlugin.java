@@ -13,8 +13,6 @@ import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.commands.TabcompleterTalgive;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.display.TalismanDisplay;
-import com.willfp.talismans.integrations.mcmmo.McmmoManager;
-import com.willfp.talismans.integrations.mcmmo.plugins.McmmoIntegrationImpl;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.BlockPlaceListener;
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener;
@@ -119,9 +117,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      */
     @Override
     public List<IntegrationLoader> getIntegrationLoaders() {
-        return Arrays.asList(
-                new IntegrationLoader("mcMMO", () -> McmmoManager.registerIntegration(new McmmoIntegrationImpl()))
-        );
+        return new ArrayList<>();
     }
 
     /**
