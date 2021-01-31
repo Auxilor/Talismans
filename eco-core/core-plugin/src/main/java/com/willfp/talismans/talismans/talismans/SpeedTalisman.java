@@ -12,11 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.UUID;
-
 public class SpeedTalisman extends Talisman {
-    private static final UUID MODIFIER_UUID = UUID.nameUUIDFromBytes("speed_talisman".getBytes());
-    private static AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_talisman", 0.05, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
+    private AttributeModifier modifier = null;
 
     public SpeedTalisman(@NotNull final TalismanStrength strength) {
         super("speed", strength);
@@ -24,7 +21,7 @@ public class SpeedTalisman extends Talisman {
 
     @Override
     protected void postUpdate() {
-        MODIFIER = new AttributeModifier(MODIFIER_UUID, "speed_talisman", this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
+        modifier = new AttributeModifier(this.getUuid(), this.getKey().getKey(), this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
     }
 
     @EventHandler
@@ -40,14 +37,14 @@ public class SpeedTalisman extends Talisman {
 
         if (event.getType() == EquipType.EQUIP) {
             if (this.getDisabledWorlds().contains(player.getWorld())) {
-                movementSpeed.removeModifier(MODIFIER);
+                movementSpeed.removeModifier(modifier);
             } else {
-                if (!movementSpeed.getModifiers().contains(MODIFIER)) {
-                    movementSpeed.addModifier(MODIFIER);
+                if (!movementSpeed.getModifiers().contains(modifier)) {
+                    movementSpeed.addModifier(modifier);
                 }
             }
         } else {
-            movementSpeed.removeModifier(MODIFIER);
+            movementSpeed.removeModifier(modifier);
         }
     }
 }

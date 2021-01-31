@@ -37,6 +37,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @SuppressWarnings({"unchecked", "deprecation", "RedundantSuppression"})
@@ -52,6 +53,12 @@ public abstract class Talisman implements Listener, Watcher {
      */
     @Getter
     private final NamespacedKey key;
+
+    /**
+     * UUID created for the talisman.
+     */
+    @Getter
+    private final UUID uuid;
 
     /**
      * The display name of the talisman.
@@ -139,6 +146,7 @@ public abstract class Talisman implements Listener, Watcher {
                        @NotNull final Prerequisite... prerequisites) {
         this.strength = strength;
         this.key = this.getPlugin().getNamespacedKeyFactory().create(key + "_" + strength.name().toLowerCase());
+        this.uuid = UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes());
         this.configName = this.key.getKey().replace("_", "");
         TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
         this.config = TalismansConfigs.getTalismanConfig(this.configName);
