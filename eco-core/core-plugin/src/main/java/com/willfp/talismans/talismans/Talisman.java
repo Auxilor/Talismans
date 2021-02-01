@@ -111,6 +111,12 @@ public abstract class Talisman implements Listener, Watcher {
     private EcoShapedRecipe recipe = null;
 
     /**
+     * If the talisman is craftable.
+     */
+    @Getter
+    private boolean craftable = true;
+
+    /**
      * The base64 skull texture.
      */
     @Getter
@@ -188,6 +194,7 @@ public abstract class Talisman implements Listener, Watcher {
         List<String> disabledExistingWorldNames = disabledWorldNames.stream().filter(s -> worldNames.contains(s.toLowerCase())).collect(Collectors.toList());
         disabledWorlds.addAll(Bukkit.getWorlds().stream().filter(world -> disabledExistingWorldNames.contains(world.getName().toLowerCase())).collect(Collectors.toList()));
         enabled = config.getBool("enabled");
+        craftable = config.getBool(Talismans.OBTAINING_LOCATION + "craftable");
 
         TalismanUtils.registerPlaceholders(this);
 
@@ -206,7 +213,7 @@ public abstract class Talisman implements Listener, Watcher {
             return new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out);
         });
 
-        if (this.isEnabled()) {
+        if (this.isCraftable()) {
             EcoShapedRecipe.Builder builder = EcoShapedRecipe.builder(this.getPlugin(), this.getKey().getKey())
                     .setOutput(out);
 

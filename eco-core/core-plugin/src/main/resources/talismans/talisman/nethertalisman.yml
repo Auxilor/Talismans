@@ -3,6 +3,7 @@ description: Deal 10% more damage in the nether.
 enabled: true
 
 obtaining:
+  craftable: true
   # Recipes are left-right, top-bottom
   # The first item is the top left, the second is top middle, and so on. The last is bottom right.
   recipe:
