@@ -1,35 +1,48 @@
 package com.willfp.talismans.talismans.meta;
 
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.TalismansPlugin;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
-public enum TalismanStrength {
+public class TalismanStrength {
+    /**
+     * All registered strengths.
+     */
+    private static final Map<String, TalismanStrength> REGISTERED = new HashMap<>();
 
     /**
      * Weakest.
      */
-    TALISMAN(() ->  TalismansPlugin.getInstance().getConfigYml().getString("strengths.talisman.color")),
+    public static final TalismanStrength TALISMAN = new TalismanStrength("talisman", () -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.talisman.color"));
 
     /**
      * Middle.
      */
-    RING(() -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.ring.color")),
+    public static final TalismanStrength RING = new TalismanStrength("ring", () -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.ring.color"));
 
     /**
      * Strongest.
      */
-    RELIC(() -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.relic.color"));
+    public static final TalismanStrength RELIC = new TalismanStrength("relic", () -> TalismansPlugin.getInstance().getConfigYml().getString("strengths.relic.color"));
 
     /**
      * The color.
      */
     @Getter
     private String color;
+
+    /**
+     * The name.
+     */
+    @Getter
+    private String name;
 
     /**
      * Supplier to get the color.
@@ -39,10 +52,13 @@ public enum TalismanStrength {
     /**
      * Create a new strength.
      *
+     * @param name          The name.
      * @param colorSupplier The color supplier.
      */
-    TalismanStrength(@NotNull final Supplier<String> colorSupplier) {
+    TalismanStrength(@NotNull final String name,
+                     @NotNull final Supplier<String> colorSupplier) {
         this.colorSupplier = colorSupplier;
+        this.name = name;
         this.color = colorSupplier.get();
     }
 
@@ -54,5 +70,25 @@ public enum TalismanStrength {
         for (TalismanStrength strength : TalismanStrength.values()) {
             strength.color = strength.colorSupplier.get();
         }
+    }
+
+    /**
+     * Get talisman strength by name.
+     *
+     * @param name The name.
+     * @return The strength, or null if not found.
+     */
+    @Nullable
+    public static TalismanStrength valueOf(@NotNull final String name) {
+        return REGISTERED.get(name);
+    }
+
+    /**
+     * Get all registered talisman strengths.
+     *
+     * @return A collection of strengths.
+     */
+    public static Collection<TalismanStrength> values() {
+        return REGISTERED.values();
     }
 }
