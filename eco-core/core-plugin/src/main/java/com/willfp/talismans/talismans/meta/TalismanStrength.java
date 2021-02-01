@@ -41,7 +41,6 @@ public class TalismanStrength {
     /**
      * The name.
      */
-    @Getter
     private String name;
 
     /**
@@ -60,6 +59,14 @@ public class TalismanStrength {
         this.colorSupplier = colorSupplier;
         this.name = name;
         this.color = colorSupplier.get();
+    }
+
+    /**
+     * Get the name of the strength.
+     * @return The name.
+     */
+    public String name() {
+        return name;
     }
 
     /**
