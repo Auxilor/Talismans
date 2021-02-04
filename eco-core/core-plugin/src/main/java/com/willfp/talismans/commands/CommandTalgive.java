@@ -51,7 +51,7 @@ public class CommandTalgive extends AbstractCommand {
 
         String talismanName = args.get(1);
         Talisman talisman = Talismans.getByKey(this.getPlugin().getNamespacedKeyFactory().create(talismanName));
-        if (talisman == null) {
+        if (talisman == null || !talisman.isEnabled()) {
             sender.sendMessage(this.getPlugin().getLangYml().getMessage("invalid-talisman"));
             return;
         }
