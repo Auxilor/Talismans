@@ -213,7 +213,7 @@ public abstract class Talisman implements Listener, Watcher {
             return new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out);
         });
 
-        if (this.isCraftable()) {
+        if (this.isCraftable() && this.isEnabled()) {
             EcoShapedRecipe.Builder builder = EcoShapedRecipe.builder(this.getPlugin(), this.getKey().getKey())
                     .setOutput(out);
 
