@@ -16,7 +16,7 @@
     <a href="https://bstats.org/plugin/bukkit/Talismans" alt="bstats players">
         <img src="https://img.shields.io/bstats/players/9865?color=orange&style=for-the-badge"/>
     </a>
-    <a href="https://auxilor.gitbook.io/talismans/" alt="Docs (gitbook)">
+    <a href="https://talismans.willfp.com/" alt="Docs (gitbook)">
         <img src="https://img.shields.io/badge/docs-gitbook-orange?style=for-the-badge&logo=appveyor"/>
     </a>
     <a href="https://discord.gg/ZcwpSsE/" alt="Discord">
@@ -27,7 +27,7 @@
 
 [![Title](https://i.imgur.com/S3BUbGA.png)]()
 [![Features](https://i.imgur.com/mtvbxli.png)]()
-[![Docs](https://i.imgur.com/LoEuV4j.png)](https://auxilor.gitbook.io/talismans/talismans/all-talismans)
+[![Docs](https://i.imgur.com/LoEuV4j.png)](https://talismans.willfp.com/talismans/all-talismans)
 [![Compatibility](https://i.imgur.com/hjmbGHF.png)]()
 
 ## License
