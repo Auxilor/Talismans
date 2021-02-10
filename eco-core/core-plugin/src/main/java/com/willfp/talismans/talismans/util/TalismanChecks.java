@@ -6,7 +6,6 @@ import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.ShulkerBox;
@@ -64,10 +63,6 @@ public class TalismanChecks {
             return false;
         }
 
-        if (item.getType() != Material.PLAYER_HEAD) {
-            return false;
-        }
-
         ItemMeta meta = item.getItemMeta();
 
         if (meta == null) {
@@ -90,7 +85,7 @@ public class TalismanChecks {
             return null;
         }
 
-        if (item.getType() != Material.PLAYER_HEAD) {
+        if (!TalismanUtils.isTalismanMaterial(item.getType())) {
             return null;
         }
 

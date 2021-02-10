@@ -5,8 +5,8 @@ import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
+import com.willfp.talismans.talismans.util.TalismanUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,7 +43,7 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
             return;
         }
 
-        if (event.getItem().getItemStack().getType() != Material.PLAYER_HEAD && !Tag.SHULKER_BOXES.isTagged(event.getItem().getItemStack().getType())) {
+        if (!Tag.SHULKER_BOXES.isTagged(event.getItem().getItemStack().getType()) && !TalismanUtils.isTalismanMaterial(event.getItem().getItemStack().getType())) {
             return;
         }
 
@@ -83,7 +83,7 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
      */
     @EventHandler
     public void onInventoryDrop(@NotNull final PlayerDropItemEvent event) {
-        if (event.getItemDrop().getItemStack().getType() != Material.PLAYER_HEAD && !Tag.SHULKER_BOXES.isTagged(event.getItemDrop().getItemStack().getType())) {
+        if (!Tag.SHULKER_BOXES.isTagged(event.getItemDrop().getItemStack().getType()) && !TalismanUtils.isTalismanMaterial(event.getItemDrop().getItemStack().getType())) {
             return;
         }
 

@@ -2,10 +2,10 @@ package com.willfp.talismans.display;
 
 import com.willfp.talismans.proxy.proxies.SkullProxy;
 import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.ProxyUtils;
+import com.willfp.talismans.talismans.util.TalismanChecks;
+import com.willfp.talismans.talismans.util.TalismanUtils;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -28,7 +28,7 @@ public class TalismanDisplay {
      * @return The item, updated.
      */
     public static ItemStack revertDisplay(@Nullable final ItemStack item) {
-        if (item == null || item.getType() != Material.PLAYER_HEAD || item.getItemMeta() == null) {
+        if (item == null || item.getItemMeta() == null) {
             return item;
         }
 
@@ -60,13 +60,13 @@ public class TalismanDisplay {
      * @return The item, updated.
      */
     public static ItemStack displayTalisman(@Nullable final ItemStack item) {
-        if (item == null || item.getItemMeta() == null || item.getType() != Material.PLAYER_HEAD) {
+        if (item == null || item.getItemMeta() == null || !TalismanUtils.isTalismanMaterial(item.getType())) {
             return item;
         }
 
         revertDisplay(item);
 
-        SkullMeta meta = (SkullMeta) item.getItemMeta();
+        ItemMeta meta = item.getItemMeta();
         if (meta == null) {
             return item;
         }
@@ -87,7 +87,9 @@ public class TalismanDisplay {
             return item;
         }
 
-        ProxyUtils.getProxy(SkullProxy.class).setTalismanTexture(meta, talisman.getSkullBase64());
+        if (meta instanceof SkullMeta) {
+            ProxyUtils.getProxy(SkullProxy.class).setTalismanTexture((SkullMeta) meta, talisman.getSkullBase64());
+        }
 
         meta.setDisplayName(talisman.getFormattedName());
 

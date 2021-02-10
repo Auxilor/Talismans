@@ -31,6 +31,7 @@ import com.willfp.talismans.talismans.talismans.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.StrengthTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
+import com.willfp.talismans.talismans.util.TalismanUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
@@ -169,6 +170,7 @@ public class Talismans {
      */
     @ConfigUpdater
     public static void update() {
+        TalismanUtils.clearTalismanMaterials();
         for (Talisman talisman : new HashSet<>(values())) {
             talisman.update();
         }

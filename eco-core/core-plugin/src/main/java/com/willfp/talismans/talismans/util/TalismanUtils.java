@@ -8,12 +8,21 @@ import com.willfp.eco.util.integrations.placeholder.PlaceholderManager;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @UtilityClass
 public class TalismanUtils {
+    /**
+     * All valid materials for talismans.
+     */
+    private static final Set<Material> TALISMAN_MATERIALS = new HashSet<>();
+
     /**
      * If the talisman has successfully passed its specified chance.
      *
@@ -90,5 +99,31 @@ public class TalismanUtils {
         }
 
         return 100000;
+    }
+
+    /**
+     * Get if a talisman could exist for a material.
+     *
+     * @param material The material.
+     * @return If possible.
+     */
+    public static boolean isTalismanMaterial(@NotNull final Material material) {
+        return TALISMAN_MATERIALS.contains(material);
+    }
+
+    /**
+     * Register material as valid for talisman.
+     *
+     * @param material The material.
+     */
+    public static void registerTalismanMaterial(@NotNull final Material material) {
+        TALISMAN_MATERIALS.add(material);
+    }
+
+    /**
+     * Unregister all materials as valid for talismans.
+     */
+    public static void clearTalismanMaterials() {
+        TALISMAN_MATERIALS.clear();
     }
 }

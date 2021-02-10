@@ -17,6 +17,7 @@ import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.Watcher;
 import lombok.AccessLevel;
 import lombok.Getter;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -183,6 +184,9 @@ public abstract class Talisman implements Listener, Watcher {
         name = StringUtils.translate(config.getString("name"));
         description = StringUtils.translate(config.getString("description"));
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
+        Material material = Material.getMaterial(config.getString(Talismans.GENERAL_LOCATION + "material").toUpperCase());
+        Validate.notNull(material, "Material specified for " + name + " is invalid!");
+        TalismanUtils.registerTalismanMaterial(material);
         disabledWorldNames.clear();
         disabledWorldNames.addAll(config.getStrings(Talismans.GENERAL_LOCATION + "disabled-in-worlds"));
         disabledWorlds.clear();
@@ -198,7 +202,7 @@ public abstract class Talisman implements Listener, Watcher {
 
         TalismanUtils.registerPlaceholders(this);
 
-        ItemStack out = new ItemStack(Material.PLAYER_HEAD, 1);
+        ItemStack out = new ItemStack(material, 1);
         ItemMeta outMeta = out.getItemMeta();
         assert outMeta != null;
         PersistentDataContainer container = outMeta.getPersistentDataContainer();

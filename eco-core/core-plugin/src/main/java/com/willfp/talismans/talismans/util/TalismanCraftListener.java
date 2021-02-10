@@ -1,5 +1,6 @@
 package com.willfp.talismans.talismans.util;
 
+import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Material;
@@ -43,6 +44,30 @@ public class TalismanCraftListener implements Listener {
     }
 
     /**
+     * Prevents using talismans in recipes.
+     * @param event The event to listen for.
+     */
+    @EventHandler
+    public void preventUseTalismanInCraft(@NotNull final PrepareItemCraftEvent event) {
+        if (!(event.getRecipe() instanceof ShapedRecipe)) {
+            return;
+        }
+
+        ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
+
+        if (AbstractEcoPlugin.LOADED_ECO_PLUGINS.contains(recipe.getKey().getNamespace())) {
+            return;
+        }
+
+        for (ItemStack itemStack : event.getInventory().getMatrix()) {
+            if (TalismanChecks.getTalismanOnItem(itemStack) != null) {
+                event.getInventory().setResult(new ItemStack(Material.AIR));
+                return;
+            }
+        }
+    }
+
+    /**
      * Called on item craft.
      * @param event The event to listen for.
      */
@@ -69,6 +94,31 @@ public class TalismanCraftListener implements Listener {
         if (!player.hasPermission("talismans.fromtable." + recipe.getKey().getKey().replace("_", ""))) {
             event.getInventory().setResult(new ItemStack(Material.AIR));
             event.setCancelled(true);
+        }
+    }
+
+    /**
+     * Prevents using talismans in recipes.
+     * @param event The event to listen for.
+     */
+    @EventHandler
+    public void preventUseTalismanInCraft(@NotNull final CraftItemEvent event) {
+        if (!(event.getRecipe() instanceof ShapedRecipe)) {
+            return;
+        }
+
+        ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
+
+        if (AbstractEcoPlugin.LOADED_ECO_PLUGINS.contains(recipe.getKey().getNamespace())) {
+            return;
+        }
+
+        for (ItemStack itemStack : event.getInventory().getMatrix()) {
+            if (TalismanChecks.getTalismanOnItem(itemStack) != null) {
+                event.getInventory().setResult(new ItemStack(Material.AIR));
+                event.setCancelled(true);
+                return;
+            }
         }
     }
 }
