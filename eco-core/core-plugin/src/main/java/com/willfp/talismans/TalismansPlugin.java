@@ -154,7 +154,7 @@ public class TalismansPlugin extends AbstractEcoPlugin {
         return Arrays.asList(
                 new WatcherTriggers(this),
                 new BlockPlaceListener(),
-                new TalismanCraftListener(),
+                new TalismanCraftListener(this),
                 new TalismanEquipEventListeners(this),
                 new DiscoverRecipeListener(this)
         );
