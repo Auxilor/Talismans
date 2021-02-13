@@ -8,6 +8,7 @@ import com.willfp.eco.util.recipe.parts.SimpleRecipePart;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +41,9 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
 
         ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
 
-        Talisman talisman = Talismans.getByKey(recipe.getKey());
+        NamespacedKey key = this.getPlugin().getNamespacedKeyFactory().create(recipe.getKey().getKey().replace("_displayed", ""));
+
+        Talisman talisman = Talismans.getByKey(key);
 
         if (talisman == null) {
             return;
@@ -52,7 +55,9 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
 
         Player player = (Player) event.getViewers().get(0);
 
-        if (!player.hasPermission("talismans.fromtable." + recipe.getKey().getKey().replace("_", ""))) {
+        String permission = "talismans.fromtable." + key.getKey().replace("_", "");
+
+        if (!player.hasPermission(permission)) {
             event.getInventory().setResult(new ItemStack(Material.AIR));
         }
     }
@@ -128,7 +133,9 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
 
         ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
 
-        Talisman talisman = Talismans.getByKey(recipe.getKey());
+        NamespacedKey key = this.getPlugin().getNamespacedKeyFactory().create(recipe.getKey().getKey().replace("_displayed", ""));
+
+        Talisman talisman = Talismans.getByKey(key);
 
         if (talisman == null) {
             return;
@@ -140,7 +147,9 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
 
         Player player = (Player) event.getViewers().get(0);
 
-        if (!player.hasPermission("talismans.fromtable." + recipe.getKey().getKey().replace("_", ""))) {
+        String permission = "talismans.fromtable." + key.getKey().replace("_", "");
+
+        if (!player.hasPermission(permission)) {
             event.getInventory().setResult(new ItemStack(Material.AIR));
             event.setCancelled(true);
         }
