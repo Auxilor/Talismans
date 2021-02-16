@@ -35,7 +35,7 @@ public class TalismansConfigs {
     @Nullable
     public TalismanConfig getTalismanConfig(@NotNull final String configName) {
         for (TalismanConfig config : TALISMAN_CONFIGS) {
-            if (config.getName().equals(configName)) {
+            if (config.getName().equalsIgnoreCase(configName)) {
                 return config;
             }
         }
