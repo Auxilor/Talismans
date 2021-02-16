@@ -1,8 +1,7 @@
 package com.willfp.talismans.display;
 
-import com.willfp.talismans.proxy.proxies.SkullProxy;
+import com.willfp.eco.util.SkullUtils;
 import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.util.ProxyUtils;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import lombok.experimental.UtilityClass;
@@ -88,7 +87,7 @@ public class TalismanDisplay {
         }
 
         if (meta instanceof SkullMeta) {
-            ProxyUtils.getProxy(SkullProxy.class).setTalismanTexture((SkullMeta) meta, talisman.getSkullBase64());
+            SkullUtils.setSkullTexture((SkullMeta) meta, talisman.getSkullBase64());
         }
 
         meta.setDisplayName(talisman.getFormattedName());
