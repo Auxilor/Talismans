@@ -26,9 +26,6 @@ commands:
   talreload:
     description: Reloads config
     permission: talismans.reload
-  taldebug:
-    description: Debug information
-    permission: talismans.taldebug
   talgive:
     description: Give a player a talisman
     permission: talismans.give
@@ -39,15 +36,11 @@ permissions:
     default: op
     children:
       talismans.reload: true
-      talismans.taldebug: true
       talismans.give: true
       talismans.fromtable.*: true
 
   talismans.reload:
     description: Allows reloading the config
-    default: op
-  talismans.taldebug:
-    description: Allows the use of /taldebug to print verbose debug information to console
     default: op
   talismans.give:
     description: Allows the use of /talgive.

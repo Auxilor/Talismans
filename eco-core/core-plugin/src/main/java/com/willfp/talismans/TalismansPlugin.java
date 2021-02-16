@@ -7,7 +7,6 @@ import com.willfp.eco.util.integrations.IntegrationLoader;
 import com.willfp.eco.util.interfaces.EcoRunnable;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
-import com.willfp.talismans.commands.CommandTaldebug;
 import com.willfp.talismans.commands.CommandTalgive;
 import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.commands.TabcompleterTalgive;
@@ -128,7 +127,6 @@ public class TalismansPlugin extends AbstractEcoPlugin {
     @Override
     public List<AbstractCommand> getCommands() {
         return Arrays.asList(
-                new CommandTaldebug(this),
                 new CommandTalreload(this),
                 new CommandTalgive(this)
         );
