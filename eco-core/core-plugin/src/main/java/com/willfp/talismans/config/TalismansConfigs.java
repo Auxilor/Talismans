@@ -5,6 +5,7 @@ import com.willfp.talismans.config.configs.TalismanConfig;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,9 +32,15 @@ public class TalismansConfigs {
      * @param configName The config name to match.
      * @return The matching {@link TalismanConfig}.
      */
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    @Nullable
     public TalismanConfig getTalismanConfig(@NotNull final String configName) {
-        return TALISMAN_CONFIGS.stream().filter(config -> config.getName().equalsIgnoreCase(configName)).findFirst().get();
+        for (TalismanConfig config : TALISMAN_CONFIGS) {
+            if (config.getName().equals(configName)) {
+                return config;
+            }
+        }
+
+        return null;
     }
 
     /**
