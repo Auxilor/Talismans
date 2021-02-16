@@ -1,6 +1,5 @@
 package com.willfp.talismans.commands;
 
-import com.willfp.eco.util.command.AbstractCommand;
 import com.willfp.eco.util.command.AbstractTabCompleter;
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
 import com.willfp.talismans.talismans.Talisman;
@@ -14,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TabcompleterTalgive extends AbstractTabCompleter {
@@ -25,9 +23,11 @@ public class TabcompleterTalgive extends AbstractTabCompleter {
 
     /**
      * Instantiate a new tab-completer for /talgive.
+     *
+     * @param command Instance of /talgive.
      */
-    public TabcompleterTalgive() {
-        super((AbstractCommand) Objects.requireNonNull(Bukkit.getPluginCommand("talgive")).getExecutor());
+    public TabcompleterTalgive(@NotNull final CommandTalgive command) {
+        super(command);
     }
 
     /**

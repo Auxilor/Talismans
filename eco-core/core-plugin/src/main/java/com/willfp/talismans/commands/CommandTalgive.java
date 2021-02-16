@@ -25,7 +25,7 @@ public class CommandTalgive extends AbstractCommand {
 
     @Override
     public @Nullable AbstractTabCompleter getTab() {
-        return new TabcompleterTalgive();
+        return new TabcompleterTalgive(this);
     }
 
     @Override
