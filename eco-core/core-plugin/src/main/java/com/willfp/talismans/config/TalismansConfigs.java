@@ -22,7 +22,7 @@ public class TalismansConfigs {
      */
     @ConfigUpdater
     public void updateConfigs() {
-        TALISMAN_CONFIGS.forEach(TalismanYamlConfig::update);
+        TALISMAN_CONFIGS.forEach(TalismanConfig::update);
     }
 
     /**
