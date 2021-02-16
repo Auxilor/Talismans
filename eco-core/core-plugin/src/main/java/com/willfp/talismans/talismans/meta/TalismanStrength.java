@@ -41,7 +41,7 @@ public class TalismanStrength {
     /**
      * The name.
      */
-    private String name;
+    private final String name;
 
     /**
      * Supplier to get the color.
