@@ -1,16 +1,15 @@
 package com.willfp.talismans.talismans;
 
-
 import com.willfp.eco.util.StringUtils;
+import com.willfp.eco.util.display.Display;
 import com.willfp.eco.util.optional.Prerequisite;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
-import com.willfp.eco.util.recipe.EcoShapedRecipe;
-import com.willfp.eco.util.recipe.lookup.RecipePartUtils;
+import com.willfp.eco.util.recipe.RecipeParts;
 import com.willfp.eco.util.recipe.parts.ComplexRecipePart;
+import com.willfp.eco.util.recipe.recipes.EcoShapedRecipe;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
-import com.willfp.talismans.display.TalismanDisplay;
 import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
@@ -41,7 +40,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"unchecked", "deprecation", "RedundantSuppression"})
+@SuppressWarnings({"unchecked", "deprecation"})
 public abstract class Talisman implements Listener, Watcher {
     /**
      * Instance of Talismans for talismans to be able to access.
@@ -192,7 +191,7 @@ public abstract class Talisman implements Listener, Watcher {
         disabledWorlds.clear();
 
         formattedDescription = Arrays.stream(WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false).split("\\r?\\n"))
-                .map(s -> TalismanDisplay.PREFIX + StringUtils.translate(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
+                .map(s -> Display.PREFIX + StringUtils.translate(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
 
         List<String> worldNames = Bukkit.getWorlds().stream().map(World::getName).map(String::toLowerCase).collect(Collectors.toList());
         List<String> disabledExistingWorldNames = disabledWorldNames.stream().filter(s -> worldNames.contains(s.toLowerCase())).collect(Collectors.toList());
@@ -208,14 +207,11 @@ public abstract class Talisman implements Listener, Watcher {
         PersistentDataContainer container = outMeta.getPersistentDataContainer();
         container.set(this.getKey(), PersistentDataType.INTEGER, 1);
         out.setItemMeta(outMeta);
-        TalismanDisplay.displayTalisman(out);
+        Display.display(out);
 
         this.itemStack = out;
 
-        RecipePartUtils.registerLookup(this.getKey().toString(), s -> {
-            Talisman talisman = Talismans.getByKey(this.getPlugin().getNamespacedKeyFactory().create(s.split(":")[1]));
-            return new ComplexRecipePart(test -> Objects.equals(talisman, TalismanChecks.getTalismanOnItem(test)), out);
-        });
+        RecipeParts.registerRecipePart(this.getKey(), new ComplexRecipePart(test -> Objects.equals(this, TalismanChecks.getTalismanOnItem(test)), out));
 
         if (this.isCraftable() && this.isEnabled()) {
             EcoShapedRecipe.Builder builder = EcoShapedRecipe.builder(this.getPlugin(), this.getKey().getKey())
@@ -224,7 +220,7 @@ public abstract class Talisman implements Listener, Watcher {
             List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
             for (int i = 0; i < 9; i++) {
-                builder.setRecipePart(i, RecipePartUtils.lookup(recipeStrings.get(i)));
+                builder.setRecipePart(i, RecipeParts.lookup(recipeStrings.get(i)));
             }
 
             this.recipe = builder.build();

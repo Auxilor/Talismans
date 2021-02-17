@@ -1,10 +1,9 @@
 package com.willfp.talismans;
 
+import com.willfp.eco.util.bukkit.scheduling.TimedRunnable;
 import com.willfp.eco.util.command.AbstractCommand;
-import com.willfp.eco.util.display.Display;
 import com.willfp.eco.util.display.DisplayModule;
 import com.willfp.eco.util.integrations.IntegrationLoader;
-import com.willfp.eco.util.interfaces.EcoRunnable;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
 import com.willfp.talismans.commands.CommandTalgive;
@@ -23,6 +22,7 @@ import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEventListener
 import lombok.Getter;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,9 +49,6 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      */
     @Override
     public void enable() {
-        Display.registerDisplayModule(new DisplayModule(TalismanDisplay::displayTalisman, 1, this.getPluginName()));
-        Display.registerRevertModule(TalismanDisplay::revertDisplay);
-
         this.getExtensionLoader().loadExtensions();
 
         if (this.getExtensionLoader().getLoadedExtensions().isEmpty()) {
@@ -92,8 +89,8 @@ public class TalismansPlugin extends AbstractEcoPlugin {
                 if (talisman.isEnabled()) {
                     this.getEventManager().registerListener(talisman);
 
-                    if (talisman instanceof EcoRunnable) {
-                        this.getScheduler().syncRepeating((EcoRunnable) talisman, 5, ((EcoRunnable) talisman).getTime());
+                    if (talisman instanceof TimedRunnable) {
+                        this.getScheduler().syncRepeating((TimedRunnable) talisman, 5, ((TimedRunnable) talisman).getTime());
                     }
                 }
             }, 1);
@@ -167,5 +164,11 @@ public class TalismansPlugin extends AbstractEcoPlugin {
                 Talismans.class,
                 TabcompleterTalgive.class
         );
+    }
+
+    @Override
+    @Nullable
+    protected DisplayModule createDisplayModule() {
+        return new TalismanDisplay(this);
     }
 }

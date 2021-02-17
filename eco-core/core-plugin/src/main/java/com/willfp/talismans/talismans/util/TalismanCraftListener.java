@@ -2,9 +2,9 @@ package com.willfp.talismans.talismans.util;
 
 import com.willfp.eco.util.internal.PluginDependent;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
-import com.willfp.eco.util.recipe.EcoShapedRecipe;
 import com.willfp.eco.util.recipe.parts.RecipePart;
 import com.willfp.eco.util.recipe.parts.SimpleRecipePart;
+import com.willfp.eco.util.recipe.recipes.EcoShapedRecipe;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Material;

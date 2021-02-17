@@ -1,74 +1,40 @@
 package com.willfp.talismans.display;
 
 import com.willfp.eco.util.SkullUtils;
+import com.willfp.eco.util.display.DisplayModule;
+import com.willfp.eco.util.display.DisplayPriority;
+import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
-import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@UtilityClass
-public class TalismanDisplay {
+public class TalismanDisplay extends DisplayModule {
     /**
-     * The prefix for all talisman lines to have in lore.
+     * Instantiate talisman display.
+     * @param plugin Instance of Talismans.
      */
-    public static final String PREFIX = "§z";
-
-    /**
-     * Revert display.
-     *
-     * @param item The item to revert.
-     * @return The item, updated.
-     */
-    public static ItemStack revertDisplay(@Nullable final ItemStack item) {
-        if (item == null || item.getItemMeta() == null) {
-            return item;
-        }
-
-        ItemMeta meta = item.getItemMeta();
-        List<String> itemLore;
-
-        if (meta.hasLore()) {
-            itemLore = meta.getLore();
-        } else {
-            itemLore = new ArrayList<>();
-        }
-
-        if (itemLore == null) {
-            itemLore = new ArrayList<>();
-        }
-
-        itemLore.removeIf(s -> s.startsWith(PREFIX));
-
-        meta.setLore(itemLore);
-        item.setItemMeta(meta);
-
-        return item;
+    public TalismanDisplay(@NotNull final AbstractEcoPlugin plugin) {
+        super(plugin, DisplayPriority.LOWEST);
     }
 
-    /**
-     * Show talisman in item lore, set display name, and set texture.
-     *
-     * @param item The item to update.
-     * @return The item, updated.
-     */
-    public static ItemStack displayTalisman(@Nullable final ItemStack item) {
-        if (item == null || item.getItemMeta() == null || !TalismanUtils.isTalismanMaterial(item.getType())) {
-            return item;
+    @Override
+    protected void display(@NotNull final ItemStack itemStack) {
+        if (!TalismanUtils.isTalismanMaterial(itemStack.getType())) {
+            return;
         }
 
-        revertDisplay(item);
+        revert(itemStack);
 
-        ItemMeta meta = item.getItemMeta();
-        if (meta == null) {
-            return item;
-        }
+        ItemMeta meta = itemStack.getItemMeta();
+
+        assert meta != null;
 
         List<String> itemLore = new ArrayList<>();
 
@@ -80,10 +46,10 @@ public class TalismanDisplay {
             itemLore = new ArrayList<>();
         }
 
-        Talisman talisman = TalismanChecks.getTalismanOnItem(item);
+        Talisman talisman = TalismanChecks.getTalismanOnItem(itemStack);
 
         if (talisman == null) {
-            return item;
+            return;
         }
 
         if (meta instanceof SkullMeta) {
@@ -98,8 +64,31 @@ public class TalismanDisplay {
 
         lore.addAll(itemLore);
         meta.setLore(lore);
-        item.setItemMeta(meta);
+        itemStack.setItemMeta(meta);
+    }
 
-        return item;
+    @Override
+    protected void revert(@NotNull final ItemStack itemStack) {
+        if (itemStack.getItemMeta() == null) {
+            return;
+        }
+
+        ItemMeta meta = itemStack.getItemMeta();
+        List<String> itemLore;
+
+        if (meta.hasLore()) {
+            itemLore = meta.getLore();
+        } else {
+            itemLore = new ArrayList<>();
+        }
+
+        if (itemLore == null) {
+            itemLore = new ArrayList<>();
+        }
+
+        itemLore.removeIf(s -> s.startsWith("§z"));
+
+        meta.setLore(itemLore);
+        itemStack.setItemMeta(meta);
     }
 }
