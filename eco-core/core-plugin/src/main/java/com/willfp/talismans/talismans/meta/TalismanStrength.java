@@ -55,7 +55,7 @@ public class TalismanStrength {
      * @param colorSupplier The color supplier.
      */
     protected TalismanStrength(@NotNull final String name,
-                     @NotNull final Supplier<String> colorSupplier) {
+                               @NotNull final Supplier<String> colorSupplier) {
         this.colorSupplier = colorSupplier;
         this.name = name;
         this.color = colorSupplier.get();
@@ -63,6 +63,7 @@ public class TalismanStrength {
 
     /**
      * Get the name of the strength.
+     *
      * @return The name.
      */
     public String name() {
