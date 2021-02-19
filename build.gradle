@@ -71,6 +71,8 @@ allprojects {
 
     compileJava.options.encoding = 'UTF-8'
     compileJava.dependsOn clean
+
+    build.dependsOn shadowJar
 }
 
 tasks.withType(Jar) {
