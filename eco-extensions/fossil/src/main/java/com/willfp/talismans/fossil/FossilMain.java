@@ -2,28 +2,28 @@ package com.willfp.talismans.fossil;
 
 import com.willfp.eco.util.extensions.Extension;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.talismans.fossil.talismans.ExperienceFossil;
+import com.willfp.talismans.fossil.talismans.FeatherFossil;
+import com.willfp.talismans.fossil.talismans.FlameFossil;
+import com.willfp.talismans.fossil.talismans.FluxFossil;
+import com.willfp.talismans.fossil.talismans.HealingFossil;
+import com.willfp.talismans.fossil.talismans.ResistanceFossil;
+import com.willfp.talismans.fossil.talismans.SpeedFossil;
+import com.willfp.talismans.fossil.talismans.StrengthFossil;
 import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.talismans.ExperienceTalisman;
-import com.willfp.talismans.talismans.talismans.FeatherTalisman;
-import com.willfp.talismans.talismans.talismans.FlameTalisman;
-import com.willfp.talismans.talismans.talismans.FluxTalisman;
-import com.willfp.talismans.talismans.talismans.HealingTalisman;
-import com.willfp.talismans.talismans.talismans.ResistanceTalisman;
-import com.willfp.talismans.talismans.talismans.SpeedTalisman;
-import com.willfp.talismans.talismans.talismans.StrengthTalisman;
 import org.jetbrains.annotations.NotNull;
 
 public class FossilMain extends Extension {
     public static final FossilConfig CONFIG = new FossilConfig();
 
-    public static final Talisman EXPERIENCE_FOSSIL = new ExperienceTalisman(FossilStrength.FOSSIL);
-    public static final Talisman FEATHER_FOSSIL = new FeatherTalisman(FossilStrength.FOSSIL);
-    public static final Talisman FLAME_FOSSIL = new FlameTalisman(FossilStrength.FOSSIL);
-    public static final Talisman FLUX_FOSSIL = new FluxTalisman(FossilStrength.FOSSIL);
-    public static final Talisman HEALING_FOSSIL = new HealingTalisman(FossilStrength.FOSSIL);
-    public static final Talisman RESISTANCE_FOSSIL = new ResistanceTalisman(FossilStrength.FOSSIL);
-    public static final Talisman SPEED_FOSSIL = new SpeedTalisman(FossilStrength.FOSSIL);
-    public static final Talisman STRENGTH_FOSSIL = new StrengthTalisman(FossilStrength.FOSSIL);
+    public static final Talisman EXPERIENCE_FOSSIL = new ExperienceFossil();
+    public static final Talisman FEATHER_FOSSIL = new FeatherFossil();
+    public static final Talisman FLAME_FOSSIL = new FlameFossil();
+    public static final Talisman FLUX_FOSSIL = new FluxFossil();
+    public static final Talisman HEALING_FOSSIL = new HealingFossil();
+    public static final Talisman RESISTANCE_FOSSIL = new ResistanceFossil();
+    public static final Talisman SPEED_FOSSIL = new SpeedFossil();
+    public static final Talisman STRENGTH_FOSSIL = new StrengthFossil();
 
     /**
      * Instantiate fossil extension.
