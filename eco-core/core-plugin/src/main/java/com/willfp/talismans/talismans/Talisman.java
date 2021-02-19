@@ -30,6 +30,7 @@ import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,11 +151,32 @@ public abstract class Talisman implements Listener, Watcher {
     protected Talisman(@NotNull final String key,
                        @NotNull final TalismanStrength strength,
                        @NotNull final Prerequisite... prerequisites) {
+        this(key, strength, null, prerequisites);
+    }
+
+    /**
+     * Create a new Talisman.
+     *
+     * @param key           The key name of the talisman.
+     * @param strength      The strength of the talisman.
+     * @param prerequisites Optional {@link Prerequisite}s that must be met.
+     * @param source        Override the source for talismans that exist in the base plugin with custom strengths.
+     */
+    protected Talisman(@NotNull final String key,
+                       @NotNull final TalismanStrength strength,
+                       @Nullable final Class<?> source,
+                       @NotNull final Prerequisite... prerequisites) {
         this.strength = strength;
         this.key = this.getPlugin().getNamespacedKeyFactory().create(key + "_" + strength.name().toLowerCase());
         this.uuid = UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes());
         this.configName = this.key.getKey().replace("_", "");
-        TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
+
+        if (source == null) {
+            TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
+        } else {
+            TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, source));
+        }
+
         this.config = TalismansConfigs.getTalismanConfig(this.configName);
 
         if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + configName) == null) {
