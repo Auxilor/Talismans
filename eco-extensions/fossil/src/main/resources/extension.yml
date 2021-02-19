@@ -1,0 +1,3 @@
+name: Fossil
+main: com.willfp.talismans.fossil.FossilMain
+version: ${projectVersion}

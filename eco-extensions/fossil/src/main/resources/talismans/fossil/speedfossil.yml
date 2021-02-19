@@ -1,0 +1,29 @@
+name: "Speed Fossil"
+description: Move 40% faster.
+enabled: true
+
+obtaining:
+  craftable: true
+  # Recipes are left-right, top-bottom
+  # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+  recipe:
+    - talismans:speed_relic
+    - talismans:speed_relic
+    - talismans:speed_relic
+
+    - talismans:speed_relic
+    - sponge
+    - talismans:speed_relic
+
+    - talismans:speed_relic
+    - talismans:speed_relic
+    - talismans:speed_relic
+
+general-config:
+  disabled-in-worlds: []
+  material: player_head
+  # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODY5NGM1Mzc2ZWFjYWY5ZTA1YmVlNDk5MTYwN2MwMTJlMTQxN2U4YmQ4NmI4NWNmMWM4ZTRlYzUwZThjYzZmYyJ9fX0=
+
+config:
+  percentage-bonus: 40
