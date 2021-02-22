@@ -11,6 +11,7 @@ import org.bukkit.Tag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -88,6 +89,20 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         }
 
         refreshPlayer(event.getPlayer(), event.getItemDrop().getItemStack());
+    }
+
+    /**
+     * Called on place shulker box.
+     *
+     * @param event The event to listen for.
+     */
+    @EventHandler
+    public void onShulkerPlace(@NotNull final BlockPlaceEvent event) {
+        ItemStack itemStack = event.getItemInHand();
+        if (!Tag.SHULKER_BOXES.isTagged(itemStack.getType())) {
+            return;
+        }
+        refreshPlayer(event.getPlayer(), itemStack);
     }
 
     /**
