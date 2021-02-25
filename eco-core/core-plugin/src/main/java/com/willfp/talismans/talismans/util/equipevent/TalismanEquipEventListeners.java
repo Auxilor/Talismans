@@ -102,7 +102,7 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         if (!Tag.SHULKER_BOXES.isTagged(itemStack.getType())) {
             return;
         }
-        refreshPlayer(event.getPlayer(), itemStack);
+        //refreshPlayer(event.getPlayer(), itemStack);
     }
 
     /**
