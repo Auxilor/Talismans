@@ -74,17 +74,7 @@ public class TalismanDisplay extends DisplayModule {
         }
 
         ItemMeta meta = itemStack.getItemMeta();
-        List<String> itemLore;
-
-        if (meta.hasLore()) {
-            itemLore = meta.getLore();
-        } else {
-            itemLore = new ArrayList<>();
-        }
-
-        if (itemLore == null) {
-            itemLore = new ArrayList<>();
-        }
+        List<String> itemLore = meta.getLore() == null ? new ArrayList<>() : meta.getLore();
 
         itemLore.removeIf(s -> s.startsWith("§z"));
 
