@@ -57,30 +57,6 @@ public class TalismanUtils {
                     )
             );
         });
-
-        if (talisman.getConfig().getConfig().get(Talismans.CONFIG_LOCATION + "chance-per-level") != null) {
-            PlaceholderManager.registerPlaceholder(
-                    new PlaceholderEntry(
-                            talisman.getConfigName() + "_" + "chance_per_level",
-                            player -> NumberUtils.format(talisman.getConfig().getDouble(Talismans.CONFIG_LOCATION + "chance-per-level"))
-                    )
-            );
-        }
-
-        if (talisman.getConfig().getConfig().get(Talismans.CONFIG_LOCATION + "multiplier") != null) {
-            PlaceholderManager.registerPlaceholder(
-                    new PlaceholderEntry(
-                            talisman.getConfigName() + "_" + "multiplier",
-                            player -> NumberUtils.format(talisman.getConfig().getDouble(Talismans.CONFIG_LOCATION + "multiplier"))
-                    )
-            );
-            PlaceholderManager.registerPlaceholder(
-                    new PlaceholderEntry(
-                            talisman.getConfigName() + "_" + "multiplier_percentage",
-                            player -> NumberUtils.format(talisman.getConfig().getDouble(Talismans.CONFIG_LOCATION + "multiplier") * 100)
-                    )
-            );
-        }
     }
 
     /**
