@@ -11,6 +11,7 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,19 @@ public class TabcompleterTalgive extends AbstractTabCompleter {
      */
     private static final List<String> TALISMAN_NAMES = Talismans.values().stream().filter(Talisman::isEnabled).map(talisman -> talisman.getKey().getKey()).collect(Collectors.toList());
 
+    /**
+     * The cached numbers.
+     */
+    private static final List<String> NUMBERS = Arrays.asList(
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "10",
+            "32",
+            "64"
+    );
     /**
      * Instantiate a new tab-completer for /talgive.
      *
@@ -65,6 +79,12 @@ public class TabcompleterTalgive extends AbstractTabCompleter {
             StringUtil.copyPartialMatches(args.get(1), TALISMAN_NAMES, completions);
 
             Collections.sort(completions);
+            return completions;
+        }
+
+        if (args.size() == 3) {
+            StringUtil.copyPartialMatches(args.get(2), NUMBERS, completions);
+
             return completions;
         }
 

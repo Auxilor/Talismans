@@ -8,6 +8,7 @@ import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,6 +42,16 @@ public class CommandTalgive extends AbstractCommand {
             return;
         }
 
+        int amount = 1;
+
+        if (args.size() > 2) {
+            try {
+                amount = Integer.parseInt(args.get(2));
+            } catch (NumberFormatException ignored) {
+                // do nothing
+            }
+        }
+
         String recieverName = args.get(0);
         Player reciever = Bukkit.getPlayer(recieverName);
 
@@ -59,6 +70,9 @@ public class CommandTalgive extends AbstractCommand {
         String message = this.getPlugin().getLangYml().getMessage("give-success");
         message = message.replace("%talisman%", talisman.getFormattedName()).replace("%recipient%", reciever.getName());
         sender.sendMessage(message);
-        reciever.getInventory().addItem(talisman.getItemStack());
+
+        ItemStack itemStack = talisman.getItemStack();
+        itemStack.setAmount(amount);
+        reciever.getInventory().addItem(itemStack);
     }
 }
