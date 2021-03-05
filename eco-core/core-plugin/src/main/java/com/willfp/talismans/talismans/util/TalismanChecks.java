@@ -1,6 +1,7 @@
 package com.willfp.talismans.talismans.util;
 
 import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.eco.util.optional.Prerequisite;
 import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
@@ -97,9 +98,18 @@ public class TalismanChecks {
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
+        if (Prerequisite.MINIMUM_1_16.isMet()) {
+            NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
+            return Talismans.getByKey(talismanKey);
+        } else {
+            for (Talisman talisman : Talismans.values()) {
+                if (container.has(talisman.getKey(), PersistentDataType.INTEGER)) {
+                    return talisman;
+                }
+            }
+        }
 
-        return Talismans.getByKey(talismanKey);
+        return null;
     }
 
     /**
