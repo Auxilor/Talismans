@@ -47,6 +47,11 @@ public class TalismanChecks {
     private static boolean readShulkerBoxes = true;
 
     /**
+     * If only offhand should be read.
+     */
+    private static boolean offhandOnly = false;
+
+    /**
      * The associated plugin instance.
      */
     private static final AbstractEcoPlugin PLUGIN = TalismansPlugin.getInstance();
@@ -149,6 +154,11 @@ public class TalismanChecks {
             rawContents.addAll(Arrays.asList(player.getEnderChest().getContents()));
         }
 
+        if (offhandOnly) {
+            rawContents.clear();
+            rawContents.add(player.getInventory().getItemInOffHand());
+        }
+
         rawContents.addAll(Arrays.asList(extra));
 
         for (ItemStack rawContent : rawContents) {
@@ -207,5 +217,6 @@ public class TalismanChecks {
     public static void reload() {
         readEnderChest = PLUGIN.getConfigYml().getBool("read-enderchest");
         readShulkerBoxes = PLUGIN.getConfigYml().getBool("read-shulkerboxes");
+        offhandOnly = PLUGIN.getConfigYml().getBool("offhand-only");
     }
 }
