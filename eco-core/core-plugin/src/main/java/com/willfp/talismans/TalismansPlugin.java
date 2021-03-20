@@ -50,11 +50,6 @@ public class TalismansPlugin extends AbstractEcoPlugin {
      */
     @Override
     public void enable() {
-        if (!Prerequisite.MINIMUM_1_16.isMet()) {
-            this.getLog().error("1.15 is not officially supported!");
-            this.getLog().error("(There's no reason not to upgrade to 1.16.5, do that)");
-        }
-
         this.getExtensionLoader().loadExtensions();
 
         if (this.getExtensionLoader().getLoadedExtensions().isEmpty()) {
