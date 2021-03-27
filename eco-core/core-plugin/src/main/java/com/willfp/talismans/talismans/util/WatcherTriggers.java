@@ -1,7 +1,6 @@
 package com.willfp.talismans.talismans.util;
 
 import com.google.common.collect.Sets;
-import com.willfp.eco.util.TridentUtils;
 import com.willfp.eco.util.integrations.antigrief.AntigriefManager;
 import com.willfp.eco.util.integrations.mcmmo.McmmoManager;
 import com.willfp.eco.util.internal.PluginDependent;
@@ -23,7 +22,6 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
@@ -587,7 +585,6 @@ public class WatcherTriggers extends PluginDependent implements Listener {
 
         Trident trident = (Trident) event.getEntity();
         Player shooter = (Player) trident.getShooter();
-        ItemStack item = TridentUtils.getItemStack(trident);
 
         TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman -> {
             if (event.isCancelled()) {

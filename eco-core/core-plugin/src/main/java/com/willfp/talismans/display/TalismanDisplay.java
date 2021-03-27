@@ -25,7 +25,8 @@ public class TalismanDisplay extends DisplayModule {
     }
 
     @Override
-    protected void display(@NotNull final ItemStack itemStack) {
+    protected void display(@NotNull final ItemStack itemStack,
+                           @NotNull final Object... args) {
         if (!TalismanUtils.isTalismanMaterial(itemStack.getType())) {
             return;
         }
@@ -64,21 +65,6 @@ public class TalismanDisplay extends DisplayModule {
 
         lore.addAll(itemLore);
         meta.setLore(lore);
-        itemStack.setItemMeta(meta);
-    }
-
-    @Override
-    protected void revert(@NotNull final ItemStack itemStack) {
-        if (itemStack.getItemMeta() == null) {
-            return;
-        }
-
-        ItemMeta meta = itemStack.getItemMeta();
-        List<String> itemLore = meta.getLore() == null ? new ArrayList<>() : meta.getLore();
-
-        itemLore.removeIf(s -> s.startsWith("§z"));
-
-        meta.setLore(itemLore);
         itemStack.setItemMeta(meta);
     }
 }
