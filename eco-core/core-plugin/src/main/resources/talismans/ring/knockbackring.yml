@@ -1,0 +1,29 @@
+name: "Knockback Ring"
+description: Deal 25% more knockback.
+enabled: true
+
+obtaining:
+  craftable: true
+  # Recipes are left-right, top-bottom
+  # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+  recipe:
+    - talismans:knockback_talisman
+    - talismans:knockback_talisman
+    - talismans:knockback_talisman
+
+    - talismans:knockback_talisman
+    - heart_of_the_sea
+    - talismans:knockback_talisman
+
+    - talismans:knockback_talisman
+    - talismans:knockback_talisman
+    - talismans:knockback_talisman
+
+general-config:
+  disabled-in-worlds: []
+  material: player_head
+  # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
+  texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjgxY2M2NGIwNDViMThhM2E0MTljNTk1YWQ2NThmNmNlMmM1OTk5NDk0NzdhZmU0MmE2YjU4N2FhMzE1YmYifX19
+
+config:
+  percentage-bonus: 25

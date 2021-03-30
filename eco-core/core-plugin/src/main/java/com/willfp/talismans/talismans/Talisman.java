@@ -40,7 +40,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"unchecked", "deprecation"})
 public abstract class Talisman implements Listener, Watcher {
     /**
      * Instance of Talismans for talismans to be able to access.
