@@ -20,7 +20,6 @@ import com.willfp.talismans.talismans.talismans.FluxTalisman;
 import com.willfp.talismans.talismans.talismans.GravityTalisman;
 import com.willfp.talismans.talismans.talismans.HealingTalisman;
 import com.willfp.talismans.talismans.talismans.ImmunityTalisman;
-import com.willfp.talismans.talismans.talismans.KnockbackTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
 import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
 import com.willfp.talismans.talismans.talismans.RaidTalisman;
@@ -113,9 +112,6 @@ public class Talismans {
     public static final Talisman GRAVITY_TALISMAN = new GravityTalisman(TalismanStrength.TALISMAN);
     public static final Talisman GRAVITY_RING = new GravityTalisman(TalismanStrength.RING);
     public static final Talisman GRAVITY_RELIC = new GravityTalisman(TalismanStrength.RELIC);
-    public static final Talisman KNOCKBACK_TALISMAN = new KnockbackTalisman(TalismanStrength.TALISMAN);
-    public static final Talisman KNOCKBACK_RING = new KnockbackTalisman(TalismanStrength.RING);
-    public static final Talisman KNOCKBACK_RELIC = new KnockbackTalisman(TalismanStrength.RELIC);
     public static final Talisman ATTACK_SPEED_TALISMAN = new AttackSpeedTalisman(TalismanStrength.TALISMAN);
     public static final Talisman ATTACK_SPEED_RING = new AttackSpeedTalisman(TalismanStrength.RING);
     public static final Talisman ATTACK_SPEEED_TALISMAN = new AttackSpeedTalisman(TalismanStrength.RELIC);
