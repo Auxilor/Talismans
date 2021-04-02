@@ -46,9 +46,9 @@ public class TalismanUtils {
                 )
         );
 
-        talisman.getConfig().getConfig().getKeys(true).forEach(string -> {
+        talisman.getConfig().getKeys(true).forEach(string -> {
             String key = string.replace("\\.", "_").replace("-", "_");
-            Object object = talisman.getConfig().getConfig().get(string);
+            Object object = talisman.getConfig().getRaw(string);
 
             PlaceholderManager.registerPlaceholder(
                     new PlaceholderEntry(
