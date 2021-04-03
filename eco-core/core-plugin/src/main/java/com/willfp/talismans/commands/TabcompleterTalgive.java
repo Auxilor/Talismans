@@ -85,6 +85,12 @@ public class TabcompleterTalgive extends AbstractTabCompleter {
         if (args.size() == 3) {
             StringUtil.copyPartialMatches(args.get(2), NUMBERS, completions);
 
+            completions.sort((s1, s2) -> {
+                int t1 = Integer.parseInt(s1);
+                int t2 = Integer.parseInt(s2);
+                return t1 - t2;
+            });
+
             return completions;
         }
 
