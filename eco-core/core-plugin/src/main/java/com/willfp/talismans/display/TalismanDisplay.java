@@ -1,9 +1,9 @@
 package com.willfp.talismans.display;
 
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.display.DisplayModule;
+import com.willfp.eco.core.display.DisplayPriority;
 import com.willfp.eco.util.SkullUtils;
-import com.willfp.eco.util.display.DisplayModule;
-import com.willfp.eco.util.display.DisplayPriority;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
@@ -20,7 +20,7 @@ public class TalismanDisplay extends DisplayModule {
      * Instantiate talisman display.
      * @param plugin Instance of Talismans.
      */
-    public TalismanDisplay(@NotNull final AbstractEcoPlugin plugin) {
+    public TalismanDisplay(@NotNull final EcoPlugin plugin) {
         super(plugin, DisplayPriority.LOWEST);
     }
 

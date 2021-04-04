@@ -1,6 +1,6 @@
 package com.willfp.talismans.config;
 
-import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.eco.core.config.ConfigUpdater;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;

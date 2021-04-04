@@ -1,6 +1,6 @@
 package com.willfp.talismans.talismans.talismans;
 
-import com.willfp.eco.util.events.naturalexpgainevent.NaturalExpGainEvent;
+import com.willfp.eco.core.events.NaturalExpGainEvent;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.meta.TalismanStrength;

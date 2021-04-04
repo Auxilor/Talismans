@@ -1,7 +1,7 @@
 package com.willfp.talismans.talismans.util.equipevent;
 
-import com.willfp.eco.util.internal.PluginDependent;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.PluginDependent;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
@@ -29,7 +29,7 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
      *
      * @param plugin The plugin to link to.
      */
-    public TalismanEquipEventListeners(@NotNull final AbstractEcoPlugin plugin) {
+    public TalismanEquipEventListeners(@NotNull final EcoPlugin plugin) {
         super(plugin);
     }
 

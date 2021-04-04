@@ -1,6 +1,6 @@
 package com.willfp.talismans.config.configs;
 
-import com.willfp.eco.util.config.ExtendableConfig;
+import com.willfp.eco.core.config.ExtendableConfig;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.meta.TalismanStrength;
 import lombok.Getter;

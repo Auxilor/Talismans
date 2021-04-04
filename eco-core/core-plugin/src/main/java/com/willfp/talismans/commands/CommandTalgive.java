@@ -1,8 +1,8 @@
 package com.willfp.talismans.commands;
 
-import com.willfp.eco.util.command.AbstractCommand;
-import com.willfp.eco.util.command.AbstractTabCompleter;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.command.AbstractCommand;
+import com.willfp.eco.core.command.AbstractTabCompleter;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Bukkit;
@@ -20,7 +20,7 @@ public class CommandTalgive extends AbstractCommand {
      *
      * @param plugin The plugin for the commands to listen for.
      */
-    public CommandTalgive(@NotNull final AbstractEcoPlugin plugin) {
+    public CommandTalgive(@NotNull final EcoPlugin plugin) {
         super(plugin, "talgive", "talismans.give", false);
     }
 

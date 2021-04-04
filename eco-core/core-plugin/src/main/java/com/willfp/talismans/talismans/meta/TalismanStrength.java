@@ -1,6 +1,6 @@
 package com.willfp.talismans.talismans.meta;
 
-import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
+import com.willfp.eco.core.config.ConfigUpdater;
 import com.willfp.talismans.TalismansPlugin;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

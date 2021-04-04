@@ -1,12 +1,10 @@
 package com.willfp.talismans;
 
-import com.willfp.eco.util.bukkit.scheduling.TimedRunnable;
-import com.willfp.eco.util.command.AbstractCommand;
-import com.willfp.eco.util.display.DisplayModule;
-import com.willfp.eco.util.integrations.IntegrationLoader;
-import com.willfp.eco.util.optional.Prerequisite;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
-import com.willfp.eco.util.protocollib.AbstractPacketAdapter;
+import com.willfp.eco.core.AbstractPacketAdapter;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.command.AbstractCommand;
+import com.willfp.eco.core.display.DisplayModule;
+import com.willfp.eco.core.integrations.IntegrationLoader;
 import com.willfp.talismans.commands.CommandTalgive;
 import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.commands.TabcompleterTalgive;
@@ -30,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class TalismansPlugin extends AbstractEcoPlugin {
+public class TalismansPlugin extends EcoPlugin {
     /**
      * Instance of the plugin.
      */
@@ -53,13 +51,13 @@ public class TalismansPlugin extends AbstractEcoPlugin {
         this.getExtensionLoader().loadExtensions();
 
         if (this.getExtensionLoader().getLoadedExtensions().isEmpty()) {
-            this.getLog().info("&cNo extensions found");
+            this.getLogger().info("&cNo extensions found");
         } else {
-            this.getLog().info("Extensions Loaded:");
-            this.getExtensionLoader().getLoadedExtensions().forEach(extension -> this.getLog().info("- " + extension.getName() + " v" + extension.getVersion()));
+            this.getLogger().info("Extensions Loaded:");
+            this.getExtensionLoader().getLoadedExtensions().forEach(extension -> this.getLogger().info("- " + extension.getName() + " v" + extension.getVersion()));
         }
 
-        this.getLog().info(Talismans.values().size() + " Talismans Loaded");
+        this.getLogger().info(Talismans.values().size() + " Talismans Loaded");
     }
 
     /**
@@ -89,10 +87,6 @@ public class TalismansPlugin extends AbstractEcoPlugin {
             this.getScheduler().runLater(() -> {
                 if (talisman.isEnabled()) {
                     this.getEventManager().registerListener(talisman);
-
-                    if (talisman instanceof TimedRunnable) {
-                        this.getScheduler().syncRepeating((TimedRunnable) talisman, 5, ((TimedRunnable) talisman).getTime());
-                    }
                 }
             }, 1);
         });

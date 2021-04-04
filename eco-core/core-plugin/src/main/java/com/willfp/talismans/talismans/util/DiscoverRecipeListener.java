@@ -1,7 +1,7 @@
 package com.willfp.talismans.talismans.util;
 
-import com.willfp.eco.util.internal.PluginDependent;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.PluginDependent;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ public class DiscoverRecipeListener extends PluginDependent implements Listener 
      *
      * @param plugin Talismans.
      */
-    public DiscoverRecipeListener(@NotNull final AbstractEcoPlugin plugin) {
+    public DiscoverRecipeListener(@NotNull final EcoPlugin plugin) {
         super(plugin);
     }
 

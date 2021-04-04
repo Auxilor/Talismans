@@ -1,10 +1,10 @@
 package com.willfp.talismans.talismans.util;
 
 
+import com.willfp.eco.core.integrations.placeholder.PlaceholderEntry;
+import com.willfp.eco.core.integrations.placeholder.PlaceholderManager;
 import com.willfp.eco.util.NumberUtils;
 import com.willfp.eco.util.StringUtils;
-import com.willfp.eco.util.integrations.placeholder.PlaceholderEntry;
-import com.willfp.eco.util.integrations.placeholder.PlaceholderManager;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
@@ -48,7 +48,7 @@ public class TalismanUtils {
 
         talisman.getConfig().getKeys(true).forEach(string -> {
             String key = string.replace("\\.", "_").replace("-", "_");
-            Object object = talisman.getConfig().getRaw(string);
+            Object object = talisman.getConfig().get(string);
 
             PlaceholderManager.registerPlaceholder(
                     new PlaceholderEntry(

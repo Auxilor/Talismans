@@ -1,7 +1,7 @@
 package com.willfp.talismans.talismans.util;
 
-import com.willfp.eco.util.internal.PluginDependent;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.PluginDependent;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Material;
@@ -21,7 +21,7 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
      *
      * @param plugin Instance of talismans.
      */
-    public TalismanCraftListener(@NotNull final AbstractEcoPlugin plugin) {
+    public TalismanCraftListener(@NotNull final EcoPlugin plugin) {
         super(plugin);
     }
 

@@ -1,6 +1,6 @@
 package com.willfp.talismans.talismans.talismans;
 
-import com.willfp.eco.util.drops.DropQueue;
+import com.willfp.eco.core.drops.DropQueue;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.meta.TalismanStrength;

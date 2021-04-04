@@ -1,12 +1,12 @@
 package com.willfp.talismans.talismans;
 
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.Prerequisite;
+import com.willfp.eco.core.display.Display;
+import com.willfp.eco.core.items.CustomItem;
+import com.willfp.eco.core.items.Items;
+import com.willfp.eco.core.recipe.recipes.ShapedCraftingRecipe;
 import com.willfp.eco.util.StringUtils;
-import com.willfp.eco.util.display.Display;
-import com.willfp.eco.util.optional.Prerequisite;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
-import com.willfp.eco.util.recipe.RecipeParts;
-import com.willfp.eco.util.recipe.parts.ComplexRecipePart;
-import com.willfp.eco.util.recipe.recipes.EcoShapedRecipe;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
@@ -45,7 +45,7 @@ public abstract class Talisman implements Listener, Watcher {
      * Instance of Talismans for talismans to be able to access.
      */
     @Getter(AccessLevel.PROTECTED)
-    private final AbstractEcoPlugin plugin = TalismansPlugin.getInstance();
+    private final EcoPlugin plugin = TalismansPlugin.getInstance();
 
     /**
      * The key to store talismans in meta.
@@ -107,7 +107,7 @@ public abstract class Talisman implements Listener, Watcher {
      * The talisman recipe.
      */
     @Getter
-    private EcoShapedRecipe recipe = null;
+    private ShapedCraftingRecipe recipe = null;
 
     /**
      * If the talisman is craftable.
@@ -210,16 +210,16 @@ public abstract class Talisman implements Listener, Watcher {
 
         this.itemStack = out;
 
-        RecipeParts.registerRecipePart(this.getKey(), new ComplexRecipePart(test -> Objects.equals(this, TalismanChecks.getTalismanOnItem(test)), out));
+        new CustomItem(this.getKey(), test -> Objects.equals(this, TalismanChecks.getTalismanOnItem(test)), out).register();
 
         if (this.isCraftable() && this.isEnabled()) {
-            EcoShapedRecipe.Builder builder = EcoShapedRecipe.builder(this.getPlugin(), this.getKey().getKey())
+            ShapedCraftingRecipe.Builder builder = ShapedCraftingRecipe.builder(this.getPlugin(), this.getKey().getKey())
                     .setOutput(out);
 
             List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
             for (int i = 0; i < 9; i++) {
-                builder.setRecipePart(i, RecipeParts.lookup(recipeStrings.get(i)));
+                builder.setRecipePart(i, Items.lookup(recipeStrings.get(i)));
             }
 
             this.recipe = builder.build();

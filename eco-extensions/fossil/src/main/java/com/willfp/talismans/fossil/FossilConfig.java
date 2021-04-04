@@ -1,6 +1,6 @@
 package com.willfp.talismans.fossil;
 
-import com.willfp.eco.util.config.ExtendableConfig;
+import com.willfp.eco.core.config.ExtendableConfig;
 import com.willfp.talismans.TalismansPlugin;
 
 public class FossilConfig extends ExtendableConfig {

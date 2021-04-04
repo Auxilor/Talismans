@@ -1,10 +1,10 @@
 package com.willfp.talismans.talismans.util;
 
 import com.google.common.collect.Sets;
-import com.willfp.eco.util.integrations.antigrief.AntigriefManager;
-import com.willfp.eco.util.integrations.mcmmo.McmmoManager;
-import com.willfp.eco.util.internal.PluginDependent;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.PluginDependent;
+import com.willfp.eco.core.integrations.antigrief.AntigriefManager;
+import com.willfp.eco.core.integrations.mcmmo.McmmoManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -46,7 +46,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
      *
      * @param plugin The plugin to link the events to.
      */
-    public WatcherTriggers(@NotNull final AbstractEcoPlugin plugin) {
+    public WatcherTriggers(@NotNull final EcoPlugin plugin) {
         super(plugin);
     }
 

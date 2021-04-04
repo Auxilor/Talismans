@@ -1,7 +1,7 @@
 package com.willfp.talismans.fossil;
 
-import com.willfp.eco.util.extensions.Extension;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.extensions.Extension;
 import com.willfp.talismans.fossil.talismans.ExperienceFossil;
 import com.willfp.talismans.fossil.talismans.FeatherFossil;
 import com.willfp.talismans.fossil.talismans.FlameFossil;
@@ -30,7 +30,7 @@ public class FossilMain extends Extension {
      *
      * @param plugin Instance of Talismans.
      */
-    public FossilMain(@NotNull final AbstractEcoPlugin plugin) {
+    public FossilMain(@NotNull final EcoPlugin plugin) {
         super(plugin);
     }
 

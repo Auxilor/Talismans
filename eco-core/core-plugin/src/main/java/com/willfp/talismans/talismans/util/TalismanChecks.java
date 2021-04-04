@@ -1,8 +1,7 @@
 package com.willfp.talismans.talismans.util;
 
-import com.willfp.eco.util.config.updating.annotations.ConfigUpdater;
-import com.willfp.eco.util.optional.Prerequisite;
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
+import com.willfp.eco.core.config.ConfigUpdater;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
@@ -54,7 +53,7 @@ public class TalismanChecks {
     /**
      * The associated plugin instance.
      */
-    private static final AbstractEcoPlugin PLUGIN = TalismansPlugin.getInstance();
+    private static final EcoPlugin PLUGIN = TalismansPlugin.getInstance();
 
     /**
      * Does the specified ItemStack have a certain Talisman present?
@@ -103,18 +102,8 @@ public class TalismanChecks {
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        if (Prerequisite.MINIMUM_1_16.isMet()) {
-            NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
-            return Talismans.getByKey(talismanKey);
-        } else {
-            for (Talisman talisman : Talismans.values()) {
-                if (container.has(talisman.getKey(), PersistentDataType.INTEGER)) {
-                    return talisman;
-                }
-            }
-        }
-
-        return null;
+        NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
+        return Talismans.getByKey(talismanKey);
     }
 
     /**

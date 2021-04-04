@@ -1,6 +1,6 @@
 package com.willfp.talismans.talismans.util.equipevent;
 
-import com.willfp.eco.util.plugin.AbstractEcoPlugin;
+import com.willfp.eco.core.EcoPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.Bukkit;
@@ -25,7 +25,7 @@ public class SyncTalismanEquipEventTask {
      *
      * @param plugin The plugin to schedule for.
      */
-    public static void scheduleAutocheck(@NotNull final AbstractEcoPlugin plugin) {
+    public static void scheduleAutocheck(@NotNull final EcoPlugin plugin) {
         plugin.getScheduler().syncRepeating(() -> {
             for (Player player : plugin.getServer().getOnlinePlayers()) {
                 UUID uuid = player.getUniqueId();
