@@ -8,7 +8,6 @@ import com.willfp.eco.core.integrations.IntegrationLoader;
 import com.willfp.talismans.commands.CommandTalgive;
 import com.willfp.talismans.commands.CommandTalreload;
 import com.willfp.talismans.commands.TabcompleterTalgive;
-import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.display.TalismanDisplay;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.BlockPlaceListener;
@@ -153,7 +152,6 @@ public class TalismansPlugin extends EcoPlugin {
     @Override
     public List<Class<?>> getUpdatableClasses() {
         return Arrays.asList(
-                TalismansConfigs.class,
                 TalismanChecks.class,
                 Talismans.class,
                 TabcompleterTalgive.class

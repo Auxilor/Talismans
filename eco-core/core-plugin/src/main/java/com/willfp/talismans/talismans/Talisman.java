@@ -8,7 +8,6 @@ import com.willfp.eco.core.items.Items;
 import com.willfp.eco.core.recipe.recipes.ShapedCraftingRecipe;
 import com.willfp.eco.util.StringUtils;
 import com.willfp.talismans.TalismansPlugin;
-import com.willfp.talismans.config.TalismansConfigs;
 import com.willfp.talismans.config.configs.TalismanConfig;
 import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanChecks;
@@ -153,8 +152,7 @@ public abstract class Talisman implements Listener, Watcher {
         this.key = this.getPlugin().getNamespacedKeyFactory().create(key + "_" + strength.name().toLowerCase());
         this.uuid = UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes());
         this.configName = this.key.getKey().replace("_", "");
-        TalismansConfigs.addTalismanConfig(new TalismanConfig(this.configName, this.strength, this.getClass()));
-        this.config = TalismansConfigs.getTalismanConfig(this.configName);
+        this.config = new TalismanConfig(this.configName, this.strength, this.getClass(), this.plugin);
 
         if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + configName) == null) {
             Permission permission = new Permission(
@@ -179,6 +177,7 @@ public abstract class Talisman implements Listener, Watcher {
      * This can be overridden but may lead to unexpected behavior.
      */
     public void update() {
+        config.update();
         name = StringUtils.translate(config.getString("name"));
         description = StringUtils.translate(config.getString("description"));
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
