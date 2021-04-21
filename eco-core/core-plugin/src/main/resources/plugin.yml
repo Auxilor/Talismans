@@ -1,7 +1,7 @@
 name: Talismans
 version: ${projectVersion}
 main: com.willfp.talismans.TalismansPlugin
-api-version: 1.15
+api-version: 1.16
 authors: [ Auxilor ]
 website: willfp.com
 load: STARTUP
