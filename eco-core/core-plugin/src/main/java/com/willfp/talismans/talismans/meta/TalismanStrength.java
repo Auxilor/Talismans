@@ -1,5 +1,6 @@
 package com.willfp.talismans.talismans.meta;
 
+import com.google.common.collect.ImmutableSet;
 import com.willfp.eco.core.config.ConfigUpdater;
 import com.willfp.talismans.TalismansPlugin;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
 
 public class TalismanStrength {
@@ -96,7 +98,7 @@ public class TalismanStrength {
      *
      * @return A collection of strengths.
      */
-    public static Collection<TalismanStrength> values() {
-        return REGISTERED.values();
+    public static Set<TalismanStrength> values() {
+        return ImmutableSet.copyOf(REGISTERED.values());
     }
 }
