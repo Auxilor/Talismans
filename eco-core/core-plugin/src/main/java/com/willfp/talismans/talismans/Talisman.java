@@ -1,5 +1,6 @@
 package com.willfp.talismans.talismans;
 
+import com.google.common.collect.ImmutableSet;
 import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.Prerequisite;
 import com.willfp.talismans.TalismansPlugin;
@@ -151,6 +152,15 @@ public abstract class Talisman implements Listener, Watcher {
      */
     public final TalismanLevel getLevel(final int level) {
         return levels.get(level);
+    }
+
+    /**
+     * Get all level.
+     *
+     * @return The levels.
+     */
+    public final Set<TalismanLevel> getLevels() {
+        return ImmutableSet.copyOf(levels.values());
     }
 
     @Override

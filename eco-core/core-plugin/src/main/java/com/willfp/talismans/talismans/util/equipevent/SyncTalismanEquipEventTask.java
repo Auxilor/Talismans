@@ -1,7 +1,7 @@
 package com.willfp.talismans.talismans.util.equipevent;
 
 import com.willfp.eco.core.EcoPlugin;
-import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class SyncTalismanEquipEventTask {
     /**
      * Cache for the scheduler.
      */
-    private static final Map<UUID, Set<Talisman>> syncCache = Collections.synchronizedMap(new HashMap<>());
+    private static final Map<UUID, Set<TalismanLevel>> syncCache = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * Schedule sync repeating updater task.
@@ -30,16 +30,16 @@ public class SyncTalismanEquipEventTask {
             for (Player player : plugin.getServer().getOnlinePlayers()) {
                 UUID uuid = player.getUniqueId();
 
-                Set<Talisman> buildingBefore = syncCache.get(uuid);
+                Set<TalismanLevel> buildingBefore = syncCache.get(uuid);
                 if (buildingBefore == null) {
                     buildingBefore = new HashSet<>();
                 }
 
-                Set<Talisman> before = buildingBefore;
+                Set<TalismanLevel> before = buildingBefore;
 
-                Set<Talisman> after = TalismanChecks.getTalismansOnPlayer(player);
+                Set<TalismanLevel> after = TalismanChecks.getTalismansOnPlayer(player);
 
-                for (Talisman talisman : new HashSet<>(before)) {
+                for (TalismanLevel talisman : new HashSet<>(before)) {
                     if (after.contains(talisman)) {
                         before.remove(talisman);
                         after.remove(talisman);
@@ -49,14 +49,14 @@ public class SyncTalismanEquipEventTask {
                 syncCache.put(uuid, after);
 
                 after.removeAll(before);
-                for (Talisman talisman : after) {
-                    if (talisman.isEnabled()) {
+                for (TalismanLevel talisman : after) {
+                    if (talisman.getTalisman().isEnabled()) {
                         Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.EQUIP));
                     }
                 }
 
                 before.removeAll(after);
-                for (Talisman talisman : before) {
+                for (TalismanLevel talisman : before) {
                     Bukkit.getPluginManager().callEvent(new TalismanEquipEvent(player, talisman, EquipType.UNEQUIP));
                 }
             }

@@ -1,6 +1,6 @@
 package com.willfp.talismans.talismans.util.equipevent;
 
-import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -17,7 +17,7 @@ public class TalismanEquipEvent extends PlayerEvent {
      * The talisman.
      */
     @Getter
-    private final Talisman talisman;
+    private final TalismanLevel talisman;
 
     /**
      * If the event is from being equipped or unequipped.
@@ -33,7 +33,7 @@ public class TalismanEquipEvent extends PlayerEvent {
      * @param type     The equip type.
      */
     public TalismanEquipEvent(@NotNull final Player who,
-                              @NotNull final Talisman talisman,
+                              @NotNull final TalismanLevel talisman,
                               @NotNull final EquipType type) {
         super(who);
         this.talisman = talisman;
@@ -49,5 +49,4 @@ public class TalismanEquipEvent extends PlayerEvent {
     public static HandlerList getHandlerList() {
         return HANDLER_LIST;
     }
-
 }
