@@ -7,14 +7,6 @@ description:
   # How many characters to have on each line of description.
   wrap: 20
 
-strengths:
-  talisman:
-    color: "&e"
-  ring:
-    color: "&c"
-  relic:
-    color: "&d"
-
 crafting:
   discover: true # If players should automatically have recipes added to their crafting table.
 

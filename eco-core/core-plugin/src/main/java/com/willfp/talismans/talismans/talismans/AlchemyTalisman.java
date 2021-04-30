@@ -1,7 +1,6 @@
 package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import org.bukkit.entity.Player;
@@ -11,8 +10,8 @@ import org.bukkit.potion.PotionEffect;
 import org.jetbrains.annotations.NotNull;
 
 public class AlchemyTalisman extends Talisman {
-    public AlchemyTalisman(@NotNull final TalismanStrength strength) {
-        super("alchemy", strength);
+    public AlchemyTalisman() {
+        super("alchemy");
     }
 
     @EventHandler
@@ -30,11 +29,13 @@ public class AlchemyTalisman extends Talisman {
             return;
         }
 
-        if (!TalismanChecks.hasTalisman(player, this)) {
+        int level = TalismanChecks.getTalismanLevel(player, this);
+
+        if (level == 0) {
             return;
         }
 
-        if (!TalismanUtils.passedChance(this)) {
+        if (!TalismanUtils.passedChance(this.getLevel(level))) {
             return;
         }
 

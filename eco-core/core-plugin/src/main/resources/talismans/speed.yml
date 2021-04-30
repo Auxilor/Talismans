@@ -1,0 +1,29 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "Speed Talisman I"
+    description: Move 5% faster.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - sugar
+        - sugar
+        - sugar
+
+        - sugar
+        - ender_eye
+        - sugar
+
+        - sugar
+        - sugar
+        - sugar
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODYyNGJhY2I1ZjE5ODZlNjQ3N2FiY2U0YWU3ZGNhMTgyMGE1MjYwYjYyMzNiNTViYTFkOWJhOTM2Yzg0YiJ9fX0=
+
+    config:
+      percentage-bonus: 5

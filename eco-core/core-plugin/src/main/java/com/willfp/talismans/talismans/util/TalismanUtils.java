@@ -1,11 +1,8 @@
 package com.willfp.talismans.talismans.util;
 
 
-import com.willfp.eco.core.integrations.placeholder.PlaceholderEntry;
-import com.willfp.eco.core.integrations.placeholder.PlaceholderManager;
 import com.willfp.eco.util.NumberUtils;
-import com.willfp.eco.util.StringUtils;
-import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
@@ -29,34 +26,8 @@ public class TalismanUtils {
      * @param talisman The talisman to query.
      * @return If the talisman should then be executed.
      */
-    public static boolean passedChance(@NotNull final Talisman talisman) {
+    public static boolean passedChance(@NotNull final TalismanLevel talisman) {
         return NumberUtils.randFloat(0, 1) < (talisman.getConfig().getDouble(Talismans.CONFIG_LOCATION + "chance") / 100);
-    }
-
-    /**
-     * Register the placeholders for a talisman.
-     *
-     * @param talisman The talisman to register placeholders for.
-     */
-    public static void registerPlaceholders(@NotNull final Talisman talisman) {
-        PlaceholderManager.registerPlaceholder(
-                new PlaceholderEntry(
-                        talisman.getConfigName() + "_" + "enabled",
-                        player -> String.valueOf(talisman.isEnabled())
-                )
-        );
-
-        talisman.getConfig().getKeys(true).forEach(string -> {
-            String key = string.replace("\\.", "_").replace("-", "_");
-            Object object = talisman.getConfig().get(string);
-
-            PlaceholderManager.registerPlaceholder(
-                    new PlaceholderEntry(
-                            talisman.getConfigName() + "_" + key,
-                            player -> StringUtils.internalToString(object)
-                    )
-            );
-        });
     }
 
     /**

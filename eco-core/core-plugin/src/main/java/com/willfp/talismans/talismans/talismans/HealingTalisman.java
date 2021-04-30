@@ -2,7 +2,6 @@ package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
-import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,8 +9,8 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class HealingTalisman extends Talisman {
-    public HealingTalisman(@NotNull final TalismanStrength strength) {
-        super("healing", strength);
+    public HealingTalisman() {
+        super("healing");
     }
 
     @EventHandler

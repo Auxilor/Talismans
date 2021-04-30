@@ -1,0 +1,29 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "End Talisman I"
+    description: Deal 10% more damage in the end.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - shulker_shell
+        - shulker_shell
+        - shulker_shell
+
+        - shulker_shell
+        - ender_eye
+        - shulker_shell
+
+        - shulker_shell
+        - shulker_shell
+        - shulker_shell
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzZjYWM1OWIyYWFlNDg5YWEwNjg3YjVkODAyYjI1NTVlYjE0YTQwYmQ2MmIyMWViMTE2ZmE1NjljZGI3NTYifX19
+
+    config:
+      percent-more-damage: 10

@@ -2,7 +2,6 @@ package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
-import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.equipevent.EquipType;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEvent;
 import org.bukkit.attribute.Attribute;
@@ -15,8 +14,8 @@ import org.jetbrains.annotations.NotNull;
 public class AttackSpeedTalisman extends Talisman {
     private AttributeModifier modifier = null;
 
-    public AttackSpeedTalisman(@NotNull final TalismanStrength strength) {
-        super("attack_speed", strength);
+    public AttackSpeedTalisman() {
+        super("attack_speed");
     }
 
     @Override

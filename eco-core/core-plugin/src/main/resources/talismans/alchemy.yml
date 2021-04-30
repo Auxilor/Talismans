@@ -1,0 +1,29 @@
+enabled: true
+disabled-in-worlds: []
+
+levels:
+  1:
+    name: "Alchemy Talisman I"
+    description: 5% chance double the strength of applied potion effects.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - nether_wart
+        - nether_wart
+        - nether_wart
+
+        - nether_wart
+        - ender_eye
+        - nether_wart
+
+        - nether_wart
+        - nether_wart
+        - nether_wart
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTExYTNjZWM3YWFmOTA0MjEyY2NmOTNiYjY3YTNjYWYzZDY0OTc4M2JhOTBiOGI2MGJiNjNjNzY4N2ViMzlmIn19fQ==
+
+    config:
+      chance: 5

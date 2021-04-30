@@ -4,7 +4,7 @@ import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.display.DisplayModule;
 import com.willfp.eco.core.display.DisplayPriority;
 import com.willfp.eco.util.SkullUtils;
-import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import org.bukkit.inventory.ItemStack;
@@ -47,7 +47,7 @@ public class TalismanDisplay extends DisplayModule {
             itemLore = new ArrayList<>();
         }
 
-        Talisman talisman = TalismanChecks.getTalismanOnItem(itemStack);
+        TalismanLevel talisman = TalismanChecks.getTalismanOnItem(itemStack);
 
         if (talisman == null) {
             return;
@@ -57,7 +57,7 @@ public class TalismanDisplay extends DisplayModule {
             SkullUtils.setSkullTexture((SkullMeta) meta, talisman.getSkullBase64());
         }
 
-        meta.setDisplayName(talisman.getFormattedName());
+        meta.setDisplayName(talisman.getName());
 
         List<String> lore = new ArrayList<>();
 

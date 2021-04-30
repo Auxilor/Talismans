@@ -1,0 +1,29 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "Strength Talisman I"
+    description: Deal 10% more damage.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - iron_block
+        - diamond_sword
+        - gold_block
+
+        - bow
+        - ender_eye
+        - crossbow
+
+        - diamond_block
+        - trident
+        - emerald_block
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQ4NTlkMGFkZmM5M2JlMTliYjQ0MWU2ZWRmZDQzZjZiZmU2OTEyNzIzMDMzZjk2M2QwMDlhMTFjNDgyNDUxMCJ9fX0=
+
+    config:
+      percent-more-damage: 10

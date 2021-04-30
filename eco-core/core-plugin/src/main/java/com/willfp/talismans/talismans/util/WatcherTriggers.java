@@ -93,20 +93,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        TalismanChecks.getTalismansOnPlayer(attacker).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(attacker).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(attacker.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(attacker.getWorld())) {
                 return;
             }
 
-            talisman.onArrowDamage(attacker, victim, arrow, event);
+            talismanLevel.getTalisman().onArrowDamage(talismanLevel, attacker, victim, arrow, event);
         });
     }
 
@@ -154,20 +154,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        TalismanChecks.getTalismansOnPlayer(attacker).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(attacker).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(attacker.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(attacker.getWorld())) {
                 return;
             }
 
-            talisman.onTridentDamage(attacker, victim, trident, event);
+            talismanLevel.getTalisman().onTridentDamage(talismanLevel, attacker, victim, trident, event);
         });
     }
 
@@ -193,20 +193,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
                     && PREVIOUS_PLAYERS_ON_GROUND.contains(player.getUniqueId())
                     && !player.isOnGround()
                     && Float.compare((float) player.getVelocity().getY(), jumpVelocity) == 0) {
-                TalismanChecks.getTalismansOnPlayer(player).forEach(talisman -> {
+                TalismanChecks.getTalismansOnPlayer(player).forEach(talismanLevel -> {
                     if (event.isCancelled()) {
                         return;
                     }
 
-                    if (!talisman.isEnabled()) {
+                    if (!talismanLevel.getTalisman().isEnabled()) {
                         return;
                     }
 
-                    if (talisman.getDisabledWorlds().contains(player.getWorld())) {
+                    if (talismanLevel.getTalisman().getDisabledWorlds().contains(player.getWorld())) {
                         return;
                     }
 
-                    talisman.onJump(player, event);
+                    talismanLevel.getTalisman().onJump(talismanLevel, player, event);
                 });
             }
         }
@@ -251,20 +251,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        TalismanChecks.getTalismansOnPlayer(attacker).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(attacker).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(attacker.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(attacker.getWorld())) {
                 return;
             }
 
-            talisman.onMeleeAttack(attacker, victim, event);
+            talismanLevel.getTalisman().onMeleeAttack(talismanLevel, attacker, victim, event);
         });
     }
 
@@ -290,20 +290,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
         Player shooter = (Player) event.getEntity();
         Arrow arrow = (Arrow) event.getProjectile();
 
-        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(shooter.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(shooter.getWorld())) {
                 return;
             }
 
-            talisman.onBowShoot(shooter, arrow, event);
+            talismanLevel.getTalisman().onBowShoot(talismanLevel, shooter, arrow, event);
         });
     }
 
@@ -328,20 +328,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
 
         Player victim = (Player) event.getEntity();
 
-        TalismanChecks.getTalismansOnPlayer(victim).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(victim).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(victim.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(victim.getWorld())) {
                 return;
             }
 
-            talisman.onFallDamage(victim, event);
+            talismanLevel.getTalisman().onFallDamage(talismanLevel, victim, event);
         });
     }
 
@@ -370,16 +370,16 @@ public class WatcherTriggers extends PluginDependent implements Listener {
 
         Player shooter = (Player) event.getEntity().getShooter();
 
-        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman -> {
-            if (!talisman.isEnabled()) {
+        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(shooter.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(shooter.getWorld())) {
                 return;
             }
 
-            talisman.onArrowHit(shooter, event);
+            talismanLevel.getTalisman().onArrowHit(talismanLevel, shooter, event);
         });
     }
 
@@ -409,16 +409,16 @@ public class WatcherTriggers extends PluginDependent implements Listener {
         Trident trident = (Trident) event.getEntity();
         Player shooter = (Player) event.getEntity().getShooter();
 
-        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman -> {
-            if (!talisman.isEnabled()) {
+        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(shooter.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(shooter.getWorld())) {
                 return;
             }
 
-            talisman.onTridentHit(shooter, event);
+            talismanLevel.getTalisman().onTridentHit(talismanLevel, shooter, event);
         });
     }
 
@@ -444,20 +444,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        TalismanChecks.getTalismansOnPlayer(player).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(player).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(player.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(player.getWorld())) {
                 return;
             }
 
-            talisman.onBlockBreak(player, block, event);
+            talismanLevel.getTalisman().onBlockBreak(talismanLevel, player, block, event);
         });
     }
 
@@ -478,20 +478,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
 
         Player victim = (Player) event.getEntity();
 
-        TalismanChecks.getTalismansOnPlayer(victim).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(victim).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(victim.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(victim.getWorld())) {
                 return;
             }
 
-            talisman.onDamage(victim, event);
+            talismanLevel.getTalisman().onDamage(talismanLevel, victim, event);
         });
     }
 
@@ -512,20 +512,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
 
         Player victim = (Player) event.getEntity();
 
-        TalismanChecks.getTalismansOnPlayer(victim).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(victim).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(victim.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(victim.getWorld())) {
                 return;
             }
 
-            talisman.onDamageByEntity(victim, event.getDamager(), event);
+            talismanLevel.getTalisman().onDamageByEntity(talismanLevel, victim, event.getDamager(), event);
         });
     }
 
@@ -547,20 +547,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        TalismanChecks.getTalismansOnPlayer(player).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(player).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(player.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(player.getWorld())) {
                 return;
             }
 
-            talisman.onDamageBlock(player, block, event);
+            talismanLevel.getTalisman().onDamageBlock(talismanLevel, player, block, event);
         });
     }
 
@@ -586,20 +586,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
         Trident trident = (Trident) event.getEntity();
         Player shooter = (Player) trident.getShooter();
 
-        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(shooter.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(shooter.getWorld())) {
                 return;
             }
 
-            talisman.onTridentLaunch(shooter, trident, event);
+            talismanLevel.getTalisman().onTridentLaunch(talismanLevel, shooter, trident, event);
         });
     }
 
@@ -634,20 +634,20 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        TalismanChecks.getTalismansOnPlayer(blocker).forEach(talisman -> {
+        TalismanChecks.getTalismansOnPlayer(blocker).forEach(talismanLevel -> {
             if (event.isCancelled()) {
                 return;
             }
 
-            if (!talisman.isEnabled()) {
+            if (!talismanLevel.getTalisman().isEnabled()) {
                 return;
             }
 
-            if (talisman.getDisabledWorlds().contains(blocker.getWorld())) {
+            if (talismanLevel.getTalisman().getDisabledWorlds().contains(blocker.getWorld())) {
                 return;
             }
 
-            talisman.onDeflect(blocker, attacker, event);
+            talismanLevel.getTalisman().onDeflect(talismanLevel, blocker, attacker, event);
         });
     }
 }

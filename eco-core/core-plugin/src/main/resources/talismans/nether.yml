@@ -1,0 +1,29 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "Nether Talisman I"
+    description: Deal 10% more damage in the nether.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - netherrack
+        - netherrack
+        - netherrack
+
+        - netherrack
+        - ender_eye
+        - netherrack
+
+        - netherrack
+        - netherrack
+        - netherrack
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUwMDI5MmY0YWZlNTJkMTBmMjk5ZGZiMjYwMzYzMjI4MzA0NTAzMzFlMDAzMDg0YmIyMjAzMzM1MzA2NjRlMSJ9fX0=
+
+    config:
+      percent-more-damage: 10

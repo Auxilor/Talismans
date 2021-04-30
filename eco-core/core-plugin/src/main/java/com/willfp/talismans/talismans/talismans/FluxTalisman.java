@@ -3,7 +3,6 @@ package com.willfp.talismans.talismans.talismans;
 import com.willfp.eco.core.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.Talismans;
-import com.willfp.talismans.talismans.meta.TalismanStrength;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -12,8 +11,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class FluxTalisman extends Talisman {
-    public FluxTalisman(@NotNull final TalismanStrength strength) {
-        super("flux", strength);
+    public FluxTalisman() {
+        super("flux");
     }
 
     @EventHandler

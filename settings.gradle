@@ -3,7 +3,3 @@ rootProject.name = 'Talismans'
 // Core
 include ':eco-core'
 include ':eco-core:core-plugin'
-
-// Extensions
-include ':eco-extensions'
-include ':eco-extensions:fossil'
