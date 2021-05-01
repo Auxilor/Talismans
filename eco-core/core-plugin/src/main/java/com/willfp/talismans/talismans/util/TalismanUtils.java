@@ -108,6 +108,8 @@ public class TalismanUtils {
             level = 3;
         } else if (key.endsWith("_fossil")) {
             level = 4;
+        } else {
+            return;
         }
 
         if (level == 0) {
