@@ -43,12 +43,6 @@ public abstract class Talisman implements Listener, Watcher {
     private final NamespacedKey key;
 
     /**
-     * The config name of the talisman.
-     */
-    @Getter
-    private final String configName;
-
-    /**
      * The talisman's config.
      */
     @Getter
@@ -86,18 +80,7 @@ public abstract class Talisman implements Listener, Watcher {
     protected Talisman(@NotNull final String key,
                        @NotNull final Prerequisite... prerequisites) {
         this.key = this.getPlugin().getNamespacedKeyFactory().create(key);
-        this.configName = this.key.getKey().replace("_", "");
-        this.config = new TalismanConfig(this.configName, this.getClass(), this.plugin);
-
-        if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + configName) == null) {
-            Permission permission = new Permission(
-                    "talismans.fromtable." + configName,
-                    "Allows getting " + configName + " from a Crafting Table",
-                    PermissionDefault.TRUE
-            );
-            permission.addParent(Objects.requireNonNull(Bukkit.getPluginManager().getPermission("talismans.fromtable.*")), true);
-            Bukkit.getPluginManager().addPermission(permission);
-        }
+        this.config = new TalismanConfig(this.getKey().getKey(), this.getClass(), this.plugin);
 
         if (!Prerequisite.areMet(prerequisites)) {
             return;
@@ -113,9 +96,6 @@ public abstract class Talisman implements Listener, Watcher {
      */
     public void update() {
         config.update();
-        Material material = Material.getMaterial(config.getString(Talismans.GENERAL_LOCATION + "material").toUpperCase());
-        Validate.notNull(material, "Material specified for " + this.getConfigName() + " is invalid!");
-        TalismanUtils.registerTalismanMaterial(material);
         disabledWorldNames.clear();
         disabledWorldNames.addAll(config.getStrings(Talismans.GENERAL_LOCATION + "disabled-in-worlds"));
         disabledWorlds.clear();

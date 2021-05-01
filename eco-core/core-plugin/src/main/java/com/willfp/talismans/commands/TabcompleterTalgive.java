@@ -23,7 +23,7 @@ public class TabcompleterTalgive extends AbstractTabCompleter {
     /**
      * The cached enchantment names.
      */
-    private static final List<String> TALISMAN_NAMES = Talismans.values().stream().filter(Talisman::isEnabled).map(talisman -> talisman.getKey().getKey()).collect(Collectors.toList());
+    private static final List<String> TALISMAN_NAMES = new ArrayList<>();
 
     /**
      * The cached numbers.

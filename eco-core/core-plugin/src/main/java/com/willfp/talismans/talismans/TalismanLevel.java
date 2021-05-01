@@ -127,10 +127,10 @@ public class TalismanLevel {
         this.key = this.getPlugin().getNamespacedKeyFactory().create(talisman.getKey().getKey() + "_" + level);
         this.uuid = UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes());
 
-        if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + talisman.getConfigName() + "." + level) == null) {
+        if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + this.getKey().getKey()) == null) {
             Permission permission = new Permission(
-                    "talismans.fromtable." + talisman.getConfigName() + "." + level,
-                    "Allows getting " + talisman.getConfigName() + " " + level + " from a Crafting Table",
+                    "talismans.fromtable." + this.getKey().getKey(),
+                    "Allows getting " + this.getKey().getKey() + " from a Crafting Table",
                     PermissionDefault.TRUE
             );
             permission.addParent(Objects.requireNonNull(Bukkit.getPluginManager().getPermission("talismans.fromtable.*")), true);

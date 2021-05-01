@@ -3,6 +3,7 @@ package com.willfp.talismans.talismans;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.willfp.eco.core.config.ConfigUpdater;
 import com.willfp.talismans.talismans.talismans.AlchemyTalisman;
 import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
@@ -31,6 +32,7 @@ import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,6 +40,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @UtilityClass
 @SuppressWarnings({"unused", "checkstyle:JavadocVariable"})
@@ -80,8 +83,8 @@ public class Talismans {
      *
      * @return A list of all {@link Talisman}s.
      */
-    public static List<Talisman> values() {
-        return ImmutableList.copyOf(BY_KEY.values());
+    public static Set<Talisman> values() {
+        return ImmutableSet.copyOf(BY_KEY.values());
     }
 
     /**
@@ -89,19 +92,8 @@ public class Talismans {
      *
      * @return A list of all {@link Talisman}s.
      */
-    public static List<NamespacedKey> keySet() {
-        return ImmutableList.copyOf(BY_KEY.keySet());
-    }
-
-    /**
-     * Get {@link Talisman} matching config name.
-     *
-     * @param configName The config name to search for.
-     * @return The matching {@link Talisman}, or null if not found.
-     */
-    public static Talisman getByConfig(@NotNull final String configName) {
-        Optional<Talisman> matching = values().stream().filter(talisman -> talisman.getConfigName().equalsIgnoreCase(configName)).findFirst();
-        return matching.orElse(null);
+    public static Set<NamespacedKey> keySet() {
+        return ImmutableSet.copyOf(BY_KEY.keySet());
     }
 
     /**

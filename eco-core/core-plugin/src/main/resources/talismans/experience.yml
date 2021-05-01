@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Experience Talisman I"
+    name: "&aExperience Talisman I"
     description: Gain 10% more experience.
 
     obtaining:

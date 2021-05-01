@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Extraction Talisman I"
+    name: "&aExtraction Talisman I"
     description: 2% chance to get xp randomly while mining.
 
     obtaining:

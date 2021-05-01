@@ -19,7 +19,7 @@ public class AttackSpeedTalisman extends Talisman {
     private final Map<TalismanLevel, AttributeModifier> modifiers = new HashMap<>();
 
     public AttackSpeedTalisman() {
-        super("speed");
+        super("attack_speed");
     }
 
     @Override
