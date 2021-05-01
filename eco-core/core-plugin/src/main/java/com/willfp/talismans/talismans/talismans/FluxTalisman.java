@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.eco.core.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Entity;
@@ -37,6 +38,7 @@ public class FluxTalisman extends Talisman {
 
         double distance = this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "distance");
 
+
         for (Entity nearbyEntity : attacker.getNearbyEntities(distance, distance, distance)) {
             if (!(nearbyEntity instanceof Player)) {
                 continue;
@@ -44,11 +46,13 @@ public class FluxTalisman extends Talisman {
 
             Player player = (Player) nearbyEntity;
 
-            if (!TalismanChecks.hasTalisman(player, this)) {
+            TalismanLevel level = TalismanChecks.getTalismanLevel(player, this);
+
+            if (level == null) {
                 continue;
             }
 
-            event.setDamage(event.getDamage() * (1 + (this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percent-more-damage")) / 100));
+            event.setDamage(event.getDamage() * (1 + (level.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percent-more-damage")) / 100));
         }
     }
 }

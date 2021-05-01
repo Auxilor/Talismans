@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.eco.core.events.NaturalExpGainEvent;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Player;
@@ -21,7 +22,9 @@ public class ExperienceTalisman extends Talisman {
             return;
         }
 
-        if (!TalismanChecks.hasTalisman(player, this)) {
+        TalismanLevel level = TalismanChecks.getTalismanLevel(player, this);
+
+        if (level == null) {
             return;
         }
 
@@ -29,6 +32,6 @@ public class ExperienceTalisman extends Talisman {
             return;
         }
 
-        event.getExpChangeEvent().setAmount((int) Math.ceil(event.getExpChangeEvent().getAmount() * (1 + (this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100))));
+        event.getExpChangeEvent().setAmount((int) Math.ceil(event.getExpChangeEvent().getAmount() * (1 + (level.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100))));
     }
 }

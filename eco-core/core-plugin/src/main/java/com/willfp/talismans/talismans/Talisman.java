@@ -43,12 +43,6 @@ public abstract class Talisman implements Listener, Watcher {
     private final NamespacedKey key;
 
     /**
-     * UUID created for the talisman.
-     */
-    @Getter
-    private final UUID uuid;
-
-    /**
      * The config name of the talisman.
      */
     @Getter
@@ -92,7 +86,6 @@ public abstract class Talisman implements Listener, Watcher {
     protected Talisman(@NotNull final String key,
                        @NotNull final Prerequisite... prerequisites) {
         this.key = this.getPlugin().getNamespacedKeyFactory().create(key);
-        this.uuid = UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes());
         this.configName = this.key.getKey().replace("_", "");
         this.config = new TalismanConfig(this.configName, this.getClass(), this.plugin);
 

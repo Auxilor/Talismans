@@ -1,6 +1,7 @@
 package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.equipevent.EquipType;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEvent;
@@ -11,39 +12,55 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AttackSpeedTalisman extends Talisman {
-    private AttributeModifier modifier = null;
+    private final Map<TalismanLevel, AttributeModifier> modifiers = new HashMap<>();
 
     public AttackSpeedTalisman() {
-        super("attack_speed");
+        super("speed");
     }
 
     @Override
     protected void postUpdate() {
-        modifier = new AttributeModifier(this.getUuid(), this.getKey().getKey(), this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100, AttributeModifier.Operation.MULTIPLY_SCALAR_1);
+        modifiers.clear();
+        for (TalismanLevel level : this.getLevels()) {
+            modifiers.put(
+                    level,
+                    new AttributeModifier(
+                            level.getUuid(),
+                            level.getKey().getKey(),
+                            level.getConfig().getDouble(Talismans.CONFIG_LOCATION + "percentage-bonus") / 100,
+                            AttributeModifier.Operation.MULTIPLY_SCALAR_1
+                    )
+            );
+        }
     }
 
     @EventHandler
     public void listener(@NotNull final TalismanEquipEvent event) {
         Player player = event.getPlayer();
 
-        if (!event.getTalisman().equals(this)) {
+        if (!event.getTalisman().getTalisman().equals(this)) {
             return;
         }
 
-        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);
-        assert attribute != null;
+        AttributeInstance movementSpeed = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);
+        assert movementSpeed != null;
+
+        AttributeModifier modifier = modifiers.get(event.getTalisman());
 
         if (event.getType() == EquipType.EQUIP) {
             if (this.getDisabledWorlds().contains(player.getWorld())) {
-                attribute.removeModifier(modifier);
+                movementSpeed.removeModifier(modifier);
             } else {
-                if (!attribute.getModifiers().contains(modifier)) {
-                    attribute.addModifier(modifier);
+                if (!movementSpeed.getModifiers().contains(modifier)) {
+                    movementSpeed.addModifier(modifier);
                 }
             }
         } else {
-            attribute.removeModifier(modifier);
+            movementSpeed.removeModifier(modifier);
         }
     }
 }

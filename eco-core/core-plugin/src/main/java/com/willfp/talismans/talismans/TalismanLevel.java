@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class TalismanLevel {
@@ -43,6 +44,12 @@ public class TalismanLevel {
      */
     @Getter
     private final NamespacedKey key;
+
+    /**
+     * UUID created for the talisman.
+     */
+    @Getter
+    private final UUID uuid;
 
     /**
      * The display name of the talisman.
@@ -118,6 +125,7 @@ public class TalismanLevel {
         this.level = level;
         this.talisman = talisman;
         this.key = this.getPlugin().getNamespacedKeyFactory().create(talisman.getKey().getKey() + "_" + level);
+        this.uuid = UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes());
 
         if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + talisman.getConfigName() + "." + level) == null) {
             Permission permission = new Permission(

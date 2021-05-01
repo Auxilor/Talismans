@@ -1,6 +1,7 @@
 package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Player;
@@ -29,11 +30,13 @@ public class HealingTalisman extends Talisman {
             return;
         }
 
-        if (!TalismanChecks.hasTalisman(player, this)) {
+        TalismanLevel level = TalismanChecks.getTalismanLevel(player, this);
+
+        if (level == null) {
             return;
         }
 
-        double amount = this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "multiplier");
+        double amount = level.getConfig().getDouble(Talismans.CONFIG_LOCATION + "multiplier");
         amount += 1;
 
         event.setAmount(event.getAmount() * amount);

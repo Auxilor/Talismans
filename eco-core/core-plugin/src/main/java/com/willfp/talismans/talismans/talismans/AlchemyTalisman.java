@@ -1,6 +1,7 @@
 package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import org.bukkit.entity.Player;
@@ -29,13 +30,13 @@ public class AlchemyTalisman extends Talisman {
             return;
         }
 
-        int level = TalismanChecks.getTalismanLevel(player, this);
+        TalismanLevel level = TalismanChecks.getTalismanLevel(player, this);
 
-        if (level == 0) {
+        if (level == null) {
             return;
         }
 
-        if (!TalismanUtils.passedChance(this.getLevel(level))) {
+        if (!TalismanUtils.passedChance(level)) {
             return;
         }
 

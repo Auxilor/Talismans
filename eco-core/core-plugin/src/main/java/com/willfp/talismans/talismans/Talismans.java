@@ -24,7 +24,6 @@ import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.ResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
-import com.willfp.talismans.talismans.talismans.SpeedTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.StrengthTalisman;
@@ -71,7 +70,7 @@ public class Talismans {
     public static final Talisman IMMUNITY_TALISMAN = new ImmunityTalisman();
     public static final Talisman FLUX_TALISMAN = new FluxTalisman();
     public static final Talisman HEALING_TALISMAN = new HealingTalisman();
-    public static final Talisman SPEED_TALISMAN = new SpeedTalisman();
+    public static final Talisman SPEED_TALISMAN = new AttackSpeedTalisman();
     public static final Talisman BOSS_TALISMAN = new BossTalisman();
     public static final Talisman GRAVITY_TALISMAN = new GravityTalisman();
     public static final Talisman ATTACK_SPEED_TALISMAN = new AttackSpeedTalisman();

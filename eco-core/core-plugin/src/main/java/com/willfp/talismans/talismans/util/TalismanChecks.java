@@ -212,25 +212,26 @@ public class TalismanChecks {
      */
     public static boolean hasTalisman(@NotNull final Player player,
                                       @NotNull final Talisman talisman) {
-        return getTalismanLevel(player, talisman) > 0;
+        return getTalismanLevel(player, talisman) != null;
     }
 
     /**
-     * Get if a player has a specific talisman active.
+     * Get the level of a talisman that a player has equipped.
      *
-     * @param player   The player to query.
-     * @param talisman The talisman to search for.
-     * @return A set of all found talismans.
+     * @param player   The player.
+     * @param talisman The talisman.
+     * @return The level, or null if not active.
      */
-    public static int getTalismanLevel(@NotNull final Player player,
-                                       @NotNull final Talisman talisman) {
+    @Nullable
+    public static TalismanLevel getTalismanLevel(@NotNull final Player player,
+                                                 @NotNull final Talisman talisman) {
         for (TalismanLevel talismanLevel : getTalismansOnPlayer(player)) {
             if (talismanLevel.getTalisman().equals(talisman)) {
-                return talismanLevel.getLevel();
+                return talismanLevel;
             }
         }
 
-        return 0;
+        return null;
     }
 
     @ConfigUpdater
