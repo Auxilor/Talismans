@@ -14,9 +14,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class SpeedTalisman extends Talisman {
     private Map<TalismanLevel, AttributeModifier> modifiers;
+    private final AttributeModifier legacyModifier = new AttributeModifier(
+            UUID.nameUUIDFromBytes(this.getKey().getKey().getBytes()),
+            this.getKey().getKey(),
+            0,
+            AttributeModifier.Operation.MULTIPLY_SCALAR_1
+    );
 
     public SpeedTalisman() {
         super("speed");
@@ -50,6 +57,8 @@ public class SpeedTalisman extends Talisman {
         assert movementSpeed != null;
 
         AttributeModifier modifier = modifiers.get(event.getTalisman());
+
+        movementSpeed.removeModifier(legacyModifier);
 
         if (event.getType() == EquipType.EQUIP) {
             if (this.getDisabledWorlds().contains(player.getWorld())) {
