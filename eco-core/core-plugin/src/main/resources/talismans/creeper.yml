@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "&aCreeper Talisman I"
+    name: "&aCreeper Talisman"
     description: Deal 10% more damage to creepers.
 
     obtaining:

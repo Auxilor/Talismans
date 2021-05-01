@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Speed Talisman I"
+    name: "&aSpeed Talisman I"
     description: Move 5% faster.
 
     obtaining:
@@ -27,3 +27,32 @@ levels:
 
     config:
       percentage-bonus: 5
+
+  2:
+    name: "&eSpeed Talisman II"
+    description: Move 10% faster.
+
+    obtaining:
+      craftable: true
+      # Recipes are left-right, top-bottom
+      # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+      recipe:
+        - talismans:speed_1
+        - talismans:speed_1
+        - talismans:speed_1
+
+        - talismans:speed_1
+        - heart_of_the_sea
+        - talismans:speed_1
+
+        - talismans:speed_1
+        - talismans:speed_1
+        - talismans:speed_1
+
+    general-config:
+      material: player_head
+      # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTNjZTc2NjAyZDNmZWM3YzAyNzNkYTYwMDA5MDA3YmU0MTQwYWM5ZmFjMDM0MTQ1MGMwNzU3ZTUzZDc1MTU3NyJ9fX0=
+
+    config:
+      percentage-bonus: 10

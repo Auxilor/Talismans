@@ -27,3 +27,32 @@ levels:
 
     config:
       percentage-bonus: 10
+
+  2:
+    name: "&eExperience Talisman II"
+    description: Gain 25% more experience.
+
+    obtaining:
+      craftable: true
+      # Recipes are left-right, top-bottom
+      # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+      recipe:
+        - talismans:experience_1
+        - talismans:experience_1
+        - talismans:experience_1
+
+        - talismans:experience_1
+        - heart_of_the_sea
+        - talismans:experience_1
+
+        - talismans:experience_1
+        - talismans:experience_1
+        - talismans:experience_1
+
+    general-config:
+      material: player_head
+      # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTNjNzZkMTA3OWM5NWUzYzc5ZGRmOTUxNDJmYzc0YzQ4ZjY1MjA1ZTQ2NWQxMDJiZjc4MjY1Y2E3ZTk3MDZkMiJ9fX0=
+
+    config:
+      percentage-bonus: 25

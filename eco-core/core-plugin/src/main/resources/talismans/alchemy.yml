@@ -27,6 +27,7 @@ levels:
 
     config:
       chance: 5
+
   2:
     name: "&eAlchemy Talisman II"
     description: 10% chance double the strength of applied potion effects.
@@ -34,17 +35,17 @@ levels:
     obtaining:
       craftable: true
       recipe:
-        - talismans:alchemy_talisman_1
-        - talismans:alchemy_talisman_1
-        - talismans:alchemy_talisman_1
-
-        - talismans:alchemy_talisman_1
+        - talismans:alchemy_1
+        - talismans:alchemy_1
+        - talismans:alchemy_1
+        
+        - talismans:alchemy_1
         - heart_of_the_sea
-        - talismans:alchemy_talisman_1
+        - talismans:alchemy_1
 
-        - talismans:alchemy_talisman_1
-        - talismans:alchemy_talisman_1
-        - talismans:alchemy_talisman_1
+        - talismans:alchemy_1
+        - talismans:alchemy_1
+        - talismans:alchemy_1
 
     general-config:
       material: player_head
@@ -52,6 +53,7 @@ levels:
 
     config:
       chance: 10
+
   3:
     name: "&cAlchemy Talisman III"
     description: 25% chance double the strength of applied potion effects.
@@ -59,17 +61,17 @@ levels:
     obtaining:
       craftable: true
       recipe:
-        - talismans:alchemy_talisman_2
-        - talismans:alchemy_talisman_2
-        - talismans:alchemy_talisman_2
+        - talismans:alchemy_2
+        - talismans:alchemy_2
+        - talismans:alchemy_2
 
-        - talismans:alchemy_talisman_2
+        - talismans:alchemy_2
         - nether_star
-        - talismans:alchemy_talisman_2
+        - talismans:alchemy_2
 
-        - talismans:alchemy_talisman_2
-        - talismans:alchemy_talisman_2
-        - talismans:alchemy_talisman_2
+        - talismans:alchemy_2
+        - talismans:alchemy_2
+        - talismans:alchemy_2
 
     general-config:
       material: player_head

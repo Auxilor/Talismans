@@ -5,6 +5,7 @@ import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.equipevent.EquipType;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AttackSpeedTalisman extends Talisman {
-    private final Map<TalismanLevel, AttributeModifier> modifiers = new HashMap<>();
+    private Map<TalismanLevel, AttributeModifier> modifiers;
 
     public AttackSpeedTalisman() {
         super("attack_speed");
@@ -24,7 +25,7 @@ public class AttackSpeedTalisman extends Talisman {
 
     @Override
     protected void postUpdate() {
-        modifiers.clear();
+        modifiers = new HashMap<>();
         for (TalismanLevel level : this.getLevels()) {
             modifiers.put(
                     level,

@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Spider Talisman I"
+    name: "&aSpider Talisman"
     description: Deal 10% more damage to spiders.
 
     obtaining:

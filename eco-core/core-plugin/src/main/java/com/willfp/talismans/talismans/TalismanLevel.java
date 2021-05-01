@@ -149,7 +149,7 @@ public class TalismanLevel {
         description = config.getString("description");
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
         Material material = Material.getMaterial(config.getString(Talismans.GENERAL_LOCATION + "material").toUpperCase());
-        Validate.notNull(material, "Material specified for " + name + " is invalid!");
+        Validate.notNull(material, "Material specified for " + this.getKey().getKey() + " is invalid!");
         TalismanUtils.registerTalismanMaterial(material);
 
         formattedDescription = Arrays.stream(WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false).split("\\r?\\n"))
@@ -161,7 +161,7 @@ public class TalismanLevel {
         ItemMeta outMeta = out.getItemMeta();
         assert outMeta != null;
         PersistentDataContainer container = outMeta.getPersistentDataContainer();
-        container.set(this.getKey(), PersistentDataType.INTEGER, 1);
+        container.set(this.getTalisman().getKey(), PersistentDataType.INTEGER, this.getLevel());
         out.setItemMeta(outMeta);
         Display.display(out);
 

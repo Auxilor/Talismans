@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Zombie Resistance Talisman I"
+    name: "&aZombie Resistance Talisman"
     description: Take 25% less damage from zombies.
 
     obtaining:

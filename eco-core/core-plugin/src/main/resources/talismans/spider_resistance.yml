@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Spider Resistance Talisman I"
+    name: "&aSpider Resistance Talisman"
     description: Take 25% less damage from spiders.
 
     obtaining:

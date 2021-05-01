@@ -119,6 +119,8 @@ public class TalismanUtils {
                 .replace("_relic", "")
                 .replace("_fossil", "");
 
+        container.remove(talismanKey);
+
         NamespacedKey newTalismanKey = TalismansPlugin.getInstance().getNamespacedKeyFactory().create(newKey);
 
         container.set(newTalismanKey, PersistentDataType.INTEGER, level);

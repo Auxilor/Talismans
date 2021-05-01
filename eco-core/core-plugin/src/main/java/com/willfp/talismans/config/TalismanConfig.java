@@ -22,7 +22,7 @@ public class TalismanConfig extends ExtendableConfig {
     public TalismanConfig(@NotNull final String name,
                           @NotNull final Class<?> source,
                           @NotNull final EcoPlugin plugin) {
-        super(name, true, plugin, source, "talismans/");
+        super(name, true, plugin, source, "talismans/", "levels.");
         this.name = name;
     }
 }

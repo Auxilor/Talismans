@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Zombie Talisman I"
+    name: "&aZombie Talisman"
     description: Deal 10% more damage to zombies.
 
     obtaining:

@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Skeleton Talisman I"
+    name: "&aSkeleton Talisman"
     description: Deal 10% more damage to skeletons.
 
     obtaining:

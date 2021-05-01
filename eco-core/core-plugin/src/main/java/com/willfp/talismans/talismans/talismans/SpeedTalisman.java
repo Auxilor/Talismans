@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SpeedTalisman extends Talisman {
-    private final Map<TalismanLevel, AttributeModifier> modifiers = new HashMap<>();
+    private Map<TalismanLevel, AttributeModifier> modifiers;
 
     public SpeedTalisman() {
         super("speed");
@@ -24,7 +24,7 @@ public class SpeedTalisman extends Talisman {
 
     @Override
     protected void postUpdate() {
-        modifiers.clear();
+        modifiers = new HashMap<>();
         for (TalismanLevel level : this.getLevels()) {
             modifiers.put(
                     level,
