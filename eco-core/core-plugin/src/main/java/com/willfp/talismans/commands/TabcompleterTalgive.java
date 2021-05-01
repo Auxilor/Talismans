@@ -2,9 +2,12 @@ package com.willfp.talismans.commands;
 
 import com.willfp.eco.core.command.AbstractTabCompleter;
 import com.willfp.eco.core.config.ConfigUpdater;
+import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
@@ -83,7 +86,26 @@ public class TabcompleterTalgive extends AbstractTabCompleter {
         }
 
         if (args.size() == 3) {
-            StringUtil.copyPartialMatches(args.get(2), NUMBERS, completions);
+            Talisman talisman = Talismans.getByKey(TalismansPlugin.getInstance().getNamespacedKeyFactory().create(args.get(1).toLowerCase()));
+            if (talisman == null) {
+                return new ArrayList<>();
+            }
+
+            List<String> levels = talisman.getLevels().stream().map(TalismanLevel::getLevel).map(String::valueOf).collect(Collectors.toList());
+
+            StringUtil.copyPartialMatches(args.get(2), levels, completions);
+
+            completions.sort((s1, s2) -> {
+                int t1 = Integer.parseInt(s1);
+                int t2 = Integer.parseInt(s2);
+                return t1 - t2;
+            });
+
+            return completions;
+        }
+
+        if (args.size() == 4) {
+            StringUtil.copyPartialMatches(args.get(3), NUMBERS, completions);
 
             completions.sort((s1, s2) -> {
                 int t1 = Integer.parseInt(s1);

@@ -4,6 +4,7 @@ import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.command.AbstractCommand;
 import com.willfp.eco.core.command.AbstractTabCompleter;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -42,11 +43,21 @@ public class CommandTalgive extends AbstractCommand {
             return;
         }
 
-        int amount = 1;
+        int level = 1;
 
         if (args.size() > 2) {
             try {
-                amount = Integer.parseInt(args.get(2));
+                level = Integer.parseInt(args.get(2));
+            } catch (NumberFormatException ignored) {
+                // do nothing
+            }
+        }
+
+        int amount = 1;
+
+        if (args.size() > 3) {
+            try {
+                level = Integer.parseInt(args.get(3));
             } catch (NumberFormatException ignored) {
                 // do nothing
             }
@@ -67,11 +78,17 @@ public class CommandTalgive extends AbstractCommand {
             return;
         }
 
+        TalismanLevel talismanLevel = talisman.getLevel(level);
+        if (talismanLevel == null) {
+            sender.sendMessage(this.getPlugin().getLangYml().getMessage("invalid-level"));
+            return;
+        }
+
         String message = this.getPlugin().getLangYml().getMessage("give-success");
-        message = message.replace("%talisman%", talisman.getFormattedName()).replace("%recipient%", reciever.getName());
+        message = message.replace("%talisman%", talismanLevel.getName()).replace("%recipient%", reciever.getName());
         sender.sendMessage(message);
 
-        ItemStack itemStack = talisman.getItemStack();
+        ItemStack itemStack = talismanLevel.getItemStack();
         itemStack.setAmount(amount);
         reciever.getInventory().addItem(itemStack);
     }
