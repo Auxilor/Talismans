@@ -56,3 +56,32 @@ levels:
 
     config:
       percent-more-damage: 25
+      
+  3:
+    name: "&cBoss Talisman III"
+    description: Deal 40% more damage to bosses.
+
+    obtaining:
+      craftable: true
+      # Recipes are left-right, top-bottom
+      # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+      recipe:
+        - talismans:boss_2
+        - talismans:boss_2
+        - talismans:boss_2
+
+        - talismans:boss_2
+        - nether_star
+        - talismans:boss_2
+
+        - talismans:boss_2
+        - talismans:boss_2
+        - talismans:boss_2
+
+    general-config:
+      material: player_head
+      # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmE0NjUxZDY2Nzc5MjA4ZGExMDdkNmUyZmZkOTZjNjJlMDY3YzJlNzc1MzA3OWFhYTgzYWNlOGZiNDk4OTUifX19
+
+    config:
+      percent-more-damage: 40

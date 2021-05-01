@@ -32,7 +32,6 @@ levels:
   2:
     name: "&eFlux Talisman II"
     description: Nearby players deal 10% more melee damage.
-    enabled: true
 
     obtaining:
       craftable: true
@@ -59,3 +58,33 @@ levels:
     config:
       distance: 5 # How close other players have to be
       percent-more-damage: 10
+
+  3:
+    name: "&cFlux Talisman III"
+    description: Nearby players deal 25% more melee damage.
+
+    obtaining:
+      craftable: true
+      # Recipes are left-right, top-bottom
+      # The first item is the top left, the second is top middle, and so on. The last is bottom right.
+      recipe:
+        - talismans:flux_2
+        - talismans:flux_2
+        - talismans:flux_2
+
+        - talismans:flux_2
+        - nether_star
+        - talismans:flux_2
+
+        - talismans:flux_2
+        - talismans:flux_2
+        - talismans:flux_2
+
+    general-config:
+      material: player_head
+      # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODNlZDRjZTIzOTMzZTY2ZTA0ZGYxNjA3MDY0NGY3NTk5ZWViNTUzMDdmN2VhZmU4ZDkyZjQwZmIzNTIwODYzYyJ9fX0=
+
+    config:
+      distance: 5 # How close other players have to be
+      percent-more-damage: 25
