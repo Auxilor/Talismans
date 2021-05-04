@@ -3,6 +3,7 @@ package com.willfp.talismans.talismans.util;
 import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.PluginDependent;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,7 +33,9 @@ public class DiscoverRecipeListener extends PluginDependent implements Listener 
         if (this.getPlugin().getConfigYml().getBool("crafting.discover")) {
             for (Talisman talisman : Talismans.values()) {
                 if (talisman.isEnabled()) {
-                    player.discoverRecipe(talisman.getKey());
+                    for (TalismanLevel level : talisman.getLevels()) {
+                        player.discoverRecipe(level.getKey());
+                    }
                 }
             }
         }
