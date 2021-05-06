@@ -98,7 +98,7 @@ public class TalismanUtils {
 
         String key = talismanKey.getKey();
 
-        int level = 0;
+        int level;
 
         if (key.endsWith("_talisman")) {
             level = 1;
@@ -108,9 +108,7 @@ public class TalismanUtils {
             level = 3;
         } else if (key.endsWith("_fossil")) {
             level = 4;
-        }
-
-        if (level == 0) {
+        } else {
             return;
         }
 
