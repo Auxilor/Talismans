@@ -5,18 +5,13 @@ import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.Prerequisite;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.config.TalismanConfig;
-import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.Watcher;
 import lombok.AccessLevel;
 import lombok.Getter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
-import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionDefault;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -26,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public abstract class Talisman implements Listener, Watcher {
@@ -102,7 +96,9 @@ public abstract class Talisman implements Listener, Watcher {
 
         this.levels.clear();
         for (String key : config.getSubsection("levels").getKeys(false)) {
-            this.levels.put(Integer.parseInt(key), new TalismanLevel(this, Integer.parseInt(key), config.getSubsection("levels." + key)));
+            TalismanLevel level = new TalismanLevel(this, Integer.parseInt(key), config.getSubsection("levels." + key));
+            this.levels.put(Integer.parseInt(key), level);
+            level.update();
         }
 
         List<String> worldNames = Bukkit.getWorlds().stream().map(World::getName).map(String::toLowerCase).collect(Collectors.toList());

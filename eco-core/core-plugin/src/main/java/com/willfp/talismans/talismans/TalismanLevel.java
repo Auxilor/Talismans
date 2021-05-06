@@ -136,8 +136,6 @@ public class TalismanLevel {
             permission.addParent(Objects.requireNonNull(Bukkit.getPluginManager().getPermission("talismans.fromtable.*")), true);
             Bukkit.getPluginManager().addPermission(permission);
         }
-
-        this.update();
     }
 
     /**
