@@ -3,7 +3,7 @@ disabled-in-worlds: [ ]
 
 levels:
   1:
-    name: "Resistance Talisman I"
+    name: "&aResistance Talisman I"
     description: Take 10% less damage.
 
     obtaining:
