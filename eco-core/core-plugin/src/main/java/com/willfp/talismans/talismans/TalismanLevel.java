@@ -150,8 +150,10 @@ public class TalismanLevel {
         Validate.notNull(material, "Material specified for " + this.getKey().getKey() + " is invalid!");
         TalismanUtils.registerTalismanMaterial(material);
 
-        formattedDescription = Arrays.stream(WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false).split("\\r?\\n"))
-                .map(s -> Display.PREFIX + StringUtils.translate(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
+        formattedDescription = Arrays.stream(
+                WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false)
+                        .split("[\\r\\n]+")
+        ).map(s -> Display.PREFIX + StringUtils.translate(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
 
         craftable = config.getBool(Talismans.OBTAINING_LOCATION + "craftable");
 
