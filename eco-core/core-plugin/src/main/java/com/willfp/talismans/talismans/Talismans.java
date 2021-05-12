@@ -2,7 +2,6 @@ package com.willfp.talismans.talismans;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.willfp.eco.core.config.ConfigUpdater;
 import com.willfp.talismans.talismans.talismans.AlchemyTalisman;
@@ -25,6 +24,7 @@ import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.ResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.SharpnessTalisman;
 import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
+import com.willfp.talismans.talismans.talismans.SpeedTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
 import com.willfp.talismans.talismans.talismans.StrengthTalisman;
@@ -32,14 +32,11 @@ import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import lombok.experimental.UtilityClass;
-import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @UtilityClass
@@ -73,7 +70,7 @@ public class Talismans {
     public static final Talisman IMMUNITY_TALISMAN = new ImmunityTalisman();
     public static final Talisman FLUX_TALISMAN = new FluxTalisman();
     public static final Talisman HEALING_TALISMAN = new HealingTalisman();
-    public static final Talisman SPEED_TALISMAN = new AttackSpeedTalisman();
+    public static final Talisman SPEED_TALISMAN = new SpeedTalisman();
     public static final Talisman BOSS_TALISMAN = new BossTalisman();
     public static final Talisman GRAVITY_TALISMAN = new GravityTalisman();
     public static final Talisman ATTACK_SPEED_TALISMAN = new AttackSpeedTalisman();
