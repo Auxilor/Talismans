@@ -18,6 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -108,12 +109,17 @@ public class TalismanEquipEventListeners extends PluginDependent implements List
         //refreshPlayer(event.getPlayer(), itemStack);
     }
 
-    /**
+    @EventHandler
+    public void onSwitchHands(@NotNull final PlayerSwapHandItemsEvent event) {
+        refreshPlayer(event.getPlayer(), event.getPlayer().getInventory().getItemInOffHand());
+    }
+
+                              /**
      * Called on inventory click.
      *
      * @param event The event to listen for.
      */
-    @EventHandler
+                              @EventHandler
     public void onInventoryClick(@NotNull final InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player)) {
             return;
