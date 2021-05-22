@@ -58,7 +58,7 @@ levels:
       multiplier: 0.75
       
   3:
-    name: "&eFlame Talisman III"
+    name: "&cFlame Talisman III"
     description: Take 40% less fire damage.
 
     obtaining:
