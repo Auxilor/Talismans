@@ -57,7 +57,7 @@ public class CommandTalgive extends AbstractCommand {
 
         if (args.size() > 3) {
             try {
-                level = Integer.parseInt(args.get(3));
+                amount = Integer.parseInt(args.get(3));
             } catch (NumberFormatException ignored) {
                 // do nothing
             }
