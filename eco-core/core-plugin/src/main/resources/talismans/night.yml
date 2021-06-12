@@ -1,0 +1,28 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "&aNight Crystal"
+    description: Deal 10% more damage at daytime.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - clock
+        - netherite_sword
+        - clock
+
+        - netherite_sword
+        - ender_eye
+        - netherite_sword
+
+        - clock
+        - netherite_sword
+        - clock
+
+    general-config:
+      material: nether_star
+
+    config:
+      percent-more-damage: 10

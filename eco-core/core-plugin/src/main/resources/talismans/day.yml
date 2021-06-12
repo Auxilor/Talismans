@@ -1,0 +1,28 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "&aDay Crystal"
+    description: Deal 10% more damage at daytime.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - daylight_sensor
+        - netherite_sword
+        - daylight_sensor
+
+        - netherite_sword
+        - ender_eye
+        - netherite_sword
+
+        - daylight_sensor
+        - netherite_sword
+        - daylight_sensor
+
+    general-config:
+      material: nether_star
+
+    config:
+      percent-more-damage: 10

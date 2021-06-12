@@ -9,6 +9,7 @@ import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.AttackSpeedTalisman;
 import com.willfp.talismans.talismans.talismans.BossTalisman;
 import com.willfp.talismans.talismans.talismans.CreeperTalisman;
+import com.willfp.talismans.talismans.talismans.DayCrystal;
 import com.willfp.talismans.talismans.talismans.EndTalisman;
 import com.willfp.talismans.talismans.talismans.ExperienceTalisman;
 import com.willfp.talismans.talismans.talismans.ExtractionTalisman;
@@ -19,6 +20,7 @@ import com.willfp.talismans.talismans.talismans.GravityTalisman;
 import com.willfp.talismans.talismans.talismans.HealingTalisman;
 import com.willfp.talismans.talismans.talismans.ImmunityTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
+import com.willfp.talismans.talismans.talismans.NightCrystal;
 import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
 import com.willfp.talismans.talismans.talismans.RaidTalisman;
 import com.willfp.talismans.talismans.talismans.ResistanceTalisman;
@@ -74,6 +76,8 @@ public class Talismans {
     public static final Talisman BOSS_TALISMAN = new BossTalisman();
     public static final Talisman GRAVITY_TALISMAN = new GravityTalisman();
     public static final Talisman ATTACK_SPEED_TALISMAN = new AttackSpeedTalisman();
+    public static final Talisman DAY_CRYSTAL = new DayCrystal();
+    public static final Talisman NIGHT_CRYSTAL = new NightCrystal();
 
     /**
      * Get all registered {@link Talisman}s.
