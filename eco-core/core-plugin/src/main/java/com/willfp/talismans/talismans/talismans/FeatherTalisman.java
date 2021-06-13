@@ -20,6 +20,12 @@ public class FeatherTalisman extends Talisman {
             return;
         }
 
-        event.setDamage(event.getDamage() * this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "multiplier"));
+        double damage = event.getDamage() * this.getConfig().getDouble(Talismans.CONFIG_LOCATION + "multiplier");
+        if (damage < 0.5) {
+            event.setCancelled(true);
+            return;
+        }
+
+        event.setDamage(damage);
     }
 }
