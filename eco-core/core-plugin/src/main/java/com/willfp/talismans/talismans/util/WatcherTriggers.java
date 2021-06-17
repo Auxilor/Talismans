@@ -107,6 +107,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             }
 
             talismanLevel.getTalisman().onArrowDamage(talismanLevel, attacker, victim, arrow, event);
+            talismanLevel.getTalisman().onAnyAttack(talismanLevel, attacker, victim, event);
         });
     }
 
@@ -168,6 +169,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             }
 
             talismanLevel.getTalisman().onTridentDamage(talismanLevel, attacker, victim, trident, event);
+            talismanLevel.getTalisman().onAnyAttack(talismanLevel, attacker, victim, event);
         });
     }
 
@@ -265,6 +267,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             }
 
             talismanLevel.getTalisman().onMeleeAttack(talismanLevel, attacker, victim, event);
+            talismanLevel.getTalisman().onAnyAttack(talismanLevel, attacker, victim, event);
         });
     }
 

@@ -66,6 +66,21 @@ public interface Watcher {
     }
 
     /**
+     * Called when a player another entity with any attack.
+     *
+     * @param level    The level.
+     * @param attacker The attacker.
+     * @param victim   The victim.
+     * @param event    The event that called this watcher.
+     */
+    default void onAnyAttack(@NotNull final TalismanLevel level,
+                             @NotNull final Player attacker,
+                             @NotNull final LivingEntity victim,
+                             @NotNull final EntityDamageEvent event) {
+        // Empty default as talismans only override required watchers.
+    }
+
+    /**
      * Called when a player another entity with a melee attack.
      *
      * @param level    The level.
