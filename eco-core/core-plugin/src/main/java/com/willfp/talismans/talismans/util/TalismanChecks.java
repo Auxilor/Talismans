@@ -171,8 +171,11 @@ public class TalismanChecks {
             }
             if (readShulkerBoxes) {
                 ItemMeta meta = rawContent.getItemMeta();
-                if (meta instanceof BlockStateMeta) {
-                    BlockStateMeta shulkerMeta = (BlockStateMeta) meta;
+                if (meta instanceof BlockStateMeta shulkerMeta) {
+                    if (!shulkerMeta.hasBlockState()) {
+                        continue;
+                    }
+
                     BlockState state = shulkerMeta.getBlockState();
                     if (state instanceof ShulkerBox) {
                         ShulkerBox shulkerBox = (ShulkerBox) state;
