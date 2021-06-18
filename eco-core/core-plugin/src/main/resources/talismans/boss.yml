@@ -32,22 +32,22 @@ levels:
     name: "&eBoss Talisman II"
     description: Deal 25% more damage to bosses.
 
-    obtaining:
+    obtaining:F
       craftable: true
       # Recipes are left-right, top-bottom
       # The first item is the top left, the second is top middle, and so on. The last is bottom right.
       recipe:
-        - talismans:boss_talisman
-        - talismans:boss_talisman
-        - talismans:boss_talisman
+        - talismans:boss_1
+        - talismans:boss_1
+        - talismans:boss_1
 
-        - talismans:boss_talisman
+        - talismans:boss_1
         - heart_of_the_sea
-        - talismans:boss_talisman
+        - talismans:boss_1
 
-        - talismans:boss_talisman
-        - talismans:boss_talisman
-        - talismans:boss_talisman
+        - talismans:boss_1
+        - talismans:boss_1
+        - talismans:boss_1
 
     general-config:
       material: player_head
