@@ -32,7 +32,7 @@ levels:
     name: "&eBoss Talisman II"
     description: Deal 25% more damage to bosses.
 
-    obtaining:F
+    obtaining:
       craftable: true
       # Recipes are left-right, top-bottom
       # The first item is the top left, the second is top middle, and so on. The last is bottom right.
