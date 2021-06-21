@@ -61,11 +61,11 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getDamager() instanceof Arrow)) {
+        if (!(event.getDamager() instanceof Arrow arrow)) {
             return;
         }
 
-        if (!(event.getEntity() instanceof LivingEntity)) {
+        if (!(event.getEntity() instanceof LivingEntity victim)) {
             return;
         }
 
@@ -73,13 +73,9 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(((Arrow) event.getDamager()).getShooter() instanceof Player)) {
+        if (!(((Arrow) event.getDamager()).getShooter() instanceof Player attacker)) {
             return;
         }
-
-        Player attacker = (Player) ((Arrow) event.getDamager()).getShooter();
-        Arrow arrow = (Arrow) event.getDamager();
-        LivingEntity victim = (LivingEntity) event.getEntity();
 
         if (victim.hasMetadata("NPC")) {
             return;
@@ -122,7 +118,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getDamager() instanceof Trident)) {
+        if (!(event.getDamager() instanceof Trident trident)) {
             return;
         }
 
@@ -134,7 +130,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof LivingEntity)) {
+        if (!(event.getEntity() instanceof LivingEntity victim)) {
             return;
         }
 
@@ -142,10 +138,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        Trident trident = (Trident) event.getDamager();
         Player attacker = (Player) trident.getShooter();
-
-        LivingEntity victim = (LivingEntity) event.getEntity();
 
         if (victim.hasMetadata("NPC")) {
             return;
@@ -230,20 +223,17 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getDamager() instanceof Player)) {
+        if (!(event.getDamager() instanceof Player attacker)) {
             return;
         }
 
-        if (!(event.getEntity() instanceof LivingEntity)) {
+        if (!(event.getEntity() instanceof LivingEntity victim)) {
             return;
         }
 
         if (event.isCancelled()) {
             return;
         }
-
-        Player attacker = (Player) event.getDamager();
-        LivingEntity victim = (LivingEntity) event.getEntity();
 
         if (victim.hasMetadata("NPC")) {
             return;
@@ -286,11 +276,10 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player shooter)) {
             return;
         }
 
-        Player shooter = (Player) event.getEntity();
         Arrow arrow = (Arrow) event.getProjectile();
 
         TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
@@ -325,11 +314,9 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player victim)) {
             return;
         }
-
-        Player victim = (Player) event.getEntity();
 
         TalismanChecks.getTalismansOnPlayer(victim).forEach(talismanLevel -> {
             if (event.isCancelled()) {
@@ -359,7 +346,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity().getShooter() instanceof Player)) {
+        if (!(event.getEntity().getShooter() instanceof Player shooter)) {
             return;
         }
 
@@ -370,8 +357,6 @@ public class WatcherTriggers extends PluginDependent implements Listener {
         if (event.getEntity().getShooter() == null) {
             return;
         }
-
-        Player shooter = (Player) event.getEntity().getShooter();
 
         TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
             if (!talismanLevel.getTalisman().isEnabled()) {
@@ -397,7 +382,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity().getShooter() instanceof Player)) {
+        if (!(event.getEntity().getShooter() instanceof Player shooter)) {
             return;
         }
 
@@ -405,12 +390,9 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Trident)) {
+        if (!(event.getEntity() instanceof Trident trident)) {
             return;
         }
-
-        Trident trident = (Trident) event.getEntity();
-        Player shooter = (Player) event.getEntity().getShooter();
 
         TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
             if (!talismanLevel.getTalisman().isEnabled()) {
@@ -475,11 +457,9 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player victim)) {
             return;
         }
-
-        Player victim = (Player) event.getEntity();
 
         TalismanChecks.getTalismansOnPlayer(victim).forEach(talismanLevel -> {
             if (event.isCancelled()) {
@@ -509,11 +489,9 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player victim)) {
             return;
         }
-
-        Player victim = (Player) event.getEntity();
 
         TalismanChecks.getTalismansOnPlayer(victim).forEach(talismanLevel -> {
             if (event.isCancelled()) {
@@ -578,7 +556,7 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Trident)) {
+        if (!(event.getEntity() instanceof Trident trident)) {
             return;
         }
 
@@ -586,7 +564,6 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        Trident trident = (Trident) event.getEntity();
         Player shooter = (Player) trident.getShooter();
 
         TalismanChecks.getTalismansOnPlayer(shooter).forEach(talismanLevel -> {
@@ -617,17 +594,13 @@ public class WatcherTriggers extends PluginDependent implements Listener {
             return;
         }
 
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player blocker)) {
             return;
         }
 
-        if (!(event.getDamager() instanceof LivingEntity)) {
+        if (!(event.getDamager() instanceof LivingEntity attacker)) {
             return;
         }
-
-        Player blocker = (Player) event.getEntity();
-
-        LivingEntity attacker = (LivingEntity) event.getDamager();
 
         if (!blocker.isBlocking()) {
             return;

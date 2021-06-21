@@ -195,10 +195,9 @@ public class TalismanLevel {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof TalismanLevel)) {
+        if (!(o instanceof TalismanLevel that)) {
             return false;
         }
-        TalismanLevel that = (TalismanLevel) o;
         return getLevel() == that.getLevel() && Objects.equals(getTalisman(), that.getTalisman());
     }
 

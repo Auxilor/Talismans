@@ -138,11 +138,10 @@ public abstract class Talisman implements Listener, Watcher {
             return true;
         }
 
-        if (!(o instanceof Talisman)) {
+        if (!(o instanceof Talisman talisman)) {
             return false;
         }
 
-        Talisman talisman = (Talisman) o;
         return this.getKey().equals(talisman.getKey());
     }
 

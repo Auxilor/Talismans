@@ -20,11 +20,9 @@ public class AlchemyTalisman extends Talisman {
         if (event.getNewEffect() == null) {
             return;
         }
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player player)) {
             return;
         }
-
-        Player player = (Player) event.getEntity();
 
         if (player.hasMetadata(event.getNewEffect().toString())) {
             return;

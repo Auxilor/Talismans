@@ -32,11 +32,9 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
      */
     @EventHandler
     public void onCraft(@NotNull final PrepareItemCraftEvent event) {
-        if (!(event.getRecipe() instanceof ShapedRecipe)) {
+        if (!(event.getRecipe() instanceof ShapedRecipe recipe)) {
             return;
         }
-
-        ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
 
         NamespacedKey key = this.getPlugin().getNamespacedKeyFactory().create(recipe.getKey().getKey().replace("_displayed", ""));
 
@@ -66,11 +64,9 @@ public class TalismanCraftListener extends PluginDependent implements Listener {
      */
     @EventHandler
     public void onCraft(@NotNull final CraftItemEvent event) {
-        if (!(event.getRecipe() instanceof ShapedRecipe)) {
+        if (!(event.getRecipe() instanceof ShapedRecipe recipe)) {
             return;
         }
-
-        ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
 
         NamespacedKey key = this.getPlugin().getNamespacedKeyFactory().create(recipe.getKey().getKey().replace("_displayed", ""));
 

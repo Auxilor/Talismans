@@ -16,15 +16,13 @@ public class HealingTalisman extends Talisman {
 
     @EventHandler
     public void onHeal(@NotNull final EntityRegainHealthEvent event) {
-        if (!(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player player)) {
             return;
         }
 
         if (!event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.SATIATED) && !event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN)) {
             return;
         }
-
-        Player player = (Player) event.getEntity();
 
         if (this.getDisabledWorlds().contains(player.getWorld())) {
             return;

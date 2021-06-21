@@ -177,8 +177,7 @@ public class TalismanChecks {
                     }
 
                     BlockState state = shulkerMeta.getBlockState();
-                    if (state instanceof ShulkerBox) {
-                        ShulkerBox shulkerBox = (ShulkerBox) state;
+                    if (state instanceof ShulkerBox shulkerBox) {
                         contents.addAll(Arrays.asList(shulkerBox.getInventory().getContents()));
                         continue;
                     }

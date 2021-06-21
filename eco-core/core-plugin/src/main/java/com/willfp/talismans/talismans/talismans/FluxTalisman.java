@@ -22,15 +22,13 @@ public class FluxTalisman extends Talisman {
             return;
         }
 
-        if (!(event.getDamager() instanceof Player)) {
+        if (!(event.getDamager() instanceof Player attacker)) {
             return;
         }
 
         if (event.isCancelled()) {
             return;
         }
-
-        Player attacker = (Player) event.getDamager();
 
         if (this.getDisabledWorlds().contains(attacker.getWorld())) {
             return;
@@ -40,11 +38,9 @@ public class FluxTalisman extends Talisman {
 
 
         for (Entity nearbyEntity : attacker.getNearbyEntities(distance, distance, distance)) {
-            if (!(nearbyEntity instanceof Player)) {
+            if (!(nearbyEntity instanceof Player player)) {
                 continue;
             }
-
-            Player player = (Player) nearbyEntity;
 
             TalismanLevel level = TalismanChecks.getTalismanLevel(player, this);
 
