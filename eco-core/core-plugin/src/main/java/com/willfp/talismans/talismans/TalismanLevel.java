@@ -5,6 +5,7 @@ import com.willfp.eco.core.config.Config;
 import com.willfp.eco.core.display.Display;
 import com.willfp.eco.core.items.CustomItem;
 import com.willfp.eco.core.items.Items;
+import com.willfp.eco.core.items.builder.ItemStackBuilder;
 import com.willfp.eco.core.recipe.recipes.ShapedCraftingRecipe;
 import com.willfp.eco.util.StringUtils;
 import com.willfp.talismans.TalismansPlugin;
@@ -157,12 +158,11 @@ public class TalismanLevel {
 
         craftable = config.getBool(Talismans.OBTAINING_LOCATION + "craftable");
 
-        ItemStack out = new ItemStack(material, 1);
-        ItemMeta outMeta = out.getItemMeta();
-        assert outMeta != null;
-        PersistentDataContainer container = outMeta.getPersistentDataContainer();
-        container.set(this.getTalisman().getKey(), PersistentDataType.INTEGER, this.getLevel());
-        out.setItemMeta(outMeta);
+        ItemStack out = new ItemStackBuilder(material)
+                .setAmount(1)
+                .writeMetaKey(this.getTalisman().getKey(), PersistentDataType.INTEGER, this.getLevel())
+                .build();
+
         Display.display(out);
 
         this.itemStack = out;
