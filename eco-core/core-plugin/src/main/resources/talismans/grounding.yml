@@ -1,0 +1,29 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "&aGrounding Charm"
+    description: Become immune to levitation.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - phantom_membrane
+        - phantom_membrane
+        - phantom_membrane
+
+        - phantom_membrane
+        - ender_eye
+        - phantom_membrane
+
+        - phantom_membrane
+        - phantom_membrane
+        - phantom_membrane
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWQzNGJhNjg4ZDlkMjc1YjViMmJjMjAwZmFhYzAwMGExMzQ1MjVlNTY1YjkyNjhlMzRiZTM5MmE2MDBkMTczZSJ9fX0=
+
+    config:
+      # No config is available for this talisman
