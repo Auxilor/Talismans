@@ -26,9 +26,9 @@
 
 
 [![Title](https://i.imgur.com/S3BUbGA.png)]()
-[![Features](https://i.imgur.com/mtvbxli.png)]()
+[![Features](https://i.imgur.com/jQ152Vq.png)]()
 [![Docs](https://i.imgur.com/LoEuV4j.png)](https://talismans.willfp.com/talismans/all-talismans)
-[![Compatibility](https://i.imgur.com/hjmbGHF.png)]()
+[![Compatibility](https://i.imgur.com/snLC9Cj.png)]()
 
 ## License
 *Click here to read [the entire license](https://github.com/Auxilor/Talismans/blob/master/LICENSE.md).*
