@@ -1,0 +1,55 @@
+enabled: true
+disabled-in-worlds: [ ]
+
+levels:
+  1:
+    name: "&aStorm Ring I"
+    description: Deal more damage during a storm.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - redstone
+        - glowstone_dust
+        - redstone
+
+        - glowstone_dust
+        - ender_eye
+        - glowstone_dust
+
+        - redstone
+        - glowstone_dust
+        - redstone
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWY5MjgzZGY0OTI1YmYzNmJmNmZjZjVjMzU1Y2VkMjczYmIxN2Y5NDcyYWI3NjU3YmYxNTllMWI2YmI5NTI3In19fQ==
+
+    config:
+      percent-more-damage: 5
+
+  2:
+    name: "&eStorm Ring II"
+    description: Deal more damage during a storm.
+
+    obtaining:
+      craftable: true
+      recipe:
+        - talismans:storm_1
+        - talismans:storm_1
+        - talismans:storm_1
+
+        - talismans:storm_1
+        - heart_of_the_sea
+        - talismans:storm_1
+
+        - talismans:storm_1
+        - talismans:storm_1
+        - talismans:storm_1
+
+    general-config:
+      material: player_head
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjVjNDE2ZWYyYmU4NWU5MTI2ZDE4YTMzZTRiYjhmYzRkODYxNGMxZDNkN2E3MzJiN2ZmYTAyMzRlYmVjNDJkMSJ9fX0=
+
+    config:
+      percent-more-damage: 10

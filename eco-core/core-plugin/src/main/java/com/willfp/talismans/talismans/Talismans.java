@@ -31,6 +31,7 @@ import com.willfp.talismans.talismans.talismans.SkeletonTalisman;
 import com.willfp.talismans.talismans.talismans.SpeedTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.SpiderTalisman;
+import com.willfp.talismans.talismans.talismans.StormRing;
 import com.willfp.talismans.talismans.talismans.StrengthTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieResistanceTalisman;
 import com.willfp.talismans.talismans.talismans.ZombieTalisman;
@@ -82,6 +83,7 @@ public class Talismans {
     public static final Talisman NIGHT_CRYSTAL = new NightCrystal();
     public static final Talisman NECROMANCE_RING = new NecromanceRing();
     public static final Talisman GROUNDING_CHARM = new GroundingCharm();
+    public static final Talisman STORM_RING = new StormRing();
 
     /**
      * Get all registered {@link Talisman}s.
