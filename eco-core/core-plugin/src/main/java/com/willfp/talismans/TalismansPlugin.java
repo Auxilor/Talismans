@@ -38,7 +38,7 @@ public class TalismansPlugin extends EcoPlugin {
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
-        super("Talismans", 87377, 9865, "com.willfp.talismans.proxy", "&6");
+        super(87377, 9865, "com.willfp.talismans.proxy", "&6");
         instance = this;
     }
 
