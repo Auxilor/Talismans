@@ -24,6 +24,7 @@ levels:
     general-config:
       material: player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDBmOGRmYTVlZmM3NTYzMGNlMGRmNDBhNDliOGY1OWJjMjIyMTRkZTk3ZTNmYjQ0YjNjNTZlOGE5YzhhNTZiNiJ9fX0=
+      custom-model-data: -1
 
     config:
       percent-more-damage: 10
@@ -53,6 +54,7 @@ levels:
       material: player_head
       # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzgzODVhNWE0Njk4MjFiOGIzM2U0N2E1YjVjNDJhZWE1OTY2MzQ2NTQ2OTM4OGExYTRkNGU1MjNlNWE4ZGRkMiJ9fX0=
+      custom-model-data: -1
 
     config:
       percent-more-damage: 25
@@ -82,6 +84,7 @@ levels:
       material: player_head
       # Texture is base64, https://minecraft-heads.com has a list of skulls. Ignored if material is not player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ3NDk5NWQ2Y2RhMmI4YTI0NzcyYWY5NjllZjA3N2FlM2E4NWUyMzU3YzZmNjExOWI4YTI1MDYwNDFhNDQ4YiJ9fX0=
+      custom-model-data: -1
 
     config:
       percent-more-damage: 40

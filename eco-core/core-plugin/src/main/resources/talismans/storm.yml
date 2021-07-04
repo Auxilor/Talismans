@@ -24,6 +24,7 @@ levels:
     general-config:
       material: player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWY5MjgzZGY0OTI1YmYzNmJmNmZjZjVjMzU1Y2VkMjczYmIxN2Y5NDcyYWI3NjU3YmYxNTllMWI2YmI5NTI3In19fQ==
+      custom-model-data: -1
 
     config:
       percent-more-damage: 5
@@ -50,6 +51,7 @@ levels:
     general-config:
       material: player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjVjNDE2ZWYyYmU4NWU5MTI2ZDE4YTMzZTRiYjhmYzRkODYxNGMxZDNkN2E3MzJiN2ZmYTAyMzRlYmVjNDJkMSJ9fX0=
+      custom-model-data: -1
 
     config:
       percent-more-damage: 10

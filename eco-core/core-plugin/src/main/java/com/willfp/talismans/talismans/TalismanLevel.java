@@ -113,6 +113,12 @@ public class TalismanLevel {
     private String skullBase64;
 
     /**
+     * The custom model data.
+     */
+    @Getter
+    private Integer customModelData;
+
+    /**
      * Create a new Talisman Level.
      *
      * @param talisman The talisman.
@@ -147,6 +153,8 @@ public class TalismanLevel {
         name = config.getString("name");
         description = config.getString("description");
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
+        Integer data = config.getIntOrNull(Talismans.GENERAL_LOCATION + "custom-model-data");
+        customModelData = data == null || data == -1 ? null : data;
         Material material = Material.getMaterial(config.getString(Talismans.GENERAL_LOCATION + "material").toUpperCase());
         Validate.notNull(material, "Material specified for " + this.getKey().getKey() + " is invalid!");
         TalismanUtils.registerTalismanMaterial(material);
@@ -161,6 +169,7 @@ public class TalismanLevel {
         ItemStack out = new ItemStackBuilder(material)
                 .setAmount(1)
                 .writeMetaKey(this.getTalisman().getKey(), PersistentDataType.INTEGER, this.getLevel())
+                .setCustomModelData(data)
                 .build();
 
         Display.display(out);

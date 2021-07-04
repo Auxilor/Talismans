@@ -23,6 +23,7 @@ levels:
 
     general-config:
       material: nether_star
+      custom-model-data: -1
 
     config:
       percent-more-damage: 10

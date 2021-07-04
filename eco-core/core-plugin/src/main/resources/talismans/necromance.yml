@@ -24,6 +24,7 @@ levels:
     general-config:
       material: player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2E3MGM1ZDA3Yjc5YzViZTQzZDBiMjFjNmQ0ZTM3NDcyZGIyYWIzZmE2MzRhNWYxM2NmODlmYjk4N2IyZTUifX19
+      custom-model-data: -1
 
     config:
       distance: 5
@@ -50,6 +51,7 @@ levels:
     general-config:
       material: player_head
       texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDk2YmM4ZWJkNGUxM2Y0OTZkOGQ3NGM1NjVkZDU2ZTk5YTRhZjJlMmVhN2EyN2E5NmMxYWJkMjg0MTg0YiJ9fX0=
+      custom-model-data: -1
 
     config:
       distance: 7

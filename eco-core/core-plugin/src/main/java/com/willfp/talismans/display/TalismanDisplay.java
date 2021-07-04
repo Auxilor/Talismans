@@ -59,6 +59,8 @@ public class TalismanDisplay extends DisplayModule {
 
         meta.setDisplayName(talisman.getName());
 
+        meta.setCustomModelData(talisman.getCustomModelData());
+
         List<String> lore = new ArrayList<>();
 
         lore.addAll(talisman.getFormattedDescription());
