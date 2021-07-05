@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class DiscoverRecipeListener extends PluginDependent implements Listener {
+public class DiscoverRecipeListener extends PluginDependent<EcoPlugin> implements Listener {
     /**
      * Register listener.
      *

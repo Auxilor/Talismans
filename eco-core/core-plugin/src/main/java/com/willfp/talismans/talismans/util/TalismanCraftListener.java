@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.jetbrains.annotations.NotNull;
 
-public class TalismanCraftListener extends PluginDependent implements Listener {
+public class TalismanCraftListener extends PluginDependent<EcoPlugin> implements Listener {
     /**
      * Create new talisman craft listener.
      *

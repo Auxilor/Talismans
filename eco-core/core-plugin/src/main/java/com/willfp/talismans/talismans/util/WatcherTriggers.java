@@ -30,7 +30,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @SuppressWarnings("deprecation")
-public class WatcherTriggers extends PluginDependent implements Listener {
+public class WatcherTriggers extends PluginDependent<EcoPlugin> implements Listener {
     /**
      * For jump listeners.
      */

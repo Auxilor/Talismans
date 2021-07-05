@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TalismanEquipEventListeners extends PluginDependent implements Listener {
+public class TalismanEquipEventListeners extends PluginDependent<EcoPlugin> implements Listener {
     /**
      * Initialize new listeners and link them to a plugin.
      *
