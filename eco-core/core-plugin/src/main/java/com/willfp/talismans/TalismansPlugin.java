@@ -2,12 +2,12 @@ package com.willfp.talismans;
 
 import com.willfp.eco.core.AbstractPacketAdapter;
 import com.willfp.eco.core.EcoPlugin;
-import com.willfp.eco.core.command.AbstractCommand;
+import com.willfp.eco.core.command.impl.PluginCommand;
 import com.willfp.eco.core.display.DisplayModule;
 import com.willfp.eco.core.integrations.IntegrationLoader;
-import com.willfp.talismans.commands.CommandTalgive;
-import com.willfp.talismans.commands.CommandTalreload;
-import com.willfp.talismans.commands.TabcompleterTalgive;
+import com.willfp.talismans.command.CommandGive;
+import com.willfp.talismans.command.CommandReload;
+import com.willfp.talismans.command.CommandTalismans;
 import com.willfp.talismans.display.TalismanDisplay;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.BlockPlaceListener;
@@ -38,7 +38,7 @@ public class TalismansPlugin extends EcoPlugin {
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
-        super(87377, 9865, "com.willfp.talismans.proxy", "&6");
+        super(87377, 9865, "&6");
         instance = this;
     }
 
@@ -110,16 +110,10 @@ public class TalismansPlugin extends EcoPlugin {
         return new ArrayList<>();
     }
 
-    /**
-     * Talismans-specific commands.
-     *
-     * @return A list of all commands.
-     */
     @Override
-    public List<AbstractCommand> getCommands() {
+    public List<PluginCommand> getPluginCommands() {
         return Arrays.asList(
-                new CommandTalreload(this),
-                new CommandTalgive(this)
+                new CommandTalismans(this)
         );
     }
 
@@ -154,7 +148,7 @@ public class TalismansPlugin extends EcoPlugin {
         return Arrays.asList(
                 TalismanChecks.class,
                 Talismans.class,
-                TabcompleterTalgive.class
+                CommandGive.class
         );
     }
 
@@ -162,5 +156,10 @@ public class TalismansPlugin extends EcoPlugin {
     @Nullable
     protected DisplayModule createDisplayModule() {
         return new TalismanDisplay(this);
+    }
+
+    @Override
+    protected String getMinimumEcoVersion() {
+        return "5.7.0";
     }
 }

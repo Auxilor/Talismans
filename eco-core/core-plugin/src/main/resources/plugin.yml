@@ -23,28 +23,29 @@ softdepend:
   - mcMMO
 
 commands:
-  talreload:
-    description: Reloads config
-    permission: talismans.reload
-  talgive:
-    description: Give a player a talisman
-    permission: talismans.give
+  talismans:
+    description: Parent command.
+    permission: talismans.command.talismans
 
 permissions:
   talismans.*:
     description: All talismans permissions
     default: op
     children:
-      talismans.reload: true
-      talismans.give: true
+      talismans.command.talismans: true
+      talismans.command.give: true
+      talismans.command.reload: true
       talismans.fromtable.*: true
 
-  talismans.reload:
+  talismans.command.reload:
     description: Allows reloading the config
     default: op
-  talismans.give:
-    description: Allows the use of /talgive.
+  talismans.command.give:
+    description: Allows the use of /talismans give.
     default: op
+  talismans.command.talismans:
+    description: Allows the use of /talismans
+    default: true
   talismans.fromtable.*:
     description: Allows crafting all talismans
     default: true
