@@ -2,6 +2,7 @@ messages:
   prefix: "&6&lTalismans&r &8» &r"
   no-permission: "&cYou don't have permission to do this!"
   not-player: "&cThis command must be run by a player"
+  invalid-command: "&cUnknown Subcommand!"
   reloaded: "Reloaded!"
   needs-player: "&cYou must specify a player"
   invalid-player: "&cInvalid player!"
