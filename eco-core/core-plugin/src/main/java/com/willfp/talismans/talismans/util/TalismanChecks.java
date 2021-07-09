@@ -47,6 +47,11 @@ public class TalismanChecks {
     private static boolean readShulkerBoxes = true;
 
     /**
+     * If shulker boxes in ender chests should be read.
+     */
+    private static boolean readShulkerInEnderChest = true;
+
+    /**
      * If only offhand should be read.
      */
     private static boolean offhandOnly = false;
@@ -152,24 +157,36 @@ public class TalismanChecks {
         List<ItemStack> contents = new ArrayList<>();
         Set<TalismanLevel> found = new HashSet<>();
 
-        List<ItemStack> rawContents = new ArrayList<>(Arrays.asList(player.getInventory().getContents()));
+        Map<ItemStack, Boolean> rawContents = new HashMap<>();
+        for (ItemStack stack : player.getInventory().getContents()) {
+            rawContents.put(stack, false);
+        }
 
         if (readEnderChest) {
-            rawContents.addAll(Arrays.asList(player.getEnderChest().getContents()));
+            for (ItemStack stack : player.getEnderChest().getContents()) {
+                rawContents.put(stack, true);
+            }
         }
 
         if (offhandOnly) {
             rawContents.clear();
-            rawContents.add(player.getInventory().getItemInOffHand());
+            rawContents.put(player.getInventory().getItemInOffHand(), false);
         }
 
-        rawContents.addAll(Arrays.asList(extra));
+        for (ItemStack stack : extra) {
+            rawContents.put(stack, false);
+        }
 
-        for (ItemStack rawContent : rawContents) {
+        for (ItemStack rawContent : rawContents.keySet()) {
             if (rawContent == null) {
                 continue;
             }
+
             if (readShulkerBoxes) {
+                if (rawContents.get(rawContent)) {
+                    continue;
+                }
+
                 ItemMeta meta = rawContent.getItemMeta();
                 if (meta instanceof BlockStateMeta shulkerMeta) {
                     if (!shulkerMeta.hasBlockState()) {
@@ -183,6 +200,26 @@ public class TalismanChecks {
                     }
                 }
             }
+
+            if (readShulkerInEnderChest) {
+                if (!rawContents.get(rawContent)) {
+                    continue;
+                }
+
+                ItemMeta meta = rawContent.getItemMeta();
+                if (meta instanceof BlockStateMeta shulkerMeta) {
+                    if (!shulkerMeta.hasBlockState()) {
+                        continue;
+                    }
+
+                    BlockState state = shulkerMeta.getBlockState();
+                    if (state instanceof ShulkerBox shulkerBox) {
+                        contents.addAll(Arrays.asList(shulkerBox.getInventory().getContents()));
+                        continue;
+                    }
+                }
+            }
+
             contents.add(rawContent);
         }
 
@@ -242,6 +279,7 @@ public class TalismanChecks {
     public static void reload() {
         readEnderChest = PLUGIN.getConfigYml().getBool("read-enderchest");
         readShulkerBoxes = PLUGIN.getConfigYml().getBool("read-shulkerboxes");
+        readShulkerInEnderChest = PLUGIN.getConfigYml().getBool("read-enderchest-boxes");
         offhandOnly = PLUGIN.getConfigYml().getBool("offhand-only");
     }
 }
