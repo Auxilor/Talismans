@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.eco.core.integrations.mcmmo.McmmoManager;
 import com.willfp.talismans.talismans.Talisman;
+import com.willfp.talismans.talismans.util.TalismanChecks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
@@ -20,6 +21,10 @@ public class GroundingCharm extends Talisman {
         }
 
         if (!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+
+        if (!TalismanChecks.hasTalisman(player, this)) {
             return;
         }
 
