@@ -1,7 +1,7 @@
 package com.willfp.talismans.talismans.util;
 
 import com.willfp.eco.core.EcoPlugin;
-import com.willfp.eco.core.config.ConfigUpdater;
+import com.willfp.eco.core.config.updating.ConfigUpdater;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.TalismanLevel;

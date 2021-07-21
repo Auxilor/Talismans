@@ -4,7 +4,7 @@ import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.command.CommandHandler;
 import com.willfp.eco.core.command.TabCompleteHandler;
 import com.willfp.eco.core.command.impl.Subcommand;
-import com.willfp.eco.core.config.ConfigUpdater;
+import com.willfp.eco.core.config.updating.ConfigUpdater;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.TalismanLevel;
