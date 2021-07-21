@@ -1,7 +1,7 @@
 package com.willfp.talismans.talismans;
 
 import com.willfp.eco.core.EcoPlugin;
-import com.willfp.eco.core.config.Config;
+import com.willfp.eco.core.config.interfaces.Config;
 import com.willfp.eco.core.display.Display;
 import com.willfp.eco.core.items.CustomItem;
 import com.willfp.eco.core.items.Items;
@@ -19,10 +19,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -162,7 +160,7 @@ public class TalismanLevel {
         formattedDescription = Arrays.stream(
                 WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false)
                         .split("[\\r\\n]+")
-        ).map(s -> Display.PREFIX + StringUtils.translate(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
+        ).map(s -> Display.PREFIX + StringUtils.format(this.getPlugin().getLangYml().getString("description-color") + s)).collect(Collectors.toList());
 
         craftable = config.getBool(Talismans.OBTAINING_LOCATION + "craftable");
 

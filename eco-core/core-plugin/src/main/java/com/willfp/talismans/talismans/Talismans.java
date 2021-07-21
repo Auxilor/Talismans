@@ -3,7 +3,7 @@ package com.willfp.talismans.talismans;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableSet;
-import com.willfp.eco.core.config.ConfigUpdater;
+import com.willfp.eco.core.config.updating.ConfigUpdater;
 import com.willfp.talismans.talismans.talismans.AlchemyTalisman;
 import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.AttackSpeedTalisman;

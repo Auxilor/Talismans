@@ -3,7 +3,6 @@ package com.willfp.talismans.talismans.util;
 
 import com.willfp.eco.util.NumberUtils;
 import com.willfp.talismans.TalismansPlugin;
-import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;

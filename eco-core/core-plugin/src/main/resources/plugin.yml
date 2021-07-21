@@ -8,19 +8,6 @@ load: STARTUP
 depend:
   - eco
   - ProtocolLib
-softdepend:
-  - WorldGuard
-  - GriefPrevention
-  - Towny
-  - FactionsUUID
-  - Lands
-  - Kingdoms
-  - NoCheatPlus
-  - AAC
-  - Matrix
-  - Spartan
-  - PlaceholderAPI
-  - mcMMO
 
 commands:
   talismans:

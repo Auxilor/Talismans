@@ -89,7 +89,6 @@ public abstract class Talisman implements Listener, Watcher {
      * This can be overridden but may lead to unexpected behavior.
      */
     public void update() {
-        config.update();
         disabledWorldNames.clear();
         disabledWorldNames.addAll(config.getStrings(Talismans.GENERAL_LOCATION + "disabled-in-worlds"));
         disabledWorlds.clear();

@@ -5,7 +5,6 @@ import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.equipevent.EquipType;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
