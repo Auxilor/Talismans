@@ -14,3 +14,5 @@ read-enderchest: true # If a player's ender chest should be checked for talisman
 read-shulkerboxes: true # If a player's shulker boxes should be checked for talismans
 
 offhand-only: false # If talismans or shulkers of talismans need to be in the offhand to work
+
+highest-level-only: false # If only the highest level talisman is activated rather than different levels stacking.

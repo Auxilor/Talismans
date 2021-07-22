@@ -199,6 +199,26 @@ public class TalismanChecks {
             found.add(talisman);
         }
 
+        if (PLUGIN.getConfigYml().getBool("highest-level-only")) {
+            Map<Talisman, Integer> highestFound = new HashMap<>();
+            Set<TalismanLevel> foundClone = new HashSet<>(found);
+            found.clear();
+
+            for (TalismanLevel talismanLevel : foundClone) {
+                Integer highestLevel = highestFound.get(talismanLevel.getTalisman());
+                if (highestLevel != null) {
+                    if (highestLevel < talismanLevel.getLevel()) {
+                        found.remove(talismanLevel.getTalisman().getLevel(highestLevel));
+                        highestFound.put(talismanLevel.getTalisman(), talismanLevel.getLevel());
+                        found.add(talismanLevel);
+                    }
+                } else {
+                    found.add(talismanLevel);
+                    highestFound.put(talismanLevel.getTalisman(), talismanLevel.getLevel());
+                }
+            }
+        }
+
         if (useCache) {
             CACHED_TALISMANS.put(player.getUniqueId(), found);
             PLUGIN.getScheduler().runLater(() -> CACHED_TALISMANS.remove(player.getUniqueId()), 40);
