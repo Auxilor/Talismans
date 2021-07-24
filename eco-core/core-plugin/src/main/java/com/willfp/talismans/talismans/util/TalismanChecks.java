@@ -52,7 +52,12 @@ public class TalismanChecks {
     private static boolean offhandOnly = false;
 
     /**
-     * The associated plugin instance.
+     * If only the highest level talismans should be activated.
+     */
+    private static boolean highestLevelOnly = false;
+
+    /**
+     * Instance of talismans.
      */
     private static final EcoPlugin PLUGIN = TalismansPlugin.getInstance();
 
@@ -199,7 +204,7 @@ public class TalismanChecks {
             found.add(talisman);
         }
 
-        if (PLUGIN.getConfigYml().getBool("highest-level-only")) {
+        if (highestLevelOnly) {
             Map<Talisman, Integer> highestFound = new HashMap<>();
             Set<TalismanLevel> foundClone = new HashSet<>(found);
             found.clear();
@@ -258,10 +263,16 @@ public class TalismanChecks {
         return null;
     }
 
+    /**
+     * Update config values.
+     *
+     * @param plugin Instance of Talismans.
+     */
     @ConfigUpdater
-    public static void reload() {
-        readEnderChest = PLUGIN.getConfigYml().getBool("read-enderchest");
-        readShulkerBoxes = PLUGIN.getConfigYml().getBool("read-shulkerboxes");
-        offhandOnly = PLUGIN.getConfigYml().getBool("offhand-only");
+    public static void reload(@NotNull final EcoPlugin plugin) {
+        readEnderChest = plugin.getConfigYml().getBool("read-enderchest");
+        readShulkerBoxes = plugin.getConfigYml().getBool("read-shulkerboxes");
+        offhandOnly = plugin.getConfigYml().getBool("offhand-only");
+        highestLevelOnly = plugin.getConfigYml().getBool("highest-level-only");
     }
 }
