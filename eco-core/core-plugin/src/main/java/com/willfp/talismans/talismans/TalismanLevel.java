@@ -176,7 +176,7 @@ public class TalismanLevel {
 
         new CustomItem(this.getKey(), test -> Objects.equals(this, TalismanChecks.getTalismanOnItem(test)), out).register();
 
-        if (this.isCraftable()) {
+        if (this.isCraftable() && this.getTalisman().isEnabled()) {
             ShapedCraftingRecipe.Builder builder = ShapedCraftingRecipe.builder(this.getPlugin(), this.getKey().getKey())
                     .setOutput(out);
 
