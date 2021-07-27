@@ -16,7 +16,8 @@ public class FlameTalisman extends Talisman {
     public void onDamage(@NotNull final TalismanLevel level,
                          @NotNull final Player victim,
                          @NotNull final EntityDamageEvent event) {
-        if (event.getCause() != EntityDamageEvent.DamageCause.FIRE && event.getCause() != EntityDamageEvent.DamageCause.FIRE_TICK) {
+        if (event.getCause() != EntityDamageEvent.DamageCause.FIRE && event.getCause() != EntityDamageEvent.DamageCause.FIRE_TICK
+        && event.getCause() != EntityDamageEvent.DamageCause.LAVA && event.getCause() != EntityDamageEvent.DamageCause.HOT_FLOOR) {
             return;
         }
 
