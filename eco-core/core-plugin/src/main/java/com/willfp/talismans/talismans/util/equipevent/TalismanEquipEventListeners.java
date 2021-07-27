@@ -114,12 +114,12 @@ public class TalismanEquipEventListeners extends PluginDependent<EcoPlugin> impl
         refreshPlayer(event.getPlayer(), event.getPlayer().getInventory().getItemInOffHand());
     }
 
-                              /**
+    /**
      * Called on inventory click.
      *
      * @param event The event to listen for.
      */
-                              @EventHandler
+    @EventHandler
     public void onInventoryClick(@NotNull final InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player)) {
             return;
