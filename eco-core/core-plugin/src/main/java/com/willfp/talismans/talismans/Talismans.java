@@ -21,6 +21,7 @@ import com.willfp.talismans.talismans.talismans.GroundingCharm;
 import com.willfp.talismans.talismans.talismans.HealingTalisman;
 import com.willfp.talismans.talismans.talismans.ImmunityTalisman;
 import com.willfp.talismans.talismans.talismans.NecromanceRing;
+import com.willfp.talismans.talismans.talismans.NecrosisTalisman;
 import com.willfp.talismans.talismans.talismans.NetherTalisman;
 import com.willfp.talismans.talismans.talismans.NightCrystal;
 import com.willfp.talismans.talismans.talismans.PoseidonTalisman;
@@ -86,6 +87,7 @@ public class Talismans {
     public static final Talisman GROUNDING_CHARM = new GroundingCharm();
     public static final Talisman STORM_RING = new StormRing();
     public static final Talisman VIBRANCE_TALISMAN = new VibranceTalisman();
+    public static final Talisman NECROSIS_TALISMAN = new NecrosisTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
