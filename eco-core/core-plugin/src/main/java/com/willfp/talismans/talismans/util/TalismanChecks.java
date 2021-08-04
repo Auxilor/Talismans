@@ -7,8 +7,6 @@ import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
-import me.often.talismansgui.Utils.BagUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.ShulkerBox;
@@ -30,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
 
 @UtilityClass
 public class TalismanChecks {
@@ -37,6 +36,11 @@ public class TalismanChecks {
      * Cached talismans.
      */
     public static final Map<UUID, Set<TalismanLevel>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
+
+    /**
+     * All providers.
+     */
+    private static final Set<Function<Player, List<ItemStack>>> PROVIDERS = new HashSet<>();
 
     /**
      * If ender chests should be checked.
@@ -172,6 +176,10 @@ public class TalismanChecks {
 
         rawContents.addAll(Arrays.asList(extra));
 
+        for (Function<Player, List<ItemStack>> provider : PROVIDERS) {
+            rawContents.addAll(provider.apply(player));
+        }
+
         for (ItemStack rawContent : rawContents) {
             if (rawContent == null) {
                 continue;
@@ -226,16 +234,21 @@ public class TalismanChecks {
             }
         }
 
-        if (TalismansPlugin.isBagLoaded()){
-            found.addAll(BagUtils.getBag(player));
-        }
-
         if (useCache) {
             CACHED_TALISMANS.put(player.getUniqueId(), found);
             PLUGIN.getScheduler().runLater(() -> CACHED_TALISMANS.remove(player.getUniqueId()), 40);
         }
 
         return found;
+    }
+
+    /**
+     * Register ItemStack provider (inventory extension, eg talisman bag).
+     *
+     * @param provider The provider.
+     */
+    public static void regsiterItemStackProvider(@NotNull final Function<Player, List<ItemStack>> provider) {
+        PROVIDERS.add(provider);
     }
 
     /**
