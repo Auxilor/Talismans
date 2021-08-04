@@ -7,6 +7,8 @@ import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import lombok.experimental.UtilityClass;
+import me.often.talismansgui.Utils.BagUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.ShulkerBox;
@@ -222,6 +224,10 @@ public class TalismanChecks {
                     highestFound.put(talismanLevel.getTalisman(), talismanLevel.getLevel());
                 }
             }
+        }
+
+        if (TalismansPlugin.isBagLoaded()){
+            found.addAll(BagUtils.getBag(player));
         }
 
         if (useCache) {
