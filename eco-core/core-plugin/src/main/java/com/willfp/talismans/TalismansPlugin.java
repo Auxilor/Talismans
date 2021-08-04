@@ -29,6 +29,12 @@ public class TalismansPlugin extends EcoPlugin {
     private static TalismansPlugin instance;
 
     /**
+     * If bag from TalismansGUI plugin is used or not.
+     */
+    @Getter
+    private static boolean bagLoaded;
+
+    /**
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
@@ -38,6 +44,14 @@ public class TalismansPlugin extends EcoPlugin {
 
     @Override
     protected void handleEnable() {
+
+        if (this.getServer().getPluginManager().getPlugin("TalismansGUI") != null){
+            bagLoaded = this.getServer().getPluginManager().getPlugin("TalismansGUI").getDescription().getVersion().compareTo("1.3") >= 0;
+        }
+        else {
+            bagLoaded = false;
+        }
+
         this.getLogger().info(Talismans.values().size() + " Talismans Loaded");
     }
 
