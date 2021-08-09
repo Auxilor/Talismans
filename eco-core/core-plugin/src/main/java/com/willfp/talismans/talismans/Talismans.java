@@ -7,6 +7,7 @@ import com.willfp.eco.core.config.updating.ConfigUpdater;
 import com.willfp.talismans.talismans.talismans.AlchemyTalisman;
 import com.willfp.talismans.talismans.talismans.ArcheryTalisman;
 import com.willfp.talismans.talismans.talismans.AttackSpeedTalisman;
+import com.willfp.talismans.talismans.talismans.BlastTalisman;
 import com.willfp.talismans.talismans.talismans.BossTalisman;
 import com.willfp.talismans.talismans.talismans.CreeperTalisman;
 import com.willfp.talismans.talismans.talismans.DayCrystal;
@@ -88,6 +89,7 @@ public class Talismans {
     public static final Talisman STORM_RING = new StormRing();
     public static final Talisman VIBRANCE_TALISMAN = new VibranceTalisman();
     public static final Talisman NECROSIS_TALISMAN = new NecrosisTalisman();
+    public static final Talisman BLAST_TALISMAN = new BlastTalisman();
 
     /**
      * Get all registered {@link Talisman}s.
