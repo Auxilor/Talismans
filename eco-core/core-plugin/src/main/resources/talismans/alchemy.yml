@@ -14,7 +14,7 @@ levels:
         - nether_wart
 
         - nether_wart
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - nether_wart
 
         - nether_wart
@@ -41,7 +41,7 @@ levels:
         - talismans:alchemy_1
         
         - talismans:alchemy_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:alchemy_1
 
         - talismans:alchemy_1
@@ -68,7 +68,7 @@ levels:
         - talismans:alchemy_2
 
         - talismans:alchemy_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:alchemy_2
 
         - talismans:alchemy_2

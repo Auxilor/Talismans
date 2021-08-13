@@ -14,7 +14,7 @@ levels:
         - netherrack
 
         - netherrack
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - netherrack
 
         - netherrack
@@ -43,7 +43,7 @@ levels:
         - talismans:nether_1
 
         - talismans:nether_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:nether_1
 
         - talismans:nether_1
@@ -73,7 +73,7 @@ levels:
         - talismans:nether_2
 
         - talismans:nether_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:nether_2
 
         - talismans:nether_2

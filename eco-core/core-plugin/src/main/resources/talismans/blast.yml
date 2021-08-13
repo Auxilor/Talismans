@@ -14,7 +14,7 @@ levels:
         - tnt
 
         - gunpowder
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - gunpowder
 
         - tnt
@@ -43,7 +43,7 @@ levels:
         - talismans:blast_1
 
         - talismans:blast_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:blast_1
 
         - talismans:blast_1
@@ -73,7 +73,7 @@ levels:
         - talismans:blast_2
 
         - talismans:blast_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:blast_2
 
         - talismans:blast_2

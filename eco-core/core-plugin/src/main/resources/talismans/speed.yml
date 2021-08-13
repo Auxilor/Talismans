@@ -14,7 +14,7 @@ levels:
         - sugar
 
         - sugar
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - sugar
 
         - sugar
@@ -43,7 +43,7 @@ levels:
         - talismans:speed_1
 
         - talismans:speed_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:speed_1
 
         - talismans:speed_1
@@ -73,7 +73,7 @@ levels:
         - talismans:speed_2
 
         - talismans:speed_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:speed_2
 
         - talismans:speed_2

@@ -14,7 +14,7 @@ levels:
         - clock
 
         - netherite_sword
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - netherite_sword
 
         - clock
@@ -22,7 +22,7 @@ levels:
         - clock
 
     general-config:
-      material: nether_star
+      material: ecoitems:talisman_core_3 ? nether_star
       custom-model-data: -1
 
     config:

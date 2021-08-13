@@ -14,7 +14,7 @@ levels:
         - emerald_block
 
         - emerald_block
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - emerald_block
 
         - emerald_block
@@ -44,7 +44,7 @@ levels:
         - talismans:extraction_1
 
         - talismans:extraction_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:extraction_1
 
         - talismans:extraction_1
@@ -75,7 +75,7 @@ levels:
         - talismans:extraction_2
 
         - talismans:extraction_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:extraction_2
 
         - talismans:extraction_2

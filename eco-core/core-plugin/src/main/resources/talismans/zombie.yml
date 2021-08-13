@@ -14,7 +14,7 @@ levels:
         - rotten_flesh
 
         - rotten_flesh
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - rotten_flesh
 
         - rotten_flesh

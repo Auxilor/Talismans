@@ -14,7 +14,7 @@ levels:
         - bone
 
         - bone
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - bone
 
         - bone

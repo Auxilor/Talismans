@@ -14,7 +14,7 @@ levels:
         - diamond_sword
 
         - diamond_sword
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - diamond_sword
 
         - diamond_sword
@@ -43,7 +43,7 @@ levels:
         - talismans:sharpness_1
 
         - talismans:sharpness_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:sharpness_1
 
         - talismans:sharpness_1
@@ -73,7 +73,7 @@ levels:
         - talismans:sharpness_2
 
         - talismans:sharpness_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:sharpness_2
 
         - talismans:sharpness_2

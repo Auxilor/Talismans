@@ -14,7 +14,7 @@ levels:
         - gunpowder
 
         - gunpowder
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - gunpowder
 
         - gunpowder

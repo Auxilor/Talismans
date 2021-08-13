@@ -14,7 +14,7 @@ levels:
         - redstone
 
         - glowstone_dust
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - glowstone_dust
 
         - redstone
@@ -41,7 +41,7 @@ levels:
         - talismans:storm_1
 
         - talismans:storm_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:storm_1
 
         - talismans:storm_1

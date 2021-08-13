@@ -14,7 +14,7 @@ levels:
         - shulker_shell
 
         - shulker_shell
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - shulker_shell
 
         - shulker_shell
@@ -44,7 +44,7 @@ levels:
         - talismans:end_1
 
         - talismans:end_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:end_1
 
         - talismans:end_1
@@ -74,7 +74,7 @@ levels:
         - talismans:end_2
 
         - talismans:end_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:end_2
 
         - talismans:end_2

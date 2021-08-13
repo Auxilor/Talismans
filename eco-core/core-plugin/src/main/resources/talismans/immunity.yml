@@ -14,7 +14,7 @@ levels:
         - poisonous_potato
 
         - poisonous_potato
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - poisonous_potato
 
         - poisonous_potato

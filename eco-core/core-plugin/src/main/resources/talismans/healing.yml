@@ -14,7 +14,7 @@ levels:
         - glistering_melon_slice
 
         - glistering_melon_slice
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - glistering_melon_slice
 
         - glistering_melon_slice
@@ -43,7 +43,7 @@ levels:
         - talismans:healing_1
 
         - talismans:healing_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:healing_1
 
         - talismans:healing_1
@@ -74,7 +74,7 @@ levels:
         - talismans:healing_2
 
         - talismans:healing_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:healing_2
 
         - talismans:healing_2

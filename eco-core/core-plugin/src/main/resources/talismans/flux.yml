@@ -14,7 +14,7 @@ levels:
         - redstone_block
 
         - redstone_block
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - redstone_block
 
         - redstone_block
@@ -44,7 +44,7 @@ levels:
         - talismans:flux_1
 
         - talismans:flux_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:flux_1
 
         - talismans:flux_1
@@ -75,7 +75,7 @@ levels:
         - talismans:flux_2
 
         - talismans:flux_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:flux_2
 
         - talismans:flux_2

@@ -14,7 +14,7 @@ levels:
         - diamond_block
 
         - diamond_block
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - diamond_block
 
         - diamond_block
@@ -43,7 +43,7 @@ levels:
         - talismans:experience_1
 
         - talismans:experience_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:experience_1
 
         - talismans:experience_1
@@ -73,7 +73,7 @@ levels:
         - talismans:experience_2
 
         - talismans:experience_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:experience_2
 
         - talismans:experience_2

@@ -14,7 +14,7 @@ levels:
         - rotten_flesh
 
         - bone
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - bone
 
         - rotten_flesh
@@ -41,7 +41,7 @@ levels:
         - talismans:necromance_1
 
         - talismans:necromance_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:necromance_1
 
         - talismans:necromance_1

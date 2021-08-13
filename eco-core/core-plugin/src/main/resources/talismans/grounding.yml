@@ -14,7 +14,7 @@ levels:
         - phantom_membrane
 
         - phantom_membrane
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - phantom_membrane
 
         - phantom_membrane

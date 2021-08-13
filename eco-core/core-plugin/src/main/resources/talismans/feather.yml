@@ -14,7 +14,7 @@ levels:
         - feather
 
         - feather
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - feather
 
         - feather
@@ -43,7 +43,7 @@ levels:
         - talismans:feather_1
 
         - talismans:feather_1
-        - heart_of_the_sea
+        - ecoitems:talisman_core_2 ? heart_of_the_sea
         - talismans:feather_1
 
         - talismans:feather_1
@@ -73,7 +73,7 @@ levels:
         - talismans:feather_2
 
         - talismans:feather_2
-        - nether_star
+        - ecoitems:talisman_core_3 ? nether_star
         - talismans:feather_2
 
         - talismans:feather_2

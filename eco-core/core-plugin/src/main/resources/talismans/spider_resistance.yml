@@ -14,7 +14,7 @@ levels:
         - string
 
         - shield
-        - ender_eye
+        - ecoitems:talisman_core_1 ? ender_eye
         - shield
 
         - string
