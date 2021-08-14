@@ -22,7 +22,7 @@ levels:
         - clock
 
     general-config:
-      material: ecoitems:talisman_core_3 ? nether_star
+      material: nether_star
       custom-model-data: -1
 
     config:
