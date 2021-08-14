@@ -9,17 +9,17 @@ levels:
     obtaining:
       craftable: true
       recipe:
-        - daylight_sensor
+        - daylight_detector
         - netherite_sword
-        - daylight_sensor
+        - daylight_detector
 
         - netherite_sword
         - ecoitems:talisman_core_1 ? ender_eye
         - netherite_sword
 
-        - daylight_sensor
+        - daylight_detector
         - netherite_sword
-        - daylight_sensor
+        - daylight_detector
 
     general-config:
       material: ecoitems:talisman_core_3 ? nether_star
