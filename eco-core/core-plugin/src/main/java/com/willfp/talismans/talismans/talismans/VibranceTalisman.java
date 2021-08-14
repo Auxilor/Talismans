@@ -65,6 +65,7 @@ public class VibranceTalisman extends Talisman {
                 maxHealth.removeModifier(modifier);
             } else {
                 if (!maxHealth.getModifiers().contains(modifier)) {
+                    maxHealth.removeModifier(modifier);
                     maxHealth.addModifier(modifier);
 
                     player.setHealth(maxHealth.getValue());
