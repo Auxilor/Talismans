@@ -38,7 +38,7 @@ public class VibranceTalisman extends Talisman {
                     new AttributeModifier(
                             level.getUuid(),
                             level.getKey().getKey(),
-                            level.getConfig().getDouble(Talismans.CONFIG_LOCATION + "bonus-hearts") / 2,
+                            level.getConfig().getDouble(Talismans.CONFIG_LOCATION + "bonus-hearts") * 2,
                             AttributeModifier.Operation.ADD_NUMBER
                     )
             );
