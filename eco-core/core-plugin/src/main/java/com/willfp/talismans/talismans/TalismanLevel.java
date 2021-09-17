@@ -182,7 +182,7 @@ public class TalismanLevel {
 
             List<String> recipeStrings = this.getConfig().getStrings(Talismans.OBTAINING_LOCATION + "recipe");
 
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < recipeStrings.size(); i++) {
                 builder.setRecipePart(i, Items.lookup(recipeStrings.get(i)));
             }
 
