@@ -32,7 +32,7 @@ public class TalismansPlugin extends EcoPlugin {
      * Internal constructor called by bukkit on plugin load.
      */
     public TalismansPlugin() {
-        super(87377, 9865, "&6", true);
+        super(611, 9865, "&6", true);
         instance = this;
     }
 

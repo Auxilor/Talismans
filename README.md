@@ -7,8 +7,8 @@
 <h4 align="center">Source code for Talismans, a premium spigot plugin.</h4>
 
 <p align="center">
-    <a href="https://www.spigotmc.org/resources/talismans.79573/">
-        <img alt="spigot" src="https://img.shields.io/badge/spigot-talismans-orange?style=for-the-badge"/>
+    <a href="https://polymart.org/resource/1-16-1-17-talismans.611">
+        <img alt="spigot" src="https://img.shields.io/badge/polymart-talismans-orange?style=for-the-badge"/>
     </a>
     <a href="https://bstats.org/plugin/bukkit/Talismans" alt="bstats servers">
         <img src="https://img.shields.io/bstats/servers/9865?color=orange&style=for-the-badge"/>
