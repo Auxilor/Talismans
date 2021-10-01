@@ -18,8 +18,10 @@ public class CommandReload extends Subcommand {
     @Override
     public CommandHandler getHandler() {
         return (sender, args) -> {
-            this.getPlugin().reload();
-            sender.sendMessage(this.getPlugin().getLangYml().getMessage("reloaded"));
+            sender.sendMessage(
+                    this.getPlugin().getLangYml().getMessage("reloaded")
+                            .replace("%time%", this.getPlugin().reloadWithTime() + "")
+            );
         };
     }
 }
