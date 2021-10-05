@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.WeakHashMap;
 import java.util.function.Function;
 
 @UtilityClass
@@ -36,6 +37,11 @@ public class TalismanChecks {
      * Cached talismans.
      */
     public static final Map<UUID, Set<TalismanLevel>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
+
+    /**
+     * Cached items.
+     */
+    public static final Map<UUID, Set<ItemStack>> CACHED_TALISMAN_ITEMS = Collections.synchronizedMap(new WeakHashMap<>());
 
     /**
      * All providers.
@@ -142,26 +148,26 @@ public class TalismanChecks {
         return getTalismansOnPlayer(player, true);
     }
 
+
     /**
-     * Get all talismans that a player has active.
+     * Get all talismans ItemStacks that a player has active.
      *
      * @param player   The player to query.
      * @param useCache If the cache should be checked.
      * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
-    public static Set<TalismanLevel> getTalismansOnPlayer(@NotNull final Player player,
+    public static Set<ItemStack> getTalismanItemsOnPlayer(@NotNull final Player player,
                                                           final boolean useCache,
                                                           @NotNull final ItemStack... extra) {
         if (useCache) {
-            Set<TalismanLevel> cached = CACHED_TALISMANS.get(player.getUniqueId());
+            Set<ItemStack> cached = CACHED_TALISMAN_ITEMS.get(player.getUniqueId());
             if (cached != null) {
                 return cached;
             }
         }
 
         List<ItemStack> contents = new ArrayList<>();
-        Set<TalismanLevel> found = new HashSet<>();
 
         List<ItemStack> rawContents = new ArrayList<>(Arrays.asList(player.getInventory().getContents()));
 
@@ -200,6 +206,50 @@ public class TalismanChecks {
             }
             contents.add(rawContent);
         }
+
+        Set<ItemStack> items = new HashSet<>();
+
+        for (ItemStack itemStack : contents) {
+            TalismanLevel talisman = getTalismanOnItem(itemStack);
+            if (talisman == null) {
+                continue;
+            }
+
+            if (items.size() >= TalismanUtils.getLimit(player)) {
+                break;
+            }
+
+            items.add(itemStack);
+        }
+
+        if (useCache) {
+            CACHED_TALISMAN_ITEMS.put(player.getUniqueId(), items);
+            PLUGIN.getScheduler().runLater(() -> CACHED_TALISMAN_ITEMS.remove(player.getUniqueId()), 40);
+        }
+
+        return items;
+    }
+
+    /**
+     * Get all talismans that a player has active.
+     *
+     * @param player   The player to query.
+     * @param useCache If the cache should be checked.
+     * @param extra    Bonus items.
+     * @return A set of all found talismans.
+     */
+    public static Set<TalismanLevel> getTalismansOnPlayer(@NotNull final Player player,
+                                                          final boolean useCache,
+                                                          @NotNull final ItemStack... extra) {
+        if (useCache) {
+            Set<TalismanLevel> cached = CACHED_TALISMANS.get(player.getUniqueId());
+            if (cached != null) {
+                return cached;
+            }
+        }
+
+        Set<ItemStack> contents = getTalismanItemsOnPlayer(player, useCache, extra);
+        Set<TalismanLevel> found = new HashSet<>();
 
         for (ItemStack itemStack : contents) {
             TalismanLevel talisman = getTalismanOnItem(itemStack);
