@@ -11,6 +11,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -172,7 +173,12 @@ public class TalismanChecks {
         List<ItemStack> rawContents = new ArrayList<>(Arrays.asList(player.getInventory().getContents()));
 
         if (readEnderChest) {
-            rawContents.addAll(Arrays.asList(player.getEnderChest().getContents()));
+            Inventory enderChest = player.getEnderChest();
+
+            // Not always true, bug reported where it was null.
+            if (enderChest != null) {
+                rawContents.addAll(Arrays.asList(enderChest.getContents()));
+            }
         }
 
         if (offhandOnly) {
