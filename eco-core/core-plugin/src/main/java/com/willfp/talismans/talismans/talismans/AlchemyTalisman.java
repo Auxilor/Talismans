@@ -20,6 +20,11 @@ public class AlchemyTalisman extends Talisman {
         if (event.getNewEffect() == null) {
             return;
         }
+
+        if (!(event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK || event.getCause() == EntityPotionEffectEvent.Cause.POTION_SPLASH)) {
+            return;
+        }
+
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }

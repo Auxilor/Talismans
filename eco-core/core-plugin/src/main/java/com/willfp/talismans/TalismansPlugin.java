@@ -11,6 +11,7 @@ import com.willfp.talismans.talismans.util.BlockPlaceListener;
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanCraftListener;
+import com.willfp.talismans.talismans.util.TalismanUtils;
 import com.willfp.talismans.talismans.util.WatcherTriggers;
 import com.willfp.talismans.talismans.util.equipevent.SyncTalismanEquipEventTask;
 import com.willfp.talismans.talismans.util.equipevent.TalismanEquipEventListeners;
@@ -41,7 +42,10 @@ public class TalismansPlugin extends EcoPlugin {
     @Override
     protected void handleEnable() {
         this.getLogger().info(Talismans.values().size() + " Talismans Loaded");
-        new CustomItem(this.getNamespacedKeyFactory().create("any_talisman"), test -> TalismanChecks.getTalismanOnItem(test) != null, Talismans.SHARPNESS_TALISMAN.getLevel(1).getItemStack()).register();
+        new CustomItem(this.getNamespacedKeyFactory().create("any_talisman"),
+                test -> TalismanChecks.getTalismanOnItem(test) != null,
+                Talismans.SHARPNESS_TALISMAN.getLevel(1).getItemStack()
+        ).register();
     }
 
     @Override
