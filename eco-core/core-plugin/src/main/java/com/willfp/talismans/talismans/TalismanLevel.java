@@ -5,7 +5,9 @@ import com.willfp.eco.core.config.interfaces.Config;
 import com.willfp.eco.core.display.Display;
 import com.willfp.eco.core.items.CustomItem;
 import com.willfp.eco.core.items.Items;
+import com.willfp.eco.core.items.TestableItem;
 import com.willfp.eco.core.items.builder.ItemStackBuilder;
+import com.willfp.eco.core.recipe.parts.EmptyTestableItem;
 import com.willfp.eco.core.recipe.recipes.ShapedCraftingRecipe;
 import com.willfp.eco.util.StringUtils;
 import com.willfp.talismans.TalismansPlugin;
@@ -153,9 +155,9 @@ public class TalismanLevel {
         skullBase64 = config.getString(Talismans.GENERAL_LOCATION + "texture");
         Integer data = config.getIntOrNull(Talismans.GENERAL_LOCATION + "custom-model-data");
         customModelData = data == null || data == -1 ? null : data;
-        Material material = Material.getMaterial(config.getString(Talismans.GENERAL_LOCATION + "material").toUpperCase());
-        Validate.notNull(material, "Material specified for " + this.getKey().getKey() + " is invalid!");
-        TalismanUtils.registerTalismanMaterial(material);
+        TestableItem item = Items.lookup(config.getString(Talismans.GENERAL_LOCATION + "material"));
+        Validate.isTrue(!(item instanceof EmptyTestableItem), "Material specified for " + this.getKey().getKey() + " is invalid!");
+        TalismanUtils.registerTalismanMaterial(item.getItem().getType());
 
         formattedDescription = Arrays.stream(
                 WordUtils.wrap(description, this.getPlugin().getConfigYml().getInt("description.wrap"), "\n", false)
@@ -164,7 +166,7 @@ public class TalismanLevel {
 
         craftable = config.getBool(Talismans.OBTAINING_LOCATION + "craftable");
 
-        ItemStack out = new ItemStackBuilder(material)
+        ItemStack out = new ItemStackBuilder(item.getItem())
                 .setAmount(1)
                 .writeMetaKey(this.getTalisman().getKey(), PersistentDataType.INTEGER, this.getLevel())
                 .setCustomModelData(data)

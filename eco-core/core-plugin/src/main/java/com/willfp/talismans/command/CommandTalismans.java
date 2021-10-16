@@ -15,7 +15,7 @@ public class CommandTalismans extends PluginCommand {
         super(plugin, "talismans", "talismans.command.talismans", false);
 
         this.addSubcommand(new CommandReload(plugin))
-        .addSubcommand(new CommandGive(plugin));
+                .addSubcommand(new CommandGive(plugin));
     }
 
     @Override

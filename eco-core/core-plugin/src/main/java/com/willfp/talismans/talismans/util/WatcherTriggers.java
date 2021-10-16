@@ -30,7 +30,6 @@ import java.text.DecimalFormat;
 import java.util.Set;
 import java.util.UUID;
 
-@SuppressWarnings("deprecation")
 public class WatcherTriggers extends PluginDependent<EcoPlugin> implements Listener {
     /**
      * Create new listener for watcher events.
