@@ -28,6 +28,7 @@ levels:
 
     config:
       chance: 5
+      potions-only: true
 
   2:
     name: "&eAlchemy Talisman II"
@@ -55,6 +56,7 @@ levels:
 
     config:
       chance: 10
+      potions-only: true
 
   3:
     name: "&cAlchemy Talisman III"
@@ -82,3 +84,4 @@ levels:
 
     config:
       chance: 25
+      potions-only: true

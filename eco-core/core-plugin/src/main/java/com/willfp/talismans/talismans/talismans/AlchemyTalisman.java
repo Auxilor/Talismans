@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans.talismans;
 
 import com.willfp.talismans.talismans.Talisman;
 import com.willfp.talismans.talismans.TalismanLevel;
+import com.willfp.talismans.talismans.Talismans;
 import com.willfp.talismans.talismans.util.TalismanChecks;
 import com.willfp.talismans.talismans.util.TalismanUtils;
 import org.bukkit.entity.Player;
@@ -21,10 +22,6 @@ public class AlchemyTalisman extends Talisman {
             return;
         }
 
-        if (!(event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK || event.getCause() == EntityPotionEffectEvent.Cause.POTION_SPLASH)) {
-            return;
-        }
-
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }
@@ -41,6 +38,12 @@ public class AlchemyTalisman extends Talisman {
 
         if (!TalismanUtils.passedChance(level)) {
             return;
+        }
+
+        if (level.getConfig().getBool(Talismans.CONFIG_LOCATION + "potions-only")) {
+            if (!(event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK || event.getCause() == EntityPotionEffectEvent.Cause.POTION_SPLASH)) {
+                return;
+            }
         }
 
         if (this.getDisabledWorlds().contains(player.getWorld())) {
