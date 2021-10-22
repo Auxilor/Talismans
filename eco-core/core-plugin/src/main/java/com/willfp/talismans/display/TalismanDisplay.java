@@ -18,6 +18,7 @@ import java.util.List;
 public class TalismanDisplay extends DisplayModule {
     /**
      * Instantiate talisman display.
+     *
      * @param plugin Instance of Talismans.
      */
     public TalismanDisplay(@NotNull final EcoPlugin plugin) {
@@ -26,12 +27,10 @@ public class TalismanDisplay extends DisplayModule {
 
     @Override
     public void display(@NotNull final ItemStack itemStack,
-                           @NotNull final Object... args) {
+                        @NotNull final Object... args) {
         if (!TalismanUtils.isTalismanMaterial(itemStack.getType())) {
             return;
         }
-
-        revert(itemStack);
 
         ItemMeta meta = itemStack.getItemMeta();
 
