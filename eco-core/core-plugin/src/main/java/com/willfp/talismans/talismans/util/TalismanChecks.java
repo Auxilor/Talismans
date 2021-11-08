@@ -113,8 +113,6 @@ public class TalismanChecks {
             return null;
         }
 
-        TalismanUtils.convertFromLegacy(item);
-
         ItemMeta meta = item.getItemMeta();
 
         if (meta == null) {

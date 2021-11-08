@@ -79,49 +79,4 @@ public class TalismanUtils {
     public static void clearTalismanMaterials() {
         TALISMAN_MATERIALS.clear();
     }
-
-    /**
-     * Update legacy talisman to 3.0.0 talisman.
-     *
-     * @param itemStack The Talisman ItemStack.
-     */
-    public static void convertFromLegacy(@NotNull final ItemStack itemStack) {
-        ItemMeta meta = itemStack.getItemMeta();
-        PersistentDataContainer container = meta.getPersistentDataContainer();
-
-
-        NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
-        if (talismanKey == null) {
-            return;
-        }
-
-        String key = talismanKey.getKey();
-
-        int level;
-
-        if (key.endsWith("_talisman")) {
-            level = 1;
-        } else if (key.endsWith("_ring")) {
-            level = 2;
-        } else if (key.endsWith("_relic")) {
-            level = 3;
-        } else if (key.endsWith("_fossil")) {
-            level = 4;
-        } else {
-            return;
-        }
-
-        String newKey = key.replace("_talisman", "")
-                .replace("_ring", "")
-                .replace("_relic", "")
-                .replace("_fossil", "");
-
-        container.remove(talismanKey);
-
-        NamespacedKey newTalismanKey = TalismansPlugin.getInstance().getNamespacedKeyFactory().create(newKey);
-
-        container.set(newTalismanKey, PersistentDataType.INTEGER, level);
-
-        itemStack.setItemMeta(meta);
-    }
 }
