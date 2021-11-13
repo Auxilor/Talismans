@@ -31,7 +31,7 @@ levels:
       # So if multiplier is 0.2, and you're at y = 1:
       # distance below y = 63
       # 63/64 * multiplier is roughly 0.2, +1 = 1.2x less
-      height-multiplier: 0.2
+      height-multiplier: 0.1
 
   2:
     name: "&eGravity Talisman II"
@@ -65,7 +65,7 @@ levels:
       # So if multiplier is 2, and you're at y = 1:
       # distance below y = 63
       # 63/64 * multiplier is roughly 2, +1 = 3x less
-      height-multiplier: 0.3
+      height-multiplier: 0.15
 
   3:
     name: "&cGravity Talisman III"
@@ -99,4 +99,4 @@ levels:
       # So if multiplier is 2, and you're at y = 1:
       # distance below y = 63
       # 63/64 * multiplier is roughly 2, +1 = 3x less
-      height-multiplier: 0.4
+      height-multiplier: 0.2

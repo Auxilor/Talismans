@@ -16,7 +16,7 @@ public class GravityTalisman extends Talisman {
     public void onDamage(@NotNull final TalismanLevel level,
                          @NotNull final Player victim,
                          @NotNull final EntityDamageEvent event) {
-        if (victim.getLocation().getY() > 64 || victim.getLocation().getY() < 0) {
+        if (victim.getLocation().getY() > 64) {
             return;
         }
 
