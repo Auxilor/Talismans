@@ -7,8 +7,11 @@ website: willfp.com
 load: STARTUP
 depend:
   - eco
-  - ProtocolLib
-
+softdepend:
+  - EcoSkills
+  - AureliumSkills
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.6.0
 commands:
   talismans:
     description: Parent command.
