@@ -4,9 +4,7 @@ import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.config.updating.ConfigUpdater;
 import com.willfp.talismans.TalismansPlugin;
 import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
@@ -35,7 +33,7 @@ public class TalismanChecks {
     /**
      * Cached talismans.
      */
-    public static final Map<UUID, Set<TalismanLevel>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
+    public static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * Cached items.
@@ -61,11 +59,6 @@ public class TalismanChecks {
      * If only offhand should be read.
      */
     private static boolean offhandOnly = false;
-
-    /**
-     * If only the highest level talismans should be activated.
-     */
-    private static boolean highestLevelOnly = false;
 
     /**
      * Instance of talismans.
@@ -102,7 +95,7 @@ public class TalismanChecks {
      * @param item The item to query.
      * @return The talisman, or null if no talisman is present.
      */
-    public static TalismanLevel getTalismanOnItem(@Nullable final ItemStack item) {
+    public static Talisman getTalismanOnItem(@Nullable final ItemStack item) {
         if (item == null) {
             return null;
         }
@@ -118,21 +111,14 @@ public class TalismanChecks {
         }
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
-
-        NamespacedKey talismanKey = container.getKeys().stream().filter(namespacedKey -> namespacedKey.getNamespace().equals("talismans")).findFirst().orElse(null);
-        if (talismanKey == null) {
+        String id = container.get(PLUGIN.getNamespacedKeyFactory().create("talisman"), PersistentDataType.STRING);
+        if (id == null) {
             return null;
         }
 
-        Integer level = container.get(talismanKey, PersistentDataType.INTEGER);
-        assert level != null;
+        Talisman talisman = Talismans.getByID(id);
 
-        Talisman talisman = Talismans.getByID(talismanKey.getKey());
-        if (talisman == null) {
-            return null;
-        }
-
-        return talisman.getLevel(level);
+        return talisman;
     }
 
     /**
@@ -141,7 +127,7 @@ public class TalismanChecks {
      * @param player The player to query.
      * @return A set of all found talismans.
      */
-    public static Set<TalismanLevel> getTalismansOnPlayer(@NotNull final Player player) {
+    public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player) {
         return getTalismansOnPlayer(player, true);
     }
 
@@ -155,8 +141,8 @@ public class TalismanChecks {
      * @return A set of all found talismans.
      */
     public static Set<ItemStack> getTalismanItemsOnPlayer(@NotNull final Player player,
-                                                          final boolean useCache,
-                                                          @NotNull final ItemStack... extra) {
+                                                         final boolean useCache,
+                                                         @NotNull final ItemStack... extra) {
         if (useCache) {
             Set<ItemStack> cached = CACHED_TALISMAN_ITEMS.get(player.getUniqueId());
             if (cached != null) {
@@ -212,7 +198,7 @@ public class TalismanChecks {
         Set<ItemStack> items = new HashSet<>();
 
         for (ItemStack itemStack : contents) {
-            TalismanLevel talisman = getTalismanOnItem(itemStack);
+            Talisman talisman = getTalismanOnItem(itemStack);
             if (talisman == null) {
                 continue;
             }
@@ -240,21 +226,21 @@ public class TalismanChecks {
      * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
-    public static Set<TalismanLevel> getTalismansOnPlayer(@NotNull final Player player,
+    public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player,
                                                           final boolean useCache,
                                                           @NotNull final ItemStack... extra) {
         if (useCache) {
-            Set<TalismanLevel> cached = CACHED_TALISMANS.get(player.getUniqueId());
+            Set<Talisman> cached = CACHED_TALISMANS.get(player.getUniqueId());
             if (cached != null) {
                 return cached;
             }
         }
 
         Set<ItemStack> contents = getTalismanItemsOnPlayer(player, useCache, extra);
-        Set<TalismanLevel> found = new HashSet<>();
+        Set<Talisman> found = new HashSet<>();
 
         for (ItemStack itemStack : contents) {
-            TalismanLevel talisman = getTalismanOnItem(itemStack);
+            Talisman talisman = getTalismanOnItem(itemStack);
             if (talisman == null) {
                 continue;
             }
@@ -264,26 +250,6 @@ public class TalismanChecks {
             }
 
             found.add(talisman);
-        }
-
-        if (highestLevelOnly) {
-            Map<Talisman, Integer> highestFound = new HashMap<>();
-            Set<TalismanLevel> foundClone = new HashSet<>(found);
-            found.clear();
-
-            for (TalismanLevel talismanLevel : foundClone) {
-                Integer highestLevel = highestFound.get(talismanLevel.getTalisman());
-                if (highestLevel != null) {
-                    if (highestLevel < talismanLevel.getLevel()) {
-                        found.remove(talismanLevel.getTalisman().getLevel(highestLevel));
-                        highestFound.put(talismanLevel.getTalisman(), talismanLevel.getLevel());
-                        found.add(talismanLevel);
-                    }
-                } else {
-                    found.add(talismanLevel);
-                    highestFound.put(talismanLevel.getTalisman(), talismanLevel.getLevel());
-                }
-            }
         }
 
         if (useCache) {
@@ -322,26 +288,7 @@ public class TalismanChecks {
      */
     public static boolean hasTalisman(@NotNull final Player player,
                                       @NotNull final Talisman talisman) {
-        return getTalismanLevel(player, talisman) != null;
-    }
-
-    /**
-     * Get the level of a talisman that a player has equipped.
-     *
-     * @param player   The player.
-     * @param talisman The talisman.
-     * @return The level, or null if not active.
-     */
-    @Nullable
-    public static TalismanLevel getTalismanLevel(@NotNull final Player player,
-                                                 @NotNull final Talisman talisman) {
-        for (TalismanLevel talismanLevel : getTalismansOnPlayer(player)) {
-            if (talismanLevel.getTalisman().equals(talisman)) {
-                return talismanLevel;
-            }
-        }
-
-        return null;
+        return getTalismansOnPlayer(player).contains(talisman);
     }
 
     /**
@@ -354,6 +301,5 @@ public class TalismanChecks {
         readEnderChest = plugin.getConfigYml().getBool("read-enderchest");
         readShulkerBoxes = plugin.getConfigYml().getBool("read-shulkerboxes");
         offhandOnly = plugin.getConfigYml().getBool("offhand-only");
-        highestLevelOnly = plugin.getConfigYml().getBool("highest-level-only");
     }
 }

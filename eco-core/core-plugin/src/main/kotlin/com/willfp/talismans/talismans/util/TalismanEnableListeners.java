@@ -6,7 +6,6 @@ import com.willfp.eco.core.events.ArmorChangeEvent;
 import com.willfp.libreforge.LibReforgeUtils;
 import com.willfp.libreforge.effects.ConfiguredEffect;
 import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.TalismanLevel;
 import com.willfp.talismans.talismans.Talismans;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -68,11 +67,9 @@ public class TalismanEnableListeners extends PluginDependent<EcoPlugin> implemen
 
         Player player = event.getPlayer();
 
-        for (Talisman value : Talismans.values()) {
-            for (TalismanLevel level : value.getLevels()) {
-                for (ConfiguredEffect effect : level.getEffects()) {
-                    effect.getEffect().disableForPlayer(player);
-                }
+        for (Talisman talisman : Talismans.values()) {
+            for (ConfiguredEffect effect : talisman.getEffects()) {
+                effect.getEffect().disableForPlayer(player);
             }
         }
     }
