@@ -1,61 +1,56 @@
-package com.willfp.talismans.talismans.util;
+package com.willfp.talismans.talismans.util
 
+import com.willfp.eco.core.EcoPlugin
+import com.willfp.talismans.TalismansPlugin.Companion.instance
+import org.bukkit.Material
+import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
+import org.bukkit.persistence.PersistentDataType
 
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachmentInfo;
-import org.jetbrains.annotations.NotNull;
+object TalismanUtils {
+    private val TALISMAN_MATERIALS = mutableSetOf<Material>()
+    private val PLUGIN: EcoPlugin = instance
 
-import java.util.HashSet;
-import java.util.Set;
+    fun convert(itemStack: ItemStack?) {
+        if (itemStack == null) {
+            return
+        }
+        if (!isTalismanMaterial(itemStack.type)) {
+            return
+        }
+        val meta = itemStack.itemMeta ?: return
+        val container = meta.persistentDataContainer
+        val talismanKey = container.keys.firstOrNull { it.namespace == "talismans" } ?: return
+        val level = container.get(talismanKey, PersistentDataType.INTEGER) ?: return
+        container.remove(talismanKey)
+        container.set(
+            PLUGIN.namespacedKeyFactory.create("talisman"),
+            PersistentDataType.STRING,
+            talismanKey.key + "_" + level
+        )
+        itemStack.itemMeta = meta
+    }
 
-public class TalismanUtils {
-    /**
-     * All valid materials for talismans.
-     */
-    private static final Set<Material> TALISMAN_MATERIALS = new HashSet<>();
-
-    /**
-     * Get limit for talisman reading.
-     *
-     * @param player The player to check.
-     * @return The limit.
-     */
-    public static int getLimit(@NotNull final Player player) {
-        String prefix = "talismans.limit.";
-        for (PermissionAttachmentInfo permissionAttachmentInfo : player.getEffectivePermissions()) {
-            String permission = permissionAttachmentInfo.getPermission();
+    fun getLimit(player: Player): Int {
+        val prefix = "talismans.limit."
+        for (permissionAttachmentInfo in player.effectivePermissions) {
+            val permission = permissionAttachmentInfo.permission
             if (permission.startsWith(prefix)) {
-                return Integer.parseInt(permission.substring(permission.lastIndexOf(".") + 1));
+                return permission.substring(permission.lastIndexOf(".") + 1).toInt()
             }
         }
-
-        return 100000;
+        return 100000
     }
 
-    /**
-     * Get if a talisman could exist for a material.
-     *
-     * @param material The material.
-     * @return If possible.
-     */
-    public static boolean isTalismanMaterial(@NotNull final Material material) {
-        return TALISMAN_MATERIALS.contains(material);
+    fun isTalismanMaterial(material: Material): Boolean {
+        return TALISMAN_MATERIALS.contains(material)
     }
 
-    /**
-     * Register material as valid for talisman.
-     *
-     * @param material The material.
-     */
-    public static void registerTalismanMaterial(@NotNull final Material material) {
-        TALISMAN_MATERIALS.add(material);
+    fun registerTalismanMaterial(material: Material) {
+        TALISMAN_MATERIALS.add(material)
     }
 
-    /**
-     * Unregister all materials as valid for talismans.
-     */
-    public static void clearTalismanMaterials() {
-        TALISMAN_MATERIALS.clear();
+    fun clearTalismanMaterials() {
+        TALISMAN_MATERIALS.clear()
     }
 }

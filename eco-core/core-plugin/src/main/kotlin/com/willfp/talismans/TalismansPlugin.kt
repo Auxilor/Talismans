@@ -29,7 +29,7 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
         CustomItem(
             this.namespacedKeyFactory.create("any_talisman"),
             { test -> TalismanChecks.getTalismanOnItem(test) != null },
-            Talismans.values()[0].getLevel(1)!!.itemStack
+            Talismans.values()[0].itemStack
         ).register()
     }
 

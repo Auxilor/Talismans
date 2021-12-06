@@ -1,140 +1,81 @@
-package com.willfp.talismans.talismans.util;
+package com.willfp.talismans.talismans.util
 
-import com.willfp.eco.core.EcoPlugin;
-import com.willfp.eco.core.PluginDependent;
-import com.willfp.eco.core.events.ArmorChangeEvent;
-import com.willfp.libreforge.LibReforgeUtils;
-import com.willfp.libreforge.effects.ConfiguredEffect;
-import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.Talismans;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.jetbrains.annotations.NotNull;
+import com.willfp.eco.core.EcoPlugin
+import com.willfp.eco.core.events.ArmorChangeEvent
+import com.willfp.libreforge.updateEffects
+import com.willfp.talismans.talismans.Talismans.values
+import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.entity.EntityPickupItemEvent
+import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.player.PlayerDropItemEvent
+import org.bukkit.event.player.PlayerItemHeldEvent
+import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerQuitEvent
 
-public class TalismanEnableListeners extends PluginDependent<EcoPlugin> implements Listener {
-    /**
-     * Initialize new listeners and link them to a plugin.
-     *
-     * @param plugin The plugin to link to.
-     */
-    public TalismanEnableListeners(@NotNull final EcoPlugin plugin) {
-        super(plugin);
-    }
-
-    /**
-     * Called on item pickup.
-     *
-     * @param event The event to listen for.
-     */
+class TalismanEnableListeners(private val plugin :EcoPlugin) : Listener {
     @EventHandler
-    public void onItemPickup(@NotNull final EntityPickupItemEvent event) {
-        if (!(event.getEntity() instanceof Player player)) {
-            return;
+    fun onItemPickup(event: EntityPickupItemEvent) {
+        if (event.entity !is Player) {
+            return
         }
-
-        if (!TalismanUtils.isTalismanMaterial(event.getItem().getItemStack().getType())) {
-            return;
+        val player = event.entity as Player
+        if (!TalismanUtils.isTalismanMaterial(event.item.itemStack.type)) {
+            return
         }
-
-        refreshPlayer(player);
+        refreshPlayer(player)
     }
 
-    /**
-     * Called on player join.
-     *
-     * @param event The event to listen for.
-     */
     @EventHandler
-    public void onPlayerJoin(@NotNull final PlayerJoinEvent event) {
-        refresh();
+    fun onPlayerJoin(event: PlayerJoinEvent) {
+        refresh()
     }
 
-    /**
-     * Called on player leave.
-     *
-     * @param event The event to listen for.
-     */
     @EventHandler
-    public void onPlayerLeave(@NotNull final PlayerQuitEvent event) {
-        refresh();
-
-        Player player = event.getPlayer();
-
-        for (Talisman talisman : Talismans.values()) {
-            for (ConfiguredEffect effect : talisman.getEffects()) {
-                effect.getEffect().disableForPlayer(player);
+    fun onPlayerLeave(event: PlayerQuitEvent) {
+        refresh()
+        val player = event.player
+        for (talisman in values()) {
+            for ((effect1) in talisman.effects) {
+                effect1.disableForPlayer(player)
             }
         }
     }
 
-    /**
-     * Called on item drop.
-     *
-     * @param event The event to listen for.
-     */
     @EventHandler
-    public void onInventoryDrop(@NotNull final PlayerDropItemEvent event) {
-        if (!TalismanUtils.isTalismanMaterial(event.getItemDrop().getItemStack().getType())) {
-            return;
+    fun onInventoryDrop(event: PlayerDropItemEvent) {
+        if (!TalismanUtils.isTalismanMaterial(event.itemDrop.itemStack.type)) {
+            return
         }
-
-        refreshPlayer(event.getPlayer());
+        refreshPlayer(event.player)
     }
 
-    /**
-     * Called on slot change.
-     *
-     * @param event The event to listen for.
-     */
     @EventHandler
-    public void onChangeSlot(@NotNull final PlayerItemHeldEvent event) {
-        refreshPlayer(event.getPlayer());
-
-        this.getPlugin().getScheduler().run(() -> refreshPlayer(event.getPlayer()));
+    fun onChangeSlot(event: PlayerItemHeldEvent) {
+        refreshPlayer(event.player)
+        plugin.scheduler.run { refreshPlayer(event.player) }
     }
 
-    /**
-     * Called on armor change.
-     *
-     * @param event The event to listen for.
-     */
     @EventHandler
-    public void onArmorChange(@NotNull final ArmorChangeEvent event) {
-        refreshPlayer(event.getPlayer());
+    fun onArmorChange(event: ArmorChangeEvent) {
+        refreshPlayer(event.player)
     }
 
-    /**
-     * Called on inventory click.
-     *
-     * @param event The event to listen for.
-     */
     @EventHandler
-    public void onInventoryClick(@NotNull final InventoryClickEvent event) {
-        if (!(event.getWhoClicked() instanceof Player)) {
-            return;
+    fun onInventoryClick(event: InventoryClickEvent) {
+        if (event.whoClicked !is Player) {
+            return
         }
-
-        refreshPlayer((Player) event.getWhoClicked());
+        refreshPlayer(event.whoClicked as Player)
     }
 
-    /**
-     * Force refresh all online players.
-     * <p>
-     * This is a very expensive method.
-     */
-    public void refresh() {
-        this.getPlugin().getServer().getOnlinePlayers().forEach(this::refreshPlayer);
+    private fun refresh() {
+        plugin.server.onlinePlayers.forEach { player: Player -> refreshPlayer(player) }
     }
 
-    private void refreshPlayer(@NotNull final Player player) {
-        TalismanChecks.clearCache(player);
-        LibReforgeUtils.updateEffects(player);
+    private fun refreshPlayer(player: Player) {
+        TalismanChecks.clearCache(player)
+        player.updateEffects()
     }
 }

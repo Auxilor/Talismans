@@ -1,92 +1,50 @@
-package com.willfp.talismans.talismans.util;
+package com.willfp.talismans.talismans.util
 
-import com.willfp.eco.core.EcoPlugin;
-import com.willfp.eco.core.config.updating.ConfigUpdater;
-import com.willfp.talismans.TalismansPlugin;
-import com.willfp.talismans.talismans.Talisman;
-import com.willfp.talismans.talismans.Talismans;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.ShulkerBox;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BlockStateMeta;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.willfp.eco.core.EcoPlugin
+import com.willfp.eco.core.config.updating.ConfigUpdater
+import com.willfp.talismans.TalismansPlugin.Companion.instance
+import com.willfp.talismans.talismans.Talisman
+import com.willfp.talismans.talismans.Talismans.getByID
+import com.willfp.talismans.talismans.util.TalismanUtils.convert
+import com.willfp.talismans.talismans.util.TalismanUtils.getLimit
+import com.willfp.talismans.talismans.util.TalismanUtils.isTalismanMaterial
+import org.bukkit.block.ShulkerBox
+import org.bukkit.entity.Player
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.BlockStateMeta
+import org.bukkit.persistence.PersistentDataType
+import java.util.*
+import java.util.function.Function
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.WeakHashMap;
-import java.util.function.Function;
+object TalismanChecks {
+    private val CACHED_TALISMANS = Collections.synchronizedMap(HashMap<UUID, Set<Talisman>>())
+    private val CACHED_TALISMAN_ITEMS = Collections.synchronizedMap(WeakHashMap<UUID, Set<ItemStack>>())
+    private val PROVIDERS: MutableSet<Function<Player, List<ItemStack>>> = HashSet()
 
-public class TalismanChecks {
-    /**
-     * Cached talismans.
-     */
-    public static final Map<UUID, Set<Talisman>> CACHED_TALISMANS = Collections.synchronizedMap(new HashMap<>());
+    private var readEnderChest = true
+    private var readShulkerBoxes = true
+    private var offhandOnly = false
 
-    /**
-     * Cached items.
-     */
-    public static final Map<UUID, Set<ItemStack>> CACHED_TALISMAN_ITEMS = Collections.synchronizedMap(new WeakHashMap<>());
-
-    /**
-     * All providers.
-     */
-    private static final Set<Function<Player, List<ItemStack>>> PROVIDERS = new HashSet<>();
-
-    /**
-     * If ender chests should be checked.
-     */
-    private static boolean readEnderChest = true;
-
-    /**
-     * If shulker boxes should be read.
-     */
-    private static boolean readShulkerBoxes = true;
-
-    /**
-     * If only offhand should be read.
-     */
-    private static boolean offhandOnly = false;
-
-    /**
-     * Instance of talismans.
-     */
-    private static final EcoPlugin PLUGIN = TalismansPlugin.getInstance();
+    private val PLUGIN: EcoPlugin = instance
 
     /**
      * Does the specified ItemStack have a certain Talisman present?
      *
-     * @param item     The {@link ItemStack} to check
+     * @param item     The [ItemStack] to check
      * @param talisman The talisman to query
      * @return If the item has the queried talisman
      */
-    public static boolean item(@Nullable final ItemStack item,
-                               @NotNull final Talisman talisman) {
+    fun item(
+        item: ItemStack?,
+        talisman: Talisman
+    ): Boolean {
         if (item == null) {
-            return false;
+            return false
         }
-
-        ItemMeta meta = item.getItemMeta();
-
-        if (meta == null) {
-            return false;
-        }
-
-        PersistentDataContainer container = meta.getPersistentDataContainer();
-
-        return container.has(talisman.getKey(), PersistentDataType.INTEGER);
+        val meta = item.itemMeta ?: return false
+        val container = meta.persistentDataContainer
+        return container.has(talisman.key, PersistentDataType.INTEGER)
     }
 
     /**
@@ -95,30 +53,25 @@ public class TalismanChecks {
      * @param item The item to query.
      * @return The talisman, or null if no talisman is present.
      */
-    public static Talisman getTalismanOnItem(@Nullable final ItemStack item) {
+    fun getTalismanOnItem(item: ItemStack?): Talisman? {
         if (item == null) {
-            return null;
+            return null
         }
 
-        if (!TalismanUtils.isTalismanMaterial(item.getType())) {
-            return null;
+        if (!isTalismanMaterial(item.type)) {
+            return null
         }
 
-        ItemMeta meta = item.getItemMeta();
+        val meta = item.itemMeta ?: return null
 
-        if (meta == null) {
-            return null;
-        }
+        val container = meta.persistentDataContainer
 
-        PersistentDataContainer container = meta.getPersistentDataContainer();
-        String id = container.get(PLUGIN.getNamespacedKeyFactory().create("talisman"), PersistentDataType.STRING);
-        if (id == null) {
-            return null;
-        }
+        val id = container.get(
+            PLUGIN.namespacedKeyFactory.create("talisman"),
+            PersistentDataType.STRING
+        ) ?: return null
 
-        Talisman talisman = Talismans.getByID(id);
-
-        return talisman;
+        return getByID(id)
     }
 
     /**
@@ -127,10 +80,9 @@ public class TalismanChecks {
      * @param player The player to query.
      * @return A set of all found talismans.
      */
-    public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player) {
-        return getTalismansOnPlayer(player, true);
+    fun getTalismansOnPlayer(player: Player): Set<Talisman> {
+        return getTalismansOnPlayer(player, true)
     }
-
 
     /**
      * Get all talismans ItemStacks that a player has active.
@@ -140,82 +92,78 @@ public class TalismanChecks {
      * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
-    public static Set<ItemStack> getTalismanItemsOnPlayer(@NotNull final Player player,
-                                                         final boolean useCache,
-                                                         @NotNull final ItemStack... extra) {
+    fun getTalismanItemsOnPlayer(
+        player: Player,
+        useCache: Boolean,
+        vararg extra: ItemStack?
+    ): Set<ItemStack> {
         if (useCache) {
-            Set<ItemStack> cached = CACHED_TALISMAN_ITEMS.get(player.getUniqueId());
+            val cached = CACHED_TALISMAN_ITEMS[player.uniqueId]
             if (cached != null) {
-                return cached;
+                return cached
             }
         }
 
-        List<ItemStack> contents = new ArrayList<>();
-
-        List<ItemStack> rawContents = new ArrayList<>(Arrays.asList(player.getInventory().getContents()));
+        val contents = mutableListOf<ItemStack>()
+        val rawContents = player.inventory.contents.toMutableList()
 
         if (readEnderChest) {
-            Inventory enderChest = player.getEnderChest();
+            val enderChest = player.enderChest as Inventory?
 
             // Not always true, bug reported where it was null.
             if (enderChest != null) {
-                rawContents.addAll(Arrays.asList(enderChest.getContents()));
+                rawContents.addAll(enderChest.contents)
             }
         }
 
         if (offhandOnly) {
-            rawContents.clear();
-            rawContents.add(player.getInventory().getItemInOffHand());
+            rawContents.clear()
+            rawContents.add(player.inventory.itemInOffHand)
         }
 
-        rawContents.addAll(Arrays.asList(extra));
-
-        for (Function<Player, List<ItemStack>> provider : PROVIDERS) {
-            rawContents.addAll(provider.apply(player));
+        rawContents.addAll(extra)
+        for (provider in PROVIDERS) {
+            rawContents.addAll(provider.apply(player))
         }
 
-        for (ItemStack rawContent : rawContents) {
+        for (rawContent in rawContents) {
             if (rawContent == null) {
-                continue;
+                continue
             }
             if (readShulkerBoxes) {
-                ItemMeta meta = rawContent.getItemMeta();
-                if (meta instanceof BlockStateMeta shulkerMeta) {
+                val meta = rawContent.itemMeta
+                if (meta is BlockStateMeta) {
+                    val shulkerMeta = meta
                     if (!shulkerMeta.hasBlockState()) {
-                        continue;
+                        continue
                     }
-
-                    BlockState state = shulkerMeta.getBlockState();
-                    if (state instanceof ShulkerBox shulkerBox) {
-                        contents.addAll(Arrays.asList(shulkerBox.getInventory().getContents()));
-                        continue;
+                    val state = shulkerMeta.blockState
+                    if (state is ShulkerBox) {
+                        contents.addAll(Arrays.asList(*state.inventory.contents))
+                        continue
                     }
                 }
             }
-            contents.add(rawContent);
+            contents.add(rawContent)
         }
 
-        Set<ItemStack> items = new HashSet<>();
+        val items: MutableSet<ItemStack> = HashSet()
 
-        for (ItemStack itemStack : contents) {
-            Talisman talisman = getTalismanOnItem(itemStack);
-            if (talisman == null) {
-                continue;
+        for (itemStack in contents) {
+            convert(itemStack)
+            getTalismanOnItem(itemStack) ?: continue
+            if (items.size >= getLimit(player)) {
+                break
             }
-
-            if (items.size() >= TalismanUtils.getLimit(player)) {
-                break;
-            }
-
-            items.add(itemStack);
+            items.add(itemStack)
         }
 
         if (useCache) {
-            CACHED_TALISMAN_ITEMS.put(player.getUniqueId(), items);
-            PLUGIN.getScheduler().runLater(() -> CACHED_TALISMAN_ITEMS.remove(player.getUniqueId()), 40);
+            CACHED_TALISMAN_ITEMS[player.uniqueId] = items
+            PLUGIN.scheduler.runLater({ CACHED_TALISMAN_ITEMS.remove(player.uniqueId) }, 40)
         }
 
-        return items;
+        return items
     }
 
     /**
@@ -226,38 +174,35 @@ public class TalismanChecks {
      * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
-    public static Set<Talisman> getTalismansOnPlayer(@NotNull final Player player,
-                                                          final boolean useCache,
-                                                          @NotNull final ItemStack... extra) {
+    fun getTalismansOnPlayer(
+        player: Player,
+        useCache: Boolean,
+        vararg extra: ItemStack?
+    ): Set<Talisman> {
         if (useCache) {
-            Set<Talisman> cached = CACHED_TALISMANS.get(player.getUniqueId());
+            val cached = CACHED_TALISMANS[player.uniqueId]
             if (cached != null) {
-                return cached;
+                return cached
             }
         }
 
-        Set<ItemStack> contents = getTalismanItemsOnPlayer(player, useCache, extra);
-        Set<Talisman> found = new HashSet<>();
+        val contents = getTalismanItemsOnPlayer(player, useCache, *extra)
+        val found: MutableSet<Talisman> = HashSet()
 
-        for (ItemStack itemStack : contents) {
-            Talisman talisman = getTalismanOnItem(itemStack);
-            if (talisman == null) {
-                continue;
+        for (itemStack in contents) {
+            val talisman = getTalismanOnItem(itemStack) ?: continue
+            if (found.size >= getLimit(player)) {
+                break
             }
-
-            if (found.size() >= TalismanUtils.getLimit(player)) {
-                break;
-            }
-
-            found.add(talisman);
+            found.add(talisman)
         }
 
         if (useCache) {
-            CACHED_TALISMANS.put(player.getUniqueId(), found);
-            PLUGIN.getScheduler().runLater(() -> CACHED_TALISMANS.remove(player.getUniqueId()), 40);
+            CACHED_TALISMANS[player.uniqueId] = found
+            PLUGIN.scheduler.runLater({ CACHED_TALISMANS.remove(player.uniqueId) }, 40)
         }
 
-        return found;
+        return found
     }
 
     /**
@@ -265,9 +210,9 @@ public class TalismanChecks {
      *
      * @param player The player.
      */
-    public static void clearCache(@NotNull final Player player) {
-        CACHED_TALISMAN_ITEMS.remove(player.getUniqueId());
-        CACHED_TALISMANS.remove(player.getUniqueId());
+    fun clearCache(player: Player) {
+        CACHED_TALISMAN_ITEMS.remove(player.uniqueId)
+        CACHED_TALISMANS.remove(player.uniqueId)
     }
 
     /**
@@ -275,8 +220,8 @@ public class TalismanChecks {
      *
      * @param provider The provider.
      */
-    public static void regsiterItemStackProvider(@NotNull final Function<Player, List<ItemStack>> provider) {
-        PROVIDERS.add(provider);
+    fun regsiterItemStackProvider(provider: Function<Player, List<ItemStack>>) {
+        PROVIDERS.add(provider)
     }
 
     /**
@@ -286,9 +231,11 @@ public class TalismanChecks {
      * @param talisman The talisman to search for.
      * @return A set of all found talismans.
      */
-    public static boolean hasTalisman(@NotNull final Player player,
-                                      @NotNull final Talisman talisman) {
-        return getTalismansOnPlayer(player).contains(talisman);
+    fun hasTalisman(
+        player: Player,
+        talisman: Talisman
+    ): Boolean {
+        return getTalismansOnPlayer(player).contains(talisman)
     }
 
     /**
@@ -297,9 +244,9 @@ public class TalismanChecks {
      * @param plugin Instance of Talismans.
      */
     @ConfigUpdater
-    public static void reload(@NotNull final EcoPlugin plugin) {
-        readEnderChest = plugin.getConfigYml().getBool("read-enderchest");
-        readShulkerBoxes = plugin.getConfigYml().getBool("read-shulkerboxes");
-        offhandOnly = plugin.getConfigYml().getBool("offhand-only");
+    fun reload(plugin: EcoPlugin) {
+        readEnderChest = plugin.configYml.getBool("read-enderchest")
+        readShulkerBoxes = plugin.configYml.getBool("read-shulkerboxes")
+        offhandOnly = plugin.configYml.getBool("offhand-only")
     }
 }
