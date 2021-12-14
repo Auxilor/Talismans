@@ -1,7 +1,6 @@
 package com.willfp.talismans.command
 
 import com.willfp.eco.core.EcoPlugin
-import com.willfp.eco.core.command.CommandHandler
 import com.willfp.eco.core.command.impl.Subcommand
 import org.bukkit.command.CommandSender
 

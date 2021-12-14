@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.willfp.talismans.talismans.util
 
 import com.willfp.eco.core.EcoPlugin

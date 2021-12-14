@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
+import java.util.Objects
 
 class Talisman(
     private val config: Config,
@@ -98,14 +98,14 @@ class Talisman(
         Talismans.addNewTalisman(this)
     }
 
-    override fun equals(o: Any?): Boolean {
-        if (this === o) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
             return true
         }
-        if (o !is Talisman) {
+        if (other !is Talisman) {
             return false
         }
-        return key == o.key
+        return key == other.key
     }
 
     override fun hashCode(): Int {

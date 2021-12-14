@@ -21,7 +21,7 @@ class TalismanCraftListener : Listener {
         val recipe = event.recipe as? ShapedRecipe ?: return
 
         val key = recipe.key.key.replace("_displayed", "")
-        val talisman = getByID(key) ?: return
+        getByID(key) ?: return
 
         if (event.viewers.isEmpty()) {
             return
@@ -44,7 +44,7 @@ class TalismanCraftListener : Listener {
         val recipe = event.recipe as? ShapedRecipe ?: return
 
         val key = recipe.key.key.replace("_displayed", "")
-        val talisman = getByID(key) ?: return
+        getByID(key) ?: return
 
         if (event.viewers.isEmpty()) {
             return
