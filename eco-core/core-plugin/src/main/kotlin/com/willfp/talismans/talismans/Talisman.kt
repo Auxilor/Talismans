@@ -32,9 +32,9 @@ class Talisman(
 
     val key: NamespacedKey = plugin.namespacedKeyFactory.create(id)
 
-    val name = config.getString("name")
+    val name = config.getFormattedString("name")
 
-    val description = config.getString("description")
+    val description = config.getFormattedString("description")
 
     val formattedDescription: List<String> =
         WordUtils.wrap(description, plugin.configYml.getInt("description.wrap"), "\n", false)
