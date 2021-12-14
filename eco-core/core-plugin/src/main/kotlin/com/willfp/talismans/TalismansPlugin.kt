@@ -65,6 +65,10 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
         return TalismanDisplay(this)
     }
 
+    override fun getMinimumEcoVersion(): String {
+        return "6.17.0"
+    }
+
     companion object {
         @JvmStatic
         lateinit var instance: TalismansPlugin
