@@ -8,7 +8,7 @@ import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.util.StringUtil
 
-class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "reload", "talismans.commands.reload", false) {
+class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.commands.give", false) {
     private val numbers = listOf(
         "1",
         "2",
