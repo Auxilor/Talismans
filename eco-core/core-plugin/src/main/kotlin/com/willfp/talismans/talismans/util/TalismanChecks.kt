@@ -14,7 +14,10 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
+import java.util.Arrays
+import java.util.Collections
+import java.util.UUID
+import java.util.WeakHashMap
 import java.util.function.Function
 
 object TalismanChecks {
@@ -244,6 +247,7 @@ object TalismanChecks {
      * @param plugin Instance of Talismans.
      */
     @ConfigUpdater
+    @JvmStatic
     fun reload(plugin: EcoPlugin) {
         readEnderChest = plugin.configYml.getBool("read-enderchest")
         readShulkerBoxes = plugin.configYml.getBool("read-shulkerboxes")
