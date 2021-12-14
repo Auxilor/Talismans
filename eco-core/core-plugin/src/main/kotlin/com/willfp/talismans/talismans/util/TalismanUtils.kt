@@ -21,6 +21,9 @@ object TalismanUtils {
         val meta = itemStack.itemMeta ?: return
         val container = meta.persistentDataContainer
         val talismanKey = container.keys.firstOrNull { it.namespace == "talismans" } ?: return
+        if (!container.has(talismanKey, PersistentDataType.INTEGER)) {
+            return
+        }
         val level = container.get(talismanKey, PersistentDataType.INTEGER) ?: return
         container.remove(talismanKey)
         container.set(
