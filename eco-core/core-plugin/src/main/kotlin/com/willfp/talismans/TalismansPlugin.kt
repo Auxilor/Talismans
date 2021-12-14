@@ -26,16 +26,10 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
         instance = this
         LibReforge.init(this)
         LibReforge.registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
-        Talismans.update(this)
     }
 
     override fun handleEnable() {
         LibReforge.enable(this)
-        CustomItem(
-            this.namespacedKeyFactory.create("any_talisman"),
-            { test -> TalismanChecks.getTalismanOnItem(test) != null },
-            Talismans.values()[0].itemStack
-        ).register()
     }
 
     override fun handleDisable() {
@@ -45,6 +39,11 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
     override fun handleReload() {
         logger.info("${Talismans.values().size} Talismans Loaded")
         LibReforge.reload(this);
+        CustomItem(
+            this.namespacedKeyFactory.create("any_talisman"),
+            { test -> TalismanChecks.getTalismanOnItem(test) != null },
+            Talismans.values()[0].itemStack
+        ).register()
     }
 
     override fun loadPluginCommands(): List<PluginCommand> {
