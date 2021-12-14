@@ -9,7 +9,11 @@ import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.config.TalismansYml
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.talismans.Talismans
-import com.willfp.talismans.talismans.util.*
+import com.willfp.talismans.talismans.util.BlockPlaceListener
+import com.willfp.talismans.talismans.util.DiscoverRecipeListener
+import com.willfp.talismans.talismans.util.TalismanChecks
+import com.willfp.talismans.talismans.util.TalismanCraftListener
+import com.willfp.talismans.talismans.util.TalismanEnableListeners
 import org.bukkit.event.Listener
 
 class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
@@ -22,6 +26,7 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
         instance = this
         LibReforge.init(this)
         LibReforge.registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
+        Talismans.update(this)
     }
 
     override fun handleEnable() {

@@ -75,11 +75,11 @@ class Talisman(
     ).apply { register() }
 
     override val effects = config.getSubsections("effects").mapNotNull {
-        Effects.compile(it, "Talisman ID ${net.minecraft.server.v1_16_R3.Items.id}")
+        Effects.compile(it, "Talisman ID $id")
     }.toSet()
 
     override val conditions = config.getSubsections("conditions").mapNotNull {
-        Conditions.compile(it, "Talisman ID ${net.minecraft.server.v1_16_R3.Items.id}")
+        Conditions.compile(it, "Talisman ID $id")
     }.toSet()
 
     init {
