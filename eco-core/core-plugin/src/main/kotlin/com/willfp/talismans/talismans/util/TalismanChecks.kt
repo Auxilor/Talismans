@@ -38,6 +38,7 @@ object TalismanChecks {
      * @param talisman The talisman to query
      * @return If the item has the queried talisman
      */
+    @JvmStatic
     fun item(
         item: ItemStack?,
         talisman: Talisman
@@ -56,6 +57,7 @@ object TalismanChecks {
      * @param item The item to query.
      * @return The talisman, or null if no talisman is present.
      */
+    @JvmStatic
     fun getTalismanOnItem(item: ItemStack?): Talisman? {
         if (item == null) {
             return null
@@ -83,6 +85,7 @@ object TalismanChecks {
      * @param player The player to query.
      * @return A set of all found talismans.
      */
+    @JvmStatic
     fun getTalismansOnPlayer(player: Player): Set<Talisman> {
         return getTalismansOnPlayer(player, true)
     }
@@ -95,6 +98,7 @@ object TalismanChecks {
      * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
+    @JvmStatic
     fun getTalismanItemsOnPlayer(
         player: Player,
         useCache: Boolean,
@@ -177,6 +181,7 @@ object TalismanChecks {
      * @param extra    Bonus items.
      * @return A set of all found talismans.
      */
+    @JvmStatic
     fun getTalismansOnPlayer(
         player: Player,
         useCache: Boolean,
@@ -213,6 +218,7 @@ object TalismanChecks {
      *
      * @param player The player.
      */
+    @JvmStatic
     fun clearCache(player: Player) {
         CACHED_TALISMAN_ITEMS.remove(player.uniqueId)
         CACHED_TALISMANS.remove(player.uniqueId)
@@ -223,6 +229,7 @@ object TalismanChecks {
      *
      * @param provider The provider.
      */
+    @JvmStatic
     fun regsiterItemStackProvider(provider: Function<Player, List<ItemStack>>) {
         PROVIDERS.add(provider)
     }
@@ -234,6 +241,7 @@ object TalismanChecks {
      * @param talisman The talisman to search for.
      * @return A set of all found talismans.
      */
+    @JvmStatic
     fun hasTalisman(
         player: Player,
         talisman: Talisman
