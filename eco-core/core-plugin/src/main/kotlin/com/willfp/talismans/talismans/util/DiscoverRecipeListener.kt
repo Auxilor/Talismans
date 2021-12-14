@@ -12,9 +12,7 @@ class DiscoverRecipeListener(private val plugin: EcoPlugin) : Listener {
         val player = event.player
         if (plugin.configYml.getBool("crafting.discover")) {
             for (talisman in values()) {
-                for (level in talisman.getLevels()) {
-                    player.discoverRecipe(level.key)
-                }
+                player.discoverRecipe(talisman.recipe?.key ?: continue)
             }
         }
     }
