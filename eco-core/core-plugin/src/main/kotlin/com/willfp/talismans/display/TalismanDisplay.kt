@@ -21,8 +21,8 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
 
         val talisman = TalismanChecks.getTalismanOnItem(itemStack) ?: return
 
-        meta.displayName = talisman.name
-        meta.customModelData = talisman.itemStack.itemMeta.customModelData
+        meta.setDisplayName(talisman.name)
+        meta.setCustomModelData(talisman.itemStack.itemMeta?.customModelData)
 
         val lore: MutableList<String?> = ArrayList()
 
