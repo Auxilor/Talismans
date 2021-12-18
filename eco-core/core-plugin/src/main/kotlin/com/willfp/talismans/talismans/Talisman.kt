@@ -41,6 +41,8 @@ class Talisman(
 
         val out = ItemStackBuilder(item.item)
             .setAmount(1)
+            .setDisplayName(name)
+            .addLoreLines(description)
             .writeMetaKey(plugin.namespacedKeyFactory.create("talisman"), PersistentDataType.STRING, id)
             .build()
         Display.display(out)
