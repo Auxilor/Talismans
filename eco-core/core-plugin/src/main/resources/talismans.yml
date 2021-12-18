@@ -2,7 +2,7 @@ talismans:
   - id: "archery_1"
     name: "&aArchery Talisman I"
     description:
-     - &8Deal 10% more damage with bows
+     - "&8Deal 10% more damage with bows"
     item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDBmOGRmYTVlZmM3NTYzMGNlMGRmNDBhNDliOGY1OWJjMjIyMTRkZTk3ZTNmYjQ0YjNjNTZlOGE5YzhhNTZiNiJ9fX0="
     craftable: true
     recipe:
@@ -26,7 +26,7 @@ talismans:
     conditions: []
   - id: "archery_2"
     name: "&eArchery Talisman II"
-      - &8Deal 20% more damage with bows
+      - "&8Deal 20% more damage with bows"
     item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzgzODVhNWE0Njk4MjFiOGIzM2U0N2E1YjVjNDJhZWE1OTY2MzQ2NTQ2OTM4OGExYTRkNGU1MjNlNWE4ZGRkMiJ9fX0="
     craftable: true
     recipe:
@@ -50,7 +50,7 @@ talismans:
     conditions: []
   - id: "archery_3"
     name: "&cArchery Talisman III"
-      - &8Deal 40% more damage with bows
+      - "&8Deal 40% more damage with bows"
     item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ3NDk5NWQ2Y2RhMmI4YTI0NzcyYWY5NjllZjA3N2FlM2E4NWUyMzU3YzZmNjExOWI4YTI1MDYwNDFhNDQ4YiJ9fX0="
     craftable: true
     recipe:
@@ -76,7 +76,7 @@ talismans:
   - id: "attack_speed_1"
     name: "&aAttack Speed Talisman I"
     description:
-      - &8Attack 5% faster.
+      - "&8Attack 5% faster."
     item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTVmZGRlYzM2NjU1ZDNiMzcxYzc5ZDYxMTMzNTQ4Nzc1NzcwODljMWZjYjFiM2Q4ZTAwYWYzMjYxMmYyNmYyOCJ9fX0="
     craftable: true
     recipe:
@@ -99,7 +99,7 @@ talismans:
   - id: "attack_speed_2"
     name: "&eAttack Speed Talisman II"
     description:
-      - &8Attack 10% faster.
+      - "&8Attack 10% faster."
     item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE1ZjAyZWFjNjAyNmI4ZTg3MTJjYTRkNzgxYjc5MWJiYmI3YjQ3NTVhYmRhMjdmNDYyMTg5YjkwZmVkNjZhMSJ9fX0="
     craftable: true
     recipe:
@@ -122,7 +122,7 @@ talismans:
   - id: "attack_speed_3"
     name: "&cAttack Speed Talisman III"
     description:
-      - &8Attack 25% faster.
+      - "&8Attack 25% faster."
     item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjI2NjQ5MmZmMDk2MjRmZTdkYzA4MGI0YWE1ZjRiNjA4N2E3NTYzZmEwMjA3ZGY4NzdjZTUwZDI1OWE3NzM3NCJ9fX0="
     craftable: true
     recipe:
