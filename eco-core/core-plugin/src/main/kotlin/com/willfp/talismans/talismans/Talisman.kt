@@ -39,13 +39,12 @@ class Talisman(
         Validate.isTrue(item !is EmptyTestableItem, "Item specified in " + key.key + " is invalid!")
         TalismanUtils.registerTalismanMaterial(item.item.type)
 
-        val out = ItemStackBuilder(item.item)
+        ItemStackBuilder(item.item)
             .setAmount(1)
             .setDisplayName(name)
             .addLoreLines(description)
             .writeMetaKey(plugin.namespacedKeyFactory.create("talisman"), PersistentDataType.STRING, id)
             .build()
-        Display.display(out)
     }
 
     val craftable = config.getBool("craftable")
