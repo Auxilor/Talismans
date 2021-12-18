@@ -3,17 +3,14 @@ package com.willfp.talismans
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
+import com.willfp.eco.core.integrations.IntegrationLoader
 import com.willfp.eco.core.items.CustomItem
 import com.willfp.libreforge.LibReforge
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.config.TalismansYml
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.talismans.Talismans
-import com.willfp.talismans.talismans.util.BlockPlaceListener
-import com.willfp.talismans.talismans.util.DiscoverRecipeListener
-import com.willfp.talismans.talismans.util.TalismanChecks
-import com.willfp.talismans.talismans.util.TalismanCraftListener
-import com.willfp.talismans.talismans.util.TalismanEnableListeners
+import com.willfp.talismans.talismans.util.*
 import org.bukkit.event.Listener
 
 class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
@@ -44,6 +41,10 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
             { test -> TalismanChecks.getTalismanOnItem(test) != null },
             Talismans.values()[0].itemStack
         ).register()
+    }
+
+    override fun loadIntegrationLoaders(): List<IntegrationLoader> {
+        return LibReforge.getIntegrationLoaders()
     }
 
     override fun loadPluginCommands(): List<PluginCommand> {
