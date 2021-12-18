@@ -32,7 +32,7 @@ class Talisman(
 
     val name = config.getFormattedString("name")
 
-    val description = config.getFormattedStrings("description")
+    val description = config.getFormattedStrings("description").map { Display.PREFIX + it }
 
     val itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
