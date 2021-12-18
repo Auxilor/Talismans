@@ -26,9 +26,9 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
             meta.setCustomModelData(talisman.itemStack.itemMeta?.customModelData)
         }
 
-        val lore: MutableList<String?> = ArrayList()
+        val lore = mutableListOf<String>()
 
-        lore.addAll(talisman.formattedDescription)
+        lore.addAll(talisman.description)
         lore.addAll(itemLore)
 
         meta.lore = lore

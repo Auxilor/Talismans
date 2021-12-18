@@ -10,5 +10,3 @@ messages:
   invalid-talisman: "&cInvalid talisman!"
   invalid-level: "&cLevel doesn't exist!"
   give-success: "Gave &a%talisman%&r to &a%recipient%"
-
-description-color: "&8"

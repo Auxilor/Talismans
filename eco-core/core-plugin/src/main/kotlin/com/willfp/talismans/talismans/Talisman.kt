@@ -7,7 +7,6 @@ import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.builder.ItemStackBuilder
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
 import com.willfp.eco.core.recipe.recipes.ShapedCraftingRecipe
-import com.willfp.eco.util.StringUtils
 import com.willfp.libreforge.Holder
 import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.effects.Effects
@@ -15,14 +14,13 @@ import com.willfp.talismans.TalismansPlugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
 import org.apache.commons.lang.Validate
-import org.apache.commons.lang.WordUtils
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault
 import org.bukkit.persistence.PersistentDataType
-import java.util.Objects
+import java.util.*
 
 class Talisman(
     private val config: Config,
@@ -34,13 +32,7 @@ class Talisman(
 
     val name = config.getFormattedString("name")
 
-    val description = config.getFormattedString("description")
-
-    val formattedDescription: List<String> =
-        WordUtils.wrap(description, plugin.configYml.getInt("description.wrap"), "\n", false)
-            .split("[\\r\\n]+")
-            .toTypedArray()
-            .map { "${Display.PREFIX}${StringUtils.format(plugin.langYml.getString("description-color"))}$it" }
+    val description = config.getFormattedStrings("description")
 
     val itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
