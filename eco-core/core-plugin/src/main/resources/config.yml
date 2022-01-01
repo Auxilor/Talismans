@@ -8,5 +8,6 @@ crafting:
 
 read-enderchest: true # If a player's ender chest should be checked for talismans
 read-shulkerboxes: true # If a player's shulker boxes should be checked for talismans
+top-level-only: true # If only the top level of any given talisman should be activated
 
 offhand-only: false # If talismans or shulkers of talismans need to be in the offhand to work

@@ -67,6 +67,9 @@ class Talisman(
         itemStack
     ).apply { register() }
 
+    val lowerLevel: Talisman?
+        get() = Talismans.getByID(config.getString("higherLevelOf"))
+
     override val effects = config.getSubsections("effects").mapNotNull {
         Effects.compile(it, "Talisman ID $id")
     }.toSet()

@@ -14,10 +14,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.persistence.PersistentDataType
-import java.util.Arrays
-import java.util.Collections
-import java.util.UUID
-import java.util.WeakHashMap
+import java.util.*
 import java.util.function.Function
 
 object TalismanChecks {
@@ -146,7 +143,7 @@ object TalismanChecks {
                     }
                     val state = shulkerMeta.blockState
                     if (state is ShulkerBox) {
-                        contents.addAll(Arrays.asList(*state.inventory.contents))
+                        contents.addAll(state.inventory.contents)
                         continue
                     }
                 }
@@ -154,23 +151,33 @@ object TalismanChecks {
             contents.add(rawContent)
         }
 
-        val items: MutableSet<ItemStack> = HashSet()
+        val items = mutableMapOf<Talisman, ItemStack>()
 
         for (itemStack in contents) {
             convert(itemStack)
-            getTalismanOnItem(itemStack) ?: continue
+            val talis = getTalismanOnItem(itemStack) ?: continue
             if (items.size >= getLimit(player)) {
                 break
             }
-            items.add(itemStack)
+            items[talis] = itemStack
+        }
+
+        if (PLUGIN.configYml.getBool("top-level-only")) {
+            for ((talisman, _) in items.toMap()) {
+                var lowerLevel = talisman.lowerLevel
+                while (lowerLevel != null) {
+                    items.remove(lowerLevel)
+                    lowerLevel = lowerLevel.lowerLevel
+                }
+            }
         }
 
         if (useCache) {
-            CACHED_TALISMAN_ITEMS[player.uniqueId] = items
+            CACHED_TALISMAN_ITEMS[player.uniqueId] = items.values.toSet()
             PLUGIN.scheduler.runLater({ CACHED_TALISMAN_ITEMS.remove(player.uniqueId) }, 40)
         }
 
-        return items
+        return items.values.toSet()
     }
 
     /**
@@ -194,16 +201,7 @@ object TalismanChecks {
             }
         }
 
-        val contents = getTalismanItemsOnPlayer(player, useCache, *extra)
-        val found: MutableSet<Talisman> = HashSet()
-
-        for (itemStack in contents) {
-            val talisman = getTalismanOnItem(itemStack) ?: continue
-            if (found.size >= getLimit(player)) {
-                break
-            }
-            found.add(talisman)
-        }
+        val found = getTalismanItemsOnPlayer(player, useCache, *extra).mapNotNull { getTalismanOnItem(it) }.toSet()
 
         if (useCache) {
             CACHED_TALISMANS[player.uniqueId] = found
