@@ -11,3 +11,17 @@ read-shulkerboxes: true # If a player's shulker boxes should be checked for tali
 top-level-only: true # If only the top level of any given talisman should be activated
 
 offhand-only: false # If talismans or shulkers of talismans need to be in the offhand to work
+
+cannot-afford:
+  in-actionbar: true
+  sound:
+    enabled: true
+    sound: "BLOCK_NOTE_BLOCK_PLING"
+    pitch: 0.5
+
+cooldown:
+  in-actionbar: true
+  sound:
+    enabled: true
+    sound: "BLOCK_NOTE_BLOCK_PLING"
+    pitch: 0.5
