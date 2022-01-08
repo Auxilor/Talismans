@@ -23,7 +23,7 @@ import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
 class Talisman(
-    private val config: Config,
+    val config: Config,
     private val plugin: TalismansPlugin
 ) : Holder {
     val id = config.getString("id")
