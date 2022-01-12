@@ -1,19 +1,21 @@
 package com.willfp.talismans
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
-import com.willfp.eco.core.integrations.IntegrationLoader
 import com.willfp.eco.core.items.CustomItem
-import com.willfp.libreforge.LibReforge
+import com.willfp.libreforge.LibReforgePlugin
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.config.TalismansYml
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.talismans.Talismans
-import com.willfp.talismans.talismans.util.*
+import com.willfp.talismans.talismans.util.BlockPlaceListener
+import com.willfp.talismans.talismans.util.DiscoverRecipeListener
+import com.willfp.talismans.talismans.util.TalismanChecks
+import com.willfp.talismans.talismans.util.TalismanCraftListener
+import com.willfp.talismans.talismans.util.TalismanEnableListeners
 import org.bukkit.event.Listener
 
-class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
+class TalismansPlugin : LibReforgePlugin(611, 9865, "&6") {
     val talismansYml = TalismansYml(this)
 
     /**
@@ -21,30 +23,16 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
      */
     init {
         instance = this
-        LibReforge.init(this)
-        LibReforge.registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
+        registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
     }
 
-    override fun handleEnable() {
-        LibReforge.enable(this)
-    }
-
-    override fun handleDisable() {
-        LibReforge.disable(this)
-    }
-
-    override fun handleReload() {
+    override fun handleReloadAdditional() {
         logger.info("${Talismans.values().size} Talismans Loaded")
-        LibReforge.reload(this);
         CustomItem(
             this.namespacedKeyFactory.create("any_talisman"),
             { test -> TalismanChecks.getTalismanOnItem(test) != null },
             Talismans.values()[0].itemStack
         ).register()
-    }
-
-    override fun loadIntegrationLoaders(): List<IntegrationLoader> {
-        return LibReforge.getIntegrationLoaders()
     }
 
     override fun loadPluginCommands(): List<PluginCommand> {
@@ -67,7 +55,7 @@ class TalismansPlugin : EcoPlugin(611, 9865, "&6", true) {
     }
 
     override fun getMinimumEcoVersion(): String {
-        return "6.17.0"
+        return "6.19.0"
     }
 
     companion object {
