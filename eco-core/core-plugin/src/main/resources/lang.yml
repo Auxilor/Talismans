@@ -11,3 +11,4 @@ messages:
   invalid-level: "&cLevel doesn't exist!"
   give-success: "Gave &a%talisman%&r to &a%recipient%"
   cannot-afford: "&cYou can't afford to do this! &fCost: &a$$%cost%"
+  cannot-afford-type: "&cYou can't afford to do this! &fCost: &a%cost% %type%"
