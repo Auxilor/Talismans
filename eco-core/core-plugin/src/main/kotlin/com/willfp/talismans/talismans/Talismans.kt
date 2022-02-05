@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.google.common.collect.ImmutableList
 import com.willfp.eco.core.config.updating.ConfigUpdater
+import com.willfp.libreforge.chains.EffectChains
 import com.willfp.talismans.TalismansPlugin
 
 object Talismans {
@@ -41,6 +42,9 @@ object Talismans {
     @ConfigUpdater
     @JvmStatic
     fun update(plugin: TalismansPlugin) {
+        plugin.talismansYml.getSubsections("chains").mapNotNull {
+            EffectChains.compile(it, "Chains")
+        }
         for (talisman in values()) {
             removeTalisman(talisman)
         }
