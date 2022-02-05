@@ -4,6 +4,7 @@ import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.items.CustomItem
 import com.willfp.libreforge.LibReforgePlugin
+import com.willfp.libreforge.chains.EffectChains
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.config.TalismansYml
 import com.willfp.talismans.display.TalismanDisplay
@@ -24,6 +25,12 @@ class TalismansPlugin : LibReforgePlugin(611, 9865, "&6") {
     init {
         instance = this
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
+    }
+
+    override fun handleEnableAdditional() {
+        talismansYml.getSubsections("chains").mapNotNull {
+            EffectChains.compile(it, "Chains")
+        }
     }
 
     override fun handleReloadAdditional() {
