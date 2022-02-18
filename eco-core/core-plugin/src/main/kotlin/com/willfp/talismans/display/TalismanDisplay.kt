@@ -21,7 +21,7 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
 
         val talisman = TalismanChecks.getTalismanOnItem(itemStack) ?: return
 
-        meta.displayName = talisman.name
+        meta.setDisplayName(talisman.name)
         if (talisman.itemStack.itemMeta?.hasCustomModelData() == true) {
             meta.setCustomModelData(talisman.itemStack.itemMeta?.customModelData)
         }
