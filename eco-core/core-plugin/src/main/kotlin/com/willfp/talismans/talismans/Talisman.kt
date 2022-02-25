@@ -14,13 +14,10 @@ import com.willfp.talismans.TalismansPlugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
 import org.apache.commons.lang.Validate
-import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
-import org.bukkit.permissions.Permission
-import org.bukkit.permissions.PermissionDefault
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
+import java.util.Objects
 
 class Talisman(
     val config: Config,
@@ -79,18 +76,6 @@ class Talisman(
     }.toSet()
 
     init {
-        if (Bukkit.getPluginManager().getPermission("talismans.fromtable." + key.key) == null) {
-            val permission = Permission(
-                "talismans.fromtable." + key.key,
-                "Allows getting " + key.key + " from a Crafting Table",
-                PermissionDefault.TRUE
-            )
-            permission.addParent(
-                Bukkit.getPluginManager().getPermission("talismans.fromtable.*")!!,
-                true
-            )
-            Bukkit.getPluginManager().addPermission(permission)
-        }
         Talismans.addNewTalisman(this)
     }
 
