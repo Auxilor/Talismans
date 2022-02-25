@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerItemHeldEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
+import org.bukkit.event.player.PlayerRespawnEvent
 
 class TalismanEnableListeners(private val plugin :EcoPlugin) : Listener {
     @EventHandler
@@ -31,7 +32,7 @@ class TalismanEnableListeners(private val plugin :EcoPlugin) : Listener {
 
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
-        refresh()
+        plugin.scheduler.run { refresh() }
     }
 
     @EventHandler
@@ -70,6 +71,11 @@ class TalismanEnableListeners(private val plugin :EcoPlugin) : Listener {
             return
         }
         refreshPlayer(event.whoClicked as Player)
+    }
+
+    @EventHandler
+    fun onRespawn(event: PlayerRespawnEvent) {
+        plugin.scheduler.run { refreshPlayer(event.player) }
     }
 
     private fun refresh() {
