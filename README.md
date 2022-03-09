@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://i.imgur.com/WdbjQWC.png" alt="Talismans logo" width="256">
+  <img src="https://i.imgur.com/xtGc4vc.png" alt="Talismans logo" width="256">
   <br>
 </h1>
 
