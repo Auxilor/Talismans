@@ -5,8 +5,9 @@ import com.willfp.eco.core.display.Display
 import com.willfp.eco.core.items.CustomItem
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.builder.ItemStackBuilder
+import com.willfp.eco.core.recipe.Recipes
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
-import com.willfp.eco.core.recipe.recipes.ShapedCraftingRecipe
+import com.willfp.eco.core.recipe.recipes.CraftingRecipe
 import com.willfp.libreforge.Holder
 import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.effects.Effects
@@ -46,17 +47,17 @@ class Talisman(
 
     val craftable = config.getBool("craftable")
 
-    val recipe: ShapedCraftingRecipe? = run {
+    val recipe: CraftingRecipe? = run {
         if (craftable) {
-            val builder = ShapedCraftingRecipe.builder(plugin, key.key)
-                .setOutput(itemStack)
-            val recipeStrings = config.getStrings("recipe")
-            for (i in recipeStrings.indices) {
-                builder.setRecipePart(i, Items.lookup(recipeStrings[i]))
-            }
-            builder.build()
+            Recipes.createAndRegisterRecipe(
+                plugin,
+                key.key,
+                itemStack,
+                config.getStrings("recipe"),
+                "talismans.fromtable.${key.key}"
+            )
         } else null
-    }.apply { this?.register() }
+    }
 
     val customItem = CustomItem(
         key,

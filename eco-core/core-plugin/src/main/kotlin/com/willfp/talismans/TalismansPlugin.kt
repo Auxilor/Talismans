@@ -11,7 +11,6 @@ import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener
 import com.willfp.talismans.talismans.util.TalismanChecks
-import com.willfp.talismans.talismans.util.TalismanCraftListener
 import com.willfp.talismans.talismans.util.TalismanEnableListeners
 import org.bukkit.event.Listener
 
@@ -44,7 +43,6 @@ class TalismansPlugin : LibReforgePlugin(611, 9865, "&6") {
     override fun loadListeners(): List<Listener> {
         return listOf(
             BlockPlaceListener(),
-            TalismanCraftListener(),
             TalismanEnableListeners(this),
             DiscoverRecipeListener(this)
         )
