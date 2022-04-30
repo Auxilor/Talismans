@@ -53,7 +53,7 @@ class TalismansPlugin : LibReforgePlugin(611, 9865, "&6") {
     }
 
     override fun getMinimumEcoVersion(): String {
-        return "6.19.0"
+        return "6.35.1"
     }
 
     companion object {

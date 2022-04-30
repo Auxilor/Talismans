@@ -13,8 +13,7 @@ softdepend:
   - Vault
   - mcMMO
   - Jobs
-  - ShopGUIPlus
-  - DeluxeSellwands
+  - EcoArmor
 commands:
   talismans:
     description: Parent command.
