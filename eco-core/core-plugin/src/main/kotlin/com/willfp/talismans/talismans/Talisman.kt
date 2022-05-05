@@ -18,13 +18,13 @@ import org.apache.commons.lang.Validate
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
-import java.util.Objects
+import java.util.*
 
 class Talisman(
     val config: Config,
     private val plugin: TalismansPlugin
 ) : Holder {
-    val id = config.getString("id")
+    override val id = config.getString("id")
 
     val key: NamespacedKey = plugin.namespacedKeyFactory.create(id)
 
