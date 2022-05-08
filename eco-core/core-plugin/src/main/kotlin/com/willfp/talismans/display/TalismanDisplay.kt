@@ -5,11 +5,13 @@ import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.display.DisplayPriority
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
 class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority.LOWEST) {
     override fun display(
         itemStack: ItemStack,
+        player: Player?,
         vararg args: Any
     ) {
         if (!TalismanUtils.isTalismanMaterial(itemStack.type)) {
@@ -30,6 +32,15 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
 
         lore.addAll(talisman.description)
         lore.addAll(itemLore)
+
+        if (player != null) {
+            val lines = talisman.getNotMetLines(player)
+
+            if (lines.isNotEmpty()) {
+                lore.add("")
+                lore.addAll(lines)
+            }
+        }
 
         meta.lore = lore
         itemStack.itemMeta = meta
