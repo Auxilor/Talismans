@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.config.updating.ConfigUpdater
+import com.willfp.eco.core.fast.fast
 import com.willfp.talismans.TalismansPlugin.Companion.instance
 import com.willfp.talismans.talismans.Talisman
 import com.willfp.talismans.talismans.Talismans.getByID
@@ -73,9 +74,7 @@ object TalismanChecks {
             return null
         }
 
-        val meta = item.itemMeta ?: return null
-
-        val container = meta.persistentDataContainer
+        val container = item.fast().persistentDataContainer
 
         val id = container.get(
             PLUGIN.namespacedKeyFactory.create("talisman"),

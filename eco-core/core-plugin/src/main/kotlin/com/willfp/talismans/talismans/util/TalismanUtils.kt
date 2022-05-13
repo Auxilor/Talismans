@@ -1,6 +1,7 @@
 package com.willfp.talismans.talismans.util
 
 import com.willfp.eco.core.EcoPlugin
+import com.willfp.eco.core.fast.fast
 import com.willfp.talismans.TalismansPlugin.Companion.instance
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -18,8 +19,7 @@ object TalismanUtils {
         if (!isTalismanMaterial(itemStack.type)) {
             return
         }
-        val meta = itemStack.itemMeta ?: return
-        val container = meta.persistentDataContainer
+        val container = itemStack.fast().persistentDataContainer
         val talismanKey = container.keys.firstOrNull { it.namespace == "talismans" } ?: return
         if (!container.has(talismanKey, PersistentDataType.INTEGER)) {
             return
@@ -31,7 +31,6 @@ object TalismanUtils {
             PersistentDataType.STRING,
             talismanKey.key + "_" + level
         )
-        itemStack.itemMeta = meta
     }
 
     fun getLimit(player: Player): Int {
