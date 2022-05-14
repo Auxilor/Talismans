@@ -14,7 +14,7 @@ import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanEnableListeners
 import org.bukkit.event.Listener
 
-class TalismansPlugin : LibReforgePlugin(611, 9865, "&6") {
+class TalismansPlugin : LibReforgePlugin() {
     val talismansYml = TalismansYml(this)
 
     /**
