@@ -30,6 +30,8 @@ class Talisman(
 
     val name = config.getFormattedString("name")
 
+    val model = config.getInt("model")
+
     val description = config.getFormattedStrings("description").map { Display.PREFIX + it }
 
     val itemStack: ItemStack = run {
@@ -39,7 +41,7 @@ class Talisman(
 
         ItemStackBuilder(item.item)
             .setAmount(1)
-            .setDisplayName(name)
+            .setDisplayName(name).setCustomModelData(model)
             .addLoreLines(description)
             .writeMetaKey(plugin.namespacedKeyFactory.create("talisman"), PersistentDataType.STRING, id)
             .build()
