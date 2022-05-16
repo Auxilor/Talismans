@@ -38,7 +38,7 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
             val lines = talisman.getNotMetLines(player).map { Display.PREFIX + it }
 
             if (lines.isNotEmpty()) {
-                lore.add("")
+                lore.add(Display.PREFIX)
                 lore.addAll(lines)
             }
         }
