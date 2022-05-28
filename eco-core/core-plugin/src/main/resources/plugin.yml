@@ -19,6 +19,10 @@ commands:
   talismans:
     description: Parent command.
     permission: talismans.command.talismans
+    aliases:
+      - talisman
+      - talis
+      - talismen
 
 permissions:
   talismans.*:
@@ -27,6 +31,7 @@ permissions:
     children:
       talismans.command.talismans: true
       talismans.command.give: true
+      talismans.command.bag: true
       talismans.command.reload: true
       talismans.fromtable.*: true
 
@@ -36,6 +41,9 @@ permissions:
   talismans.command.give:
     description: Allows the use of /talismans give.
     default: op
+  talismans.command.bag:
+    description: Allows the use of /talismans bag.
+    default: true
   talismans.command.talismans:
     description: Allows the use of /talismans
     default: true

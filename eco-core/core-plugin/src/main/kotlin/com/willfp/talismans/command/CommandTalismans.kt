@@ -9,6 +9,7 @@ class CommandTalismans(plugin: EcoPlugin)
     init {
         addSubcommand(CommandReload(plugin))
             .addSubcommand(CommandGive(plugin))
+            .addSubcommand(CommandBag(plugin))
     }
 
     override fun onExecute(sender: CommandSender, args: List<String>) {
