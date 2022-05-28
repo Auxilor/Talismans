@@ -12,6 +12,10 @@ top-level-only: true # If only the top level of any given talisman should be act
 
 offhand-only: false # If talismans or shulkers of talismans need to be in the offhand to work
 
+bag:
+  title: "Talisman Bag"
+  rows: 4
+
 cannot-afford:
   in-actionbar: true
   sound:

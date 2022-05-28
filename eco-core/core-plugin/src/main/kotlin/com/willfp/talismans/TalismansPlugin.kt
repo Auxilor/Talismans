@@ -4,6 +4,7 @@ import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.items.CustomItem
 import com.willfp.libreforge.LibReforgePlugin
+import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.config.TalismansYml
 import com.willfp.talismans.display.TalismanDisplay
@@ -17,12 +18,16 @@ import org.bukkit.event.Listener
 class TalismansPlugin : LibReforgePlugin() {
     val talismansYml = TalismansYml(this)
 
-    /**
-     * Internal constructor called by bukkit on plugin load.
-     */
+    /** Internal constructor called by bukkit on plugin load. */
     init {
         instance = this
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
+    }
+
+    override fun handleEnableAdditional() {
+        TalismanChecks.regsiterItemStackProvider {
+            TalismanBag.getTalismans(it)
+        }
     }
 
     override fun handleReloadAdditional() {
