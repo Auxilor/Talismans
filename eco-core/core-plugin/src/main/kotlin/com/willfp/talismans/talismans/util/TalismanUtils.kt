@@ -35,13 +35,22 @@ object TalismanUtils {
 
     fun getLimit(player: Player): Int {
         val prefix = "talismans.limit."
-        for (permissionAttachmentInfo in player.effectivePermissions) {
-            val permission = permissionAttachmentInfo.permission
-            if (permission.startsWith(prefix)) {
-                return permission.substring(permission.lastIndexOf(".") + 1).toInt()
+        var highest = -1
+        for (permission in player.effectivePermissions.map { it.permission }) {
+            if (!permission.startsWith(prefix)) {
+                continue
+            }
+
+            val limit = permission.substring(permission.lastIndexOf(".") + 1).toInt()
+            if (limit > highest) {
+                highest = limit
             }
         }
-        return 100000
+        return if (highest < 0) {
+            10000
+        } else {
+            highest
+        }
     }
 
     fun isTalismanMaterial(material: Material): Boolean {
