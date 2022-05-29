@@ -15,8 +15,8 @@ offhand-only: false # If talismans or shulkers of talismans need to be in the of
 
 bag:
   title: "Talisman Bag"
-  rows: 4
   blocked-item: black_stained_glass_pane name:"&cYour talisman bag is not big enough!"
+  blocked-item-lore: [ ]
 
 cannot-afford:
   in-actionbar: true
