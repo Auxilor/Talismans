@@ -2,7 +2,6 @@ package com.willfp.talismans
 
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
-import com.willfp.eco.core.items.CustomItem
 import com.willfp.libreforge.LibReforgePlugin
 import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
@@ -32,11 +31,14 @@ class TalismansPlugin : LibReforgePlugin() {
 
     override fun handleReloadAdditional() {
         logger.info("${Talismans.values().size} Talismans Loaded")
+        /*
+        Broken with talisman bag rn
         CustomItem(
             this.namespacedKeyFactory.create("any_talisman"),
             { test -> TalismanChecks.getTalismanOnItem(test) != null },
             Talismans.values()[0].itemStack
         ).register()
+         */
     }
 
     override fun loadPluginCommands(): List<PluginCommand> {
