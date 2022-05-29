@@ -23,6 +23,7 @@ commands:
       - talisman
       - talis
       - talismen
+      - tal
 
 permissions:
   talismans.*:
