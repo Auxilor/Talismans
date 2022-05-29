@@ -32,6 +32,7 @@ object TalismanChecks {
 
     private val PROVIDERS: MutableSet<Function<Player, List<ItemStack>>> = HashSet()
 
+    private var readInventory = true
     private var readEnderChest = true
     private var readShulkerBoxes = true
     private var offhandOnly = false
@@ -41,7 +42,7 @@ object TalismanChecks {
     /**
      * Does the specified ItemStack have a certain Talisman present?
      *
-     * @param item     The [ItemStack] to check
+     * @param item The [ItemStack] to check
      * @param talisman The talisman to query
      * @return If the item has the queried talisman
      */
@@ -87,9 +88,9 @@ object TalismanChecks {
     /**
      * Get all talismans ItemStacks that a player has active.
      *
-     * @param player   The player to query.
+     * @param player The player to query.
      * @param useCache If the cache should be checked.
-     * @param extra    Bonus items.
+     * @param extra Bonus items.
      * @return A set of all found talismans.
      */
     @JvmStatic
@@ -99,7 +100,11 @@ object TalismanChecks {
     ): Set<ItemStack> {
         return CACHED_TALISMAN_ITEMS.get(player) {
             val contents = mutableListOf<ItemStack>()
-            val rawContents = it.inventory.contents.toMutableList()
+            val rawContents = mutableListOf<ItemStack?>()
+
+            if (readInventory) {
+                rawContents.addAll(it.inventory.contents)
+            }
 
             if (readEnderChest) {
                 val enderChest = it.enderChest as Inventory?
@@ -169,8 +174,8 @@ object TalismanChecks {
     /**
      * Get all talismans that a player has active.
      *
-     * @param player   The player to query.
-     * @param extra    Bonus items.
+     * @param player The player to query.
+     * @param extra Bonus items.
      * @return A set of all found talismans.
      */
     @JvmStatic
@@ -195,7 +200,8 @@ object TalismanChecks {
     }
 
     /**
-     * Register ItemStack provider (inventory extension, e.g. talisman bag).
+     * Register ItemStack provider (inventory extension, e.g. talisman
+     * bag).
      *
      * @param provider The provider.
      */
@@ -207,7 +213,7 @@ object TalismanChecks {
     /**
      * Get if a player has a specific talisman active.
      *
-     * @param player   The player to query.
+     * @param player The player to query.
      * @param talisman The talisman to search for.
      * @return A set of all found talismans.
      */
@@ -227,6 +233,7 @@ object TalismanChecks {
     @ConfigUpdater
     @JvmStatic
     fun reload(plugin: EcoPlugin) {
+        readInventory = plugin.configYml.getBool("read-inventory")
         readEnderChest = plugin.configYml.getBool("read-enderchest")
         readShulkerBoxes = plugin.configYml.getBool("read-shulkerboxes")
         offhandOnly = plugin.configYml.getBool("offhand-only")
