@@ -8,14 +8,17 @@ load: STARTUP
 depend:
   - eco
 softdepend:
-  - EcoSkills
   - AureliumSkills
   - Vault
   - mcMMO
   - Jobs
-  - EcoArmor
   - TMMobcoins
+  - EcoEnchants
   - EcoBosses
+  - EcoArmor
+  - EcoItems
+  - EcoSkills
+  - Boosters
 commands:
   talismans:
     description: Parent command.
