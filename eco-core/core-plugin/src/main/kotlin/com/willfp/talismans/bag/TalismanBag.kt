@@ -19,7 +19,7 @@ import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
-import java.util.UUID
+import java.util.*
 import kotlin.math.ceil
 import kotlin.math.min
 
@@ -133,6 +133,13 @@ object TalismanBag {
     }
 
     fun getTalismans(player: Player): List<ItemStack> {
+        if (!savedItems.contains(player.uniqueId)) {
+            savedItems[player.uniqueId] = player.profile.read(key)
+                .map { Items.lookup(it).item }
+                .filterNot { EmptyTestableItem().matches(it) }
+                .filter { TalismanChecks.getTalismanOnItem(it) != null }
+        }
+
         return savedItems[player.uniqueId] ?: emptyList()
     }
 }

@@ -13,11 +13,9 @@ import com.willfp.talismans.talismans.util.TalismanUtils.getLimit
 import com.willfp.talismans.talismans.util.TalismanUtils.isTalismanMaterial
 import org.bukkit.block.ShulkerBox
 import org.bukkit.entity.Player
-import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.function.Function
 
@@ -32,8 +30,6 @@ object TalismanChecks {
 
     private val PROVIDERS: MutableSet<Function<Player, List<ItemStack>>> = HashSet()
 
-    private var readInventory = true
-    private var readEnderChest = true
     private var readShulkerBoxes = true
     private var offhandOnly = false
 
@@ -89,7 +85,6 @@ object TalismanChecks {
      * Get all talismans ItemStacks that a player has active.
      *
      * @param player The player to query.
-     * @param useCache If the cache should be checked.
      * @param extra Bonus items.
      * @return A set of all found talismans.
      */
@@ -101,19 +96,6 @@ object TalismanChecks {
         return CACHED_TALISMAN_ITEMS.get(player) {
             val contents = mutableListOf<ItemStack>()
             val rawContents = mutableListOf<ItemStack?>()
-
-            if (readInventory) {
-                rawContents.addAll(it.inventory.contents)
-            }
-
-            if (readEnderChest) {
-                val enderChest = it.enderChest as Inventory?
-
-                // Not always true, bug reported where it was null.
-                if (enderChest != null) {
-                    rawContents.addAll(enderChest.contents)
-                }
-            }
 
             if (offhandOnly) {
                 rawContents.clear()
@@ -129,20 +111,21 @@ object TalismanChecks {
                 if (rawContent == null) {
                     continue
                 }
+
                 if (readShulkerBoxes) {
                     val meta = rawContent.itemMeta
                     if (meta is BlockStateMeta) {
-                        val shulkerMeta = meta
-                        if (!shulkerMeta.hasBlockState()) {
+                        if (!meta.hasBlockState()) {
                             continue
                         }
-                        val state = shulkerMeta.blockState
+                        val state = meta.blockState
                         if (state is ShulkerBox) {
                             contents.addAll(state.inventory.contents)
                             continue
                         }
                     }
                 }
+
                 contents.add(rawContent)
             }
 
@@ -206,7 +189,7 @@ object TalismanChecks {
      * @param provider The provider.
      */
     @JvmStatic
-    fun regsiterItemStackProvider(provider: Function<Player, List<ItemStack>>) {
+    fun registerItemStackProvider(provider: Function<Player, List<ItemStack>>) {
         PROVIDERS.add(provider)
     }
 
@@ -233,8 +216,19 @@ object TalismanChecks {
     @ConfigUpdater
     @JvmStatic
     fun reload(plugin: EcoPlugin) {
-        readInventory = plugin.configYml.getBool("read-inventory")
-        readEnderChest = plugin.configYml.getBool("read-enderchest")
+        if (plugin.configYml.getBool("read-inventory")) {
+            registerItemStackProvider {
+                it.inventory.contents.filterNotNull()
+            }
+        }
+
+        if (plugin.configYml.getBool("read-enderchest")) {
+            registerItemStackProvider {
+                @Suppress("UNNECESSARY_SAFE_CALL", "USELESS_ELVIS") // Was null once
+                it.enderChest?.contents?.filterNotNull() ?: emptyList()
+            }
+        }
+
         readShulkerBoxes = plugin.configYml.getBool("read-shulkerboxes")
         offhandOnly = plugin.configYml.getBool("offhand-only")
     }

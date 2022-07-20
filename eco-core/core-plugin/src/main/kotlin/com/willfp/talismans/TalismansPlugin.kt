@@ -17,16 +17,14 @@ import org.bukkit.event.Listener
 class TalismansPlugin : LibReforgePlugin() {
     val talismansYml = TalismansYml(this)
 
-    /** Internal constructor called by bukkit on plugin load. */
     init {
         instance = this
-        registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
-    }
 
-    override fun handleEnableAdditional() {
-        TalismanChecks.regsiterItemStackProvider {
+        TalismanChecks.registerItemStackProvider {
             TalismanBag.getTalismans(it)
         }
+
+        registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
     }
 
     override fun handleReloadAdditional() {
