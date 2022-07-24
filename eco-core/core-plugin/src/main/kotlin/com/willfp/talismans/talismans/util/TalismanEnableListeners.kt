@@ -40,8 +40,8 @@ class TalismanEnableListeners(private val plugin :EcoPlugin) : Listener {
         refresh()
         val player = event.player
         for (talisman in values()) {
-            for ((effect1) in talisman.effects) {
-                effect1.disableForPlayer(player)
+            for (effect in talisman.effects) {
+                effect.disableFor(player)
             }
         }
     }
