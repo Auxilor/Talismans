@@ -5,7 +5,6 @@ messages:
   invalid-command: "&cUnknown Subcommand!"
   reloaded: "Reloaded! Took %time%ms"
   needs-player: "&cYou must specify a player"
-  requires-player: "&cYou must specify a player"
   invalid-player: "&cInvalid player!"
   needs-talisman: "&cYou must specify a talisman"
   invalid-talisman: "&cInvalid talisman!"
