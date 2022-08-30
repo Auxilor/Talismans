@@ -1,0 +1,23 @@
+name: "&cAttack Speed Talisman III"
+description:
+  - "&8Attack 25% faster."
+higherLevelOf: attack_speed_2
+item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjI2NjQ5MmZmMDk2MjRmZTdkYzA4MGI0YWE1ZjRiNjA4N2E3NTYzZmEwMjA3ZGY4NzdjZTUwZDI1OWE3NzM3NCJ9fX0="
+craftable: true
+recipe:
+  - talismans:attack_speed_2
+  - talismans:attack_speed_2
+  - talismans:attack_speed_2
+
+  - talismans:attack_speed_2
+  - ecoitems:talisman_core_3 ? nether_star
+  - talismans:attack_speed_2
+
+  - talismans:attack_speed_2
+  - talismans:attack_speed_2
+  - talismans:attack_speed_2
+effects:
+  - id: "attack_speed_multiplier"
+    args:
+      multiplier: 1.25
+conditions: []

@@ -21,11 +21,10 @@ import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
 class Talisman(
+    override val id: String,
     val config: Config,
     private val plugin: TalismansPlugin
 ) : Holder {
-    override val id = config.getString("id")
-
     val key: NamespacedKey = plugin.namespacedKeyFactory.create(id)
 
     val name = config.getFormattedString("name")

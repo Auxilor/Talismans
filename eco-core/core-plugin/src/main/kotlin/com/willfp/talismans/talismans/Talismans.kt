@@ -3,9 +3,11 @@ package com.willfp.talismans.talismans
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.google.common.collect.ImmutableList
+import com.willfp.eco.core.config.ConfigType
+import com.willfp.eco.core.config.TransientConfig
 import com.willfp.eco.core.config.updating.ConfigUpdater
-import com.willfp.libreforge.chains.EffectChains
 import com.willfp.talismans.TalismansPlugin
+import java.io.File
 
 object Talismans {
     /**
@@ -42,14 +44,18 @@ object Talismans {
     @ConfigUpdater
     @JvmStatic
     fun update(plugin: TalismansPlugin) {
-        plugin.talismansYml.getSubsections("chains").mapNotNull {
-            EffectChains.compile(it, "Chains")
-        }
         for (talisman in values()) {
             removeTalisman(talisman)
         }
-        for (setConfig in plugin.talismansYml.getSubsections("talismans")) {
-            addNewTalisman(Talisman(setConfig, plugin))
+
+        for ((id, config) in plugin.fetchConfigs("talismans")) {
+            addNewTalisman(Talisman(id, config, plugin))
+        }
+
+        val talismansYml = TransientConfig(File(plugin.dataFolder, "talismans.yml"), ConfigType.YAML)
+
+        for (setConfig in talismansYml.getSubsections("talismans")) {
+            addNewTalisman(Talisman(setConfig.getString("id"), setConfig, plugin))
         }
     }
 

@@ -1,0 +1,23 @@
+name: "&eAttack Speed Talisman II"
+description:
+  - "&8Attack 10% faster."
+higherLevelOf: attack_speed_1
+item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE1ZjAyZWFjNjAyNmI4ZTg3MTJjYTRkNzgxYjc5MWJiYmI3YjQ3NTVhYmRhMjdmNDYyMTg5YjkwZmVkNjZhMSJ9fX0="
+craftable: true
+recipe:
+  - talismans:attack_speed_1
+  - talismans:attack_speed_1
+  - talismans:attack_speed_1
+
+  - talismans:attack_speed_1
+  - ecoitems:talisman_core_2 ? heart_of_the_sea
+  - talismans:attack_speed_1
+
+  - talismans:attack_speed_1
+  - talismans:attack_speed_1
+  - talismans:attack_speed_1
+effects:
+  - id: "attack_speed_multiplier"
+    args:
+      multiplier: 1.1
+conditions: []

@@ -5,7 +5,6 @@ import com.willfp.eco.core.display.DisplayModule
 import com.willfp.libreforge.LibReforgePlugin
 import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
-import com.willfp.talismans.config.TalismansYml
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
@@ -15,8 +14,6 @@ import com.willfp.talismans.talismans.util.TalismanEnableListeners
 import org.bukkit.event.Listener
 
 class TalismansPlugin : LibReforgePlugin() {
-    val talismansYml = TalismansYml(this)
-
     init {
         instance = this
 
@@ -25,6 +22,10 @@ class TalismansPlugin : LibReforgePlugin() {
         }
 
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
+    }
+
+    override fun handleEnableAdditional() {
+        this.copyConfigs("talismans")
     }
 
     override fun handleReloadAdditional() {

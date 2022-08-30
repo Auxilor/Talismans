@@ -1,0 +1,27 @@
+name: "&eStrength Talisman II"
+description:
+  - "&8Deal 10% more damage."
+higherLevelOf: strength_1
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDkwMzIyMTEyNGUxYTI3NDAyMjc2YzNlMDE3NmJjOWY2MzIzOGQ3ZWE3NzEzZTliNTc5YTg3OGRhY2EyNDgxOSJ9fX0=
+craftable: true
+recipe:
+  - talismans:strength_1
+  - talismans:strength_1
+  - talismans:strength_1
+
+  - talismans:strength_1
+  - ecoitems:talisman_core_2 ? heart_of_the_sea
+  - talismans:strength_1
+
+  - talismans:strength_1
+  - talismans:strength_1
+  - talismans:strength_1
+effects:
+  - id: damage_multiplier
+    args:
+      multiplier: 1.1
+    triggers:
+      - melee_attack
+      - bow_attack
+      - trident_attack
+conditions: []

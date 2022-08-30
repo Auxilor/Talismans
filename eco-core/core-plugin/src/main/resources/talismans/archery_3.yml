@@ -1,0 +1,25 @@
+name: "&cArchery Talisman III"
+description:
+  - "&8Deal 40% more damage with bows"
+higherLevelOf: archery_2
+item: "player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ3NDk5NWQ2Y2RhMmI4YTI0NzcyYWY5NjllZjA3N2FlM2E4NWUyMzU3YzZmNjExOWI4YTI1MDYwNDFhNDQ4YiJ9fX0="
+craftable: true
+recipe:
+  - talismans:archery_2
+  - talismans:archery_2
+  - talismans:archery_2
+
+  - talismans:archery_2
+  - ecoitems:talisman_core_3 ? nether_star
+  - talismans:archery_2
+
+  - talismans:archery_2
+  - talismans:archery_2
+  - talismans:archery_2
+effects:
+  - id: "damage_multiplier"
+    args:
+      multiplier: 1.4
+    triggers:
+      - bow_attack
+conditions: []

@@ -1,0 +1,24 @@
+name: "&aPoseidon Talisman I"
+description:
+  - "&8Deal 5% more damage with tridents."
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQ4NGFhNWJlZTg5OGE2ZTg5NjBhM2Y5YTk5NzU5YjFmMzlmOWRjYjMyMTA1MGY3MTRjZDcyYjNkOGE4MDQxIn19fQ==
+craftable: true
+recipe:
+  - nautilus_shell
+  - trident
+  - nautilus_shell
+
+  - trident
+  - ecoitems:talisman_core_1 ? ender_eye
+  - trident
+
+  - nautilus_shell
+  - trident
+  - nautilus_shell
+effects:
+  - id: "damage_multiplier"
+    args:
+      multiplier: 1.05
+    triggers:
+      - trident_attack
+conditions: []

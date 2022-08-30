@@ -1,0 +1,25 @@
+name: "&ePoseidon Talisman II"
+description:
+  - "&8Deal 10% more damage with tridents."
+higherLevelOf: poseidon_1
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjIyZTNhNTY5ZThkNTgxNDM3YzUwM2UyYWQxZDRiNTkxYmNiODI5MWE3MWVmN2IzNzM4OGVlYTNiMDhlNzIifX19
+craftable: true
+recipe:
+  - talismans:poseidon_1
+  - talismans:poseidon_1
+  - talismans:poseidon_1
+
+  - talismans:poseidon_1
+  - ecoitems:talisman_core_2 ? heart_of_the_sea
+  - talismans:poseidon_1
+
+  - talismans:poseidon_1
+  - talismans:poseidon_1
+  - talismans:poseidon_1
+effects:
+  - id: damage_multiplier
+    args:
+      multiplier: 1.1
+    triggers:
+      - trident_attack
+conditions: []

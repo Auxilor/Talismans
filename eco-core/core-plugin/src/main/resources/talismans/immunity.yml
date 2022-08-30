@@ -1,0 +1,27 @@
+name: "&aImmunity Ring"
+description:
+  - "&8Become immune to poison damage."
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQ5ZThkZTFmZTE3NjA4Mzg2OWUzMDI1MjRjNjUwMTBkN2NmMmUzMWIwNjNlYmI4YmM3NmI3OWQxNDEzMCJ9fX0=
+craftable: true
+recipe:
+  - poisonous_potato
+  - poisonous_potato
+  - poisonous_potato
+
+  - poisonous_potato
+  - ecoitems:talisman_core_1 ? ender_eye
+  - poisonous_potato
+
+  - poisonous_potato
+  - poisonous_potato
+  - poisonous_potato
+effects:
+  - id: damage_multiplier
+    args:
+      multiplier: 0
+    filters:
+      damageCause:
+        - poison
+    triggers:
+      - take_damage
+conditions: [ ]

@@ -1,0 +1,28 @@
+name: "&aBoss Talisman I"
+description:
+  - "&8Deal 5% more damage to bosses."
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTFjZDZkMmQwM2YxMzVlN2M2YjVkNmNkYWUxYjNhNjg3NDNkYjRlYjc0OWZhZjczNDFlOWZiMzQ3YWEyODNiIn19fQ==
+craftable: true
+recipe:
+  - bell
+  - wither_skeleton_skull
+  - bell
+
+  - wither_skeleton_skull
+  - ecoitems:talisman_core_1 ? ender_eye
+  - wither_skeleton_skull
+
+  - bell
+  - wither_skeleton_skull
+  - bell
+effects:
+  - id: damage_multiplier
+    args:
+      multiplier: 1.05
+    filters:
+      onlyBosses: true
+    triggers:
+      - melee_attack
+      - bow_attack
+      - trident_attack
+conditions: [ ]

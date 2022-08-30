@@ -1,0 +1,25 @@
+name: "&eResistance Talisman II"
+description:
+  - "&8Take 10% less damage from entities."
+higherLevelOf: resistance_1
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjY5ZDBkNDcxMTE1M2EwODljNTU2N2E3NDliMjc4NzljNzY5ZDNiZGNlYTZmZGE5ZDZmNjZlOTNkZDhjNDUxMiJ9fX0=
+craftable: true
+recipe:
+  - talismans:resistance_1
+  - talismans:resistance_1
+  - talismans:resistance_1
+
+  - talismans:resistance_1
+  - ecoitems:talisman_core_2 ? heart_of_the_sea
+  - talismans:resistance_1
+
+  - talismans:resistance_1
+  - talismans:resistance_1
+  - talismans:resistance_1
+effects:
+  - id: damage_multiplier
+    args:
+      multiplier: 0.9
+    triggers:
+      - take_entity_damage
+conditions: []

@@ -1,0 +1,25 @@
+name: "&eSharpness Talisman II"
+description:
+  - "&8Deal 10% more melee damage."
+higherLevelOf: sharpness_1
+item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjg4MWI1ZTkxZjliNGVlMGQ0YzUzMzk2MmJiNjhmYTczY2VkYjc1ZWNkMjY4ZWNiZGQ0NGNhMGY0MDkxNDhjMiJ9fX0=
+craftable: true
+recipe:
+  - talismans:sharpness_1
+  - talismans:sharpness_1
+  - talismans:sharpness_1
+
+  - talismans:sharpness_1
+  - ecoitems:talisman_core_2 ? heart_of_the_sea
+  - talismans:sharpness_1
+
+  - talismans:sharpness_1
+  - talismans:sharpness_1
+  - talismans:sharpness_1
+effects:
+  - id: damage_multiplier
+    args:
+      multiplier: 1.1
+    triggers:
+      - melee_attack
+conditions: []
