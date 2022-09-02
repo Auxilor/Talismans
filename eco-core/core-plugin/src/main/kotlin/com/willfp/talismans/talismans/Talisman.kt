@@ -31,7 +31,7 @@ class Talisman(
 
     val description = config.getFormattedStrings("description").map { Display.PREFIX + it }
 
-    val itemStack: ItemStack = run {
+    private val _itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
         Validate.isTrue(item !is EmptyTestableItem, "Item specified in " + key.key + " is invalid!")
         TalismanUtils.registerTalismanMaterial(item.item.type)
@@ -43,6 +43,9 @@ class Talisman(
             .writeMetaKey(plugin.namespacedKeyFactory.create("talisman"), PersistentDataType.STRING, id)
             .build()
     }
+
+    val itemStack: ItemStack
+        get() = _itemStack.clone()
 
     val craftable = config.getBool("craftable")
 
