@@ -20,7 +20,7 @@ effects:
     args:
       multiplier: 0
     filters:
-      damageCause:
+      damage_cause:
         - poison
     triggers:
       - take_damage
