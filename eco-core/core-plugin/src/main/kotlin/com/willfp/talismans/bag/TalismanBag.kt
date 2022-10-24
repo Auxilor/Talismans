@@ -57,10 +57,12 @@ object TalismanBag {
             plugin.namespacedKeyFactory.create("talisman_bag"),
             PersistentDataKeyType.STRING_LIST,
             emptyList()
-        ).player()
+        )
 
         for (rows in 1..6) {
             menus[rows] = menu(rows) {
+                title = plugin.configYml.getFormattedString("bag.title")
+
                 for (row in 1..rows) {
                     for (column in 1..9) {
                         setSlot(row, column, slot({ player, _ ->
@@ -82,8 +84,6 @@ object TalismanBag {
                         })
                     }
                 }
-
-                setTitle(plugin.configYml.getFormattedString("bag.title"))
 
                 onRender { player, menu ->
                     val items = menu.getCaptiveItems(player)

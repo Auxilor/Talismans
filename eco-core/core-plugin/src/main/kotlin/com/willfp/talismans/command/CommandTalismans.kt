@@ -1,6 +1,5 @@
 package com.willfp.talismans.command
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.libreforge.LibReforgePlugin
 import com.willfp.libreforge.lrcdb.CommandExport

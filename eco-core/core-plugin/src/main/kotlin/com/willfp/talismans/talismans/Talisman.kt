@@ -70,13 +70,15 @@ class Talisman(
     val lowerLevel: Talisman?
         get() = Talismans.getByID(config.getString("higherLevelOf"))
 
-    override val effects = config.getSubsections("effects").mapNotNull {
-        Effects.compile(it, "Talisman ID $id")
-    }.toSet()
+    override val effects = Effects.compile(
+        config.getSubsections("effects"),
+        "Talisman $id"
+    )
 
-    override val conditions = config.getSubsections("conditions").mapNotNull {
-        Conditions.compile(it, "Talisman ID $id")
-    }.toSet()
+    override val conditions = Conditions.compile(
+        config.getSubsections("conditions"),
+        "Talisman $id"
+    )
 
     init {
         Talismans.addNewTalisman(this)

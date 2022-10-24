@@ -30,14 +30,6 @@ class TalismansPlugin : LibReforgePlugin() {
 
     override fun handleReloadAdditional() {
         logger.info("${Talismans.values().size} Talismans Loaded")
-        /*
-        Broken with talisman bag rn
-        CustomItem(
-            this.namespacedKeyFactory.create("any_talisman"),
-            { test -> TalismanChecks.getTalismanOnItem(test) != null },
-            Talismans.values()[0].itemStack
-        ).register()
-         */
     }
 
     override fun loadPluginCommands(): List<PluginCommand> {
@@ -56,10 +48,6 @@ class TalismansPlugin : LibReforgePlugin() {
 
     override fun createDisplayModule(): DisplayModule {
         return TalismanDisplay(this)
-    }
-
-    override fun getMinimumEcoVersion(): String {
-        return "6.36.3"
     }
 
     companion object {

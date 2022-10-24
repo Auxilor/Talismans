@@ -36,10 +36,10 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
             amount = args[2].toIntOrNull() ?: 1
         }
 
-        val recieverName = args[0]
-        val reciever = Bukkit.getPlayer(recieverName)
+        val receiverName = args[0]
+        val receiver = Bukkit.getPlayer(receiverName)
 
-        if (reciever == null) {
+        if (receiver == null) {
             sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
             return
         }
@@ -54,7 +54,7 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
 
         var message = plugin.langYml.getMessage("give-success")
 
-        message = message.replace("%talisman%", talisman.name).replace("%recipient%", reciever.name)
+        message = message.replace("%talisman%", talisman.name).replace("%recipient%", receiver.name)
 
         sender.sendMessage(message)
 
@@ -62,7 +62,7 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
 
         itemStack.amount = amount
 
-        reciever.inventory.addItem(itemStack)
+        receiver.inventory.addItem(itemStack)
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
