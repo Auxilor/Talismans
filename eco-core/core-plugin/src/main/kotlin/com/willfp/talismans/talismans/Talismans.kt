@@ -4,7 +4,7 @@ import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import com.google.common.collect.ImmutableList
 import com.willfp.eco.core.config.ConfigType
-import com.willfp.eco.core.config.TransientConfig
+import com.willfp.eco.core.config.readConfig
 import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.talismans.TalismansPlugin
 import java.io.File
@@ -52,7 +52,7 @@ object Talismans {
             addNewTalisman(Talisman(id, config, plugin))
         }
 
-        val talismansYml = TransientConfig(File(plugin.dataFolder, "talismans.yml"), ConfigType.YAML)
+        val talismansYml = File(plugin.dataFolder, "talismans.yml").readConfig(ConfigType.YAML)
 
         for (setConfig in talismansYml.getSubsections("talismans")) {
             addNewTalisman(Talisman(setConfig.getString("id"), setConfig, plugin))
