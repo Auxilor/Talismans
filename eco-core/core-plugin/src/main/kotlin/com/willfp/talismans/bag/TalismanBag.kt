@@ -33,6 +33,7 @@ private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
 object TalismanBag {
     private val menus = mutableMapOf<Int, Menu>()
     private lateinit var key: PersistentDataKey<List<String>>
+    private lateinit var emptyItem: ItemStack
 
     private val savedItems = mutableMapOf<UUID, List<ItemStack>>()
 
@@ -66,6 +67,10 @@ object TalismanBag {
             emptyList()
         )
 
+        emptyItem = ItemStackBuilder(Items.lookup(plugin.configYml.getString("bag.blocked-item")))
+            .addLoreLines(plugin.configYml.getStrings("bag.blocked-item-lore"))
+            .build()
+
         for (rows in 1..6) {
             menus[rows] = menu(rows) {
                 title = plugin.configYml.getFormattedString("bag.title")
@@ -78,9 +83,7 @@ object TalismanBag {
                             val index = MenuUtils.rowColumnToSlot(row, column)
 
                             if (index >= bagSize) {
-                                ItemStackBuilder(Items.lookup(plugin.configYml.getString("bag.blocked-item")))
-                                    .addLoreLines(plugin.configYml.getStrings("bag.blocked-item-lore"))
-                                    .build()
+                                emptyItem
                             } else {
                                 menu.talismanBag[player].getOrNull(index)?.clone() ?: ItemStack(Material.AIR)
                             }
