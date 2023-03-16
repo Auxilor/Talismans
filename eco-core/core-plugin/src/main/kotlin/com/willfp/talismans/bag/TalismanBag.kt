@@ -80,10 +80,6 @@ object TalismanBag {
                         setSlot(row, column, slot({ player, menu ->
                             val bagSize = player.bagSize
 
-                            if (menu.talismanBag[player].isEmpty()) {
-                                menu.talismanBag[player] = player.profile.read(key).map { Items.lookup(it).item }
-                            }
-
                             val index = MenuUtils.rowColumnToSlot(row, column)
 
                             if (index >= bagSize) {
@@ -103,6 +99,10 @@ object TalismanBag {
                 }
 
                 onRender { player, menu ->
+                    if (menu.talismanBag[player].isEmpty()) {
+                        menu.talismanBag[player] = player.profile.read(key).map { Items.lookup(it).item }
+                    }
+
                     val items = menu.getCaptiveItems(player)
                         .filterNot { EmptyTestableItem().matches(it) }
 
