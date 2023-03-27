@@ -15,7 +15,7 @@ import java.io.File
 object Talismans : ConfigCategory("talisman", "talismans") {
     private val registry = Registry<Talisman>()
 
-    override val legacyLocation: LegacyLocation = LegacyLocation(
+    override val legacyLocation = LegacyLocation(
         "talismans.yml",
         "talismans"
     )
