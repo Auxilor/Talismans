@@ -16,7 +16,8 @@ object Talismans : ConfigCategory("talisman", "talismans") {
     private val registry = Registry<Talisman>()
 
     override val legacyLocation: LegacyLocation = LegacyLocation(
-        "talismans", "talismans", emptyList()
+        "talismans.yml",
+        "talismans"
     )
 
     /**
