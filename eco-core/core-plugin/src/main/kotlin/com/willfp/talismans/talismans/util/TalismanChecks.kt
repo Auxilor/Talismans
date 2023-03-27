@@ -5,6 +5,7 @@ import com.github.benmanes.caffeine.cache.Caffeine
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.fast.fast
+import com.willfp.libreforge.ItemProvidedHolder
 import com.willfp.talismans.TalismansPlugin.Companion.instance
 import com.willfp.talismans.talismans.Talisman
 import com.willfp.talismans.talismans.Talismans.getByID
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit
 import java.util.function.Function
 
 object TalismanChecks {
-    private val CACHED_TALISMANS: Cache<Player, Set<Talisman>> = Caffeine.newBuilder()
+    private val CACHED_TALISMANS: Cache<Player, Set<ItemProvidedHolder>> = Caffeine.newBuilder()
         .expireAfterWrite(2, TimeUnit.SECONDS)
         .build()
 
@@ -52,7 +53,7 @@ object TalismanChecks {
         }
         val meta = item.itemMeta ?: return false
         val container = meta.persistentDataContainer
-        return container.has(talisman.key, PersistentDataType.INTEGER)
+        return container.has(talisman.id, PersistentDataType.INTEGER)
     }
 
     /**
@@ -120,7 +121,7 @@ object TalismanChecks {
                         }
                         val state = meta.blockState
                         if (state is ShulkerBox) {
-                            contents.addAll(state.inventory.contents)
+                            contents.addAll(state.inventory.contents.filterNotNull())
                             continue
                         }
                     }
@@ -165,9 +166,13 @@ object TalismanChecks {
     fun getTalismansOnPlayer(
         player: Player,
         vararg extra: ItemStack?
-    ): Set<Talisman> {
+    ): Set<ItemProvidedHolder> {
         return CACHED_TALISMANS.get(player) {
-            getTalismanItemsOnPlayer(it, *extra).mapNotNull { itemStack -> getTalismanOnItem(itemStack) }.toSet()
+            getTalismanItemsOnPlayer(player, *extra)
+                .associateWith { itemStack -> getTalismanOnItem(itemStack) }
+                .filterValues { it != null }
+                .map { (itemStack, talisman) -> ItemProvidedHolder(talisman!!, itemStack) }
+                .toSet()
         }
     }
 
@@ -205,7 +210,9 @@ object TalismanChecks {
         player: Player,
         talisman: Talisman
     ): Boolean {
-        return getTalismansOnPlayer(player).contains(talisman)
+        return getTalismansOnPlayer(player)
+            .map { it.holder }
+            .contains(talisman)
     }
 
     /**

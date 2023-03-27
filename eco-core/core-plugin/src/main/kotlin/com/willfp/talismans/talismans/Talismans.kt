@@ -1,19 +1,23 @@
 package com.willfp.talismans.talismans
 
-import com.google.common.collect.BiMap
-import com.google.common.collect.HashBiMap
 import com.google.common.collect.ImmutableList
 import com.willfp.eco.core.config.ConfigType
+import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.config.readConfig
 import com.willfp.eco.core.config.updating.ConfigUpdater
+import com.willfp.eco.core.registry.Registry
+import com.willfp.libreforge.loader.LibreforgePlugin
+import com.willfp.libreforge.loader.configs.ConfigCategory
+import com.willfp.libreforge.loader.configs.LegacyLocation
 import com.willfp.talismans.TalismansPlugin
 import java.io.File
 
-object Talismans {
-    /**
-     * Registered talismans.
-     */
-    private val BY_ID: BiMap<String, Talisman> = HashBiMap.create()
+object Talismans : ConfigCategory("talisman", "talismans") {
+    private val registry = Registry<Talisman>()
+
+    override val legacyLocation: LegacyLocation = LegacyLocation(
+        "talismans", "talismans", emptyList()
+    )
 
     /**
      * Get all registered [Talisman]s.
@@ -22,7 +26,7 @@ object Talismans {
      */
     @JvmStatic
     fun values(): List<Talisman> {
-        return ImmutableList.copyOf(BY_ID.values)
+        return ImmutableList.copyOf(registry.values())
     }
 
     /**
@@ -33,50 +37,14 @@ object Talismans {
      */
     @JvmStatic
     fun getByID(name: String): Talisman? {
-        return BY_ID[name]
+        return registry[name]
     }
 
-    /**
-     * Update all [Talisman]s.
-     *
-     * @param plugin Instance of Talismans.
-     */
-    @ConfigUpdater
-    @JvmStatic
-    fun update(plugin: TalismansPlugin) {
-        for (talisman in values()) {
-            removeTalisman(talisman)
-        }
-
-        for ((id, config) in plugin.fetchConfigs("talismans")) {
-            addNewTalisman(Talisman(id, config, plugin))
-        }
-
-        val talismansYml = File(plugin.dataFolder, "talismans.yml").readConfig(ConfigType.YAML)
-
-        for (setConfig in talismansYml.getSubsections("talismans")) {
-            addNewTalisman(Talisman(setConfig.getString("id"), setConfig, plugin))
-        }
+    override fun clear(plugin: LibreforgePlugin) {
+        registry.clear()
     }
 
-    /**
-     * Add new [Talisman] to Talismans.
-     *
-     * @param talisman The [Talisman] to add.
-     */
-    @JvmStatic
-    fun addNewTalisman(talisman: Talisman) {
-        BY_ID.remove(talisman.id)
-        BY_ID[talisman.id] = talisman
-    }
-
-    /**
-     * Remove [Talisman] from Talismans.
-     *
-     * @param talisman The [Talisman] to remove.
-     */
-    @JvmStatic
-    fun removeTalisman(talisman: Talisman) {
-        BY_ID.remove(talisman.id)
+    override fun acceptConfig(plugin: LibreforgePlugin, id: String, config: Config) {
+        registry.register(Talisman(id, config, plugin as TalismansPlugin))
     }
 }

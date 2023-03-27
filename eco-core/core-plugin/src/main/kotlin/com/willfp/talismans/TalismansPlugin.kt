@@ -2,7 +2,10 @@ package com.willfp.talismans
 
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
-import com.willfp.libreforge.LibReforgePlugin
+import com.willfp.libreforge.loader.LibreforgePlugin
+import com.willfp.libreforge.loader.configs.ConfigCategory
+import com.willfp.libreforge.registerHolderProvider
+import com.willfp.libreforge.registerPlayerRefreshFunction
 import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.display.TalismanDisplay
@@ -10,10 +13,9 @@ import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener
 import com.willfp.talismans.talismans.util.TalismanChecks
-import com.willfp.talismans.talismans.util.TalismanEnableListeners
 import org.bukkit.event.Listener
 
-class TalismansPlugin : LibReforgePlugin() {
+class TalismansPlugin : LibreforgePlugin() {
     init {
         instance = this
 
@@ -22,14 +24,13 @@ class TalismansPlugin : LibReforgePlugin() {
         }
 
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
+        registerPlayerRefreshFunction { TalismanChecks.clearCache(it) }
     }
 
-    override fun handleEnableAdditional() {
-        this.copyConfigs("talismans")
-    }
-
-    override fun handleReloadAdditional() {
-        logger.info("${Talismans.values().size} Talismans Loaded")
+    override fun loadConfigCategories(): List<ConfigCategory> {
+        return listOf(
+            Talismans
+        )
     }
 
     override fun loadPluginCommands(): List<PluginCommand> {
@@ -41,7 +42,6 @@ class TalismansPlugin : LibReforgePlugin() {
     override fun loadListeners(): List<Listener> {
         return listOf(
             BlockPlaceListener(),
-            TalismanEnableListeners(this),
             DiscoverRecipeListener(this)
         )
     }

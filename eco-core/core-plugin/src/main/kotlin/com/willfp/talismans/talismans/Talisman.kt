@@ -8,24 +8,26 @@ import com.willfp.eco.core.items.builder.ItemStackBuilder
 import com.willfp.eco.core.recipe.Recipes
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
 import com.willfp.eco.core.recipe.recipes.CraftingRecipe
+import com.willfp.eco.core.registry.Registrable
 import com.willfp.libreforge.Holder
+import com.willfp.libreforge.ViolationContext
 import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.effects.Effects
 import com.willfp.talismans.TalismansPlugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
-import org.apache.commons.lang.Validate
+import org.apache.commons.lang3.Validate
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
+import java.util.Objects
 
 class Talisman(
-    override val id: String,
+    id: String,
     val config: Config,
     private val plugin: TalismansPlugin
-) : Holder {
-    val key: NamespacedKey = plugin.namespacedKeyFactory.create(id)
+) : Holder, Registrable {
+    override val id: NamespacedKey = plugin.namespacedKeyFactory.create(id)
 
     val name = config.getFormattedString("name")
 
@@ -33,7 +35,7 @@ class Talisman(
 
     private val _itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
-        Validate.isTrue(item !is EmptyTestableItem, "Item specified in " + key.key + " is invalid!")
+        Validate.isTrue(item !is EmptyTestableItem, "Item specified in $id is invalid!")
         TalismanUtils.registerTalismanMaterial(item.item.type)
 
         ItemStackBuilder(item.item)
@@ -53,16 +55,16 @@ class Talisman(
         if (craftable) {
             Recipes.createAndRegisterRecipe(
                 plugin,
-                key.key,
+                id,
                 itemStack,
                 config.getStrings("recipe"),
-                "talismans.fromtable.${key.key}"
+                "talismans.fromtable.$id"
             )
         } else null
     }
 
     val customItem = CustomItem(
-        key,
+        this.id,
         { test -> TalismanChecks.getTalismanOnItem(test) == this },
         itemStack
     ).apply { register() }
@@ -72,16 +74,16 @@ class Talisman(
 
     override val effects = Effects.compile(
         config.getSubsections("effects"),
-        "Talisman $id"
+        ViolationContext(plugin, "Talisman $id")
     )
 
     override val conditions = Conditions.compile(
         config.getSubsections("conditions"),
-        "Talisman $id"
+        ViolationContext(plugin, "Talisman $id")
     )
 
-    init {
-        Talismans.addNewTalisman(this)
+    override fun getID(): String {
+        return this.id.key
     }
 
     override fun equals(other: Any?): Boolean {
@@ -91,16 +93,16 @@ class Talisman(
         if (other !is Talisman) {
             return false
         }
-        return key == other.key
+        return this.id == other.id
     }
 
     override fun hashCode(): Int {
-        return Objects.hash(key)
+        return Objects.hash(this.id)
     }
 
     override fun toString(): String {
         return ("Talisman{"
-                + key
+                + id
                 + "}")
     }
 }

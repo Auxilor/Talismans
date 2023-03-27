@@ -16,9 +16,7 @@ import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
 import com.willfp.eco.util.MenuUtils
 import com.willfp.ecomponent.menuStateVar
-import com.willfp.talismans.talismans.Talisman
 import com.willfp.talismans.talismans.util.TalismanChecks
-import com.willfp.talismans.talismans.util.TalismanUtils
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack

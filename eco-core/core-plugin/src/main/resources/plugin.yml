@@ -1,23 +1,13 @@
-name: Talismans
-version: ${projectVersion}
+name: ${pluginName}
+version: ${version}
 main: com.willfp.talismans.TalismansPlugin
-api-version: 1.16
+api-version: 1.17
 authors: [ Auxilor ]
 website: willfp.com
 depend:
   - eco
 softdepend:
-  - AureliumSkills
-  - Vault
-  - mcMMO
-  - Jobs
-  - TMMobcoins
-  - EcoEnchants
-  - EcoBosses
-  - EcoArmor
-  - EcoItems
-  - EcoSkills
-  - Boosters
+  - libreforge
 commands:
   talismans:
     description: Parent command.
@@ -37,8 +27,6 @@ permissions:
       talismans.command.give: true
       talismans.command.bag: true
       talismans.command.reload: true
-      talismans.command.import: true
-      talismans.command.export: true
       talismans.fromtable.*: true
 
   talismans.command.reload:
@@ -46,12 +34,6 @@ permissions:
     default: op
   talismans.command.give:
     description: Allows the use of /talismans give.
-    default: op
-  talismans.command.import:
-    description: Allows the use of /talismans import.
-    default: op
-  talismans.command.export:
-    description: Allows the use of /talismans export.
     default: op
   talismans.command.bag:
     description: Allows the use of /talismans bag.

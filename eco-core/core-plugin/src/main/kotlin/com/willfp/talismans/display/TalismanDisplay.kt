@@ -9,6 +9,7 @@ import com.willfp.talismans.talismans.util.TalismanUtils
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
+@Suppress("DEPRECATION")
 class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority.LOWEST) {
     override fun display(
         itemStack: ItemStack,
@@ -35,7 +36,7 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
         lore.addAll(itemLore)
 
         if (player != null) {
-            val lines = talisman.getNotMetLines(player).map { Display.PREFIX + it }
+            val lines = talisman.conditions.getNotMetLines(player).map { Display.PREFIX + it }
 
             if (lines.isNotEmpty()) {
                 lore.add(Display.PREFIX)

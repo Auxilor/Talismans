@@ -69,7 +69,7 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
         val completions = mutableListOf<String>()
 
         if (args.isEmpty()) {
-            return Talismans.values().map { it.id }
+            return Talismans.values().map { it.id.key }
         }
 
         if (args.size == 1) {
@@ -83,7 +83,7 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
         if (args.size == 2) {
             StringUtil.copyPartialMatches(
                 args[1],
-                Talismans.values().map { it.id },
+                Talismans.values().map { it.id.key },
                 completions
             )
         }
