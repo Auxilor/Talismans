@@ -2,6 +2,7 @@ package com.willfp.talismans
 
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
+import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
 import com.willfp.libreforge.registerHolderProvider
@@ -9,6 +10,7 @@ import com.willfp.libreforge.registerPlayerRefreshFunction
 import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.display.TalismanDisplay
+import com.willfp.talismans.libreforge.ConditionHasTalisman
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener
@@ -25,6 +27,8 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleEnable() {
+        Conditions.register(ConditionHasTalisman)
+
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
         registerPlayerRefreshFunction { TalismanChecks.clearCache(it) }
     }
