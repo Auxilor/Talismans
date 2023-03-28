@@ -22,7 +22,9 @@ class TalismansPlugin : LibreforgePlugin() {
         TalismanChecks.registerItemStackProvider {
             TalismanBag.getTalismans(it)
         }
+    }
 
+    override fun handleEnable() {
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
         registerPlayerRefreshFunction { TalismanChecks.clearCache(it) }
     }
