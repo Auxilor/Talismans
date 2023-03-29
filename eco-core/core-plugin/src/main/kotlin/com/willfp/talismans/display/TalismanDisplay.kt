@@ -4,6 +4,7 @@ import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.display.Display
 import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.display.DisplayPriority
+import com.willfp.libreforge.ItemProvidedHolder
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
 import org.bukkit.entity.Player
@@ -36,7 +37,8 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
         lore.addAll(itemLore)
 
         if (player != null) {
-            val lines = talisman.conditions.getNotMetLines(player).map { Display.PREFIX + it }
+            val provided = ItemProvidedHolder(talisman, itemStack)
+            val lines = talisman.conditions.getNotMetLines(player, provided).map { Display.PREFIX + it }
 
             if (lines.isNotEmpty()) {
                 lore.add(Display.PREFIX)
