@@ -26,9 +26,11 @@ class TalismansPlugin : LibreforgePlugin() {
         }
     }
 
-    override fun handleEnable() {
+    override fun handleLoad() {
         Conditions.register(ConditionHasTalisman)
+    }
 
+    override fun handleEnable() {
         registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
         registerPlayerRefreshFunction { TalismanChecks.clearCache(it) }
     }
