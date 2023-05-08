@@ -8,6 +8,7 @@ import com.willfp.eco.core.data.profile
 import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
+import com.willfp.eco.core.gui.onClick
 import com.willfp.eco.core.gui.slot
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.items.Items
@@ -19,6 +20,7 @@ import com.willfp.ecomponent.menuStateVar
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.event.inventory.ClickType
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import kotlin.math.ceil
@@ -73,6 +75,8 @@ object TalismanBag {
             menus[rows] = menu(rows) {
                 title = plugin.configYml.getFormattedString("bag.title")
 
+                allowChangingHeldItem()
+
                 for (row in 1..rows) {
                     for (column in 1..9) {
                         setSlot(row, column, slot({ player, menu ->
@@ -108,6 +112,8 @@ object TalismanBag {
                         .filter { TalismanChecks.getTalismanOnItem(it) != null }
 
                     savedItems[player.uniqueId] = toWrite.toList()
+
+                    player.profile.write(key, toWrite.map { Items.toLookupString(it) })
                 }
 
                 onClose { event, menu ->
@@ -116,10 +122,7 @@ object TalismanBag {
                     val items = menu.getCaptiveItems(player)
                         .filterNot { EmptyTestableItem().matches(it) }
 
-                    val toWrite = items
-                        .filter { TalismanChecks.getTalismanOnItem(it) != null }
-
-                    savedItems[player.uniqueId] = toWrite.toList()
+                    val toWrite = savedItems[player.uniqueId] ?: emptyList()
 
                     player.profile.write(key, toWrite.map { Items.toLookupString(it) })
 
