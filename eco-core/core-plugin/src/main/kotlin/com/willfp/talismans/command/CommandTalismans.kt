@@ -16,4 +16,8 @@ class CommandTalismans(plugin: EcoPlugin) : PluginCommand(plugin, "talismans", "
             plugin.langYml.getMessage("invalid-command")
         )
     }
+
+    override fun getAliases(): List<String> {
+        return listOf("talis", "tal", "talismen", "talisman")
+    }
 }
