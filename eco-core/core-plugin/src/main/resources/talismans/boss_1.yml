@@ -20,7 +20,7 @@ effects:
     args:
       multiplier: 1.05
     filters:
-      only_bosses: true
+      is_boss: true
     triggers:
       - melee_attack
       - bow_attack
