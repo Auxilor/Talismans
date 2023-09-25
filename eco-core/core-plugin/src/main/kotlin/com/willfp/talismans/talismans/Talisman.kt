@@ -9,6 +9,7 @@ import com.willfp.eco.core.recipe.Recipes
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
 import com.willfp.eco.core.recipe.recipes.CraftingRecipe
 import com.willfp.eco.core.registry.Registrable
+import com.willfp.eco.util.formatEco
 import com.willfp.libreforge.Holder
 import com.willfp.libreforge.ViolationContext
 import com.willfp.libreforge.conditions.Conditions
@@ -29,9 +30,9 @@ class Talisman(
 ) : Holder, Registrable {
     override val id: NamespacedKey = plugin.namespacedKeyFactory.create(id)
 
-    val name = config.getFormattedString("name")
+    val name = config.getString("name")
 
-    val description = config.getFormattedStrings("description").map { Display.PREFIX + it }
+    val description = config.getStrings("description")
 
     private val _itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
@@ -40,8 +41,8 @@ class Talisman(
 
         ItemStackBuilder(item.item)
             .setAmount(1)
-            .setDisplayName(name)
-            .addLoreLines(description)
+            .setDisplayName(name.formatEco())
+            .addLoreLines(description.map { Display.PREFIX + it.formatEco() })
             .writeMetaKey(plugin.namespacedKeyFactory.create("talisman"), PersistentDataType.STRING, id)
             .build()
     }
