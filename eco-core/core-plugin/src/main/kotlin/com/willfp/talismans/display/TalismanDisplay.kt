@@ -50,7 +50,7 @@ class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority
 
         if (player != null) {
             val provided = ItemProvidedHolder(talisman, itemStack)
-            val lines = talisman.conditions.getNotMetLines(player, provided).map { Display.PREFIX + it }
+            val lines = provided.getNotMetLines(player).map { Display.PREFIX + it }
 
             if (lines.isNotEmpty()) {
                 lore.add(Display.PREFIX)
