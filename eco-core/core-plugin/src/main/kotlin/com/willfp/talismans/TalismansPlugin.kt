@@ -7,6 +7,8 @@ import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
 import com.willfp.libreforge.registerHolderProvider
 import com.willfp.libreforge.registerPlayerRefreshFunction
+import com.willfp.libreforge.registerSpecificHolderProvider
+import com.willfp.libreforge.registerSpecificRefreshFunction
 import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.display.TalismanDisplay
@@ -15,6 +17,7 @@ import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener
 import com.willfp.talismans.talismans.util.TalismanChecks
+import org.bukkit.entity.Player
 import org.bukkit.event.Listener
 
 class TalismansPlugin : LibreforgePlugin() {
@@ -31,8 +34,13 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleEnable() {
-        registerHolderProvider { TalismanChecks.getTalismansOnPlayer(it) }
-        registerPlayerRefreshFunction { TalismanChecks.clearCache(it) }
+        registerSpecificHolderProvider<Player> {
+            TalismanChecks.getTalismansOnPlayer(it)
+        }
+
+        registerSpecificRefreshFunction<Player> {
+            TalismanChecks.clearCache(it)
+        }
     }
 
     override fun loadConfigCategories(): List<ConfigCategory> {
