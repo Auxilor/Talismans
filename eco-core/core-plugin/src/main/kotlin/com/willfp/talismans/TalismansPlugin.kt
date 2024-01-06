@@ -9,10 +9,12 @@ import com.willfp.libreforge.registerHolderProvider
 import com.willfp.libreforge.registerPlayerRefreshFunction
 import com.willfp.libreforge.registerSpecificHolderProvider
 import com.willfp.libreforge.registerSpecificRefreshFunction
+import com.willfp.libreforge.slot.SlotTypes
 import com.willfp.talismans.bag.TalismanBag
 import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.libreforge.ConditionHasTalisman
+import com.willfp.talismans.libreforge.SlotTypeTalisman
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener
@@ -34,6 +36,8 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleEnable() {
+        SlotTypes.register(SlotTypeTalisman)
+
         registerSpecificHolderProvider<Player> {
             TalismanChecks.getTalismansOnPlayer(it)
         }
