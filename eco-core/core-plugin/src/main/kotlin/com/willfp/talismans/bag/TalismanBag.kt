@@ -1,14 +1,12 @@
 package com.willfp.talismans.bag
 
 import com.willfp.eco.core.EcoPlugin
-import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.data.keys.PersistentDataKey
 import com.willfp.eco.core.data.keys.PersistentDataKeyType
 import com.willfp.eco.core.data.profile
 import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
-import com.willfp.eco.core.gui.onClick
 import com.willfp.eco.core.gui.slot
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.items.Items
@@ -20,7 +18,6 @@ import com.willfp.ecomponent.menuStateVar
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.Material
 import org.bukkit.entity.Player
-import org.bukkit.event.inventory.ClickType
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import kotlin.math.ceil
@@ -32,6 +29,7 @@ private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
 
 object TalismanBag {
     private val menus = mutableMapOf<Int, Menu>()
+    private lateinit var legacyKey: PersistentDataKey<List<String>>
     private lateinit var key: PersistentDataKey<List<String>>
     private lateinit var emptyItem: ItemStack
 
@@ -58,11 +56,15 @@ object TalismanBag {
             }
         }
 
-    @JvmStatic
-    @ConfigUpdater
-    fun update(plugin: EcoPlugin) {
-        key = PersistentDataKey(
+    internal fun update(plugin: EcoPlugin) {
+        legacyKey = PersistentDataKey(
             plugin.namespacedKeyFactory.create("talisman_bag"),
+            PersistentDataKeyType.STRING_LIST,
+            emptyList()
+        )
+
+        key = PersistentDataKey(
+            plugin.namespacedKeyFactory.create("bag"),
             PersistentDataKeyType.STRING_LIST,
             emptyList()
         )
@@ -102,7 +104,8 @@ object TalismanBag {
 
                 onRender { player, menu ->
                     if (menu.talismanBag[player].isEmpty()) {
-                        menu.talismanBag[player] = player.profile.read(key).map { Items.lookup(it).item }
+                        menu.talismanBag[player] += player.profile.read(legacyKey).map { Items.lookup(it).item }
+                        menu.talismanBag[player] += player.profile.read(key).mapNotNull { Items.fromSNBT(it) }
                     }
 
                     val items = menu.getCaptiveItems(player)
@@ -113,7 +116,7 @@ object TalismanBag {
 
                     savedItems[player.uniqueId] = toWrite.toList()
 
-                    player.profile.write(key, toWrite.map { Items.toLookupString(it) })
+                    player.profile.write(key, toWrite.map { Items.toSNBT(it) })
                 }
 
                 onClose { event, menu ->
@@ -124,7 +127,8 @@ object TalismanBag {
 
                     val toWrite = savedItems[player.uniqueId] ?: emptyList()
 
-                    player.profile.write(key, toWrite.map { Items.toLookupString(it) })
+                    player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                    player.profile.write(legacyKey, emptyList())
 
                     val toDrop = items.filter { TalismanChecks.getTalismanOnItem(it) == null }
 
@@ -152,10 +156,16 @@ object TalismanBag {
 
     fun getTalismans(player: Player): List<ItemStack> {
         if (!savedItems.contains(player.uniqueId)) {
-            savedItems[player.uniqueId] = player.profile.read(key)
+            val legacyItems = player.profile.read(legacyKey)
                 .map { Items.lookup(it).item }
                 .filterNot { EmptyTestableItem().matches(it) }
                 .filter { TalismanChecks.getTalismanOnItem(it) != null }
+
+            val items = player.profile.read(key)
+                .mapNotNull { Items.fromSNBT(it) }
+                .filter { TalismanChecks.getTalismanOnItem(it) != null }
+
+            savedItems[player.uniqueId] = (legacyItems + items).toList()
         }
 
         return savedItems[player.uniqueId] ?: emptyList()

@@ -47,6 +47,11 @@ class TalismansPlugin : LibreforgePlugin() {
         }
     }
 
+    override fun handleReload() {
+        TalismanBag.update(this)
+        TalismanChecks.reload(this)
+    }
+
     override fun loadConfigCategories(): List<ConfigCategory> {
         return listOf(
             Talismans

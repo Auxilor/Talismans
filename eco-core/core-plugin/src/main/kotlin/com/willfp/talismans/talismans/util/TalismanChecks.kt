@@ -220,9 +220,7 @@ object TalismanChecks {
      *
      * @param plugin Instance of Talismans.
      */
-    @ConfigUpdater
-    @JvmStatic
-    fun reload(plugin: EcoPlugin) {
+    internal fun reload(plugin: EcoPlugin) {
         if (plugin.configYml.getBool("read-inventory")) {
             registerItemStackProvider {
                 it.inventory.contents.filterNotNull()
