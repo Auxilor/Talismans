@@ -2,6 +2,9 @@ package com.willfp.talismans
 
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
+import com.willfp.eco.core.fast.fast
+import com.willfp.eco.core.items.Items
+import com.willfp.eco.core.items.tag.CustomItemTag
 import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
@@ -32,6 +35,9 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleLoad() {
+        Items.registerTag(CustomItemTag(this.createNamespacedKey("talisman")) {
+            TalismanChecks.getTalismanOnItem(it) != null
+        })
         Conditions.register(ConditionHasTalisman)
     }
 
@@ -71,8 +77,10 @@ class TalismansPlugin : LibreforgePlugin() {
         )
     }
 
-    override fun createDisplayModule(): DisplayModule {
-        return TalismanDisplay(this)
+    override fun loadDisplayModules(): List<DisplayModule> {
+        return listOf(
+            TalismanDisplay(this)
+        )
     }
 
     companion object {
