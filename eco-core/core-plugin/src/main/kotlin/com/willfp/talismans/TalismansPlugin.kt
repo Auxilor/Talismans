@@ -24,6 +24,7 @@ import com.willfp.talismans.talismans.util.DiscoverRecipeListener
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
+import org.bukkit.inventory.ItemStack
 
 class TalismansPlugin : LibreforgePlugin() {
     init {
@@ -35,9 +36,17 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleLoad() {
-        Items.registerTag(CustomItemTag(this.createNamespacedKey("talisman")) {
-            TalismanChecks.getTalismanOnItem(it) != null
-        })
+        Items.registerTag(
+            object : CustomItemTag(this.createNamespacedKey("talisman")) {
+                override fun matches(p0: ItemStack): Boolean {
+                    return TalismanChecks.getTalismanOnItem(p0) != null
+                }
+
+                override fun getExampleItem(): ItemStack {
+                    return Talismans.values().random().itemStack
+                }
+            }
+        )
         Conditions.register(ConditionHasTalisman)
     }
 
