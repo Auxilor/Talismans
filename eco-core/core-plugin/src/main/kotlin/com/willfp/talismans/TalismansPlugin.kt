@@ -18,6 +18,7 @@ import com.willfp.talismans.command.CommandTalismans
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.libreforge.ConditionHasTalisman
 import com.willfp.talismans.libreforge.SlotTypeTalisman
+import com.willfp.talismans.talismans.TalismanTag
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.util.BlockPlaceListener
 import com.willfp.talismans.talismans.util.DiscoverRecipeListener
@@ -36,17 +37,7 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleLoad() {
-        Items.registerTag(
-            object : CustomItemTag(this.createNamespacedKey("talisman")) {
-                override fun matches(p0: ItemStack): Boolean {
-                    return TalismanChecks.getTalismanOnItem(p0) != null
-                }
-
-                override fun getExampleItem(): ItemStack {
-                    return Talismans.values().random().itemStack
-                }
-            }
-        )
+        Items.registerTag(TalismanTag(this))
         Conditions.register(ConditionHasTalisman)
     }
 
