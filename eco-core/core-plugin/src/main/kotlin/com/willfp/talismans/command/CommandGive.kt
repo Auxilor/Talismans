@@ -53,16 +53,18 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
         }
 
         var message = plugin.langYml.getMessage("give-success")
-
         message = message.replace("%talisman%", talisman.name).replace("%recipient%", receiver.name)
-
         sender.sendMessage(message)
 
         val itemStack = talisman.itemStack
-
         itemStack.amount = amount
 
-        receiver.inventory.addItem(itemStack)
+        val leftovers = receiver.inventory.addItem(itemStack)
+        if (leftovers.isNotEmpty()) {
+            leftovers.values.forEach { leftoverItem ->
+                receiver.world.dropItem(receiver.location, leftoverItem)
+            }
+        }
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
@@ -87,8 +89,6 @@ class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.com
                 completions
             )
         }
-
-
 
         if (args.size == 3) {
             StringUtil.copyPartialMatches(
