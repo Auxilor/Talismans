@@ -1,16 +1,12 @@
 package com.willfp.talismans.talismans
 
 import com.google.common.collect.ImmutableList
-import com.willfp.eco.core.config.ConfigType
 import com.willfp.eco.core.config.interfaces.Config
-import com.willfp.eco.core.config.readConfig
-import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.registry.Registry
 import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
 import com.willfp.libreforge.loader.configs.LegacyLocation
 import com.willfp.talismans.TalismansPlugin
-import java.io.File
 
 object Talismans : ConfigCategory("talisman", "talismans") {
     private val registry = Registry<Talisman>()

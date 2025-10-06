@@ -3,12 +3,12 @@ package com.willfp.talismans.talismans.util
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.willfp.eco.core.EcoPlugin
-import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.fast.fast
 import com.willfp.libreforge.ItemProvidedHolder
 import com.willfp.talismans.TalismansPlugin.Companion.instance
 import com.willfp.talismans.talismans.Talisman
 import com.willfp.talismans.talismans.Talismans.getByID
+import com.willfp.talismans.talismans.util.TalismanChecks.item
 import com.willfp.talismans.talismans.util.TalismanUtils.convert
 import com.willfp.talismans.talismans.util.TalismanUtils.getLimit
 import com.willfp.talismans.talismans.util.TalismanUtils.isTalismanMaterial
