@@ -2,14 +2,10 @@ package com.willfp.talismans
 
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
-import com.willfp.eco.core.fast.fast
 import com.willfp.eco.core.items.Items
-import com.willfp.eco.core.items.tag.CustomItemTag
 import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
-import com.willfp.libreforge.registerHolderProvider
-import com.willfp.libreforge.registerPlayerRefreshFunction
 import com.willfp.libreforge.registerSpecificHolderProvider
 import com.willfp.libreforge.registerSpecificRefreshFunction
 import com.willfp.libreforge.slot.SlotTypes
@@ -25,7 +21,6 @@ import com.willfp.talismans.talismans.util.DiscoverRecipeListener
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
-import org.bukkit.inventory.ItemStack
 
 class TalismansPlugin : LibreforgePlugin() {
     init {
