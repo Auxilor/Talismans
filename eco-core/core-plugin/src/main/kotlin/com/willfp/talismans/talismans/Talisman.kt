@@ -49,19 +49,18 @@ class Talisman(
     val itemStack: ItemStack
         get() = _itemStack.clone()
 
-    val craftable = config.getBool("craftable")
-
-    val recipe: CraftingRecipe? = run {
-        if (craftable) {
+    val recipe: CraftingRecipe? = config.getBool("craftable")
+        .takeIf { it }
+        ?.let {
             Recipes.createAndRegisterRecipe(
                 plugin,
                 id,
                 itemStack,
                 config.getStrings("recipe"),
-                "talismans.fromtable.$id"
+                config.getStringOrNull("crafting-permission") ?: "talismans.fromtable.$id",
+                config.getBool("shapeless")
             )
-        } else null
-    }
+        }
 
     val customItem = CustomItem(
         this.id,
