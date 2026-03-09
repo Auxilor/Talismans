@@ -1,12 +1,17 @@
 package com.willfp.talismans.command
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.Subcommand
 import com.willfp.talismans.bag.TalismanBag
+import com.willfp.talismans.plugin
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class CommandBag(plugin: EcoPlugin) : Subcommand(plugin, "bag", "talismans.command.bag", true) {
+object CommandBag : Subcommand(
+    plugin,
+    "bag",
+    "talismans.command.bag",
+    true
+) {
     override fun onExecute(sender: CommandSender, args: List<String>) {
         TalismanBag.open(sender as Player)
     }

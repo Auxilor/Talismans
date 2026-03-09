@@ -1,19 +1,19 @@
 package com.willfp.talismans.display
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.display.Display
 import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.display.DisplayPriority
 import com.willfp.eco.core.placeholder.context.placeholderContext
 import com.willfp.eco.util.formatEco
 import com.willfp.libreforge.ItemProvidedHolder
+import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
 @Suppress("DEPRECATION")
-class TalismanDisplay(plugin: EcoPlugin) : DisplayModule(plugin, DisplayPriority.LOWEST) {
+object TalismanDisplay : DisplayModule(plugin, DisplayPriority.LOWEST) {
     override fun display(
         itemStack: ItemStack,
         player: Player?,

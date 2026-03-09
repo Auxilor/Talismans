@@ -14,7 +14,7 @@ import com.willfp.libreforge.Holder
 import com.willfp.libreforge.ViolationContext
 import com.willfp.libreforge.conditions.Conditions
 import com.willfp.libreforge.effects.Effects
-import com.willfp.talismans.TalismansPlugin
+import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
 import org.apache.commons.lang3.Validate
@@ -25,8 +25,7 @@ import java.util.Objects
 
 class Talisman(
     id: String,
-    val config: Config,
-    private val plugin: TalismansPlugin
+    val config: Config
 ) : Holder, Registrable {
     override val id: NamespacedKey = plugin.namespacedKeyFactory.create(id)
 

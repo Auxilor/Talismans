@@ -1,14 +1,19 @@
 package com.willfp.talismans.command
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.Subcommand
+import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.Talismans.getByID
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.util.StringUtil
 
-class CommandGive(plugin: EcoPlugin) : Subcommand(plugin, "give", "talismans.command.give", false) {
+object CommandGive : Subcommand(
+    plugin,
+    "give",
+    "talismans.command.give",
+    false
+) {
     private val numbers = listOf(
         "1",
         "2",

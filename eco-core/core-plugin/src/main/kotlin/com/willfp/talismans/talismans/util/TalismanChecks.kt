@@ -2,10 +2,9 @@ package com.willfp.talismans.talismans.util
 
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.fast.fast
 import com.willfp.libreforge.ItemProvidedHolder
-import com.willfp.talismans.TalismansPlugin.Companion.instance
+import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.Talisman
 import com.willfp.talismans.talismans.Talismans.getByID
 import com.willfp.talismans.talismans.util.TalismanChecks.item
@@ -33,8 +32,6 @@ object TalismanChecks {
 
     private var readShulkerBoxes = true
     private var offhandOnly = false
-
-    private val PLUGIN: EcoPlugin = instance
 
     /**
      * Does the specified ItemStack have a certain Talisman present?
@@ -75,7 +72,7 @@ object TalismanChecks {
         val container = item.fast().persistentDataContainer
 
         val id = container.get(
-            PLUGIN.namespacedKeyFactory.create("talisman"),
+            plugin.namespacedKeyFactory.create("talisman"),
             PersistentDataType.STRING
         ) ?: return null
 
@@ -141,7 +138,7 @@ object TalismanChecks {
                 items[talis] = itemStack
             }
 
-            if (PLUGIN.configYml.getBool("top-level-only")) {
+            if (plugin.configYml.getBool("top-level-only")) {
                 for ((talisman, _) in items.toMap()) {
                     var lowerLevel = talisman.lowerLevel
                     while (lowerLevel != null) {
@@ -217,10 +214,8 @@ object TalismanChecks {
 
     /**
      * Update config values.
-     *
-     * @param plugin Instance of Talismans.
      */
-    internal fun reload(plugin: EcoPlugin) {
+    internal fun reload() {
         if (plugin.configYml.getBool("read-inventory")) {
             registerItemStackProvider {
                 it.inventory.contents.filterNotNull()

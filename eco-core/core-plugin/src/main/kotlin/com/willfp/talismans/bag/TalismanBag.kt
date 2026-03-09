@@ -1,6 +1,5 @@
 package com.willfp.talismans.bag
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.data.keys.PersistentDataKey
 import com.willfp.eco.core.data.keys.PersistentDataKeyType
 import com.willfp.eco.core.data.profile
@@ -15,6 +14,7 @@ import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
 import com.willfp.eco.util.MenuUtils
 import com.willfp.ecomponent.menuStateVar
+import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -56,7 +56,7 @@ object TalismanBag {
             }
         }
 
-    internal fun update(plugin: EcoPlugin) {
+    internal fun update() {
         legacyKey = PersistentDataKey(
             plugin.namespacedKeyFactory.create("talisman_bag"),
             PersistentDataKeyType.STRING_LIST,

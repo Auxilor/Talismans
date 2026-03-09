@@ -22,9 +22,12 @@ import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
 
+internal lateinit var plugin: TalismansPlugin
+    private set
+
 class TalismansPlugin : LibreforgePlugin() {
     init {
-        instance = this
+        plugin = this
 
         TalismanChecks.registerItemStackProvider {
             TalismanBag.getTalismans(it)
@@ -32,7 +35,7 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleLoad() {
-        Items.registerTag(TalismanTag(this))
+        Items.registerTag(TalismanTag)
         Conditions.register(ConditionHasTalisman)
     }
 
@@ -49,8 +52,8 @@ class TalismansPlugin : LibreforgePlugin() {
     }
 
     override fun handleReload() {
-        TalismanBag.update(this)
-        TalismanChecks.reload(this)
+        TalismanBag.update()
+        TalismanChecks.reload()
     }
 
     override fun loadConfigCategories(): List<ConfigCategory> {
@@ -61,25 +64,20 @@ class TalismansPlugin : LibreforgePlugin() {
 
     override fun loadPluginCommands(): List<PluginCommand> {
         return listOf(
-            CommandTalismans(this)
+            CommandTalismans
         )
     }
 
     override fun loadListeners(): List<Listener> {
         return listOf(
-            BlockPlaceListener(),
-            DiscoverRecipeListener(this)
+            BlockPlaceListener,
+            DiscoverRecipeListener
         )
     }
 
     override fun loadDisplayModules(): List<DisplayModule> {
         return listOf(
-            TalismanDisplay(this)
+            TalismanDisplay
         )
-    }
-
-    companion object {
-        @JvmStatic
-        lateinit var instance: TalismansPlugin
     }
 }

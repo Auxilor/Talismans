@@ -1,8 +1,7 @@
 package com.willfp.talismans.talismans.util
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.fast.fast
-import com.willfp.talismans.TalismansPlugin.Companion.instance
+import com.willfp.talismans.plugin
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -10,7 +9,6 @@ import org.bukkit.persistence.PersistentDataType
 
 object TalismanUtils {
     private val TALISMAN_MATERIALS = mutableSetOf<Material>()
-    private val PLUGIN: EcoPlugin = instance
 
     fun convert(itemStack: ItemStack?) {
         if (itemStack == null) {
@@ -27,7 +25,7 @@ object TalismanUtils {
         val level = container.get(talismanKey, PersistentDataType.INTEGER) ?: return
         container.remove(talismanKey)
         container.set(
-            PLUGIN.namespacedKeyFactory.create("talisman"),
+            plugin.namespacedKeyFactory.create("talisman"),
             PersistentDataType.STRING,
             talismanKey.key + "_" + level
         )
