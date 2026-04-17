@@ -1,6 +1,7 @@
 package com.willfp.talismans.command
 
 import com.willfp.eco.core.command.impl.Subcommand
+import com.willfp.eco.core.drops.DropQueue
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.Talismans.getByID
@@ -67,7 +68,10 @@ object CommandGive : Subcommand(
 
         itemStack.amount = amount
 
-        receiver.inventory.addItem(itemStack)
+        DropQueue(receiver)
+            .addItem(itemStack)
+            .forceTelekinesis()
+            .push()
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
