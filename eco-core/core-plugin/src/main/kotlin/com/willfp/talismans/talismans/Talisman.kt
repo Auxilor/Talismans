@@ -52,12 +52,20 @@ class Talisman(
     val recipe: CraftingRecipe? = config.getBool("craftable")
         .takeIf { it }
         ?.let {
+            val craftingPermission = config.getStringOrNull("crafting-permission")
+            if (craftingPermission == null) {
+                plugin.logger.warning(
+                    "Talisman '$id' is using the deprecated talismans.fromtable permission system. " +
+                    "This will be removed in a future version. " +
+                    "Please set 'crafting-permission' explicitly in the config, or set it to [] for no permission."
+                )
+            }
             Recipes.createAndRegisterRecipe(
                 plugin,
                 id,
                 itemStack,
                 config.getStrings("recipe"),
-                config.getStringOrNull("crafting-permission") ?: "talismans.fromtable.$id",
+                craftingPermission ?: "talismans.fromtable.$id",
                 config.getBool("shapeless")
             )
         }
