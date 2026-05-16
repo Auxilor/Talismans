@@ -1,5 +1,6 @@
 package com.willfp.talismans
 
+import com.willfp.eco.core.bstats.EcoMetricsChart
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.items.Items
@@ -80,4 +81,26 @@ class TalismansPlugin : LibreforgePlugin() {
             TalismanDisplay
         )
     }
+
+    override fun getCustomCharts() = listOf(
+        EcoMetricsChart.SingleLine("total_talismans") { Talismans.values().size },
+        EcoMetricsChart.SimplePie("discover_recipes") {
+            if (configYml.getBool("crafting.discover")) "enabled" else "disabled"
+        },
+        EcoMetricsChart.SimplePie("read_inventory") {
+            if (configYml.getBool("read-inventory")) "enabled" else "disabled"
+        },
+        EcoMetricsChart.SimplePie("read_enderchest") {
+            if (configYml.getBool("read-enderchest")) "enabled" else "disabled"
+        },
+        EcoMetricsChart.SimplePie("read_shulkerboxes") {
+            if (configYml.getBool("read-shulkerboxes")) "enabled" else "disabled"
+        },
+        EcoMetricsChart.SimplePie("top_level_only") {
+            if (configYml.getBool("top-level-only")) "enabled" else "disabled"
+        },
+        EcoMetricsChart.SimplePie("offhand_only") {
+            if (configYml.getBool("offhand-only")) "enabled" else "disabled"
+        }
+    )
 }
