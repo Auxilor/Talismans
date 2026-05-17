@@ -33,6 +33,19 @@ class TalismansPlugin : LibreforgePlugin() {
         TalismanChecks.registerItemStackProvider {
             TalismanBag.getTalismans(it)
         }
+
+        TalismanChecks.registerItemStackProvider {
+            if (configYml.getBool("read-inventory") && !configYml.getBool("offhand-only"))
+                it.inventory.contents.filterNotNull()
+            else emptyList()
+        }
+
+        TalismanChecks.registerItemStackProvider {
+            if (configYml.getBool("read-enderchest") && !configYml.getBool("offhand-only"))
+                @Suppress("UNNECESSARY_SAFE_CALL", "USELESS_ELVIS")
+                it.enderChest?.contents?.filterNotNull() ?: emptyList()
+            else emptyList()
+        }
     }
 
     override fun handleLoad() {
