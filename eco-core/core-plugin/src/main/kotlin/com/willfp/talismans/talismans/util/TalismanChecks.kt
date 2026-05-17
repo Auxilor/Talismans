@@ -216,19 +216,6 @@ object TalismanChecks {
      * Update config values.
      */
     internal fun reload() {
-        if (plugin.configYml.getBool("read-inventory")) {
-            registerItemStackProvider {
-                it.inventory.contents.filterNotNull()
-            }
-        }
-
-        if (plugin.configYml.getBool("read-enderchest")) {
-            registerItemStackProvider {
-                @Suppress("UNNECESSARY_SAFE_CALL", "USELESS_ELVIS") // Was null once
-                it.enderChest?.contents?.filterNotNull() ?: emptyList()
-            }
-        }
-
         readShulkerBoxes = plugin.configYml.getBool("read-shulkerboxes")
         offhandOnly = plugin.configYml.getBool("offhand-only")
     }
