@@ -1,4 +1,4 @@
----
+﻿---
 title: How to make a Talisman
 sidebar_position: 1
 ---
@@ -80,7 +80,7 @@ We support shaped and shapeless recipes. Check out [Recipes](https://plugins.aux
 :::
 
 ### The Talisman Effects Section
-:::dangerEffects Section
+:::danger Effects Section
 
 The effects section is the core functionality of the talisman. You can configure effects, conditions, filters, mutators and triggers in this section to run whilst the talisman is active.
 
