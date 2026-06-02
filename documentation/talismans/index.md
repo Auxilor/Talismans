@@ -2,9 +2,20 @@
 title: "Talismans"
 ---
 
-## What are Talismans and why do I want them?
-Talismans are items that give players passive buffs while they're in the inventory, ender chest, or shulker box of a player. They can be crafted or given with commands or in crates, and you can make your own levels for any talisman. Use custom textures, crafting recipes, names, descriptions - anything that you want to configure, you can. Make your own talismans with a powerful effect and condition system to make talismans perfect for exactly how your server runs.
+## What is Talismans?
 
-## Is there a Talisman Bag?
-Yes! There's a talisman bag that lets you set the size per-player, it works exactly how you'd want and expect it to - you don't have to use it, but it's enabled by default.
- 
+Talismans are items that grant a player passive buffs while they sit in that player's inventory, ender chest, or shulker box. You build each one from a config file with its own texture, crafting recipe, name, description, and a full effect and condition system, so a talisman does exactly what your server needs. Players can craft them, receive them by command, or find them in crates, and you can define multiple levels of any talisman.
+
+## What sets Talismans apart?
+
+- **Talisman bag.** A per-player bag holds talismans outside the main inventory, with its size set per player by permission. It is enabled by default, and you do not have to use it.
+- **Effects and conditions.** Every talisman runs on the shared libreforge effect system, so any effect, condition, filter, mutator, or trigger the framework supports works on a talisman.
+- **Leveling.** Mark one talisman as a higher level of another so only the strongest level a player holds stays active.
+
+<hr/>
+
+## Where to go next
+
+- **Make your first talisman:** the step-by-step [how-to](how-to-make-a-custom-talisman).
+- **Commands and permissions:** the [Commands and Permissions](commands-and-permissions) list.
+- **Tune the plugin:** the [Plugin Config](plugin-config) reference.
