@@ -17,3 +17,4 @@ bag:
   title: "Talisman Bag"
   blocked-item: black_stained_glass_pane name:"&cYour talisman bag is not big enough!"
   blocked-item-lore: [ ]
+  size: [ ] # Uses bag-size permission if no value is set here
