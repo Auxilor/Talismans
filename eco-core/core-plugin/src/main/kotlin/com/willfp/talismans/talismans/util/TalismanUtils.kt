@@ -32,6 +32,11 @@ object TalismanUtils {
     }
 
     fun getLimit(player: Player): Int {
+        val configLimit = plugin.configYml.getInt("talisman-limit")
+        if (configLimit > 0) {
+            return configLimit
+        }
+
         val prefix = "talismans.limit."
         var highest = -1
         for (permission in player.effectivePermissions.map { it.permission }) {
