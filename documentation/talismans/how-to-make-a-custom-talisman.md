@@ -19,7 +19,7 @@ A **talisman** is a config-driven item that runs **effects** while it sits in a 
 
 ## Naming and IDs
 
-The file name without `.yml` is the talisman's ID. That ID is what you pass to commands and to the [Item Lookup System](https://plugins.auxilor.io/the-item-lookup-system).
+The file name without `.yml` is the talisman's ID. That ID is what you pass to commands and to the [Item Lookup System](https://hub.auxilor.io/wiki/eco/the-item-lookup-system-the-item-lookup-system).
 
 :::warning ID rules
 IDs may only contain lowercase letters, numbers, and underscores (a-z, 0-9, _). No spaces, capitals, or hyphens, or the talisman will not load.
@@ -113,7 +113,7 @@ recipe: # The 3x3 grid, read left to right, top to bottom
 ```
 
 :::tip
-We support shaped and shapeless recipes. See [Recipes](https://plugins.auxilor.io/the-item-lookup-system/recipes) for the full syntax.
+We support shaped and shapeless recipes. See [Recipes](https://hub.auxilor.io/wiki/eco/the-item-lookup-system-the-item-lookup-system/recipes) for the full syntax.
 :::
 
 ### Effects
@@ -133,8 +133,8 @@ conditions: [] # Conditions that must pass for the effects to run
 :::danger Effects are their own system
 Effects and conditions are a shared system across every eco plugin, documented in full elsewhere.
 
-- [Configuring an Effect](https://plugins.auxilor.io/effects/configuring-an-effect)
-- [Configuring an Effect Chain](https://plugins.auxilor.io/effects/configuring-a-chain)
+- [Configuring an Effect](https://hub.auxilor.io/wiki/libreforge/configuring-an-effect)
+- [Configuring an Effect Chain](https://hub.auxilor.io/wiki/libreforge/configuring-a-chain)
 :::
 
 :::tip Troubleshooting
@@ -150,5 +150,5 @@ Effects and conditions are a shared system across every eco plugin, documented i
 
 - **Default talismans:** the shipped configs on [GitHub](https://github.com/Auxilor/Talismans/tree/master/eco-core/core-plugin/src/main/resources/talismans).
 - **Community configs:** user-created talismans on [lrcdb](https://lrcdb.auxilor.io/).
-- **Effects deep-dive:** [Configuring an Effect](https://plugins.auxilor.io/effects/configuring-an-effect).
+- **Effects deep-dive:** [Configuring an Effect](https://hub.auxilor.io/wiki/libreforge/configuring-an-effect).
 - **Plugin settings:** the [Plugin Config](plugin-config) reference.
