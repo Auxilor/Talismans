@@ -19,11 +19,11 @@ import java.util.function.Function
 import java.time.Duration
 
 object TalismanChecks {
-    private val CACHED_TALISMANS: EcoCache<Player, Set<ItemProvidedHolder>> = EcoCache.builder()
+    private val CACHED_TALISMANS: EcoCache<Player, Set<ItemProvidedHolder>> = EcoCache.builder<Player, Set<ItemProvidedHolder>>()
         .expireAfterWrite(Duration.ofSeconds(2))
         .build()
 
-    private val CACHED_TALISMAN_ITEMS: EcoCache<Player, Set<ItemStack>> = EcoCache.builder()
+    private val CACHED_TALISMAN_ITEMS: EcoCache<Player, Set<ItemStack>> = EcoCache.builder<Player, Set<ItemStack>>()
         .expireAfterWrite(Duration.ofSeconds(2))
         .build()
 
