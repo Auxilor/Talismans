@@ -1,7 +1,6 @@
 package com.willfp.talismans.talismans.util
 
-import com.github.benmanes.caffeine.cache.Cache
-import com.github.benmanes.caffeine.cache.Caffeine
+import com.willfp.eco.core.cache.EcoCache
 import com.willfp.eco.core.fast.fast
 import com.willfp.libreforge.ItemProvidedHolder
 import com.willfp.talismans.plugin
@@ -16,16 +15,16 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.persistence.PersistentDataType
-import java.util.concurrent.TimeUnit
 import java.util.function.Function
+import java.time.Duration
 
 object TalismanChecks {
-    private val CACHED_TALISMANS: Cache<Player, Set<ItemProvidedHolder>> = Caffeine.newBuilder()
-        .expireAfterWrite(2, TimeUnit.SECONDS)
+    private val CACHED_TALISMANS: EcoCache<Player, Set<ItemProvidedHolder>> = EcoCache.builder<Player, Set<ItemProvidedHolder>>()
+        .expireAfterWrite(Duration.ofSeconds(2))
         .build()
 
-    private val CACHED_TALISMAN_ITEMS: Cache<Player, Set<ItemStack>> = Caffeine.newBuilder()
-        .expireAfterWrite(2, TimeUnit.SECONDS)
+    private val CACHED_TALISMAN_ITEMS: EcoCache<Player, Set<ItemStack>> = EcoCache.builder<Player, Set<ItemStack>>()
+        .expireAfterWrite(Duration.ofSeconds(2))
         .build()
 
     private val PROVIDERS: MutableSet<Function<Player, List<ItemStack>>> = HashSet()
