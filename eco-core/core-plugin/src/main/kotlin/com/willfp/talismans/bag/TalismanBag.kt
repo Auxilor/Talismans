@@ -37,6 +37,11 @@ object TalismanBag {
 
     private val Player.bagSize: Int
         get() {
+            val configSize = plugin.configYml.getInt("bag.size")
+            if (configSize > 0) {
+                return configSize
+            }
+
             val prefix = "talismans.bagsize."
             var highest = -1
             for (permission in this.effectivePermissions.map { it.permission }) {
