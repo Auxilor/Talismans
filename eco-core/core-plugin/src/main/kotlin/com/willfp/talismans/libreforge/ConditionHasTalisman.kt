@@ -23,7 +23,8 @@ object ConditionHasTalisman : Condition<NoCompileData>("has_talisman") {
             "talisman",
             "You must specify the talisman!",
             description = "The id of the talisman to check for.",
-            type = ArgType.STRING
+            type = ArgType.STRING,
+            example = "experience_1"
         )
     }
 
