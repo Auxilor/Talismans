@@ -1,6 +1,6 @@
 ---
 title: "Commands and Permissions"
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 Every command Talismans adds, and the permission node that gates it, is listed below. Operators have access to all of them by default.
