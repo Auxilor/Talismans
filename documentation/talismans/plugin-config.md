@@ -1,6 +1,6 @@
 ---
 title: "Plugin Config"
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 The plugin's main settings live in `/plugins/Talismans/config.yml`. Edit the file, then run `/talismans reload` to apply your changes.
