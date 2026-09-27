@@ -1,64 +1,43 @@
 package com.willfp.talismans.display
 
-import com.willfp.eco.core.display.Display
+import com.willfp.eco.core.display.DisplayContext
 import com.willfp.eco.core.display.DisplayModule
 import com.willfp.eco.core.display.DisplayPriority
-import com.willfp.eco.core.placeholder.context.placeholderContext
+import com.willfp.eco.core.fast.fast
 import com.willfp.eco.util.formatEco
+import com.willfp.eco.util.formatEcoRich
 import com.willfp.libreforge.ItemProvidedHolder
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
-import org.bukkit.entity.Player
-import org.bukkit.inventory.ItemStack
+import net.kyori.adventure.text.Component
 
-@Suppress("DEPRECATION")
 object TalismanDisplay : DisplayModule(plugin, DisplayPriority.LOWEST) {
-    override fun display(
-        itemStack: ItemStack,
-        player: Player?,
-        vararg args: Any
-    ) {
+    override fun display(context: DisplayContext) {
+        val itemStack = context.itemStack
+
         if (!TalismanUtils.isTalismanMaterial(itemStack.type)) {
             return
         }
 
-        val meta = itemStack.itemMeta ?: return
-        val itemLore = meta.lore ?: mutableListOf()
+        if (!itemStack.hasItemMeta()) {
+            return
+        }
 
         val talisman = TalismanChecks.getTalismanOnItem(itemStack) ?: return
+        val fis = itemStack.fast()
 
-        val placeholderContext = placeholderContext(
-            player = player,
-            item = itemStack
-        )
+        fis.displayName = talisman.name.formatEco(context.placeholderContext)
 
-        meta.setDisplayName(talisman.name.formatEco(placeholderContext))
+        talisman.itemStack.fast().customModelData?.let { fis.customModelData = it }
 
-        if (talisman.itemStack.itemMeta?.hasCustomModelData() == true) {
-            meta.setCustomModelData(talisman.itemStack.itemMeta?.customModelData)
+        context.lore.prepend(talisman.description.formatEcoRich(context.placeholderContext))
+
+        val player = context.player ?: return
+        val lines = ItemProvidedHolder(talisman, itemStack).getNotMetLineComponents(player)
+
+        if (lines.isNotEmpty()) {
+            context.lore.append(listOf(Component.empty()) + lines)
         }
-
-        val lore = mutableListOf<String>()
-
-        lore.addAll(
-            talisman.description
-                .map { Display.PREFIX + it.formatEco(placeholderContext) }
-        )
-
-        lore.addAll(itemLore)
-
-        if (player != null) {
-            val provided = ItemProvidedHolder(talisman, itemStack)
-            val lines = provided.getNotMetLines(player).map { Display.PREFIX + it }
-
-            if (lines.isNotEmpty()) {
-                lore.add(Display.PREFIX)
-                lore.addAll(lines)
-            }
-        }
-
-        meta.lore = lore
-        itemStack.itemMeta = meta
     }
 }
