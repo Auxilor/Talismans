@@ -81,6 +81,10 @@ description: # Lore lines shown on the item
   - "&8Deal 10% more damage with bows"
 ```
 
+:::tip
+Lore supports MiniMessage, including sprites such as `<sprite:items:item/diamond>` on 1.21.9 and newer. See [Text Formatting](https://hub.auxilor.io/wiki/eco/text-formatting).
+:::
+
 ### Leveling
 
 Stack levels of the same talisman so only the strongest one a player holds counts.
