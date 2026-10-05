@@ -2,6 +2,7 @@ package com.willfp.talismans.command
 
 import com.willfp.eco.core.command.impl.Subcommand
 import com.willfp.eco.core.drops.DropQueue
+import com.willfp.eco.util.formatEco
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.Talismans
 import com.willfp.talismans.talismans.Talismans.getByID
@@ -60,7 +61,7 @@ object CommandGive : Subcommand(
 
         var message = plugin.langYml.getMessage("give-success")
 
-        message = message.replace("%talisman%", talisman.name).replace("%recipient%", receiver.name)
+        message = message.replace("%talisman%", talisman.name.formatEco()).replace("%recipient%", receiver.name)
 
         sender.sendMessage(message)
 
