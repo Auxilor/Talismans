@@ -10,6 +10,7 @@ import com.willfp.talismans.talismans.util.TalismanChecks.item
 import com.willfp.talismans.talismans.util.TalismanUtils.convert
 import com.willfp.talismans.talismans.util.TalismanUtils.getLimit
 import com.willfp.talismans.talismans.util.TalismanUtils.isTalismanMaterial
+import org.bukkit.Tag
 import org.bukkit.block.ShulkerBox
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
@@ -109,7 +110,8 @@ object TalismanChecks {
                     continue
                 }
 
-                if (readShulkerBoxes) {
+                // Reading meta copies it, and only shulker boxes and talismans can change the result.
+                if (readShulkerBoxes && (Tag.SHULKER_BOXES.isTagged(rawContent.type) || isTalismanMaterial(rawContent.type))) {
                     val meta = rawContent.itemMeta
                     if (meta is BlockStateMeta) {
                         if (!meta.hasBlockState()) {
@@ -127,11 +129,12 @@ object TalismanChecks {
             }
 
             val items = mutableMapOf<Talisman, ItemStack>()
+            val limit by lazy(LazyThreadSafetyMode.NONE) { getLimit(it) }
 
             for (itemStack in contents) {
                 convert(itemStack)
                 val talis = getTalismanOnItem(itemStack) ?: continue
-                if (items.size >= getLimit(it)) {
+                if (items.size >= limit) {
                     break
                 }
                 items[talis] = itemStack
