@@ -16,8 +16,9 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.persistence.PersistentDataType
-import java.util.function.Function
 import java.time.Duration
+import java.util.concurrent.ConcurrentHashMap
+import java.util.function.Function
 
 object TalismanChecks {
     private val CACHED_TALISMANS: EcoCache<Player, Set<ItemProvidedHolder>> = EcoCache.builder<Player, Set<ItemProvidedHolder>>()
@@ -28,9 +29,12 @@ object TalismanChecks {
         .expireAfterWrite(Duration.ofSeconds(2))
         .build()
 
-    private val PROVIDERS: MutableSet<Function<Player, List<ItemStack>>> = HashSet()
+    private val PROVIDERS: MutableSet<Function<Player, List<ItemStack>>> = ConcurrentHashMap.newKeySet()
 
+    @Volatile
     private var readShulkerBoxes = true
+
+    @Volatile
     private var offhandOnly = false
 
     /**

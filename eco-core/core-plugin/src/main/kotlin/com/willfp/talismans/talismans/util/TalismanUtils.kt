@@ -6,9 +6,10 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
+import java.util.concurrent.ConcurrentHashMap
 
 object TalismanUtils {
-    private val TALISMAN_MATERIALS = mutableSetOf<Material>()
+    private val TALISMAN_MATERIALS = ConcurrentHashMap.newKeySet<Material>()
 
     fun convert(itemStack: ItemStack?) {
         if (itemStack == null) {

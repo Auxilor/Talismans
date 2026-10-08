@@ -20,6 +20,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.ceil
 import kotlin.math.min
 
@@ -28,12 +29,18 @@ private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
 )
 
 object TalismanBag {
-    private val menus = mutableMapOf<Int, Menu>()
+    private val menus = ConcurrentHashMap<Int, Menu>()
+
+    @Volatile
     private lateinit var legacyKey: PersistentDataKey<List<String>>
+
+    @Volatile
     private lateinit var key: PersistentDataKey<List<String>>
+
+    @Volatile
     private lateinit var emptyItem: ItemStack
 
-    private val savedItems = mutableMapOf<UUID, List<ItemStack>>()
+    private val savedItems = ConcurrentHashMap<UUID, List<ItemStack>>()
 
     private val Player.bagSize: Int
         get() {
@@ -160,7 +167,7 @@ object TalismanBag {
     }
 
     fun getTalismans(player: Player): List<ItemStack> {
-        if (!savedItems.contains(player.uniqueId)) {
+        return savedItems.computeIfAbsent(player.uniqueId) {
             val legacyItems = player.profile.read(legacyKey)
                 .map { Items.lookup(it).item }
                 .filterNot { EmptyTestableItem().matches(it) }
@@ -170,9 +177,7 @@ object TalismanBag {
                 .mapNotNull { Items.fromSNBT(it) }
                 .filter { TalismanChecks.getTalismanOnItem(it) != null }
 
-            savedItems[player.uniqueId] = (legacyItems + items).toList()
+            (legacyItems + items).toList()
         }
-
-        return savedItems[player.uniqueId] ?: emptyList()
     }
 }
