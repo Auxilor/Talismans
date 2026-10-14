@@ -146,8 +146,9 @@ object TalismanChecks {
 
             if (plugin.configYml.getBool("top-level-only")) {
                 for ((talisman, _) in items.toMap()) {
+                    val visited = mutableSetOf(talisman)
                     var lowerLevel = talisman.lowerLevel
-                    while (lowerLevel != null) {
+                    while (lowerLevel != null && visited.add(lowerLevel)) {
                         items.remove(lowerLevel)
                         lowerLevel = lowerLevel.lowerLevel
                     }

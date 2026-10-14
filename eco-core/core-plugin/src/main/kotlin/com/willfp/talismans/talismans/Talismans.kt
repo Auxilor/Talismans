@@ -43,4 +43,20 @@ object Talismans : ConfigCategory("talisman", "talismans") {
     override fun acceptConfig(plugin: LibreforgePlugin, id: String, config: Config) {
         registry.register(Talisman(id, config))
     }
+
+    override fun afterReload(plugin: LibreforgePlugin) {
+        for (talisman in registry.values()) {
+            val visited = mutableSetOf(talisman)
+            var lowerLevel = talisman.lowerLevel
+            while (lowerLevel != null && visited.add(lowerLevel)) {
+                lowerLevel = lowerLevel.lowerLevel
+            }
+            if (lowerLevel == talisman) {
+                plugin.logger.warning(
+                    "Talisman '${talisman.getID()}' is in a higherLevelOf cycle " +
+                        "(${visited.joinToString(", ") { it.getID() }}). Fix higherLevelOf in its config."
+                )
+            }
+        }
+    }
 }
