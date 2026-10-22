@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>BracesOnIfStatements:TalismansPlugin.kt:TalismansPlugin$else</ID>
+    <ID>BracesOnIfStatements:TalismansPlugin.kt:TalismansPlugin$if</ID>
+    <ID>CanBeNonNullable:TalismanUtils.kt:TalismanUtils$itemStack: ItemStack?</ID>
+    <ID>CognitiveComplexMethod:TalismanBag.kt:TalismanBag$internal fun update</ID>
+    <ID>CognitiveComplexMethod:TalismanChecks.kt:TalismanChecks$@JvmStatic fun getTalismanItemsOnPlayer: Set&lt;ItemStack&gt;</ID>
+    <ID>CognitiveComplexMethod:TalismansPlugin.kt:TalismansPlugin$override fun getCustomCharts</ID>
+    <ID>CouldBeSequence:ConditionHasTalisman.kt:ConditionHasTalisman$map { it.holder }</ID>
+    <ID>CouldBeSequence:TalismanBag.kt:TalismanBag$map { Items.lookup(it).item }</ID>
+    <ID>CyclomaticComplexMethod:TalismanChecks.kt:TalismanChecks$@JvmStatic fun getTalismanItemsOnPlayer: Set&lt;ItemStack&gt;</ID>
+    <ID>ExpressionBodySyntax:CommandTalismans.kt:CommandTalismans$return listOf("talis", "tal", "talismen", "talisman")</ID>
+    <ID>ExpressionBodySyntax:SlotTypeTalisman.kt:SlotTypeTalisman$return emptyList()</ID>
+    <ID>ExpressionBodySyntax:SlotTypeTalisman.kt:SlotTypeTalisman$return false</ID>
+    <ID>ExpressionBodySyntax:Talisman.kt:Talisman$return Objects.hash(this.id)</ID>
+    <ID>ExpressionBodySyntax:Talisman.kt:Talisman$return this.id.key</ID>
+    <ID>ExpressionBodySyntax:TalismanTag.kt:TalismanTag$return TalismanChecks.getTalismanOnItem(p0) != null</ID>
+    <ID>ExpressionBodySyntax:TalismanTag.kt:TalismanTag$return Talismans.values().random().itemStack</ID>
+    <ID>ExpressionBodySyntax:TalismanUtils.kt:TalismanUtils$return TALISMAN_MATERIALS.contains(material)</ID>
+    <ID>ExpressionBodySyntax:Talismans.kt:Talismans$return ImmutableList.copyOf(registry.values())</ID>
+    <ID>ExpressionBodySyntax:Talismans.kt:Talismans$return registry[name]</ID>
+    <ID>IC002:CommandGive.kt:CommandGive$// The console runs off the player's region on Folia.</ID>
+    <ID>IC002:CommandReload.kt:CommandReload$// Reloading rebuilds shared registries, so it belongs on the global region.</ID>
+    <ID>IC002:TalismanChecks.kt:TalismanChecks$// Reading meta copies it, and only shulker boxes and talismans can change the result.</ID>
+    <ID>LongMethod:TalismanBag.kt:TalismanBag$internal fun update</ID>
+    <ID>LoopWithTooManyJumpStatements:TalismanChecks.kt:TalismanChecks$for</ID>
+    <ID>MagicNumber:CommandGive.kt:CommandGive$3</ID>
+    <ID>MagicNumber:TalismanBag.kt:TalismanBag$6</ID>
+    <ID>MagicNumber:TalismanBag.kt:TalismanBag$9</ID>
+    <ID>MagicNumber:TalismanUtils.kt:TalismanUtils$10000</ID>
+    <ID>MapGetWithNotNullAssertionOperator:TalismanBag.kt:TalismanBag$menus[bagRows]!!</ID>
+    <ID>MaxLineLength:TalismanChecks.kt:TalismanChecks$if</ID>
+    <ID>MaxLineLength:TalismanChecks.kt:TalismanChecks$private</ID>
+    <ID>MultilineLambdaItParameter:TalismanChecks.kt:TalismanChecks${ val contents = mutableListOf&lt;ItemStack&gt;() val rawContents = mutableListOf&lt;ItemStack?&gt;() if (offhandOnly) { rawContents.clear() rawContents.add(it.inventory.itemInOffHand) } rawContents.addAll(extra) for (provider in PROVIDERS) { rawContents.addAll(provider.apply(it)) } for (rawContent in rawContents) { if (rawContent == null) { continue } // Reading meta copies it, and only shulker boxes and talismans can change the result. if (readShulkerBoxes &amp;&amp; (Tag.SHULKER_BOXES.isTagged(rawContent.type) || isTalismanMaterial(rawContent.type))) { val meta = rawContent.itemMeta if (meta is BlockStateMeta) { if (!meta.hasBlockState()) { continue } val state = meta.blockState if (state is ShulkerBox) { contents.addAll(state.inventory.contents.filterNotNull()) continue } } } contents.add(rawContent) } val items = mutableMapOf&lt;Talisman, ItemStack&gt;() val limit by lazy(LazyThreadSafetyMode.NONE) { getLimit(it) } for (itemStack in contents) { convert(itemStack) val talis = getTalismanOnItem(itemStack) ?: continue if (items.size &gt;= limit) { break } items[talis] = itemStack } if (plugin.configYml.getBool("top-level-only")) { for ((talisman, _) in items.toMap()) { val visited = mutableSetOf(talisman) var lowerLevel = talisman.lowerLevel while (lowerLevel != null &amp;&amp; visited.add(lowerLevel)) { items.remove(lowerLevel) lowerLevel = lowerLevel.lowerLevel } } } items.values.toSet() }</ID>
+    <ID>MultilineLambdaItParameter:TalismansPlugin.kt:TalismansPlugin${ if (configYml.getBool("read-enderchest") &amp;&amp; !configYml.getBool("offhand-only")) @Suppress("UNNECESSARY_SAFE_CALL", "USELESS_ELVIS") it.enderChest?.contents?.filterNotNull() ?: emptyList() else emptyList() }</ID>
+    <ID>MultilineLambdaItParameter:TalismansPlugin.kt:TalismansPlugin${ if (configYml.getBool("read-inventory") &amp;&amp; !configYml.getBool("offhand-only")) it.inventory.contents.filterNotNull() else emptyList() }</ID>
+    <ID>NewLineAtEndOfFile:BlockPlaceListener.kt:com.willfp.talismans.talismans.util.BlockPlaceListener.kt</ID>
+    <ID>NewLineAtEndOfFile:CommandReload.kt:com.willfp.talismans.command.CommandReload.kt</ID>
+    <ID>NewLineAtEndOfFile:DiscoverRecipeListener.kt:com.willfp.talismans.talismans.util.DiscoverRecipeListener.kt</ID>
+    <ID>NewLineAtEndOfFile:TalismanUtils.kt:com.willfp.talismans.talismans.util.TalismanUtils.kt</ID>
+    <ID>NoNameShadowing:TalismanBag.kt:TalismanBag${ EmptyTestableItem().matches(it) }</ID>
+    <ID>NoNameShadowing:TalismanBag.kt:TalismanBag${ Items.fromSNBT(it) }</ID>
+    <ID>NoNameShadowing:TalismanBag.kt:TalismanBag${ Items.lookup(it).item }</ID>
+    <ID>NoNameShadowing:TalismanBag.kt:TalismanBag${ TalismanChecks.getTalismanOnItem(it) != null }</ID>
+    <ID>NoNameShadowing:TalismanChecks.kt:TalismanChecks${ it != null }</ID>
+    <ID>ReturnCount:CommandGive.kt:CommandGive$override fun onExecute</ID>
+    <ID>ReturnCount:TalismanChecks.kt:TalismanChecks$@JvmStatic fun getTalismanOnItem: Talisman?</ID>
+    <ID>ReturnCount:TalismanChecks.kt:TalismanChecks$@JvmStatic fun item: Boolean</ID>
+    <ID>ReturnCount:TalismanDisplay.kt:TalismanDisplay$override fun display</ID>
+    <ID>ReturnCount:TalismanUtils.kt:TalismanUtils$fun convert</ID>
+    <ID>UnderscoresInNumericLiterals:TalismanBag.kt:TalismanBag$10000</ID>
+    <ID>UnderscoresInNumericLiterals:TalismanUtils.kt:TalismanUtils$10000</ID>
+    <ID>UnnamedParameterUse:CommandGive.kt:CommandGive$replace</ID>
+    <ID>UnnamedParameterUse:CommandReload.kt:CommandReload$replace</ID>
+    <ID>UnnamedParameterUse:ConditionHasTalisman.kt:ConditionHasTalisman$require</ID>
+    <ID>UnnamedParameterUse:TalismanBag.kt:TalismanBag$min</ID>
+    <ID>UnnamedParameterUse:Talismans.kt:Talismans$LegacyLocation</ID>
+    <ID>UnsafeCallOnNullableType:TalismanBag.kt:TalismanBag$menus[bagRows]!!</ID>
+    <ID>UnsafeCallOnNullableType:TalismanChecks.kt:TalismanChecks$talisman!!</ID>
+    <ID>UseOrEmpty:TalismanBag.kt:TalismanBag$savedItems[player.uniqueId] ?: emptyList()</ID>
+    <ID>UseOrEmpty:TalismansPlugin.kt:TalismansPlugin$it.enderChest?.contents?.filterNotNull() ?: emptyList()</ID>
+    <ID>WildcardImport:TalismanBag.kt:import java.util.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

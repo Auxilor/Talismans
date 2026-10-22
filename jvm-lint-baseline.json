@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "findings": [
+    {
+      "code": "U003",
+      "path": "eco-core/core-plugin/src/main/kotlin/com/willfp/talismans/talismans/Talisman.kt",
+      "message": "Unused property `customItem`"
+    },
+    {
+      "code": "U002",
+      "path": "eco-core/core-plugin/src/main/kotlin/com/willfp/talismans/talismans/util/TalismanUtils.kt",
+      "message": "Unused function `clearTalismanMaterials`"
+    }
+  ]
+}
