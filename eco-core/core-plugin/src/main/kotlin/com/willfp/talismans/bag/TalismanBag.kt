@@ -186,7 +186,7 @@ object TalismanBag {
 
     fun open(player: Player) {
         val bagSize = player.bagSize
-        val bagRows = (1..6).firstOrNull { bagSlotCounts[it]!! >= bagSize } ?: 6
+        val bagRows = (1..6).firstOrNull { bagSlotCounts.getValue(it) >= bagSize } ?: 6
         menus[bagRows]!!.open(player)
     }
 
