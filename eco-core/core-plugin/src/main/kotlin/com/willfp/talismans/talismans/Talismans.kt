@@ -7,16 +7,19 @@ import com.willfp.eco.core.version.Version
 import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
 import com.willfp.libreforge.loader.configs.LegacyLocation
+import java.util.concurrent.CopyOnWriteArrayList
 
 object Talismans : ConfigCategory("talisman", "talismans") {
     private val registry = Registry<Talisman>()
 
     private val fromTableCutoff = Version("2026.44")
 
-    private val fromTableTalismans = mutableListOf<String>()
+    private val fromTableTalismans = CopyOnWriteArrayList<String>()
 
+    @Volatile
     private var fromTableDisabled = false
 
+    @Volatile
     private var lastFromTableWarning: Pair<List<String>, Boolean>? = null
 
     override val legacyLocation = LegacyLocation(
@@ -75,7 +78,8 @@ object Talismans : ConfigCategory("talisman", "talismans") {
                 )
             } else {
                 plugin.logger.warning(
-                    "They still use talismans.fromtable.<id>, which stops working in 2026.44 and is removed in 2026.45. " +
+                    "They still use talismans.fromtable.<id>, which stops working in 2026.44 " +
+                        "and is removed in 2026.45. " +
                         "Enable 'opt-in.disable-fromtable-permission' to apply the change early."
                 )
             }
