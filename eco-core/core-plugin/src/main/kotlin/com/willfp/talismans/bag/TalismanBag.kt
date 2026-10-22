@@ -16,6 +16,7 @@ import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.builder.ItemStackBuilder
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.core.recipe.parts.EmptyTestableItem
+import com.willfp.eco.util.getNumericalPermission
 import com.willfp.ecomponent.menuStateVar
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
@@ -52,18 +53,7 @@ object TalismanBag {
                 return configSize
             }
 
-            val prefix = "talismans.bagsize."
-            var highest = -1
-            for (permission in this.effectivePermissions.map { it.permission }) {
-                if (!permission.startsWith(prefix)) {
-                    continue
-                }
-
-                val limit = permission.substring(permission.lastIndexOf(".") + 1).toInt()
-                if (limit > highest) {
-                    highest = limit
-                }
-            }
+            val highest = this.getNumericalPermission("talismans.bagsize", -1.0).toInt()
             return if (highest < 0) {
                 10000
             } else {
