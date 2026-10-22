@@ -19,3 +19,8 @@ bag:
   blocked-item: black_stained_glass_pane name:"&cYour talisman bag is not big enough!"
   blocked-item-lore: [ ]
   size: 0 # Set to 0 to use permission-based bag size instead
+
+# Optional features (opt-in early by choice).
+opt-in:
+  # Stop applying talismans.fromtable.<id> to talismans with no 'crafting-permission'. Becomes the default in 2026.44.
+  disable-fromtable-permission: false
