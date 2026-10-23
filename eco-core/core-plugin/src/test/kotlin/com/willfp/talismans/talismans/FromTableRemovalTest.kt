@@ -7,11 +7,11 @@ import java.io.File
 
 class FromTableRemovalTest {
     @Test
-    fun `fromtable fallback is removed by 2026_45`() {
+    fun `fromtable removed by 2026_45`() {
         val removalDue = System.getProperty("talismans.version")
             .split(".")
             .map { it.substringBefore("-").toIntOrNull() ?: 0 }
-            .let { (year, release) -> year > 2026 || (year == 2026 && release >= 45) }
+            .let { (year, release) -> year > 2026 || year == 2026 && release >= 45 }
 
         assumeTrue(removalDue)
 
