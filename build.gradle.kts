@@ -149,15 +149,3 @@ allprojects {
         }
     }
 }
-
-val fromTableRemovalDue = version.toString().split(".")
-    .map { it.substringBefore("-").toIntOrNull() ?: 0 }
-    .let { (it.getOrElse(0) { 0 } to it.getOrElse(1) { 0 }) }
-    .let { (year, release) -> year > 2026 || (year == 2026 && release >= 45) }
-
-if (fromTableRemovalDue && file("eco-core/core-plugin/src/main/kotlin/com/willfp/talismans/talismans/Talismans.kt").readText().contains("fromTablePermission")) {
-    throw GradleException(
-        "The talismans.fromtable.<id> fallback is due for removal in 2026.45: " +
-            "remove Talismans.fromTablePermission and opt-in.disable-fromtable-permission."
-    )
-}
