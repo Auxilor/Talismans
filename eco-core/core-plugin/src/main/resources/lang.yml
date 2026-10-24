@@ -9,5 +9,6 @@ messages:
   invalid-player: "&cInvalid player!"
   needs-talisman: "&cYou must specify a talisman"
   invalid-talisman: "&cInvalid talisman!"
+  invalid-amount: "&cInvalid amount!"
   invalid-level: "&cLevel doesn't exist!"
   give-success: "Gave &a%talisman%&r to &a%recipient%"
