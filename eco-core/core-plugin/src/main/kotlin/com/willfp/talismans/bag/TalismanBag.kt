@@ -30,6 +30,8 @@ private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
     emptyList()
 )
 
+private val Menu.talismanBagLoaded by menuStateVar(false)
+
 object TalismanBag {
     private val menus = ConcurrentHashMap<Int, Menu>()
 
@@ -127,21 +129,22 @@ object TalismanBag {
                     }
                 }
 
+                onOpen { player, menu ->
+                    menu.talismanBag[player] = player.profile.read(legacyKey).map { Items.lookup(it).item } +
+                            player.profile.read(key).mapNotNull { Items.fromSNBT(it) }
+                    menu.talismanBagLoaded[player] = true
+                }
+
                 onRender { player, menu ->
-                    if (menu.talismanBag[player].isEmpty()) {
-                        menu.talismanBag[player] += player.profile.read(legacyKey).map { Items.lookup(it).item }
-                        menu.talismanBag[player] += player.profile.read(key).mapNotNull { Items.fromSNBT(it) }
+                    if (menu.talismanBagLoaded[player]) {
+                        val toWrite = menu.getCaptiveItems(player)
+                            .filterNot { EmptyTestableItem().matches(it) }
+                            .filter { TalismanChecks.getTalismanOnItem(it) != null }
+
+                        if (savedItems.put(player.uniqueId, toWrite) != toWrite) {
+                            player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                        }
                     }
-
-                    val items = menu.getCaptiveItems(player)
-                        .filterNot { EmptyTestableItem().matches(it) }
-
-                    val toWrite = items
-                        .filter { TalismanChecks.getTalismanOnItem(it) != null }
-
-                    savedItems[player.uniqueId] = toWrite.toList()
-
-                    player.profile.write(key, toWrite.map { Items.toSNBT(it) })
                 }
 
                 onClose { event, menu ->
@@ -150,10 +153,12 @@ object TalismanBag {
                     val items = menu.getCaptiveItems(player)
                         .filterNot { EmptyTestableItem().matches(it) }
 
-                    val toWrite = savedItems[player.uniqueId] ?: emptyList()
+                    if (menu.talismanBagLoaded[player]) {
+                        val toWrite = items.filter { TalismanChecks.getTalismanOnItem(it) != null }
 
-                    player.profile.write(key, toWrite.map { Items.toSNBT(it) })
-                    player.profile.write(legacyKey, emptyList())
+                        player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                        player.profile.write(legacyKey, emptyList())
+                    }
 
                     val toDrop = items.filter { TalismanChecks.getTalismanOnItem(it) == null }
 
