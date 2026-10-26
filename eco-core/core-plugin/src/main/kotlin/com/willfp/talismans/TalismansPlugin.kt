@@ -85,7 +85,8 @@ class TalismansPlugin : LibreforgePlugin() {
     override fun loadListeners(): List<Listener> {
         return listOf(
             BlockPlaceListener,
-            DiscoverRecipeListener
+            DiscoverRecipeListener,
+            TalismanBag
         )
     }
 

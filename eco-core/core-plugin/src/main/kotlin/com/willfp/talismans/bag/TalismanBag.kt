@@ -20,8 +20,12 @@ import com.willfp.eco.util.getNumericalPermission
 import com.willfp.ecomponent.menuStateVar
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -32,7 +36,7 @@ private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
 
 private val Menu.talismanBagLoaded by menuStateVar(false)
 
-object TalismanBag {
+object TalismanBag : Listener {
     private val menus = ConcurrentHashMap<Int, Menu>()
 
     private val bagSlotCounts = ConcurrentHashMap<Int, Int>()
@@ -183,6 +187,17 @@ object TalismanBag {
         val bagSize = player.bagSize
         val bagRows = (1..6).firstOrNull { bagSlotCounts.getValue(it) >= bagSize } ?: 6
         menus[bagRows]!!.open(player)
+    }
+
+    @EventHandler
+    fun onQuit(event: PlayerQuitEvent) {
+        val uuid = event.player.uniqueId
+
+        plugin.scheduler.global().runLater(1) {
+            if (Bukkit.getPlayer(uuid) == null) {
+                savedItems.remove(uuid)
+            }
+        }
     }
 
     fun getTalismans(player: Player): List<ItemStack> {
