@@ -20,8 +20,12 @@ import com.willfp.eco.util.getNumericalPermission
 import com.willfp.ecomponent.menuStateVar
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -30,7 +34,9 @@ private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
     emptyList()
 )
 
-object TalismanBag {
+private val Menu.talismanBagLoaded by menuStateVar(false)
+
+object TalismanBag : Listener {
     private val menus = ConcurrentHashMap<Int, Menu>()
 
     private val bagSlotCounts = ConcurrentHashMap<Int, Int>()
@@ -127,21 +133,22 @@ object TalismanBag {
                     }
                 }
 
+                onOpen { player, menu ->
+                    menu.talismanBag[player] = player.profile.read(legacyKey).map { Items.lookup(it).item } +
+                            player.profile.read(key).mapNotNull { Items.fromSNBT(it) }
+                    menu.talismanBagLoaded[player] = true
+                }
+
                 onRender { player, menu ->
-                    if (menu.talismanBag[player].isEmpty()) {
-                        menu.talismanBag[player] += player.profile.read(legacyKey).map { Items.lookup(it).item }
-                        menu.talismanBag[player] += player.profile.read(key).mapNotNull { Items.fromSNBT(it) }
+                    if (menu.talismanBagLoaded[player]) {
+                        val toWrite = menu.getCaptiveItems(player)
+                            .filterNot { EmptyTestableItem().matches(it) }
+                            .filter { TalismanChecks.getTalismanOnItem(it) != null }
+
+                        if (savedItems.put(player.uniqueId, toWrite) != toWrite) {
+                            player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                        }
                     }
-
-                    val items = menu.getCaptiveItems(player)
-                        .filterNot { EmptyTestableItem().matches(it) }
-
-                    val toWrite = items
-                        .filter { TalismanChecks.getTalismanOnItem(it) != null }
-
-                    savedItems[player.uniqueId] = toWrite.toList()
-
-                    player.profile.write(key, toWrite.map { Items.toSNBT(it) })
                 }
 
                 onClose { event, menu ->
@@ -150,10 +157,12 @@ object TalismanBag {
                     val items = menu.getCaptiveItems(player)
                         .filterNot { EmptyTestableItem().matches(it) }
 
-                    val toWrite = savedItems[player.uniqueId] ?: emptyList()
+                    if (menu.talismanBagLoaded[player]) {
+                        val toWrite = items.filter { TalismanChecks.getTalismanOnItem(it) != null }
 
-                    player.profile.write(key, toWrite.map { Items.toSNBT(it) })
-                    player.profile.write(legacyKey, emptyList())
+                        player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                        player.profile.write(legacyKey, emptyList())
+                    }
 
                     val toDrop = items.filter { TalismanChecks.getTalismanOnItem(it) == null }
 
@@ -178,6 +187,17 @@ object TalismanBag {
         val bagSize = player.bagSize
         val bagRows = (1..6).firstOrNull { bagSlotCounts.getValue(it) >= bagSize } ?: 6
         menus[bagRows]!!.open(player)
+    }
+
+    @EventHandler
+    fun onQuit(event: PlayerQuitEvent) {
+        val uuid = event.player.uniqueId
+
+        plugin.scheduler.global().runLater(1) {
+            if (Bukkit.getPlayer(uuid) == null) {
+                savedItems.remove(uuid)
+            }
+        }
     }
 
     fun getTalismans(player: Player): List<ItemStack> {
