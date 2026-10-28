@@ -7,6 +7,7 @@ import com.willfp.eco.core.version.Version
 import com.willfp.libreforge.loader.LibreforgePlugin
 import com.willfp.libreforge.loader.configs.ConfigCategory
 import com.willfp.libreforge.loader.configs.LegacyLocation
+import com.willfp.talismans.talismans.util.TalismanUtils
 import java.util.concurrent.CopyOnWriteArrayList
 
 object Talismans : ConfigCategory("talisman", "talismans") {
@@ -50,6 +51,7 @@ object Talismans : ConfigCategory("talisman", "talismans") {
 
     override fun clear(plugin: LibreforgePlugin) {
         registry.clear()
+        TalismanUtils.clearTalismanMaterials()
         fromTableTalismans.clear()
         fromTableDisabled = plugin.configYml.getBool("opt-in.disable-fromtable-permission") ||
             Version(plugin.description.version).isAtLeast(fromTableCutoff)
