@@ -10,7 +10,5 @@ object TalismanTag : CustomItemTag(plugin.createNamespacedKey("talisman")) {
         return TalismanChecks.getTalismanOnItem(p0) != null
     }
 
-    override fun getExampleItem(): ItemStack {
-        return Talismans.values().random().itemStack
-    }
+    override fun getExampleItem(): ItemStack? = Talismans.values().randomOrNull()?.itemStack
 }
