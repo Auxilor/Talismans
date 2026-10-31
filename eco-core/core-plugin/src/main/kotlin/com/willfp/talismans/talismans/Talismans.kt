@@ -2,6 +2,7 @@ package com.willfp.talismans.talismans
 
 import com.google.common.collect.ImmutableList
 import com.willfp.eco.core.config.interfaces.Config
+import com.willfp.eco.core.recipe.Recipes
 import com.willfp.eco.core.registry.Registry
 import com.willfp.eco.core.version.Version
 import com.willfp.libreforge.loader.LibreforgePlugin
@@ -50,6 +51,9 @@ object Talismans : ConfigCategory("talisman", "talismans") {
     }
 
     override fun clear(plugin: LibreforgePlugin) {
+        for (talisman in registry.values()) {
+            talisman.recipe?.let { Recipes.unregister(it) }
+        }
         registry.clear()
         TalismanUtils.clearTalismanMaterials()
         fromTableTalismans.clear()
