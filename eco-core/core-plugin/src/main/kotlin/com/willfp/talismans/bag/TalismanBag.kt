@@ -9,6 +9,8 @@ import com.willfp.eco.core.gui.component.closeButton
 import com.willfp.eco.core.gui.getSlotLocations
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
+import com.willfp.eco.core.gui.menu.MenuBuilder
+import com.willfp.eco.core.gui.onLeftClick
 import com.willfp.eco.core.gui.slot
 import com.willfp.eco.core.gui.slot.ConfigSlot
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
@@ -54,6 +56,9 @@ object TalismanBag : Listener {
     @Volatile
     private lateinit var emptyItem: ItemStack
 
+    @Volatile
+    private var upgrade: BagUpgrade? = null
+
     private val savedItems = ConcurrentHashMap<UUID, List<ItemStack>>()
 
     private val Player.baseBagSize: Int
@@ -73,6 +78,9 @@ object TalismanBag : Listener {
 
     private val Player.bagSize: Int
         get() = effectiveBagSize(base = baseBagSize, bought = getBoughtSlots(this))
+
+    private val BagUpgrade?.reservedLocations: List<SlotLocation>
+        get() = this?.locations.orEmpty()
 
     fun getBoughtSlots(player: OfflinePlayer): Int = player.profile.read(bagSlotsKey)
 
@@ -108,8 +116,11 @@ object TalismanBag : Listener {
 
         val close = closeButton(plugin.configYml.getSubsection("bag.close"), enabledByDefault = false)
 
+        val bagUpgrade = readUpgrade().also { upgrade = it }
+
         val reserved = customSlots.flatMap { it.second }.toSet() +
-                if (close.isEnabled) close.locations else emptyList()
+                (if (close.isEnabled) close.locations else emptyList()) +
+                bagUpgrade.reservedLocations
 
         for (rows in 1..6) {
             val bagLocations = (1..rows)
@@ -151,6 +162,8 @@ object TalismanBag : Listener {
                         setSlot(row, column, close.getSlotAt(row, column))
                     }
                 }
+
+                addUpgradeSlot(rows, bagUpgrade)
 
                 onOpen { player, menu ->
                     menu.talismanBag[player] = player.profile.read(legacyKey).map { Items.lookup(it).item } +
@@ -209,10 +222,69 @@ object TalismanBag : Listener {
         )
     }
 
+    private fun readUpgrade(): BagUpgrade? = plugin.configYml.getSubsectionOrNull("bag.upgrade")
+        ?.takeIf { it.getBool("enabled") }
+        ?.let { BagUpgrade(it) }
+
+    private val BagUpgrade.cap: Int
+        get() = upgradeCap(maxSize = maxSize, displayableSlots = bagSlotCounts.getValue(MAX_BAG_ROWS))
+
+    private fun MenuBuilder.addUpgradeSlot(rows: Int, bagUpgrade: BagUpgrade?) {
+        bagUpgrade ?: return
+
+        val upgradeSlot = slot({ player, _ ->
+            bagUpgrade.buildItem(player, size = player.bagSize, cap = bagUpgrade.cap, bought = getBoughtSlots(player))
+        }) {
+            onLeftClick { player, _, _, menu -> buySlot(player, menu, bagUpgrade) }
+        }
+
+        for ((row, column) in bagUpgrade.locations.filter { it.row <= rows }) {
+            setSlot(row, column, upgradeSlot)
+        }
+    }
+
+    private fun Player.bagRows(): Int =
+        bagRows(size = bagSize, minimumRows = upgrade?.minimumRows ?: 1, slotCounts = bagSlotCounts)
+
     fun open(player: Player) {
-        val bagSize = player.bagSize
-        val bagRows = (1..6).firstOrNull { bagSlotCounts.getValue(it) >= bagSize } ?: 6
-        menus[bagRows]!!.open(player)
+        menus.getValue(player.bagRows()).open(player)
+    }
+
+    private fun buySlot(player: Player, menu: Menu, bagUpgrade: BagUpgrade) {
+        val size = player.bagSize
+        val price = bagUpgrade.priceFor(size + 1)
+
+        when {
+            size >= bagUpgrade.cap -> {
+                player.sendMessage(plugin.langYml.getMessage("bag-upgrade-max"))
+            }
+
+            !price.canAfford(player) -> {
+                player.sendMessage(
+                    plugin.langYml.getMessage("bag-upgrade-cannot-afford")
+                        .replace(oldValue = "%price%", newValue = price.getDisplay(player))
+                )
+            }
+
+            else -> {
+                val rows = player.bagRows()
+
+                price.pay(player)
+                setBoughtSlots(player, getBoughtSlots(player) + 1)
+
+                player.sendMessage(
+                    plugin.langYml.getMessage("bag-upgrade-success")
+                        .replace(oldValue = "%size%", newValue = player.bagSize.toString())
+                )
+
+                if (player.bagRows() == rows) {
+                    menu.refresh(player)
+                } else {
+                    player.closeInventory()
+                    plugin.scheduler.on(player).runLater(1) { open(player) }
+                }
+            }
+        }
     }
 
     @EventHandler

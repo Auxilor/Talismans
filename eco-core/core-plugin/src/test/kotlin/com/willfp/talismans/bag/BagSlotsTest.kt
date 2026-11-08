@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
 class BagSlotsTest {
+    private val slotCounts = mapOf(1 to 8, 2 to 17, 3 to 26, 4 to 35, 5 to 44, 6 to 53)
+
     @Test
     fun `bought adds to base`() {
         assertEquals(8, effectiveBagSize(base = 5, bought = 3))
@@ -44,5 +46,26 @@ class BagSlotsTest {
     fun `action arg parses`() {
         assertEquals(BagSlotAction.SET, BagSlotAction.fromArg("Set"))
         assertNull(BagSlotAction.fromArg("x"))
+    }
+
+    @Test
+    fun `cap uses smaller value`() {
+        assertEquals(27, upgradeCap(maxSize = 27, displayableSlots = 53))
+        assertEquals(53, upgradeCap(maxSize = 100, displayableSlots = 53))
+    }
+
+    @Test
+    fun `rows respect minimum`() {
+        assertEquals(3, bagRows(size = 1, minimumRows = 3, slotCounts = slotCounts))
+    }
+
+    @Test
+    fun `rows fit size`() {
+        assertEquals(2, bagRows(size = 10, minimumRows = 1, slotCounts = slotCounts))
+    }
+
+    @Test
+    fun `rows max six`() {
+        assertEquals(6, bagRows(size = 500, minimumRows = 1, slotCounts = slotCounts))
     }
 }

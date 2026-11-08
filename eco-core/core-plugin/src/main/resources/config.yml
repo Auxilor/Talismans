@@ -29,6 +29,32 @@ bag:
       row: 6
       column: 5
 
+  # A button that buys one more bag slot. It stays off unless enabled.
+  # Bought slots add to the size from size or the bag-size permissions. An unlimited bag cannot buy slots.
+  # The bag always opens with enough rows to show this button.
+  upgrade:
+    enabled: false
+    item: emerald name:"&aBuy a bag slot"
+    lore:
+      - ""
+      - "&fSize: &a%size%&f/&a%max_size%"
+      - "&fPrice: %price%"
+      - ""
+      - "&eClick to buy!"
+    # The item shown when the bag is at its largest size.
+    max-item: barrier name:"&cYour bag is at its largest size"
+    max-lore: [ ]
+    location:
+      row: 1
+      column: 9
+    # The largest size a player can buy up to. The bag shows at most 54 slots, minus buttons.
+    max-size: 27
+    # The price of one slot. %slot% is the size the bag will have after buying.
+    price:
+      value: "%slot% * 1000"
+      type: coins
+      display: "&a$%value%"
+
   # Extra items in the bag, such as a back button or decorations. Bag slots move around them.
   # Each one takes item, lore, a location (or a locations list) and click commands, for example:
   # - item: arrow name:"&fBack"
