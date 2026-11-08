@@ -14,6 +14,7 @@ object CommandTalismans : PluginCommand(
         addSubcommand(CommandReload)
             .addSubcommand(CommandGive)
             .addSubcommand(CommandBag)
+            .addSubcommand(CommandBagSlots)
     }
 
     override fun onExecute(sender: CommandSender, args: List<String>) {

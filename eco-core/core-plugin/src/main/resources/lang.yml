@@ -12,3 +12,8 @@ messages:
   invalid-amount: "&cInvalid amount!"
   invalid-level: "&cLevel doesn't exist!"
   give-success: "Gave &a%talisman%&r to &a%recipient%"
+  needs-action: "&cYou must specify add, set or remove"
+  bagslots-success: "Set &a%player%&r's bought bag slots to &a%slots%"
+  bag-upgrade-success: "Your talisman bag now has &a%size%&r slots!"
+  bag-upgrade-cannot-afford: "&cYou can't afford this! It costs %price%&c."
+  bag-upgrade-max: "&cYour talisman bag is already at its largest size!"
