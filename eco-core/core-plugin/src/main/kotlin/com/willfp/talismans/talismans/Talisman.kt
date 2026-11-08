@@ -57,7 +57,7 @@ class Talisman(
                 id,
                 itemStack,
                 config.getStrings("recipe"),
-                config.getStringOrNull("crafting-permission"),
+                config.getStringOrNull("crafting-permission") ?: config.getStringOrNull("recipe-permission"),
                 config.getBool("shapeless")
             )
         }
