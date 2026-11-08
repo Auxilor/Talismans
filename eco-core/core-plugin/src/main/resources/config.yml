@@ -13,6 +13,7 @@ top-level-only: true # If only the top level of any given talisman should be act
 talisman-limit: 54  # Set to 0 to use permission-based limits instead
 
 offhand-only: false # If talismans or shulkers of talismans need to be in the offhand to work
+prevent-talisman-shulker-place: false # If shulker boxes holding talismans should not be placeable
 
 bag:
   title: "Talisman Bag"
