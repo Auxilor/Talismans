@@ -1,6 +1,7 @@
 package com.willfp.talismans.talismans.util
 
 import com.willfp.talismans.plugin
+import com.willfp.talismans.talismans.util.TalismanUtils.convert
 import org.bukkit.Tag
 import org.bukkit.block.ShulkerBox
 import org.bukkit.event.EventHandler
@@ -32,6 +33,9 @@ object BlockPlaceListener : Listener {
         }
 
         val shulkerBox = meta.blockState as? ShulkerBox
-        return shulkerBox != null && shulkerBox.inventory.contents.any { TalismanChecks.getTalismanOnItem(it) != null }
+        return shulkerBox != null && shulkerBox.inventory.contents.any { item ->
+            convert(item)
+            TalismanChecks.getTalismanOnItem(item) != null
+        }
     }
 }
