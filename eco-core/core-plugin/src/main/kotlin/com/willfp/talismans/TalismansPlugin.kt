@@ -40,10 +40,9 @@ class TalismansPlugin : LibreforgePlugin() {
             else emptyList()
         }
 
-        TalismanChecks.registerItemStackProvider {
+        TalismanChecks.registerItemStackProvider { player ->
             if (configYml.getBool("read-enderchest") && !configYml.getBool("offhand-only"))
-                @Suppress("UNNECESSARY_SAFE_CALL", "USELESS_ELVIS")
-                it.enderChest?.contents?.filterNotNull() ?: emptyList()
+                player.enderChest.contents.filterNotNull()
             else emptyList()
         }
     }
