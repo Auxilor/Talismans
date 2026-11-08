@@ -9,7 +9,7 @@ fun effectiveBagSize(base: Int, bought: Int): Int {
         return base
     }
 
-    return (base + bought.coerceAtLeast(0)).coerceAtMost(UNLIMITED_BAG_SIZE)
+    return (base.toLong() + bought.coerceAtLeast(0)).coerceAtMost(UNLIMITED_BAG_SIZE.toLong()).toInt()
 }
 
 fun upgradeCap(maxSize: Int, displayableSlots: Int): Int = minOf(a = maxSize, b = displayableSlots)
@@ -25,10 +25,10 @@ enum class BagSlotAction {
     REMOVE;
 
     fun apply(current: Int, amount: Int): Int = when (this) {
-        ADD -> current + amount
-        SET -> amount
-        REMOVE -> current - amount
-    }.coerceAtLeast(0)
+        ADD -> current.toLong() + amount
+        SET -> amount.toLong()
+        REMOVE -> current.toLong() - amount
+    }.coerceIn(minimumValue = 0, maximumValue = Int.MAX_VALUE.toLong()).toInt()
 
     companion object {
         fun fromArg(arg: String): BagSlotAction? = entries.firstOrNull { it.name.equals(arg, ignoreCase = true) }

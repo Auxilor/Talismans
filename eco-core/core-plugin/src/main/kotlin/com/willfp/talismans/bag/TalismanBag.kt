@@ -82,6 +82,9 @@ object TalismanBag : Listener {
     private val BagUpgrade?.reservedLocations: List<SlotLocation>
         get() = this?.locations.orEmpty()
 
+    private fun ItemStack.isDroppedFromBag(): Boolean =
+        TalismanChecks.getTalismanOnItem(this) == null && !isSimilar(emptyItem)
+
     fun getBoughtSlots(player: OfflinePlayer): Int = player.profile.read(bagSlotsKey)
 
     fun setBoughtSlots(player: OfflinePlayer, slots: Int) {
@@ -196,7 +199,7 @@ object TalismanBag : Listener {
                         player.profile.write(legacyKey, emptyList())
                     }
 
-                    val toDrop = items.filter { TalismanChecks.getTalismanOnItem(it) == null }
+                    val toDrop = items.filter { it.isDroppedFromBag() }
 
                     DropQueue(player)
                         .setLocation(player.eyeLocation)
@@ -235,7 +238,7 @@ object TalismanBag : Listener {
         val upgradeSlot = slot({ player, _ ->
             bagUpgrade.buildItem(player, size = player.bagSize, cap = bagUpgrade.cap, bought = getBoughtSlots(player))
         }) {
-            onLeftClick { player, _, _, menu -> buySlot(player, menu, bagUpgrade) }
+            onLeftClick { player, _, _, _ -> buySlot(player, bagUpgrade) }
         }
 
         for ((row, column) in bagUpgrade.locations.filter { it.row <= rows }) {
@@ -250,7 +253,7 @@ object TalismanBag : Listener {
         menus.getValue(player.bagRows()).open(player)
     }
 
-    private fun buySlot(player: Player, menu: Menu, bagUpgrade: BagUpgrade) {
+    private fun buySlot(player: Player, bagUpgrade: BagUpgrade) {
         val size = player.bagSize
         val price = bagUpgrade.priceFor(size + 1)
 
@@ -267,8 +270,6 @@ object TalismanBag : Listener {
             }
 
             else -> {
-                val rows = player.bagRows()
-
                 price.pay(player)
                 setBoughtSlots(player, getBoughtSlots(player) + 1)
 
@@ -277,11 +278,11 @@ object TalismanBag : Listener {
                         .replace(oldValue = "%size%", newValue = player.bagSize.toString())
                 )
 
-                if (player.bagRows() == rows) {
-                    menu.refresh(player)
-                } else {
-                    player.closeInventory()
-                    plugin.scheduler.on(player).runLater(1) { open(player) }
+                player.closeInventory()
+                plugin.scheduler.on(player).runLater(1) {
+                    if (player.isOnline) {
+                        open(player)
+                    }
                 }
             }
         }

@@ -28,6 +28,16 @@ class BagSlotsTest {
     }
 
     @Test
+    fun `huge bought no overflow`() {
+        assertEquals(UNLIMITED_BAG_SIZE, effectiveBagSize(base = 5, bought = Int.MAX_VALUE))
+    }
+
+    @Test
+    fun `add saturates`() {
+        assertEquals(Int.MAX_VALUE, BagSlotAction.ADD.apply(current = Int.MAX_VALUE, amount = 1))
+    }
+
+    @Test
     fun `remove clamps at zero`() {
         assertEquals(0, BagSlotAction.REMOVE.apply(current = 2, amount = 5))
     }
