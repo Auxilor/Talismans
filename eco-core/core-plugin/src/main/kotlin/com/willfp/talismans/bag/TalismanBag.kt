@@ -22,6 +22,7 @@ import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -48,11 +49,14 @@ object TalismanBag : Listener {
     private lateinit var key: PersistentDataKey<List<String>>
 
     @Volatile
+    private lateinit var bagSlotsKey: PersistentDataKey<Int>
+
+    @Volatile
     private lateinit var emptyItem: ItemStack
 
     private val savedItems = ConcurrentHashMap<UUID, List<ItemStack>>()
 
-    private val Player.bagSize: Int
+    private val Player.baseBagSize: Int
         get() {
             val configSize = plugin.configYml.getInt("bag.size")
             if (configSize > 0) {
@@ -61,11 +65,20 @@ object TalismanBag : Listener {
 
             val highest = this.getNumericalPermission("talismans.bagsize", -1.0).toInt()
             return if (highest < 0) {
-                10000
+                UNLIMITED_BAG_SIZE
             } else {
                 highest
             }
         }
+
+    private val Player.bagSize: Int
+        get() = effectiveBagSize(base = baseBagSize, bought = getBoughtSlots(this))
+
+    fun getBoughtSlots(player: OfflinePlayer): Int = player.profile.read(bagSlotsKey)
+
+    fun setBoughtSlots(player: OfflinePlayer, slots: Int) {
+        player.profile.write(bagSlotsKey, slots.coerceAtLeast(0))
+    }
 
     internal fun update() {
         legacyKey = PersistentDataKey(
@@ -78,6 +91,12 @@ object TalismanBag : Listener {
             plugin.namespacedKeyFactory.create("bag"),
             PersistentDataKeyType.STRING_LIST,
             emptyList()
+        )
+
+        bagSlotsKey = PersistentDataKey(
+            plugin.namespacedKeyFactory.create("bag_slots"),
+            PersistentDataKeyType.INT,
+            0
         )
 
         emptyItem = ItemStackBuilder(Items.lookup(plugin.configYml.getString("bag.blocked-item")))
@@ -180,6 +199,13 @@ object TalismanBag : Listener {
                 plugin,
                 "bagsize"
             ) { it.bagSize.toString() }
+        )
+
+        PlaceholderManager.registerPlaceholder(
+            PlayerPlaceholder(
+                plugin,
+                "bag_slots"
+            ) { getBoughtSlots(it).toString() }
         )
     }
 
