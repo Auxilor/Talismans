@@ -17,6 +17,7 @@ read-shulkerboxes: true # Check a player's shulker boxes for active talismans
 top-level-only: true # Only the highest level of any talisman counts as active
 
 offhand-only: false # Require talismans to be in the offhand to work
+prevent-talisman-shulker-place: false # Stop players placing shulker boxes that hold talismans
 
 bag:
   title: "Talisman Bag" # Title shown at the top of the talisman bag menu
