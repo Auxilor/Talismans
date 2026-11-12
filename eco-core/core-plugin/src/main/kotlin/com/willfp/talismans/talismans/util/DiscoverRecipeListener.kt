@@ -12,7 +12,7 @@ object DiscoverRecipeListener : Listener {
         val player = event.player
         if (plugin.configYml.getBool("crafting.discover")) {
             for (talisman in values()) {
-                player.discoverRecipe(talisman.recipe?.key ?: continue)
+                player.discoverRecipe(talisman.recipe?.getKey() ?: continue)
             }
         }
     }

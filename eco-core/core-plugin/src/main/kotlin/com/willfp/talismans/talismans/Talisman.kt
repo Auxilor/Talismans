@@ -36,9 +36,9 @@ class Talisman(
     private val _itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
         Validate.isTrue(item !is EmptyTestableItem, "Item specified in $id is invalid!")
-        TalismanUtils.registerTalismanMaterial(item.item.type)
+        TalismanUtils.registerTalismanMaterial(item.getItem().type)
 
-        ItemStackBuilder(item.item)
+        ItemStackBuilder(item.getItem())
             .setAmount(1)
             .setDisplayName(name.formatEco())
             .addLoreLines(description.map { Display.PREFIX + it.formatEco() })
