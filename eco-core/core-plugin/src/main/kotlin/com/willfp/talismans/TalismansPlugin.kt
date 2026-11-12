@@ -1,8 +1,7 @@
 package com.willfp.talismans
 
-import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.talismans.bag.TalismanBag
-import com.willfp.talismans.command.CommandTalismans
+import com.willfp.talismans.command.talismansCommand
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.libreforge.ConditionHasTalisman
 import com.willfp.talismans.libreforge.SlotTypeTalisman
@@ -14,6 +13,7 @@ import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
 import wiki.ecohub.config.category.NativeConfigCategory
+import wiki.ecohub.core.command.EcoCommand
 import wiki.ecohub.core.plugin.EcoPlugin
 import wiki.ecohub.game.item.Items
 import wiki.ecohub.provider.metrics.EcoMetricsChart
@@ -26,7 +26,7 @@ import wiki.ecohub.ui.display.DisplayModule
 internal lateinit var plugin: TalismansPlugin
     private set
 
-class TalismansPlugin : LibreforgePlugin() {
+class TalismansPlugin : EcoPlugin() {
     init {
         plugin = this
 
@@ -69,15 +69,15 @@ class TalismansPlugin : LibreforgePlugin() {
         TalismanChecks.reload()
     }
 
-    override fun loadConfigCategories(): List<ConfigCategory> {
+    override fun loadConfigCategories(): List<NativeConfigCategory> {
         return listOf(
             Talismans
         )
     }
 
-    override fun loadPluginCommands(): List<PluginCommand> {
+    override fun loadPluginCommands(): List<EcoCommand> {
         return listOf(
-            CommandTalismans
+            talismansCommand()
         )
     }
 

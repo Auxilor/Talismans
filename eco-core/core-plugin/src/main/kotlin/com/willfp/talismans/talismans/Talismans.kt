@@ -9,7 +9,7 @@ import wiki.ecohub.core.plugin.EcoPlugin
 import wiki.ecohub.core.registry.Registry
 import wiki.ecohub.modules.recipe.Recipes
 
-object Talismans : ConfigCategory("talisman", "talismans") {
+object Talismans : NativeConfigCategory("talismans", "talisman") {
     private val registry = Registry<Talisman>()
 
     override val legacyLocation = LegacyLocation(
@@ -38,7 +38,7 @@ object Talismans : ConfigCategory("talisman", "talismans") {
         return registry[name]
     }
 
-    override fun clear(plugin: LibreforgePlugin) {
+    override fun clear(plugin: EcoPlugin) {
         for (talisman in registry.values()) {
             talisman.recipe?.let { Recipes.unregister(it) }
         }
@@ -46,11 +46,11 @@ object Talismans : ConfigCategory("talisman", "talismans") {
         TalismanUtils.clearTalismanMaterials()
     }
 
-    override fun acceptConfig(plugin: LibreforgePlugin, id: String, config: Config) {
+    override fun acceptConfig(plugin: EcoPlugin, id: String, config: Config) {
         registry.register(Talisman(id, config))
     }
 
-    override fun afterReload(plugin: LibreforgePlugin) {
+    override fun afterReload(plugin: EcoPlugin) {
         for (talisman in registry.values()) {
             val visited = mutableSetOf(talisman)
             var lowerLevel = talisman.lowerLevel
