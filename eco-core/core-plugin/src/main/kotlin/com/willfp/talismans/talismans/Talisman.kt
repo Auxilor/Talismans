@@ -1,19 +1,5 @@
 package com.willfp.talismans.talismans
 
-import com.willfp.eco.core.config.interfaces.Config
-import com.willfp.eco.core.display.Display
-import com.willfp.eco.core.items.CustomItem
-import com.willfp.eco.core.items.Items
-import com.willfp.eco.core.items.builder.ItemStackBuilder
-import com.willfp.eco.core.recipe.Recipes
-import com.willfp.eco.core.recipe.parts.EmptyTestableItem
-import com.willfp.eco.core.recipe.recipes.CraftingRecipe
-import com.willfp.eco.core.registry.Registrable
-import com.willfp.eco.util.formatEco
-import com.willfp.libreforge.Holder
-import com.willfp.libreforge.ViolationContext
-import com.willfp.libreforge.conditions.Conditions
-import com.willfp.libreforge.effects.Effects
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
@@ -21,6 +7,20 @@ import org.apache.commons.lang3.Validate
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
+import wiki.ecohub.config.Config
+import wiki.ecohub.config.ViolationContext
+import wiki.ecohub.core.registry.Registrable
+import wiki.ecohub.game.item.CustomItem
+import wiki.ecohub.game.item.Items
+import wiki.ecohub.game.item.builder.ItemStackBuilder
+import wiki.ecohub.game.item.lookup.EmptyTestableItem
+import wiki.ecohub.modules.recipe.Recipes
+import wiki.ecohub.modules.recipe.crafting.CraftingRecipe
+import wiki.ecohub.rules.condition.Conditions
+import wiki.ecohub.rules.effect.Effects
+import wiki.ecohub.rules.holder.Holder
+import wiki.ecohub.ui.display.Display
+import wiki.ecohub.ui.text.formatEco
 import java.util.Objects
 
 class Talisman(

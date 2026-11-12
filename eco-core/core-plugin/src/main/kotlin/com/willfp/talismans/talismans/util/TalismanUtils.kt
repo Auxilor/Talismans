@@ -1,12 +1,11 @@
 package com.willfp.talismans.talismans.util
 
-import com.willfp.eco.core.fast.fast
-import com.willfp.eco.util.getNumericalPermission
 import com.willfp.talismans.plugin
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
+import wiki.ecohub.game.item.fast
 import java.util.concurrent.ConcurrentHashMap
 
 object TalismanUtils {

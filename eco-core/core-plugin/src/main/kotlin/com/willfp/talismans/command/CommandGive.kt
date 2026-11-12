@@ -1,8 +1,6 @@
 package com.willfp.talismans.command
 
 import com.willfp.eco.core.command.impl.Subcommand
-import com.willfp.eco.core.drops.DropQueue
-import com.willfp.eco.util.formatEco
 import com.willfp.talismans.plugin
 import com.willfp.talismans.runOwned
 import com.willfp.talismans.talismans.Talismans
@@ -10,6 +8,8 @@ import com.willfp.talismans.talismans.Talismans.getByID
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.util.StringUtil
+import wiki.ecohub.game.drop.DropQueue
+import wiki.ecohub.ui.text.formatEco
 
 object CommandGive : Subcommand(
     plugin,
