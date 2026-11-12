@@ -110,7 +110,6 @@ allprojects {
     tasks {
         shadowJar {
             exclude("META-INF/**")
-            relocate("com.willfp.ecomponent", "com.willfp.talismans.ecomponent")
             relocate("kotlin", "wiki.ecohub.libs.kotlin") {
                 exclude("kotlin.kotlin_builtins")
             }
