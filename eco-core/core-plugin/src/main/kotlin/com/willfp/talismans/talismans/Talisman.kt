@@ -3,7 +3,6 @@ package com.willfp.talismans.talismans
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import com.willfp.talismans.talismans.util.TalismanUtils
-import org.apache.commons.lang3.Validate
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
@@ -35,7 +34,7 @@ class Talisman(
 
     private val _itemStack: ItemStack = run {
         val item = Items.lookup(config.getString("item"))
-        Validate.isTrue(item !is EmptyTestableItem, "Item specified in $id is invalid!")
+        require(item !is EmptyTestableItem) { "Item specified in $id is invalid!" }
         TalismanUtils.registerTalismanMaterial(item.getItem().type)
 
         ItemStackBuilder(item.getItem())
