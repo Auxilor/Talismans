@@ -79,7 +79,7 @@ object CommandGive : Subcommand(
 
             DropQueue(receiver)
                 .addItem(itemStack)
-                .forceTelekinesis()
+                .giveDirectly()
                 .push()
         }
     }
