@@ -1,29 +1,16 @@
 package com.willfp.talismans.command
 
-import com.willfp.eco.core.command.impl.PluginCommand
-import com.willfp.talismans.plugin
-import org.bukkit.command.CommandSender
+import com.willfp.talismans.TalismansPlugin
+import wiki.ecohub.core.command.command
 
-object CommandTalismans : PluginCommand(
-    plugin,
-    "talismans",
-    "talismans.command.talismans",
-    false
+internal fun TalismansPlugin.talismansCommand() = command(
+    name = "talismans",
+    permission = "talismans.command.talismans"
 ) {
-    init {
-        addSubcommand(CommandReload)
-            .addSubcommand(CommandGive)
-            .addSubcommand(CommandBag)
-            .addSubcommand(CommandBagSlots)
-    }
+    aliases("talis", "tal", "talismen", "talisman")
 
-    override fun onExecute(sender: CommandSender, args: List<String>) {
-        sender.sendMessage(
-            plugin.langYml.getMessage("invalid-command")
-        )
-    }
-
-    override fun getAliases(): List<String> {
-        return listOf("talis", "tal", "talismen", "talisman")
-    }
+    reloadCommand()
+    giveCommand()
+    bagCommand()
+    bagSlotsCommand()
 }

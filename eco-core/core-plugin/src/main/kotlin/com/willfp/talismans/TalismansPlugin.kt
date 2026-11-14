@@ -1,17 +1,7 @@
 package com.willfp.talismans
 
-import com.willfp.eco.core.bstats.EcoMetricsChart
-import com.willfp.eco.core.command.impl.PluginCommand
-import com.willfp.eco.core.display.DisplayModule
-import com.willfp.eco.core.items.Items
-import com.willfp.libreforge.conditions.Conditions
-import com.willfp.libreforge.loader.LibreforgePlugin
-import com.willfp.libreforge.loader.configs.ConfigCategory
-import com.willfp.libreforge.registerSpecificHolderProvider
-import com.willfp.libreforge.registerSpecificRefreshFunction
-import com.willfp.libreforge.slot.SlotTypes
 import com.willfp.talismans.bag.TalismanBag
-import com.willfp.talismans.command.CommandTalismans
+import com.willfp.talismans.command.talismansCommand
 import com.willfp.talismans.display.TalismanDisplay
 import com.willfp.talismans.libreforge.ConditionHasTalisman
 import com.willfp.talismans.libreforge.SlotTypeTalisman
@@ -22,11 +12,21 @@ import com.willfp.talismans.talismans.util.DiscoverRecipeListener
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
+import wiki.ecohub.config.category.NativeConfigCategory
+import wiki.ecohub.core.command.EcoCommand
+import wiki.ecohub.core.plugin.EcoPlugin
+import wiki.ecohub.game.item.Items
+import wiki.ecohub.provider.metrics.EcoMetricsChart
+import wiki.ecohub.rules.condition.Conditions
+import wiki.ecohub.rules.holder.registerSpecificHolderProvider
+import wiki.ecohub.rules.holder.registerSpecificRefreshFunction
+import wiki.ecohub.rules.holder.slot.SlotTypes
+import wiki.ecohub.ui.display.DisplayModule
 
 internal lateinit var plugin: TalismansPlugin
     private set
 
-class TalismansPlugin : LibreforgePlugin() {
+class TalismansPlugin : EcoPlugin() {
     init {
         plugin = this
 
@@ -69,15 +69,15 @@ class TalismansPlugin : LibreforgePlugin() {
         TalismanChecks.reload()
     }
 
-    override fun loadConfigCategories(): List<ConfigCategory> {
+    override fun loadConfigCategories(): List<NativeConfigCategory> {
         return listOf(
             Talismans
         )
     }
 
-    override fun loadPluginCommands(): List<PluginCommand> {
+    override fun loadPluginCommands(): List<EcoCommand> {
         return listOf(
-            CommandTalismans
+            talismansCommand()
         )
     }
 

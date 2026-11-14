@@ -1,27 +1,8 @@
 package com.willfp.talismans.bag
 
-import com.willfp.eco.core.data.keys.PersistentDataKey
-import com.willfp.eco.core.data.keys.PersistentDataKeyType
-import com.willfp.eco.core.data.profile
-import com.willfp.eco.core.drops.DropQueue
-import com.willfp.eco.core.gui.SlotLocation
-import com.willfp.eco.core.gui.component.closeButton
-import com.willfp.eco.core.gui.getSlotLocations
-import com.willfp.eco.core.gui.menu
-import com.willfp.eco.core.gui.menu.Menu
-import com.willfp.eco.core.gui.menu.MenuBuilder
-import com.willfp.eco.core.gui.onLeftClick
-import com.willfp.eco.core.gui.slot
-import com.willfp.eco.core.gui.slot.ConfigSlot
-import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
-import com.willfp.eco.core.items.Items
-import com.willfp.eco.core.items.builder.ItemStackBuilder
-import com.willfp.eco.core.placeholder.PlayerPlaceholder
-import com.willfp.eco.core.recipe.parts.EmptyTestableItem
-import com.willfp.eco.util.getNumericalPermission
-import com.willfp.ecomponent.menuStateVar
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
+import com.willfp.talismans.talismans.util.getNumericalPermission
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.OfflinePlayer
@@ -30,14 +11,43 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
+import wiki.ecohub.data.PersistentDataKey
+import wiki.ecohub.data.PersistentDataKeyType
+import wiki.ecohub.game.drop.DropQueue
+import wiki.ecohub.game.entity.player.profile
+import wiki.ecohub.game.item.Items
+import wiki.ecohub.game.item.builder.ItemStackBuilder
+import wiki.ecohub.game.item.lookup.EmptyTestableItem
+import wiki.ecohub.game.item.toSNBT
+import wiki.ecohub.modules.menus.SlotLocation
+import wiki.ecohub.modules.menus.component.closeButton
+import wiki.ecohub.modules.menus.getSlotLocations
+import wiki.ecohub.modules.menus.menu
+import wiki.ecohub.modules.menus.menu.Menu
+import wiki.ecohub.modules.menus.menu.MenuBuilder
+import wiki.ecohub.modules.menus.onLeftClick
+import wiki.ecohub.modules.menus.slot
+import wiki.ecohub.modules.menus.slot.ConfigSlot
+import wiki.ecohub.ui.placeholder.PlaceholderManager
+import wiki.ecohub.ui.placeholder.type.PlayerPlaceholder
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
-private val Menu.talismanBag by menuStateVar<List<ItemStack>>(
-    emptyList()
-)
+private class MenuState<T : Any>(
+    private val menu: Menu,
+    private val key: String,
+    private val default: T
+) {
+    operator fun get(player: Player): T = menu.getState<T>(player, key) ?: default
 
-private val Menu.talismanBagLoaded by menuStateVar(false)
+    operator fun set(player: Player, value: T) = menu.setState(player, key, value)
+}
+
+private val Menu.talismanBag
+    get() = MenuState<List<ItemStack>>(this, "talisman_bag", emptyList())
+
+private val Menu.talismanBagLoaded
+    get() = MenuState(this, "talisman_bag_loaded", false)
 
 object TalismanBag : Listener {
     private val menus = ConcurrentHashMap<Int, Menu>()
@@ -133,12 +143,12 @@ object TalismanBag : Listener {
             bagSlotCounts[rows] = bagLocations.size
 
             menus[rows] = menu(rows) {
-                title = plugin.configYml.getFormattedString("bag.title")
+                setTitle(plugin.configYml.getFormattedString("bag.title"))
 
                 allowChangingHeldItem()
 
                 for ((index, location) in bagLocations.withIndex()) {
-                    setSlot(location.row, location.column, slot({ player, menu ->
+                    setSlot(row = location.row, column = location.column, slot = slot({ player, menu ->
                         if (index >= player.bagSize) {
                             emptyItem
                         } else {
@@ -169,7 +179,7 @@ object TalismanBag : Listener {
                 addUpgradeSlot(rows, bagUpgrade)
 
                 onOpen { player, menu ->
-                    menu.talismanBag[player] = player.profile.read(legacyKey).map { Items.lookup(it).item } +
+                    menu.talismanBag[player] = player.profile.read(legacyKey).map { Items.lookup(it).getItem() } +
                             player.profile.read(key).mapNotNull { Items.fromSNBT(it) }
                     menu.talismanBagLoaded[player] = true
                 }
@@ -181,7 +191,7 @@ object TalismanBag : Listener {
                             .filter { TalismanChecks.getTalismanOnItem(it) != null }
 
                         if (savedItems.put(player.uniqueId, toWrite) != toWrite) {
-                            player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                            player.profile.write(key, toWrite.map { it.toSNBT() })
                         }
                     }
                 }
@@ -195,7 +205,7 @@ object TalismanBag : Listener {
                     if (menu.talismanBagLoaded[player]) {
                         val toWrite = items.filter { TalismanChecks.getTalismanOnItem(it) != null }
 
-                        player.profile.write(key, toWrite.map { Items.toSNBT(it) })
+                        player.profile.write(key, toWrite.map { it.toSNBT() })
                         player.profile.write(legacyKey, emptyList())
                     }
 
@@ -302,9 +312,11 @@ object TalismanBag : Listener {
     fun getTalismans(player: Player): List<ItemStack> {
         return savedItems.computeIfAbsent(player.uniqueId) {
             val legacyItems = player.profile.read(legacyKey)
-                .map { Items.lookup(it).item }
+                .asSequence()
+                .map { id -> Items.lookup(id).getItem() }
                 .filterNot { EmptyTestableItem().matches(it) }
                 .filter { TalismanChecks.getTalismanOnItem(it) != null }
+                .toList()
 
             val items = player.profile.read(key)
                 .mapNotNull { Items.fromSNBT(it) }

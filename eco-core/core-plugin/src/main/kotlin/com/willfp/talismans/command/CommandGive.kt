@@ -1,80 +1,44 @@
 package com.willfp.talismans.command
 
-import com.willfp.eco.core.command.impl.Subcommand
-import com.willfp.eco.core.drops.DropQueue
-import com.willfp.eco.util.formatEco
-import com.willfp.talismans.plugin
-import com.willfp.talismans.runOwned
 import com.willfp.talismans.talismans.Talismans
-import com.willfp.talismans.talismans.Talismans.getByID
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
-import org.bukkit.util.StringUtil
+import wiki.ecohub.core.command.CommandBuilder
+import wiki.ecohub.game.drop.DropQueue
+import wiki.ecohub.game.entity.runOwned
+import wiki.ecohub.ui.text.formatEco
 
-object CommandGive : Subcommand(
-    plugin,
-    "give",
-    "talismans.command.give",
-    false
+private val amountCompletions = listOf("1", "2", "3", "4", "5", "10", "32", "64")
+
+private const val AMOUNT_ARGS = 3
+
+/**
+ * Gives on the receiver's region, as the console runs off it on Folia.
+ */
+internal fun CommandBuilder<CommandSender>.giveCommand() = subcommand(
+    name = "give",
+    permission = "talismans.command.give"
 ) {
-    private val numbers = listOf(
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "10",
-        "32",
-        "64"
-    )
-
-    override fun onExecute(sender: CommandSender, args: List<String>) {
-        if (args.isEmpty()) {
-            sender.sendMessage(plugin.langYml.getMessage("needs-player"))
-            return
-        }
-
-        if (args.size == 1) {
-            sender.sendMessage(plugin.langYml.getMessage("needs-talisman"))
-            return
-        }
-
-        var amount = 1
-        if (args.size > 2) {
-            amount = args[2].toIntOrNull() ?: 1
-        }
+    executes {
+        val receiverName = argument(0, "needs-player")
+        val talismanName = argument(1, "needs-talisman")
+        val amount = args.getOrNull(2)?.toIntOrNull() ?: 1
 
         if (amount < 1) {
-            sender.sendMessage(plugin.langYml.getMessage("invalid-amount"))
-            return
+            fail("invalid-amount")
         }
 
-        val receiverName = args[0]
-        val receiver = Bukkit.getPlayer(receiverName)
+        val receiver = Bukkit.getPlayer(receiverName) ?: fail("invalid-player")
+        val talisman = Talismans.getByID(talismanName) ?: fail("invalid-talisman")
 
-        if (receiver == null) {
-            sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
-            return
-        }
-
-        val talismanName = args[1]
-        val talisman = getByID(talismanName)
-
-        if (talisman == null) {
-            sender.sendMessage(plugin.langYml.getMessage("invalid-talisman"))
-            return
-        }
-
-        // The console runs off the player's region on Folia.
         receiver.runOwned {
-            var message = plugin.langYml.getMessage("give-success")
-
-            message = message.replace("%talisman%", talisman.name.formatEco()).replace("%recipient%", receiver.name)
-
-            sender.sendMessage(message)
+            sender.sendMessage(
+                plugin.langYml.getMessage("give-success")
+                    .replace(oldValue = "%talisman%", newValue = talisman.name.formatEco())
+                    .replace(oldValue = "%recipient%", newValue = receiver.name)
+            )
 
             val itemStack = talisman.itemStack
-
             itemStack.amount = amount
 
             DropQueue(receiver)
@@ -84,39 +48,12 @@ object CommandGive : Subcommand(
         }
     }
 
-    override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
-        val completions = mutableListOf<String>()
-
-        if (args.isEmpty()) {
-            return Talismans.values().map { it.id.key }
+    completes {
+        when (args.size) {
+            1 -> playerNames()
+            2 -> Talismans.values().map { it.id.key }
+            AMOUNT_ARGS -> amountCompletions
+            else -> emptyList()
         }
-
-        if (args.size == 1) {
-            StringUtil.copyPartialMatches(
-                args[0],
-                Bukkit.getOnlinePlayers().map { it.name },
-                completions
-            )
-        }
-
-        if (args.size == 2) {
-            StringUtil.copyPartialMatches(
-                args[1],
-                Talismans.values().map { it.id.key },
-                completions
-            )
-        }
-
-
-
-        if (args.size == 3) {
-            StringUtil.copyPartialMatches(
-                args[2],
-                numbers,
-                completions
-            )
-        }
-
-        return completions
     }
 }

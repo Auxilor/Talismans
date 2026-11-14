@@ -1,15 +1,15 @@
 package com.willfp.talismans.bag
 
-import com.willfp.eco.core.config.interfaces.Config
-import com.willfp.eco.core.gui.SlotLocation
-import com.willfp.eco.core.gui.getSlotLocations
-import com.willfp.eco.core.items.Items
-import com.willfp.eco.core.items.builder.ItemStackBuilder
-import com.willfp.eco.core.placeholder.StaticPlaceholder
-import com.willfp.eco.core.price.ConfiguredPrice
-import com.willfp.eco.util.formatEco
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import wiki.ecohub.config.Config
+import wiki.ecohub.core.price.ConfiguredPrice
+import wiki.ecohub.game.item.Items
+import wiki.ecohub.game.item.builder.ItemStackBuilder
+import wiki.ecohub.modules.menus.SlotLocation
+import wiki.ecohub.modules.menus.getSlotLocations
+import wiki.ecohub.ui.placeholder.type.StaticPlaceholder
+import wiki.ecohub.ui.text.formatEco
 
 class BagUpgrade(config: Config) {
     val locations: List<SlotLocation> = config.getSlotLocations(default = listOf(SlotLocation(row = 1, column = 9)))

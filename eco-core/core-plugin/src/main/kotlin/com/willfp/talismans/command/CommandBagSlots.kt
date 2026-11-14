@@ -1,74 +1,41 @@
 package com.willfp.talismans.command
 
-import com.willfp.eco.core.command.impl.Subcommand
 import com.willfp.talismans.bag.BagSlotAction
 import com.willfp.talismans.bag.TalismanBag
-import com.willfp.talismans.plugin
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
-import org.bukkit.util.StringUtil
+import wiki.ecohub.core.command.CommandBuilder
 
-object CommandBagSlots : Subcommand(
-    plugin,
-    "bagslots",
-    "talismans.command.bagslots",
-    false
+private val slotCompletions = listOf("1", "2", "5", "10")
+
+private const val AMOUNT_ARGS = 3
+
+internal fun CommandBuilder<CommandSender>.bagSlotsCommand() = subcommand(
+    name = "bagslots",
+    permission = "talismans.command.bagslots"
 ) {
-    private val numbers = listOf(
-        "1",
-        "2",
-        "5",
-        "10"
-    )
-
-    override fun onExecute(sender: CommandSender, args: List<String>) {
-        val action = args.getOrNull(0)?.let { BagSlotAction.fromArg(it) }
+    executes {
+        val action = args.getOrNull(0)?.let { BagSlotAction.fromArg(it) } ?: fail("needs-action")
+        val targetName = argument(1, "needs-player")
 
         @Suppress("DEPRECATION")
-        val target = args.getOrNull(1)?.let { name ->
-            Bukkit.getOfflinePlayer(name).takeIf { it.isOnline || it.hasPlayedBefore() }
-        }
+        val target = Bukkit.getOfflinePlayer(targetName).takeIf { it.isOnline || it.hasPlayedBefore() }
+            ?: fail("invalid-player")
 
-        val amount = args.getOrNull(2)?.toIntOrNull()?.takeIf { it >= 0 }
+        val amount = args.getOrNull(2)?.toIntOrNull()?.takeIf { it >= 0 } ?: fail("invalid-amount")
 
-        when {
-            action == null -> {
-                sender.sendMessage(plugin.langYml.getMessage("needs-action"))
-            }
+        val slots = action.apply(current = TalismanBag.getBoughtSlots(target), amount = amount)
+        TalismanBag.setBoughtSlots(target, slots)
 
-            args.size < 2 -> {
-                sender.sendMessage(plugin.langYml.getMessage("needs-player"))
-            }
-
-            target == null -> {
-                sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
-            }
-
-            amount == null -> {
-                sender.sendMessage(plugin.langYml.getMessage("invalid-amount"))
-            }
-
-            else -> {
-                val slots = action.apply(current = TalismanBag.getBoughtSlots(target), amount = amount)
-                TalismanBag.setBoughtSlots(target, slots)
-
-                sender.sendMessage(
-                    plugin.langYml.getMessage("bagslots-success")
-                        .replace(oldValue = "%player%", newValue = target.name ?: args[1])
-                        .replace(oldValue = "%slots%", newValue = slots.toString())
-                )
-            }
-        }
+        reply("bagslots-success", "player" to (target.name ?: targetName), "slots" to slots)
     }
 
-    override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
-        val options = when (args.size) {
-            0, 1 -> BagSlotAction.entries.map { it.name.lowercase() }
-            2 -> Bukkit.getOnlinePlayers().map { it.name }
-            3 -> numbers
-            else -> return emptyList()
+    completes {
+        when (args.size) {
+            1 -> BagSlotAction.entries.map { it.name.lowercase() }
+            2 -> playerNames()
+            AMOUNT_ARGS -> slotCompletions
+            else -> emptyList()
         }
-
-        return StringUtil.copyPartialMatches(args.lastOrNull().orEmpty(), options, mutableListOf())
     }
 }
