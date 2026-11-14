@@ -203,7 +203,7 @@ object TalismanBag : Listener {
 
                     DropQueue(player)
                         .setLocation(player.eyeLocation)
-                        .forceTelekinesis()
+                        .giveDirectly()
                         .addItems(toDrop)
                         .push()
                 }
