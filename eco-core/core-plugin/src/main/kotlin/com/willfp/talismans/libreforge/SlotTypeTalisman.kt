@@ -1,10 +1,10 @@
 package com.willfp.talismans.libreforge
 
-import com.willfp.libreforge.slot.SlotType
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import wiki.ecohub.rules.holder.slot.SlotType
 
 object SlotTypeTalisman: SlotType("talisman") {
     override fun getItems(entity: LivingEntity): List<ItemStack> {
