@@ -43,7 +43,7 @@ internal fun CommandBuilder<CommandSender>.giveCommand() = subcommand(
 
             DropQueue(receiver)
                 .addItem(itemStack)
-                .forceTelekinesis()
+                .giveDirectly()
                 .push()
         }
     }
