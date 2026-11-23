@@ -1,9 +1,9 @@
 package com.willfp.talismans.talismans
 
-import com.willfp.eco.core.items.tag.CustomItemTag
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.util.TalismanChecks
 import org.bukkit.inventory.ItemStack
+import wiki.ecohub.game.item.lookup.CustomItemTag
 
 object TalismanTag : CustomItemTag(plugin.createNamespacedKey("talisman")) {
     override fun matches(p0: ItemStack): Boolean {

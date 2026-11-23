@@ -1,8 +1,5 @@
 package com.willfp.talismans.talismans.util
 
-import com.willfp.eco.core.cache.EcoCache
-import com.willfp.eco.core.fast.fast
-import com.willfp.libreforge.ItemProvidedHolder
 import com.willfp.talismans.plugin
 import com.willfp.talismans.talismans.Talisman
 import com.willfp.talismans.talismans.Talismans.getByID
@@ -16,6 +13,9 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.persistence.PersistentDataType
+import wiki.ecohub.data.cache.EcoCache
+import wiki.ecohub.game.item.fast
+import wiki.ecohub.rules.holder.ItemProvidedHolder
 import java.time.Duration
 import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Function
